@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NyayaSaarthi App</title>
+    <style>
+      :root {
+        --navy: #062354;
+        --deep: #031737;
+        --gold: #c78228;
+        --gold-soft: #f1c783;
+        --ink: #091c41;
+        --muted: #627086;
+        --line: #dfe7f1;
+        --panel: rgba(255, 255, 255, 0.9);
+        --teal: #2fb8ac;
+        --mint: #e4f8f4;
+        --sky: #dff2ff;
+        --violet: #eee9ff;
+        --amber: #fff1dc;
+        --red: #fae8e2;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 6% 28%, rgba(199, 130, 40, 0.12), transparent 23%),
+          radial-gradient(circle at 80% 17%, rgba(47, 184, 172, 0.11), transparent 24%),
+          linear-gradient(180deg, #fff 0%, #f8fbff 58%, #edf5fb 100%);
+      }
+
+      button, textarea { font: inherit; }
+
+      .shell {
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        height: 86px;
+        padding: 12px clamp(20px, 6vw, 108px);
+        background: rgba(255, 255, 255, 0.91);
+        border-bottom: 1px solid rgba(6, 35, 84, 0.12);
+        box-shadow: 0 12px 32px rgba(6, 35, 84, 0.08);
+        backdrop-filter: blur(18px);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        min-width: 270px;
+      }
+
+      .crest {
+        display: grid;
+        place-items: center;
+        width: 62px;
+        height: 62px;
+        color: var(--gold-soft);
+        font-size: 29px;
+        background: linear-gradient(145deg, #041a41, #0b3776);
+        clip-path: polygon(50% 0, 91% 14%, 86% 68%, 50% 100%, 14% 68%, 9% 14%);
+        box-shadow: inset 0 0 0 3px #e5b66b;
+      }
+
+      .brand h1 {
+        margin: 0;
+        font: 700 clamp(28px, 2.4vw, 38px) / 0.92 Georgia, "Times New Roman", serif;
+        letter-spacing: 0;
+      }
+
+      .brand h1 span { color: var(--gold); }
+      .brand p {
+        margin: 6px 0 0;
+        color: #34445f;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(18px, 3vw, 48px);
+        flex: 1;
+      }
+
+      .main-nav button {
+        position: relative;
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        font-size: 15px;
+        font-weight: 850;
+        cursor: pointer;
+      }
+
+      .main-nav button.active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -24px;
+        height: 3px;
+        border-radius: 999px;
+        background: var(--gold);
+      }
+
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 48px;
+        border-radius: 8px;
+        padding: 0 26px;
+        border: 1px solid var(--navy);
+        color: #fff;
+        background: linear-gradient(135deg, var(--navy), #041737);
+        box-shadow: 0 12px 25px rgba(6, 35, 84, 0.24);
+        font-weight: 900;
+        cursor: pointer;
+        transition: transform 160ms ease, box-shadow 160ms ease;
+      }
+
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 18px 34px rgba(6, 35, 84, 0.2); }
+
+      .privacy-pill {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 48px;
+        padding-left: 22px;
+        border-left: 1px solid #d7dfeb;
+        color: #546177;
+        font-size: 13px;
+        font-weight: 750;
+      }
+
+      .page { display: none; }
+      .page.active { display: block; }
+      body[data-page="incident"] .steps,
+      body[data-page="incident"] .benefits { display: none; }
+
+      .home {
+        position: relative;
+        padding: 48px clamp(20px, 6vw, 108px) 24px;
+      }
+
+      .home::before,
+      .incident::before,
+      .incident::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        opacity: 0.09;
+        background:
+          linear-gradient(to top, #102a52 0 12px, transparent 12px),
+          linear-gradient(to right, transparent 0 23%, #102a52 23% 28%, transparent 28% 72%, #102a52 72% 77%, transparent 77%),
+          repeating-linear-gradient(to right, transparent 0 34px, #102a52 35px 49px, transparent 50px 75px);
+        clip-path: polygon(5% 90%, 95% 90%, 86% 33%, 54% 33%, 50% 15%, 46% 33%, 14% 33%);
+      }
+
+      .home::before {
+        left: -20px;
+        bottom: 92px;
+        width: 380px;
+        height: 380px;
+      }
+
+      .home-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(320px, 0.82fr) minmax(540px, 1.08fr);
+        gap: clamp(30px, 5vw, 78px);
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+        padding: 9px 15px;
+        border: 1px solid #ecd4ad;
+        border-radius: 999px;
+        color: #b67120;
+        background: rgba(255, 250, 243, 0.94);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .home h2 {
+        max-width: 610px;
+        margin: 0;
+        font: 700 clamp(48px, 5vw, 78px) / 0.94 Georgia, "Times New Roman", serif;
+        letter-spacing: 0;
+      }
+
+      .home h2 span { color: var(--gold); }
+
+      .home-copy p {
+        max-width: 560px;
+        margin: 18px 0 26px;
+        color: #3f4c62;
+        font-size: clamp(16px, 1.2vw, 20px);
+        line-height: 1.35;
+        font-weight: 650;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .btn.secondary {
+        color: var(--navy);
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: none;
+      }
+
+      .feature-row {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(122px, 1fr));
+        gap: 14px;
+        max-width: 760px;
+      }
+
+      .mini, .panel, .step-card {
+        border: 1px solid rgba(6, 35, 84, 0.09);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: 0 16px 44px rgba(6, 35, 84, 0.1);
+      }
+
+      .mini {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 10px;
+        min-height: 94px;
+        padding: 14px;
+      }
+
+      .mini .icon {
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        color: #087775;
+        background: #dbfaf5;
+        font-size: 20px;
+        font-weight: 900;
+      }
+
+      .mini strong { display: block; font-size: 13px; line-height: 1.12; }
+      .mini small { display: block; margin-top: 5px; color: #697589; font-size: 10px; font-weight: 750; line-height: 1.25; }
+
+      .home-demo {
+        display: grid;
+        grid-template-columns: 188px 1fr;
+        min-height: 545px;
+        overflow: hidden;
+      }
+
+      .side-preview,
+      .left-rail {
+        color: #e8f3ff;
+        background:
+          linear-gradient(160deg, rgba(0, 72, 150, 0.25), transparent 38%),
+          linear-gradient(180deg, #041f4c, #021431);
+      }
+
+      .side-preview { padding: 24px 18px; }
+      .demo-logo { display: flex; align-items: center; gap: 9px; margin-bottom: 32px; font-weight: 900; }
+      .tiny-crest { display: grid; place-items: center; width: 31px; height: 31px; color: var(--gold-soft); border: 1px solid #d39b52; background: #082b61; clip-path: polygon(50% 0, 91% 14%, 86% 68%, 50% 100%, 14% 68%, 9% 14%); }
+
+      .rail-nav { display: grid; gap: 12px; }
+      .rail-nav button {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        min-height: 56px;
+        padding: 0 14px;
+        border: 0;
+        border-radius: 8px;
+        color: #c8d5e9;
+        background: transparent;
+        text-align: left;
+        font-weight: 850;
+        cursor: pointer;
+      }
+      .rail-nav button.active { color: #fff; background: linear-gradient(135deg, #0f448d, #082861); }
+
+      .demo-main { padding: 28px 34px 22px; }
+      .demo-header { display: flex; justify-content: space-between; gap: 18px; margin-bottom: 22px; }
+      .demo-header h3 { margin: 0 0 5px; font-size: 20px; }
+      .demo-header p { margin: 0; color: #738095; font-size: 12px; font-weight: 750; }
+
+      .lang-tabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+      .lang-tabs button {
+        min-width: 58px;
+        min-height: 38px;
+        padding: 0 13px;
+        border: 0;
+        border-radius: 999px;
+        color: #647085;
+        background: #edf2f8;
+        font-weight: 850;
+        cursor: pointer;
+      }
+      .lang-tabs button.active { color: #fff; background: var(--navy); }
+
+      .chat-line { display: grid; grid-template-columns: 45px 1fr; gap: 14px; align-items: start; }
+      .avatar { display: grid; place-items: center; width: 45px; height: 45px; border-radius: 50%; color: #fff; background: linear-gradient(145deg, #4cc8b5, #1c9e95); font-size: 23px; }
+      .bubble {
+        min-height: 75px;
+        padding: 18px 20px 13px;
+        border-radius: 15px 15px 15px 4px;
+        background: linear-gradient(135deg, #e3f5ff, #bde8ff);
+      }
+      .bubble textarea {
+        display: block;
+        width: 100%;
+        min-height: 29px;
+        border: 0;
+        outline: 0;
+        resize: none;
+        color: #24405e;
+        background: transparent;
+        font-size: 17px;
+        font-weight: 850;
+      }
+      .bubble-foot { display: flex; justify-content: space-between; color: #5c7893; font-size: 11px; font-weight: 850; }
+
+      .voice { position: relative; display: grid; place-items: center; height: 116px; margin-top: 8px; }
+      .wave {
+        position: absolute;
+        width: min(430px, 80%);
+        height: 54px;
+        background: repeating-linear-gradient(90deg, transparent 0 11px, rgba(35, 150, 210, 0.19) 11px 15px, transparent 15px 25px);
+        mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+        animation: wave 1.8s linear infinite;
+      }
+      @keyframes wave { from { transform: translateX(-12px); } to { transform: translateX(12px); } }
+
+      .mic {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+        width: 88px;
+        height: 88px;
+        border: 8px solid #fff;
+        border-radius: 50%;
+        color: #fff;
+        background: radial-gradient(circle at 35% 28%, #1d4f98, #021a43 72%);
+        box-shadow: 0 12px 28px rgba(6, 35, 84, 0.3);
+        font-size: 34px;
+        cursor: pointer;
+      }
+      .mic.recording { animation: pulse 1.2s ease-in-out infinite; }
+      @keyframes pulse { 50% { box-shadow: 0 0 0 14px rgba(47, 184, 172, 0.18), 0 16px 34px rgba(6, 35, 84, 0.32); } }
+
+      .tap { margin-top: -7px; color: #354a68; text-align: center; font-size: 11px; font-weight: 900; }
+      .analysis-title { display: flex; justify-content: space-between; align-items: center; margin: 14px 0 12px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; font-weight: 900; }
+      .meter { width: 150px; height: 7px; border-radius: 999px; background: #eef3f9; overflow: hidden; }
+      .meter span { display: block; width: 92%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--teal), var(--gold)); animation: load 2.5s ease-in-out infinite; }
+      @keyframes load { 50% { width: 76%; } }
+
+      .insights { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+      .insight { min-height: 119px; padding: 14px; border-radius: 10px; border: 1px solid rgba(6, 35, 84, 0.08); }
+      .insight:nth-child(1) { background: linear-gradient(145deg, #e0fbf3, #cbf4ed); }
+      .insight:nth-child(2) { background: linear-gradient(145deg, #f0eaff, #e4dafd); }
+      .insight:nth-child(3) { background: linear-gradient(145deg, #fff1d8, #ffe4b8); }
+      .insight:nth-child(4) { background: linear-gradient(145deg, #ffe8e0, #ffdad2); }
+      .insight label { display: flex; gap: 7px; color: #42526b; font-size: 11px; font-weight: 900; }
+      .insight strong { display: block; margin: 13px 0 8px; font-size: 18px; }
+      .insight small, .missing-list { color: #506076; font-size: 12px; font-weight: 800; }
+      .missing-list { margin: 6px 0 0; padding-left: 16px; color: #5b4a45; line-height: 1.45; }
+
+      .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; padding: 10px clamp(20px, 6vw, 108px) 18px; }
+      .step-card { display: grid; grid-template-columns: 96px 1fr 32px; gap: 20px; align-items: center; min-height: 138px; padding: 22px 18px; }
+      .step-icon { display: grid; place-items: center; width: 78px; height: 78px; border-radius: 50%; color: #fff; background: radial-gradient(circle at 58% 40%, #42c9ba 0 26%, #062354 28% 100%); font-size: 32px; font-weight: 900; }
+      .step-content { border-left: 1px solid #d8e1ec; padding-left: 20px; }
+      .step-number { display: inline-grid; place-items: center; min-width: 34px; min-height: 31px; border-radius: 7px; color: #0a8984; background: #cff9f1; font-weight: 950; }
+      .step-card h3 { margin: 10px 0 8px; font-size: 20px; line-height: 1.08; }
+      .step-card p { margin: 0; color: #44546c; font-size: 13px; font-weight: 700; line-height: 1.35; }
+      .round-arrow { display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 50%; color: #087775; background: #bdf2ea; cursor: pointer; }
+
+      .benefits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; min-height: 136px; margin-top: 8px; padding: 26px clamp(20px, 6vw, 108px); color: #fff; background: linear-gradient(90deg, rgba(4, 29, 70, 0.97), rgba(3, 23, 55, 0.99)); }
+      .benefit { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; padding-right: 22px; border-right: 1px solid rgba(255, 255, 255, 0.25); }
+      .benefit:last-child { border-right: 0; }
+      .benefit-icon { color: var(--gold-soft); font-size: 34px; }
+      .benefit strong { display: block; color: #f5c77f; font-size: 16px; }
+      .benefit span:last-child { display: block; margin-top: 6px; color: #d6e3f3; font-size: 13px; font-weight: 650; line-height: 1.35; }
+
+      .incident {
+        position: relative;
+        min-height: calc(100vh - 86px);
+        padding: 16px clamp(14px, 2vw, 28px) 28px;
+      }
+      .incident::before { left: 92px; top: 120px; width: 300px; height: 300px; }
+      .incident::after { right: 30px; bottom: 12px; width: 240px; height: 240px; }
+
+      .incident-layout {
+        position: relative;
+        display: grid;
+        grid-template-columns: 148px minmax(560px, 1fr) 390px 132px;
+        gap: 18px;
+        max-width: 1540px;
+        margin: 0 auto;
+      }
+
+      .left-rail {
+        display: flex;
+        flex-direction: column;
+        min-height: calc(100vh - 120px);
+        padding: 22px 10px 18px;
+        border-radius: 0 22px 22px 0;
+        box-shadow: 16px 0 38px rgba(6, 35, 84, 0.18);
+      }
+      .left-rail .crest { width: 70px; height: 70px; margin: 0 auto 20px; }
+      .rail-title { margin: 0 0 28px; text-align: center; font: 700 18px/1 Georgia, "Times New Roman", serif; }
+      .rail-title span { color: var(--gold); }
+      .left-rail .rail-nav button { min-height: 58px; font-size: 13px; }
+      .lady-justice {
+        flex: 1;
+        display: grid;
+        align-items: end;
+        padding: 20px 6px;
+        color: rgba(241, 199, 131, 0.33);
+        font-size: 92px;
+        line-height: 1;
+      }
+      .rail-lock { color: #fff; font-size: 10px; font-weight: 750; line-height: 1.35; padding: 0 8px; }
+      .rail-lock strong { display: block; color: var(--gold-soft); margin-bottom: 8px; }
+
+      .incident-center { display: grid; gap: 16px; }
+      .workspace-card { padding: 24px 28px; }
+      .incident .demo-header { margin-bottom: 26px; }
+      .incident .chat-line { grid-template-columns: 48px 1fr; }
+      .incident .bubble { min-height: 86px; border-radius: 14px 14px 14px 6px; }
+      .incident .voice { height: 130px; }
+      .incident .analysis-title { margin-top: 6px; }
+      .incident .insights { gap: 12px; }
+
+      .composer {
+        display: grid;
+        grid-template-columns: 40px 1fr 40px 48px;
+        gap: 12px;
+        align-items: center;
+        min-height: 94px;
+        padding: 17px 22px;
+      }
+      .icon-btn {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        border: 0;
+        border-radius: 50%;
+        color: #4e5d75;
+        background: #eef3f9;
+        cursor: pointer;
+        font-size: 18px;
+      }
+      .composer-placeholder strong { display: block; color: #6b7890; font-size: 14px; }
+      .composer-placeholder span { display: block; margin-top: 5px; color: #8b96a8; font-size: 12px; font-weight: 750; }
+      .send { width: 48px; height: 48px; color: var(--gold-soft); background: var(--navy); box-shadow: 0 8px 18px rgba(6, 35, 84, 0.22); }
+      .encrypt { text-align: center; color: #6b7890; font-size: 12px; font-weight: 750; }
+
+      .analysis-panel {
+        display: grid;
+        gap: 14px;
+        align-content: start;
+        padding: 20px 16px;
+        border-radius: 16px;
+      }
+      .panel-title { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; font: 800 17px/1.1 Georgia, "Times New Roman", serif; }
+      .panel-title span { font-family: inherit; color: var(--navy); }
+      .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+      .stat { min-height: 74px; padding: 12px 8px; border-radius: 8px; text-align: center; font-weight: 900; }
+      .stat small { display: block; min-height: 24px; font-size: 9px; }
+      .stat strong { display: block; margin-top: 5px; font-size: 24px; }
+      .stat:nth-child(1) { background: var(--mint); color: #0c8a86; }
+      .stat:nth-child(2) { background: #fff5ed; color: #cf4a28; }
+      .stat:nth-child(3) { background: #f7f5fb; color: #5146bf; }
+      .stat:nth-child(4) { background: #eef8f5; color: #11847d; }
+
+      .info-box { padding: 15px; border-radius: 8px; border: 1px solid rgba(6, 35, 84, 0.08); background: #fff; box-shadow: 0 10px 28px rgba(6, 35, 84, 0.07); }
+      .box-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; color: #66748a; font-size: 11px; font-weight: 800; }
+      .box-head strong { color: var(--ink); font-size: 14px; }
+      .chips { display: flex; flex-wrap: wrap; gap: 9px; }
+      .chip { padding: 9px 15px; border-radius: 7px; color: #21375b; background: #eaf1ff; font-size: 12px; font-weight: 900; }
+      .chip.teal { background: #d8f7f1; color: #0d827c; }
+      .chip.amber { background: #fff0dc; color: #b86c13; }
+      .box-list { margin: 0; padding-left: 18px; color: #384966; font-size: 12px; font-weight: 800; line-height: 1.7; }
+      .question-list { display: grid; gap: 9px; margin-bottom: 14px; }
+      .q { display: grid; grid-template-columns: 24px 1fr; gap: 8px; color: #263957; font-size: 12px; font-weight: 850; }
+      .q span { display: grid; place-items: center; width: 22px; height: 22px; border: 1px solid #bec9d9; border-radius: 50%; color: #546783; font-size: 11px; }
+      .wide-btn { width: 100%; min-height: 40px; }
+
+      .progress-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+        padding: 32px 12px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(6, 35, 84, 0.08);
+      }
+      .progress-panel h3 { margin: 0; font: 800 13px/1 Georgia, "Times New Roman", serif; }
+      .scale { color: var(--gold); font-size: 38px; }
+      .progress-steps { display: grid; gap: 24px; width: 100%; position: relative; }
+      .progress-steps::before { content: ""; position: absolute; left: 31px; top: 24px; bottom: 24px; border-left: 1px dashed #c7d1df; }
+      .progress-step { position: relative; display: grid; grid-template-columns: 40px 1fr; gap: 8px; align-items: center; color: #617087; font-size: 12px; font-weight: 850; }
+      .progress-step b { display: grid; place-items: center; width: 30px; height: 30px; margin-left: 16px; border-radius: 50%; border: 1px solid #cad4e2; background: #fff; z-index: 1; }
+      .progress-step.current b { color: #fff; background: var(--navy); border-color: var(--gold); box-shadow: 0 0 0 2px rgba(199, 130, 40, 0.18); }
+      .secure-badge {
+        display: grid;
+        place-items: center;
+        width: 90px;
+        height: 105px;
+        margin-top: auto;
+        padding: 12px;
+        color: var(--navy);
+        text-align: center;
+        font-size: 9px;
+        font-weight: 950;
+        border: 2px solid #e4bd7f;
+        clip-path: polygon(50% 0, 100% 16%, 94% 76%, 50% 100%, 6% 76%, 0 16%);
+      }
+      .secure-badge span { display: block; font-size: 24px; }
+
+      .toast {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 40;
+        max-width: 340px;
+        padding: 15px 18px;
+        border-radius: 8px;
+        color: #fff;
+        background: var(--navy);
+        box-shadow: 0 20px 40px rgba(6, 35, 84, 0.25);
+        opacity: 0;
+        transform: translateY(18px);
+        pointer-events: none;
+        transition: opacity 180ms ease, transform 180ms ease;
+        font-weight: 800;
+      }
+      .toast.show { opacity: 1; transform: translateY(0); }
+
+      @media (max-width: 1280px) {
+        .incident-layout { grid-template-columns: 118px 1fr 360px; }
+        .progress-panel { display: none; }
+        .main-nav { display: none; }
+      }
+
+      @media (max-width: 1040px) {
+        .home-grid, .incident-layout { grid-template-columns: 1fr; }
+        .left-rail { min-height: auto; border-radius: 16px; }
+        .left-rail .rail-nav { grid-template-columns: repeat(4, 1fr); }
+        .lady-justice, .rail-lock { display: none; }
+        .steps, .benefits { grid-template-columns: 1fr 1fr; }
+        .home-demo { grid-template-columns: 1fr; }
+        .side-preview { display: none; }
+      }
+
+      @media (max-width: 720px) {
+        .topbar { height: auto; padding: 12px 16px; }
+        .brand { min-width: 0; }
+        .brand p, .privacy-pill { display: none; }
+        .brand h1 { font-size: 26px; }
+        .crest { width: 48px; height: 48px; }
+        .top-actions .btn { min-height: 42px; padding: 0 14px; }
+        .home { padding: 28px 16px 16px; }
+        .home h2 { font-size: 42px; }
+        .feature-row, .insights, .steps, .benefits, .stat-grid { grid-template-columns: 1fr; }
+        .demo-main, .workspace-card { padding: 20px 16px; }
+        .demo-header, .chat-line, .composer { grid-template-columns: 1fr; }
+        .lang-tabs { justify-content: flex-start; }
+        .left-rail .rail-nav button { justify-content: center; font-size: 0; }
+        .left-rail .rail-nav button span:first-child { font-size: 18px; }
+        .step-card { grid-template-columns: 1fr; }
+        .step-content { border-left: 0; padding-left: 0; }
+        .benefit { border-right: 0; padding-right: 0; }
+      }
+    </style>
+  </head>
+  <body data-page="home">
+    <div class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="crest" aria-hidden="true">⚖</div>
+          <div>
+            <h1>Nyaya<span>Saarthi</span></h1>
+            <p>Nyaya. Saral. Sabke Saath.</p>
+          </div>
+        </div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="active" data-page-link="home">Home</button>
+          <button data-page-link="home">How It Works</button>
+          <button data-page-link="home">Features</button>
+          <button data-page-link="home">Safety</button>
+          <button data-page-link="home">Contact</button>
+        </nav>
+        <div class="top-actions">
+          <button class="btn" data-page-link="incident">Get Started ›</button>
+          <div class="privacy-pill">♢ Secure & Private</div>
+        </div>
+      </header>
+
+      <main>
+        <section class="page home active" id="home">
+          <div class="home-grid">
+            <div class="home-copy">
+              <div class="eyebrow">⚖ AI-Powered • Multilingual • Citizen First</div>
+              <h2>Turn your incident into a clear legal <span>narrative.</span></h2>
+              <p>NyayaSaarthi helps you describe any crime incident in your own words and converts it into structured legal information ready for official handoff.</p>
+              <div class="actions">
+                <button class="btn" data-page-link="incident">✎ Describe an Incident</button>
+                <button class="btn secondary" data-record>🎙 Speak Now</button>
+              </div>
+              <div class="feature-row">
+                <article class="mini"><span class="icon">◎</span><div><strong>Language Detection</strong><small>Auto-detects the language you use</small></div></article>
+                <article class="mini"><span class="icon">🎙</span><div><strong>Voice-to-Text</strong><small>Accurate STT for seamless input</small></div></article>
+                <article class="mini"><span class="icon">Aअ</span><div><strong>Hindi-English Code-Mixed Support</strong><small>Understands the way India speaks</small></div></article>
+                <article class="mini"><span class="icon">⊕</span><div><strong>Live Intent Identification</strong><small>Identifies intent in real time</small></div></article>
+              </div>
+            </div>
+
+            <section class="panel home-demo" aria-label="Landing demo">
+              <aside class="side-preview">
+                <div class="demo-logo"><span class="tiny-crest">⚖</span><span>NyayaSaarthi</span></div>
+                <div class="rail-nav">
+                  <button class="active"><span>●</span><span>Incident</span></button>
+                  <button><span>□</span><span>Analysis</span></button>
+                  <button><span>☷</span><span>Summary</span></button>
+                  <button><span>◆</span><span>Handoff</span></button>
+                </div>
+              </aside>
+              <div class="demo-main">
+                <div class="demo-header">
+                  <div><h3>Describe your incident</h3><p>You can type or speak in your preferred language.</p></div>
+                  <div class="lang-tabs"><button>English</button><button class="active">हिन्दी</button><button>தமிழ்</button><button>മലയാളം</button></div>
+                </div>
+                <div class="chat-line">
+                  <div class="avatar">●</div>
+                  <div class="bubble">
+                    <textarea class="incident-text">Mera phone bus stand pe chori ho gaya...</textarea>
+                    <div class="bubble-foot"><span>Mix: हिंदी + English</span><span class="clock">12:45 PM ✓✓</span></div>
+                  </div>
+                </div>
+                <div class="voice"><div class="wave"></div><button class="mic" data-record aria-label="Tap to speak">🎙</button></div>
+                <div class="tap">Tap to speak</div>
+                <div class="analysis-title"><span>NyayaSaarthi is analyzing...</span><span class="meter"><span></span></span></div>
+                <div class="insights">
+                  <article class="insight"><label>◇ Intent</label><strong class="intent-value">Theft</strong><small>Confidence: <span class="confidence">92%</span></small></article>
+                  <article class="insight"><label>⌖ Location detected</label><strong class="location-value">Bus Stand</strong><small>New Delhi, India</small></article>
+                  <article class="insight"><label>◷ Timeline</label><strong>Today</strong><small>12:30 PM (Approx.)</small></article>
+                  <article class="insight"><label>△ Missing details</label><ul class="missing-list"><li>Exact location</li><li>Phone model</li><li>Any suspect seen?</li></ul></article>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="page incident" id="incident">
+          <div class="incident-layout">
+            <aside class="left-rail">
+              <div class="crest">⚖</div>
+              <h2 class="rail-title">Nyaya<span>Saarthi</span></h2>
+              <div class="rail-nav">
+                <button class="active"><span>●</span><span>Incident</span></button>
+                <button><span>□</span><span>Analysis</span></button>
+                <button><span>☷</span><span>Summary</span></button>
+                <button><span>◆</span><span>Handoff</span></button>
+              </div>
+              <div class="lady-justice">⚖</div>
+              <div class="rail-lock"><strong>▣ Your data is private and secure.</strong>We do not share without consent.</div>
+            </aside>
+
+            <section class="incident-center">
+              <div class="panel workspace-card">
+                <div class="demo-header">
+                  <div><h3>Describe your incident</h3><p>You can type or speak in your preferred language.</p></div>
+                  <div class="lang-tabs"><button class="active">English</button><button>हिन्दी</button><button>தமிழ்</button><button>മലയാളം</button><button>...</button></div>
+                </div>
+                <div class="chat-line">
+                  <div class="avatar">●</div>
+                  <div class="bubble">
+                    <textarea class="incident-text">Mera phone bus stand pe chori ho gaya...</textarea>
+                    <div class="bubble-foot"><span>Mix: हिंदी + English</span><span class="clock">12:45 PM ✓✓</span></div>
+                  </div>
+                </div>
+                <div class="voice"><div class="wave"></div><button class="mic" data-record aria-label="Tap to speak">🎙</button></div>
+                <div class="tap">Tap to speak</div>
+                <div class="analysis-title"><span>✦ NyayaSaarthi is analyzing...</span></div>
+                <div class="insights">
+                  <article class="insight"><label>◇ Intent</label><strong class="intent-value">Theft</strong><small>Confidence: <span class="confidence">92%</span></small></article>
+                  <article class="insight"><label>⌖ Location Detected</label><strong class="location-value">Bus Stand</strong><small>New Delhi, India</small></article>
+                  <article class="insight"><label>◷ Timeline</label><strong>Today</strong><small>12:30 PM (Approx.)</small></article>
+                  <article class="insight"><label>△ Missing Details</label><ul class="missing-list"><li>Exact location</li><li>Phone model</li><li>Any suspect seen?</li></ul></article>
+                </div>
+              </div>
+
+              <div class="panel composer">
+                <button class="icon-btn" aria-label="Attach">⌕</button>
+                <div class="composer-placeholder"><strong>Type your response...</strong><span>You can type in any language</span></div>
+                <button class="icon-btn" data-record aria-label="Record">🎙</button>
+                <button class="icon-btn send" data-toast="Response sent for analysis" aria-label="Send">›</button>
+              </div>
+              <div class="encrypt">▣ End-to-end encrypted. Your data stays yours.</div>
+            </section>
+
+            <aside class="panel analysis-panel">
+              <h3 class="panel-title"><span>♙</span> AI Real-time Analysis</h3>
+              <div class="stat-grid">
+                <div class="stat"><small>Entities Detected</small><strong>4</strong></div>
+                <div class="stat"><small>Missing Details</small><strong>3</strong></div>
+                <div class="stat"><small>Ambiguities</small><strong>1</strong></div>
+                <div class="stat"><small>Confidence</small><strong class="confidence">92%</strong></div>
+              </div>
+
+              <section class="info-box">
+                <div class="box-head"><strong>⌘ Extracted Entities</strong><span>Auto-detected</span></div>
+                <div class="chips">
+                  <span class="chip teal">Theft</span>
+                  <span class="chip">Bus Stand</span>
+                  <span class="chip">New Delhi, India</span>
+                  <span class="chip amber">Today, 12:30 PM (Approx.)</span>
+                </div>
+              </section>
+
+              <section class="info-box">
+                <div class="box-head"><strong>△ Missing Information</strong><span>Important</span></div>
+                <ul class="box-list">
+                  <li>Exact location (landmark / area)</li>
+                  <li>Phone model & brand</li>
+                  <li>Any suspect seen or description</li>
+                </ul>
+              </section>
+
+              <section class="info-box">
+                <div class="box-head"><strong>? Ambiguity / Clarification</strong><span>Review</span></div>
+                <p style="margin:0;color:#4d5d75;font-size:12px;font-weight:750;line-height:1.45;">"Bus stand" could refer to multiple locations. Please confirm the exact bus stand or nearby landmark.</p>
+              </section>
+
+              <section class="info-box">
+                <div class="box-head"><strong>☵ AI-Guided Follow-up Questions</strong><span>Next Best Questions</span></div>
+                <div class="question-list">
+                  <div class="q"><span>1</span><strong>Where was the bus stand exactly? (Name/landmark/area)</strong></div>
+                  <div class="q"><span>2</span><strong>What is the brand and model of your phone?</strong></div>
+                  <div class="q"><span>3</span><strong>When did the incident happen exactly?</strong></div>
+                </div>
+                <button class="btn wide-btn" data-toast="Next question loaded">Ask Next Question ›</button>
+              </section>
+            </aside>
+
+            <aside class="progress-panel">
+              <h3>Your Progress</h3>
+              <div class="scale">⚖</div>
+              <div class="progress-steps">
+                <div class="progress-step current"><b>1</b><span>Incident</span></div>
+                <div class="progress-step"><b>2</b><span>Analysis</span></div>
+                <div class="progress-step"><b>3</b><span>Summary</span></div>
+                <div class="progress-step"><b>4</b><span>Handoff</span></div>
+              </div>
+              <div class="secure-badge"><div><span>▣</span>Secure • Private<br />Trusted • Encrypted</div></div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="steps">
+          <article class="step-card"><div class="step-icon">☵</div><div class="step-content"><span class="step-number">01</span><h3>Speak or Type Your Incident</h3><p>Share what happened in your own words, in your language.</p></div><button class="round-arrow" data-page-link="incident">›</button></article>
+          <article class="step-card"><div class="step-icon">?</div><div class="step-content"><span class="step-number">02</span><h3>AI-Guided Follow-up Questions</h3><p>Smart questions fill important details and reduce ambiguity.</p></div><button class="round-arrow" data-page-link="incident">›</button></article>
+          <article class="step-card"><div class="step-icon">▤</div><div class="step-content"><span class="step-number">03</span><h3>Structured Legal Handoff</h3><p>A clear summary ready for FIR or official handoff.</p></div><button class="round-arrow" data-page-link="incident">›</button></article>
+        </section>
+
+        <section class="benefits">
+          <div class="benefit"><span class="benefit-icon">□</span><div><strong>Secure & Private</strong><span>End-to-end encrypted. Your data stays yours.</span></div></div>
+          <div class="benefit"><span class="benefit-icon">♙</span><div><strong>Built for Everyone</strong><span>Accessible, inclusive and designed for all citizens.</span></div></div>
+          <div class="benefit"><span class="benefit-icon">⚜</span><div><strong>Empowering Justice</strong><span>Bridging the gap between citizens and the justice system.</span></div></div>
+          <div class="benefit"><span class="benefit-icon">▣</span><div><strong>You're in Control</strong><span>Review, edit or delete anytime. Nothing is submitted without you.</span></div></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      const toast = document.querySelector("#toast");
+      const pages = document.querySelectorAll(".page");
+      const navButtons = document.querySelectorAll(".main-nav button");
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(window.toastTimer);
+        window.toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
+      }
+
+      function showPage(pageName) {
+        pages.forEach((page) => page.classList.toggle("active", page.id === pageName));
+        document.body.dataset.page = pageName;
+        navButtons.forEach((button) => button.classList.toggle("active", pageName === "home" && button.textContent === "Home"));
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      document.querySelectorAll("[data-page-link]").forEach((button) => {
+        button.addEventListener("click", () => showPage(button.dataset.pageLink));
+      });
+
+      document.querySelectorAll("[data-toast]").forEach((button) => {
+        button.addEventListener("click", () => showToast(button.dataset.toast));
+      });
+
+      document.querySelectorAll(".lang-tabs button").forEach((button) => {
+        button.addEventListener("click", () => {
+          button.parentElement.querySelectorAll("button").forEach((tab) => tab.classList.remove("active"));
+          button.classList.add("active");
+          showToast(`${button.textContent} mode selected`);
+        });
+      });
+
+      document.querySelectorAll(".rail-nav button").forEach((button) => {
+        button.addEventListener("click", () => {
+          button.parentElement.querySelectorAll("button").forEach((tab) => tab.classList.remove("active"));
+          button.classList.add("active");
+          showToast(`${button.textContent.trim()} view`);
+        });
+      });
+
+      document.querySelectorAll("[data-record]").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".mic").forEach((mic) => mic.classList.toggle("recording"));
+          showToast(document.querySelector(".mic").classList.contains("recording") ? "Voice capture started" : "Voice capture paused");
+        });
+      });
+
+      function analyzeText(textarea) {
+        const text = textarea.value.toLowerCase();
+        const intent = text.includes("threat") || text.includes("dhamki")
+          ? "Threat"
+          : text.includes("accident") || text.includes("gaadi")
+            ? "Road Incident"
+            : text.includes("lost") || text.includes("gum")
+              ? "Lost Property"
+              : "Theft";
+        const location = text.includes("market")
+          ? "Market Area"
+          : text.includes("station")
+            ? "Railway Station"
+            : text.includes("ghar") || text.includes("home")
+              ? "Residence"
+              : "Bus Stand";
+        const score = `${Math.min(98, Math.max(74, 84 + Math.floor(text.length / 8)))}%`;
+        document.querySelectorAll(".intent-value").forEach((node) => (node.textContent = intent));
+        document.querySelectorAll(".location-value").forEach((node) => (node.textContent = location));
+        document.querySelectorAll(".confidence").forEach((node) => (node.textContent = score));
+      }
+
+      document.querySelectorAll(".incident-text").forEach((textarea) => {
+        textarea.addEventListener("input", () => analyzeText(textarea));
+      });
+
+      const now = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + " ✓✓";
+      document.querySelectorAll(".clock").forEach((clock) => (clock.textContent = now));
+    </script>
+  </body>
+</html>
