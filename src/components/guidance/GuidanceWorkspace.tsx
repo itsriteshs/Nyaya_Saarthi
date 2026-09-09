@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
+import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { AppSidebar } from "@/components/understand/AppSidebar";
 import { UnderstandHeader } from "@/components/understand/UnderstandHeader";
@@ -42,6 +43,18 @@ export function GuidanceWorkspace() {
     () => matter?.facts.filter((fact) => fact.state !== "unknown") ?? [],
     [matter],
   );
+
+  function handleContinueToSummary() {
+    if (!matter?.guidance) {
+      return;
+    }
+
+    setMatter({
+      ...matter,
+      stage: "COMPLETED",
+    });
+    router.push("/summary");
+  }
 
   if (!matter) {
     return (
@@ -109,13 +122,10 @@ export function GuidanceWorkspace() {
                       Page 5 will use this same matter, verified facts, sources, uncertainties and
                       next steps to create the final guidance summary.
                     </p>
-                    <button
-                      type="button"
-                      disabled
-                      className="mt-4 inline-flex min-h-11 cursor-not-allowed items-center rounded-md border border-[#DED7CA] bg-[#EFE8DA] px-4 text-sm font-extrabold text-[#6B665D]"
-                    >
+                    <Button className="mt-4" onClick={handleContinueToSummary}>
                       Continue to Summary
-                    </button>
+                      <ArrowRight size={16} aria-hidden="true" />
+                    </Button>
                   </section>
                 </div>
                 <GuidanceRail matter={matter} guidance={guidance} factCount={verifiedFacts.length} />

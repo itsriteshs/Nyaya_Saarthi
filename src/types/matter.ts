@@ -7,10 +7,13 @@ export type FactProvenance =
   | "SYSTEM_INFERRED"
   | "UNKNOWN";
 export type MatterStage =
+  | "DRAFT"
   | "UNDERSTANDING"
+  | "NEEDS_CLARIFICATION"
   | "READY_FOR_REVIEW"
   | "USER_VERIFIED"
-  | "GUIDANCE_GENERATED";
+  | "GUIDANCE_GENERATED"
+  | "COMPLETED";
 
 export type MatterSlot =
   | "vehicle_type"

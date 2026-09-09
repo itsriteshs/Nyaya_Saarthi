@@ -76,3 +76,49 @@ a {
 .text-balance {
   text-wrap: balance;
 }
+
+@media print {
+  @page {
+    margin: 18mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  aside,
+  .app-top-header,
+  button,
+  .summary-actions {
+    display: none !important;
+  }
+
+  .summary-page {
+    display: block !important;
+    min-height: auto !important;
+    background: #ffffff !important;
+  }
+
+  .summary-document {
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .summary-document > header,
+  .summary-section {
+    break-inside: avoid;
+    border-color: #b8b8b8 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .summary-section {
+    margin-top: 14px !important;
+  }
+
+  a {
+    color: #111111 !important;
+  }
+}

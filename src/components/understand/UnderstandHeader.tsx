@@ -13,7 +13,7 @@ export function UnderstandHeader({ language, currentStep }: UnderstandHeaderProp
   const currentIndex = ["understand", "verify", "guidance", "summary"].indexOf(currentStep);
 
   return (
-    <header className="border-b border-[#DED7CA] bg-[#FBF8F1]">
+    <header className="app-top-header border-b border-[#DED7CA] bg-[#FBF8F1]">
       <div className="flex min-h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3 lg:hidden">
           <button
