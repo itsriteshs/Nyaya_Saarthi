@@ -1,0 +1,39 @@
+{
+  "name": "nyayasaarthi",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Frontend foundation for the NyayaSaarthi NLP course project.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsriteshs/Nyaya_Saarthi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itsriteshs/Nyaya_Saarthi/issues"
+  },
+  "homepage": "https://github.com/itsriteshs/Nyaya_Saarthi#readme",
+  "dependencies": {
+    "lucide-react": "^1.41.0",
+    "next": "^16.3.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.4.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.4",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
+  }
+}
