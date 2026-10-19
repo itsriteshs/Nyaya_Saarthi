@@ -30,6 +30,21 @@ Phase 3 adds persistent adaptive conversation and verification routes: `GET /mat
 
 Phase 4 adds `GET /legal/status`, diagnostic `POST /legal/retrieve` with `{ "matterId": "...", "revision": 1 }`, `POST /matters/{id}/guidance` and `POST /matters/{id}/complete` with `{ "revision": 1 }`. Retrieval and guidance require a persisted user verified matter. A corrected fact invalidates prior guidance. See [Phase 4 implementation](reports/PHASE4_IMPLEMENTATION.md) and [legal knowledge readiness](reports/legal_knowledge_readiness.md). If the embedding model cannot be downloaded, `backend/.venv/bin/python backend/scripts/build_legal_index.py --lexical-only` builds an explicitly degraded lexical index.
 
+## Phase 5 local explanations
+
+Install [Ollama](https://ollama.com/download), start its local service (`ollama serve` if it is not already running), then explicitly download the two selected models:
+
+```bash
+ollama pull llama3.2:3b-instruct-q4_K_M
+ollama pull mistral:7b-instruct-v0.3-q4_K_M
+cd backend
+.venv/bin/python -m scripts.check_models
+```
+
+These tags correspond to `meta-llama/Llama-3.2-3B-Instruct` and `mistralai/Mistral-7B-Instruct-v0.3`; verify and comply with the [Meta Llama community licence](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct) and [Mistral Apache-2.0 licence](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3). The Q4_K_M downloads are approximately 2.0 GB and 4.4 GB. Runtime memory also depends on context and concurrent processes. Weights are never downloaded during backend startup or a request. The default is Llama; set `NYAYA_LLM_DEFAULT_MODEL=mistral-7b` to change it. Other options and defaults are in `.env.example`. Only localhost Ollama URLs are accepted. The deterministic path works with neither model installed.
+
+`GET /api/v1/models` and `/models/health` report actual local readiness. `POST /api/v1/matters/{id}/generate` takes `modelId` (`llama3.2-3b`, `mistral-7b`, or `deterministic`), `language` (`english`, `hindi`, `hinglish`), `expectedRevision`, and optional `regenerate: true`. It returns the updated persisted matter. To try both installed models with one frozen verified matter without changing it: `.venv/bin/python -m scripts.run_llm_smoke MATTER_UUID --language hindi`. This script prints metadata only. See [Phase 5 implementation](reports/PHASE5_IMPLEMENTATION.md) and [runtime readiness](reports/model_runtime_readiness.md). Real model inference on this development machine has not yet been tested because the selected weights are absent.
+
 ## Configuration and limits
 
 `NYAYA_DATABASE_URL` defaults to `backend/nyaya.db`. `NYAYA_DATASET_DIR` and `NYAYA_REPORT_DIR` override dataset and report locations. `NYAYA_FRONTEND_ORIGINS` is a comma-separated CORS allowlist. The frontend uses `NEXT_PUBLIC_API_BASE_URL`. The API is for local development and has no authentication. The dataset audit remains an explicit offline command: `.venv/bin/python -m scripts.validate_datasets`.

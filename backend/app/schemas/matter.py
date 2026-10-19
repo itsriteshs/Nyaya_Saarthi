@@ -140,6 +140,7 @@ class MatterResponse(StrictModel):
     updatedAt: datetime
     verifiedAt: datetime | None = None
     guidance: Guidance | None = None
+    generationHistory: list[dict[str, Any]] = []
     answers: dict[str, str]
     currentQuestion: Question | None = None
     messages: list[Message]

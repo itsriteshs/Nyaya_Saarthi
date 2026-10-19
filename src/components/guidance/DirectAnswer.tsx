@@ -24,7 +24,7 @@ export function DirectAnswer({ guidance }: DirectAnswerProps) {
           Edit Situation
         </Link>
       </div>
-      <p className="mt-5 max-w-4xl text-lg font-bold leading-8 text-[#18150F]">
+      <p className="mt-5 max-w-4xl whitespace-pre-line text-lg font-bold leading-8 text-[#18150F]">
         {guidance.directAnswer}
       </p>
       <p className="mt-3 max-w-4xl border-l-2 border-[#A8752B] pl-4 text-sm font-semibold leading-6 text-[#6B665D]">

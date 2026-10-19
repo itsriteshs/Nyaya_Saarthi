@@ -83,6 +83,12 @@ export interface GuidanceResult {
     jurisdictionId?: string | null;
     eventDate?: string | null;
     ruleEvaluations?: Array<{ ruleId: string; status: string; reasons: string[] }>;
+    generationMethod?: string;
+    requestedModel?: string;
+    requestedLanguage?: string;
+    fallbackUsed?: boolean;
+    failureReason?: string;
+    evidencePackageId?: string;
   };
 }
 

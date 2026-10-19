@@ -1,0 +1,23 @@
+# Phase 5 implementation
+
+## Architecture and scope
+
+The five existing pages, NLP/verification flow, Phase 4 index, admissibility checks, rules and deterministic builder remain in place. The new explanation service first builds Phase 4 deterministic guidance and freezes its admitted sources, confirmed facts, rule decisions, exclusions, uncertainty and index fingerprint into a bounded evidence package. The same package and prompt template are passed to either configured model. Its SHA-256 ID is stored on the matter. No raw dataset is sent to the model.
+
+The only generative provider is local Ollama via Python standard-library HTTP. `llama3.2-3b` maps to `llama3.2:3b-instruct-q4_K_M` (Meta Llama 3.2 3B Instruct, Meta community licence); `mistral-7b` maps to `mistral:7b-instruct-v0.3-q4_K_M` (Mistral 7B Instruct v0.3, Apache-2.0). Both use Q4_K_M. The official catalog lists 128K and 32K maximum contexts respectively, but the application uses a 12,000 character evidence budget by default; it does not claim full context use. No third generative model is integrated. The runtime itself handles each model's chat template.
+
+## Generation and grounding
+
+The fixed system prompt treats incident text and retrieved passages as untrusted data. It forbids invented laws, sections, penalties, deadlines, speed limits, procedures, outcomes and URLs. The output schema requires an answer, explanation, claim-level evidence IDs, uncertainties, action titles and the selected language. Pydantic rejects missing/extra fields. The validator rejects unknown evidence IDs, unknown section references, model URLs, numeric penalties, deadlines and speed figures, definite outcome phrases, unsupported actions, missing deterministic qualifications and uncoupled claims. The displayed source cards, mappings and next steps remain server-derived Phase 4 objects. A passing validator result is **not** independent legal verification; semantic support and nuanced multilingual meaning need human review.
+
+On runtime unavailability, no eligible evidence, bad JSON, schema/grounding failure or inference error, the selected model is not silently replaced by the other. The Phase 4 deterministic result is persisted with requested model, reason and `fallbackUsed`. The original English qualifications remain visible even when the requested generation language is Hindi or Hinglish, so untranslated safety limitations are not lost. Actual language quality is for Phase 6 evaluation.
+
+`POST /api/v1/matters/{id}/generate` accepts `{ "modelId": "llama3.2-3b" | "mistral-7b" | "deterministic", "language": "english" | "hindi" | "hinglish", "expectedRevision": 5, "regenerate": false }`. It requires a persisted verified matter, rejects a repeat without explicit `regenerate`, and uses conditional revision update after inference so an edited matter or competing generation cannot be overwritten. The read transaction ends before inference. Previous guidance versions are kept in the matter JSON (last 10). `GET /api/v1/models` reports the two models, configured checkpoint/tag, actual installed status and default. `GET /api/v1/models/health` reports runtime reachability and per-model status. The legacy deterministic `/guidance` endpoint remains.
+
+The Guidance page has a compact method/language control with actual model availability and a fallback/provenance label. Existing verified facts and retrieval remain intact on model change. Summary reads the persisted result; print and copy include the model provenance, source links and qualifications. No model prompt or diagnostic internals appear in the report.
+
+## Phase 6 handoff and limitations
+
+Generation metadata records model ID, configured checkpoint/tag, installed digest when available, quantization, prompt version, evidence fingerprint, index version, language, temperature, token limit, latency/token counts when supplied, validation and fallback. `scripts/run_llm_smoke.py` runs both selected models against one frozen matter/evidence package without changing the matter or printing its text. It is a development hook, not a formal benchmark; ablations should be offline and keep the same matter snapshot. Baseline guidance is identified separately from successful model output.
+
+Legal corpus limitations remain: 4 eligible provisions, zero eligible procedures, zero usable penalties, zero reviewed numeric speed limits. Dataset review does not authenticate a live government page. No actual Llama or Mistral call ran in Phase 5 because neither is installed locally. Fake-provider tests cover accepted and rejected outputs. The local API has no authentication and is intended for development. See [runtime readiness](model_runtime_readiness.md) and [Phase 4 knowledge readiness](legal_knowledge_readiness.md).

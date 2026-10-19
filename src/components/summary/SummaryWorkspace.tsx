@@ -226,6 +226,7 @@ export function SummaryWorkspace() {
 
               <SummarySection number="04" title="Guidance">
                 <div className="grid gap-4">
+                  <p className="text-sm font-semibold text-[#6B665D]">{provenance(guidance)} Legal source records come from the NyayaSaarthi knowledge base.</p>
                   <LabeledParagraph label="NyayaSaarthi Explanation" text={guidance.directAnswer} />
                   <LabeledParagraph label="Qualification" text={guidance.qualification} muted />
                 </div>
@@ -421,7 +422,7 @@ function LabeledParagraph({ label, text, muted }: { label: string; text: string;
   return (
     <div className="rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-4">
       <p className="text-xs font-extrabold uppercase text-[#A8752B]">{label}</p>
-      <p className={`mt-2 text-base font-semibold leading-7 ${muted ? "text-[#4F4A42]" : "text-[#18150F]"}`}>
+      <p className={`mt-2 whitespace-pre-line text-base font-semibold leading-7 ${muted ? "text-[#4F4A42]" : "text-[#18150F]"}`}>
         {text}
       </p>
     </div>
@@ -591,6 +592,7 @@ function buildPlainTextSummary(
     ...facts.map((fact) => `${fact.label}: ${fact.value}`),
     "",
     "Guidance:",
+    provenance(guidance) + " Legal source records come from the NyayaSaarthi knowledge base.",
     guidance.directAnswer,
     guidance.qualification,
     "",
@@ -608,4 +610,11 @@ function buildPlainTextSummary(
     "Disclaimer:",
     "NyayaSaarthi provides informational guidance based on the situation you verified and the legal sources retrieved. It does not replace professional legal advice or an official determination by an authorised authority.",
   ].join("\n");
+}
+
+function provenance(guidance: GuidanceResult) {
+  if (guidance.metadata?.generationMethod === "LOCAL_LLM" && !guidance.metadata?.fallbackUsed) {
+    return guidance.metadata.requestedModel === "llama3.2-3b" ? "AI-generated explanation by Llama 3.2 3B." : "AI-generated explanation by Mistral 7B.";
+  }
+  return guidance.metadata?.fallbackUsed ? "Deterministic guidance was used after the selected local model could not produce an accepted explanation." : "Deterministic guidance.";
 }
