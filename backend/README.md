@@ -35,7 +35,7 @@ All paths use `/api/v1`:
 
 PATCH accepts only documented context fields. Lists and objects replace their whole field; omitted fields stay unchanged; explicit `null` removes an optional field. `id`, `originalText`, and `language` are immutable. Every accepted update increments `revision`. The server retains `schemaVersion=1` for future migrations. Malformed bodies return 422; bodies over 256 KB return 413. Future schema changes require an explicit versioned migration before deployment.
 
-The validator exits 1 for `ERROR` issues (malformed records, invalid IDs, or required broken links). `WARNING` and `INFO` do not make it fail. The run writes `reports/dataset_audit.json` and `.md` even if it exits 1. No HTTP request launches the full audit. A report is a diagnostic inventory; row review status does not independently establish legal correctness.
+The current reviewed audit has 2 genuine errors and 341 warnings; see `reports/PHASE1_VERIFICATION.md`, `PHASE1_REFERENCE_INVENTORY.csv`, and `PHASE1_PROPOSED_DATASET_CHANGES.md`. Run `.venv/bin/python -m scripts.reference_inventory` after each audit to refresh the reference inventory. The validator exits 1 for `ERROR` issues (malformed records, invalid IDs, or required broken links). `WARNING` and `INFO` do not make it fail. The run writes `reports/dataset_audit.json` and `.md` even if it exits 1. No HTTP request launches the full audit. A report is a diagnostic inventory; row review status does not independently establish legal correctness.
 
 ## Integration and limits
 

@@ -1,8 +1,13 @@
-import type { MatterContext } from "@/types/matter";
+import type { ClarificationQuestion, MatterContext } from "@/types/matter";
 import type { LanguageOption } from "@/types/nlp";
 import { apiRequest } from "./client";
 
-export interface StoredMatter extends MatterContext {
+// Dataset slots can exceed the current UI's narrow MatterSlot union.
+// Adapt these fields explicitly before using a backend matter as MatterContext.
+export interface StoredMatter extends Omit<MatterContext, "missingSlots" | "answers" | "currentQuestion"> {
+  missingSlots: string[];
+  answers: Record<string, string>;
+  currentQuestion?: Omit<ClarificationQuestion, "slot"> & { slot: string };
   updatedAt: string;
   schemaVersion: number;
   revision: number;

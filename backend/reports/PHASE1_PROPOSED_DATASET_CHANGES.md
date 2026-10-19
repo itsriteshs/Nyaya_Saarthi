@@ -1,0 +1,17 @@
+# Proposed dataset corrections — review before application
+
+These are proposals only. No row in `data/Dataset 2/` was edited. A blank proposed replacement means the correct value cannot be inferred from this repository. Every placeholder is listed with its original value in `PHASE1_REFERENCE_INVENTORY.csv`; no legal source or ID is invented here.
+
+| File:line / column | Original value | Proposed value or structural change | Required decision |
+|---|---|---|---|
+| `procedures.csv:26`, `deadline` position | Missing field; row has 21 fields. The next value is `Court filing fee (nominal, State-specific)`. | Insert an empty CSV field at the `deadline` position so this fee remains under `fee_rule`; keep all existing text and IDs. | Dataset curator checks the intended deadline before applying. |
+| `intents.csv:2–59`, terminal CSV field | One extra `""` after the 12 declared columns on each row. | Remove the 13th empty field; preserve all 12 declared values. | Structural cleanup only; verify exporter convention. |
+| `offences_penalties.csv:31`, `source_id` | `""` | **No replacement proposed.** Keep row unavailable for source-grounded guidance until an official source is reviewed and its existing/new source ID is established. | Legal reviewer supplies evidence. |
+| `procedures.csv:12`, `required_form_ids` | `FORM_33` (absent from `official_forms.csv`) | **No replacement proposed.** Retain unresolved reference or add a reviewed form record after source confirmation. | Curator verifies form identity and provenance. |
+| `intents.csv:17`, `conditional_slot_ids` | `AGE` (absent from `slot_schema.slot_name`; also in 26 learner-licence utterance `known_slots` and entity annotations) | **No replacement proposed.** Decide whether an age slot definition is needed for `INT016`; preserve the intent until reviewed. | NLP schema owner decides slot vocabulary. |
+| `procedures.csv:17`, `required_document_ids` / `required_form_ids` | `FORM_ROAD_TAX_PAYMENT` / `""` | Candidate structural move: `""` / `FORM_ROAD_TAX_PAYMENT`; the form ID already exists in `official_forms.csv`. | Confirm that document IDs are restricted to `REQ_*`. |
+| `procedure_steps.csv:4,5,11,14,26,27,28`, `required_document_ids` | `FORM_29`, `FORM_30`, `FORM_MACT_CLAIM_PETITION`, `FORM_2`, `FORM_20`, `FORM_ROAD_TAX_PAYMENT`, `FORM_20` respectively. | Preserve values; add a documented form-ID field or explicitly document this field as accepting both `REQ_*` and `FORM_*`. | Decide schema semantics before changing any rows. |
+| `official_services.csv:17,27,28`, `official_url` | Free text beginning `varies by State` (exact strings in `dataset_audit.json`). | Leave unresolved; if a separate URL-note field is added, move original text there and leave `official_url` blank until an official URL is verified. | State-specific source review. |
+| All 143 placeholder references | Exact original IDs in the reference inventory. | **No replacement proposed.** Retain placeholders and quarantine affected links from legal retrieval until the referenced records are curated. | Domain reviewers verify each source/association. |
+
+The six `Q_SYN_*` IDs need no dataset correction; they are standalone relevance queries. Their `intent_id=NOT_VERIFIED` placeholders still need annotation review. The 833 exact texts spanning split labels need a separately approved split plan; the audit does not change split labels automatically.

@@ -1,0 +1,17 @@
+severity,code,dataset,row,record_id,context,column,value,message
+WARNING,REFERENCE_TYPE_MISMATCH,procedure_steps.csv,4,STEP_RCTRANSFER_3,,required_document_ids,FORM_29,Form ID is stored in a document-requirement field; form exists in official_forms.csv
+WARNING,REFERENCE_TYPE_MISMATCH,procedure_steps.csv,5,STEP_RCTRANSFER_4,,required_document_ids,FORM_30,Form ID is stored in a document-requirement field; form exists in official_forms.csv
+WARNING,REFERENCE_TYPE_MISMATCH,procedure_steps.csv,11,STEP_MACT_3,,required_document_ids,FORM_MACT_CLAIM_PETITION,Form ID is stored in a document-requirement field; form exists in official_forms.csv
+WARNING,REFERENCE_TYPE_MISMATCH,procedure_steps.csv,14,STEP_LL_1,,required_document_ids,FORM_2,Form ID is stored in a document-requirement field; form exists in official_forms.csv
+WARNING,REFERENCE_TYPE_MISMATCH,procedure_steps.csv,26,STEP_REGN_3,,required_document_ids,FORM_20,Form ID is stored in a document-requirement field; form exists in official_forms.csv
+WARNING,REFERENCE_TYPE_MISMATCH,procedure_steps.csv,27,STEP_REGN_4,,required_document_ids,FORM_ROAD_TAX_PAYMENT,Form ID is stored in a document-requirement field; form exists in official_forms.csv
+WARNING,REFERENCE_TYPE_MISMATCH,procedure_steps.csv,28,STEP_REGN_5,,required_document_ids,FORM_20,Form ID is stored in a document-requirement field; form exists in official_forms.csv
+WARNING,REFERENCE_TYPE_MISMATCH,procedures.csv,17,PROC_PAY_ROAD_TAX,REGISTRATION,required_document_ids,FORM_ROAD_TAX_PAYMENT,Form ID is stored in a document-requirement field; form exists in official_forms.csv
+WARNING,MISSING_REFERENCE,procedures.csv,12,PROC_ADDRESS_CHANGE_RC,REGISTRATION,required_form_ids,FORM_33,Reference absent from official_forms.csv
+WARNING,MISSING_REFERENCE,intents.csv,17,INT016,Licence,conditional_slot_ids,AGE,Reference absent from slot_schema.csv
+INFO,STANDALONE_QUERY_ID,query_provision_relevance.csv,4470,QPR_004469,,query_id,Q_SYN_PROV_MVA_S39_1,"Synthetic query is defined by this relevance row, not the annotation table"
+INFO,STANDALONE_QUERY_ID,query_provision_relevance.csv,4471,QPR_004470,,query_id,Q_SYN_PROV_MVA_S39_2,"Synthetic query is defined by this relevance row, not the annotation table"
+INFO,STANDALONE_QUERY_ID,query_provision_relevance.csv,4472,QPR_004471,,query_id,Q_SYN_PROV_MVA_S39_3,"Synthetic query is defined by this relevance row, not the annotation table"
+INFO,STANDALONE_QUERY_ID,query_provision_relevance.csv,4473,QPR_004472,,query_id,Q_SYN_PROV_MVA_S177_1,"Synthetic query is defined by this relevance row, not the annotation table"
+INFO,STANDALONE_QUERY_ID,query_provision_relevance.csv,4474,QPR_004473,,query_id,Q_SYN_PROV_MVA_S177_2,"Synthetic query is defined by this relevance row, not the annotation table"
+INFO,STANDALONE_QUERY_ID,query_provision_relevance.csv,4475,QPR_004474,,query_id,Q_SYN_PROV_MVA_S177_3,"Synthetic query is defined by this relevance row, not the annotation table"

@@ -46,12 +46,12 @@ def references(value):
     return [x.strip() for x in re.split(r"[|;]", value) if x.strip()]
 
 def review_label(row):
-    values = [str(row[c]).strip().lower() for c in REVIEW_COLUMNS if c in row and row[c] is not None and str(row[c]).strip()]
+    values = [str(row[c]).strip().lower() for c in (*REVIEW_COLUMNS, "legal_reviewer") if c in row and row[c] is not None and str(row[c]).strip()]
     if not values:
         return "unknown"
     if any("not_verified" in x or "not_reviewed" in x or "unverified" in x for x in values):
         return "not_verified"
-    if any("pending" in x or "needs_review" in x or "draft" in x for x in values):
+    if any("pending" in x or "under_review" in x or "needs_review" in x or "draft" in x for x in values):
         return "pending_review"
     if all(x in {"verified", "reviewed", "approved", "human_verified", "legal_verified"} for x in values):
         return "verified"
@@ -93,7 +93,7 @@ def audit_dataset(directory: Path):
                 issue("WARNING", name, row_number, None, "EMPTY_ROW", "Blank JSONL line")
                 continue
             if not isinstance(row, dict) or "__parse_error__" in row or "__column_error__" in row:
-                issue("ERROR", name, row_number, None, "MALFORMED_RECORD", "Record cannot be parsed or has inconsistent column count")
+                issue("ERROR", name, row_number, None, "MALFORMED_RECORD", "Record cannot be parsed or has inconsistent column count", {"expected_columns": len(headers), "actual_columns": len(row["__column_error__"]), "fields": row["__column_error__"]} if isinstance(row, dict) and "__column_error__" in row else row.get("__parse_error__") if isinstance(row, dict) else None)
                 continue
             if "__trailing_empty_columns__" in row:
                 count = row.pop("__trailing_empty_columns__")
@@ -161,10 +161,20 @@ def audit_dataset(directory: Path):
             if not values:
                 count["optional_empty" if rel.optional else "required_empty"] += 1
                 if not rel.optional:
-                    issue("ERROR", rel.source, number, rel.column, "REQUIRED_REFERENCE_EMPTY", "Required association is blank")
+                    issue("ERROR", rel.source, number, rel.column, "REQUIRED_REFERENCE_EMPTY", "Required association is blank", row[rel.column])
                 continue
             for value in values:
-                if PLACEHOLDER.search(value):
+                if any(value.startswith(prefix) for prefix in rel.standalone_prefixes):
+                    count["standalone"] += 1
+                    if not str(row.get("query_text", "")).strip():
+                        issue("ERROR", rel.source, number, "query_text", "STANDALONE_QUERY_TEXT_EMPTY", "Standalone query needs its own text", "")
+                    else:
+                        issue("INFO", rel.source, number, rel.column, "STANDALONE_QUERY_ID", "Synthetic query is defined by this relevance row, not the annotation table", value)
+                elif rel.target == "document_requirements.csv" and value.startswith("FORM_"):
+                    count["type_mismatch"] += 1
+                    form_exists = value in ids.get("official_forms.csv", set())
+                    issue("WARNING", rel.source, number, rel.column, "REFERENCE_TYPE_MISMATCH", "Form ID is stored in a document-requirement field" + ("; form exists in official_forms.csv" if form_exists else "; form is also absent from official_forms.csv"), value)
+                elif PLACEHOLDER.search(value):
                     count["placeholder"] += 1
                     issue("WARNING", rel.source, number, rel.column, "UNRESOLVED_PLACEHOLDER_REFERENCE", "Reference is an unfinished placeholder", value)
                 elif value not in ids[(rel.target, rel.target_id) if rel.target_id != PRIMARY_IDS[rel.target] else rel.target]:
@@ -173,26 +183,30 @@ def audit_dataset(directory: Path):
                 else:
                     count["valid"] += 1
         checks.append({"source": rel.source, "column": rel.column, "target": rel.target, "target_id": rel.target_id, "optional": rel.optional, "encoding": rel.encoding, **dict(count)})
-    _special_checks(tables, issue)
+    split_analysis = _special_checks(tables, issue)
     language = defaultdict(Counter)
     verification_summary = Counter()
+    review_dimensions = defaultdict(lambda: defaultdict(Counter))
     for name, records in tables.items():
         for _, row in records:
             if row.get("language"):
                 language[name][str(row["language"]).strip().lower()] += 1
             verification_summary[review_label(row)] += 1
+            for col in (*REVIEW_COLUMNS, "legal_reviewer"):
+                if col in row:
+                    review_dimensions[name][col][str(row[col] or "").strip().lower() or "(blank)"] += 1
     counts = Counter(i["severity"] for i in issues)
     codes = Counter(i["code"] for i in issues)
-    return {"run_at": datetime.now(timezone.utc).isoformat(), "summary": {"dataset_files": len(datasets), "expected_files": len(EXPECTED_FILES), "records_seen": sum(d["records_seen"] for d in datasets), "total_rows": sum(d["rows"] for d in datasets), "critical_errors": counts["ERROR"], "warnings": counts["WARNING"], "info": counts["INFO"], "issue_codes": dict(codes)}, "datasets": datasets, "relationship_checks": checks, "language_distribution": {k: dict(v) for k, v in language.items()}, "verification_summary": dict(verification_summary), "issues": issues}
+    return {"run_at": datetime.now(timezone.utc).isoformat(), "summary": {"dataset_files": len(datasets), "expected_files": len(EXPECTED_FILES), "records_seen": sum(d["records_seen"] for d in datasets), "total_rows": sum(d["rows"] for d in datasets), "critical_errors": counts["ERROR"], "warnings": counts["WARNING"], "info": counts["INFO"], "issue_codes": dict(codes)}, "datasets": datasets, "relationship_checks": checks, "language_distribution": {k: dict(v) for k, v in language.items()}, "verification_summary": dict(verification_summary), "review_dimensions": {name: {col: dict(values) for col, values in fields.items()} for name, fields in review_dimensions.items()}, "split_analysis": split_analysis, "issues": issues}
 
 def _special_checks(tables, issue):
-    split_examples = defaultdict(set)
+    split_examples = defaultdict(list)
     for name in ("annotated_utterances.csv", "gold_evaluation_cases.csv", "adaptive_conversations.jsonl"):
         for number, row in tables.get(name, []):
             text = row.get("text") or row.get("natural_query") or row.get("initial_query") or ""
             split = row.get("split") or row.get("evaluation_split") or ""
             if text and split:
-                split_examples[re.sub(r"\s+", " ", str(text).strip().lower())].add(str(split).lower())
+                split_examples[re.sub(r"\s+", " ", str(text).strip().lower())].append({"dataset": name, "row": number, "split": str(split).lower(), "scenario_id": row.get("scenario_id")})
             for col in ("entity_annotations_json", "expected_entities_json"):
                 if col not in row or not row[col]:
                     continue
@@ -220,8 +234,12 @@ def _special_checks(tables, issue):
     for number, row in tables.get("query_provision_relevance.csv", []):
         if str(row.get("relevance_label", "")) not in {"0", "1", "2", "3"}:
             issue("WARNING", "query_provision_relevance.csv", number, "relevance_label", "UNEXPECTED_RELEVANCE_LABEL", "Inspect relevance label", row.get("relevance_label"))
-    leaked = [(text, splits) for text, splits in split_examples.items() if len(splits) > 1]
-    for text, splits in leaked[:100]:
-        issue("WARNING", "evaluation", None, "split", "POTENTIAL_SPLIT_LEAKAGE", f"Identical normalized text occurs in splits {sorted(splits)}", text[:120])
+    leaked = [(text, records) for text, records in split_examples.items() if len({r["split"] for r in records}) > 1]
+    for text, records in leaked[:100]:
+        issue("WARNING", "evaluation", None, "split", "POTENTIAL_SPLIT_LEAKAGE", f"Identical normalized text occurs in splits {sorted({r['split'] for r in records})}", text[:120])
     if len(leaked) > 100:
         issue("WARNING", "evaluation", None, "split", "ADDITIONAL_SPLIT_LEAKAGE", f"{len(leaked)-100} further duplicate texts across splits")
+    same_dataset = sum(any(len({r["split"] for r in records if r["dataset"] == name}) > 1 for name in {r["dataset"] for r in records}) for _, records in leaked)
+    gold_train = sum(any(r["dataset"] == "gold_evaluation_cases.csv" for r in records) and any(r["split"] == "train" for r in records) for _, records in leaked)
+    return {"cross_split_texts": len(leaked), "within_dataset_cross_split_texts": same_dataset, "gold_test_texts_also_in_train": gold_train,
+            "examples": [{"text": text[:240], "records": records[:12]} for text, records in leaked[:100]]}

@@ -6,7 +6,7 @@ This report reflects the read-only audit of the checked-out files. Legal review 
 
 - Expected/scanned files: 23/23
 - Records seen: 20214; parsed rows: 20213
-- Critical errors: 8; warnings: 315
+- Critical errors after validator fixes: 2; warnings: 341; informational standalone query IDs: 6
 
 | File | Records seen | Parsed rows | Columns |
 |---|---:|---:|---:|
@@ -48,30 +48,11 @@ Rows classified from their own review fields only:
 
 - verified: 87
 - not_verified: 3167
-- pending_review: 15985
-- unknown: 974
+- pending_review: 16414
+- unknown: 545
 
 ## Data issues
 
-- UNRESOLVED_PLACEHOLDER_REFERENCE: 143
-- POTENTIAL_SPLIT_LEAKAGE: 100
-- TRAILING_EMPTY_COLUMNS: 58
-- MISSING_REFERENCE: 16
-- INVALID_URL: 3
-- MALFORMED_RECORD: 1
-- REQUIRED_REFERENCE_EMPTY: 1
-- ADDITIONAL_SPLIT_LEAKAGE: 1
+The corrected audit reports 143 unresolved placeholder references, 28 missing references, 8 form/document namespace mismatches, 58 extra empty CSV fields, 3 non-URL service values, and 101 split-overlap warning entries. Its two errors are one malformed challan procedure row and one missing required source ID. The original eight-error audit included six synthetic query IDs incorrectly treated as annotation references.
 
-The 8 critical errors consist of one malformed `procedures.csv` record (line 26 has 21 instead of 22 fields), one blank required source ID in `offences_penalties.csv` (line 31), and six `query_provision_relevance.csv` query IDs absent from `annotated_utterances.csv`. There are 143 placeholder references and 16 missing references in total; 10 missing references are optional associations and remain warnings. No duplicate primary IDs were found among parsed rows. `intents.csv` has 58 extra empty trailing columns; these are preserved in the audit as warnings while the 58 records remain usable. Three service URLs fail syntax checks.
-
-The split check found over 100 identical normalized texts appearing under different split labels; the JSON report lists 100 examples and one aggregate remainder issue. These may involve different dataset roles, so inspect provenance before treating them as confirmed training leakage.
-
-## Phase 2 recommendations
-
-1. Repair malformed CSV structure and resolve confirmed missing IDs at the source after human review. Preserve IDs and evaluation ground truth until reviewed.
-2. Review placeholder legal provisions, services, forms, and procedure links with official material; do not infer laws or penalties from incomplete rows.
-3. Keep evaluation and safety challenge cases separate from any training corpus, and investigate shared scenario/text leakage across splits.
-4. Validate entity offset convention with dataset authors before training an extractor.
-5. Add a curated source freshness policy before using any legal row for user guidance.
-
-Full row-level evidence is in `dataset_audit.json`.
+See [Phase 1 verification](PHASE1_VERIFICATION.md) for all eight original errors, warning impact, review-status breakdown, and Phase 2 readiness. The full row-level reference inventory is in `PHASE1_REFERENCE_INVENTORY.csv`; proposed changes are in `PHASE1_PROPOSED_DATASET_CHANGES.md`. The machine-readable audit remains `dataset_audit.json`.

@@ -27,16 +27,26 @@ class Readiness(StrictModel):
     found: int = Field(ge=0)
     total: int = Field(ge=0)
 
+    @model_validator(mode="after")
+    def valid_count(self):
+        if self.found > self.total:
+            raise ValueError("found cannot exceed total")
+        return self
+
 class Message(StrictModel):
     id: str = Field(min_length=1, max_length=100)
     speaker: Literal["user", "assistant"]
     text: str = Field(max_length=20000)
 
+class QuestionOption(StrictModel):
+    label: str = Field(min_length=1, max_length=200)
+    value: str = Field(min_length=1, max_length=200)
+
 class Question(StrictModel):
     slot: str = Field(min_length=1, max_length=100)
     question: str = Field(min_length=1, max_length=2000)
     type: Literal["options", "text"]
-    options: list[dict[str, str]] | None = None
+    options: list[QuestionOption] | None = None
     why: str = Field(max_length=2000)
 
 class LegalSource(StrictModel):

@@ -14,18 +14,18 @@ def valid_id(matter_id: str) -> str:
     except ValueError:
         raise HTTPException(status_code=422, detail="Invalid matter ID") from None
 
-@router.post("", response_model=MatterResponse, status_code=201)
+@router.post("", response_model=MatterResponse, response_model_exclude_none=True, status_code=201)
 def create(payload: MatterCreate, session: Session = Depends(get_session)):
     return matter_service.create_matter(session, payload)
 
-@router.get("/{matter_id}", response_model=MatterResponse)
+@router.get("/{matter_id}", response_model=MatterResponse, response_model_exclude_none=True)
 def retrieve(matter_id: str, session: Session = Depends(get_session)):
     result = matter_service.get_matter(session, valid_id(matter_id))
     if result is None:
         raise HTTPException(status_code=404, detail="Matter not found")
     return result
 
-@router.patch("/{matter_id}", response_model=MatterResponse)
+@router.patch("/{matter_id}", response_model=MatterResponse, response_model_exclude_none=True)
 def patch(matter_id: str, payload: MatterPatch, session: Session = Depends(get_session)):
     try:
         result = matter_service.patch_matter(session, valid_id(matter_id), payload)

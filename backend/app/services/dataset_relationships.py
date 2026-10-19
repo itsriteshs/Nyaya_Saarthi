@@ -9,6 +9,7 @@ class Relationship:
     target_id: str
     optional: bool = True
     encoding: str = "auto"  # auto accepts one ID, |, ;, or JSON array
+    standalone_prefixes: tuple[str, ...] = ()  # IDs native to this table, not target-table FKs
 
 RELATIONSHIPS = [
     Relationship("legal_provisions.csv", "source_id", "legal_sources.csv", "source_id", False),
@@ -50,22 +51,31 @@ RELATIONSHIPS = [
     Relationship("vehicle_classes.csv", "source_id", "legal_sources.csv", "source_id"),
     Relationship("vehicle_classes.csv", "provision_id", "legal_provisions.csv", "provision_id"),
     Relationship("slot_schema.csv", "intent_id", "intents.csv", "intent_id", False),
+    Relationship("annotated_utterances.csv", "primary_intent_id", "intents.csv", "intent_id", False),
+    Relationship("annotated_utterances.csv", "secondary_intent_ids", "intents.csv", "intent_id"),
+    Relationship("annotated_utterances.csv", "known_slots", "slot_schema.csv", "slot_name"),
+    Relationship("annotated_utterances.csv", "missing_slots", "slot_schema.csv", "slot_name"),
     Relationship("intents.csv", "parent_intent_id", "intents.csv", "intent_id"),
     Relationship("intents.csv", "default_required_slot_ids", "slot_schema.csv", "slot_name"),
     Relationship("intents.csv", "conditional_slot_ids", "slot_schema.csv", "slot_name"),
     Relationship("intents.csv", "relevant_rule_ids", "rule_logic.csv", "rule_id"),
     Relationship("intents.csv", "relevant_procedure_ids", "procedures.csv", "procedure_id"),
-    Relationship("query_provision_relevance.csv", "query_id", "annotated_utterances.csv", "utterance_id", False),
+    Relationship("query_provision_relevance.csv", "query_id", "annotated_utterances.csv", "utterance_id", False, standalone_prefixes=("Q_SYN_",)),
     Relationship("query_provision_relevance.csv", "intent_id", "intents.csv", "intent_id", False),
     Relationship("query_provision_relevance.csv", "provision_id", "legal_provisions.csv", "provision_id", False),
     Relationship("query_provision_relevance.csv", "source_id", "legal_sources.csv", "source_id"),
     Relationship("gold_evaluation_cases.csv", "expected_primary_intent", "intents.csv", "intent_id"),
+    Relationship("gold_evaluation_cases.csv", "expected_known_slots", "slot_schema.csv", "slot_name"),
+    Relationship("gold_evaluation_cases.csv", "expected_missing_slots", "slot_schema.csv", "slot_name"),
+    Relationship("gold_evaluation_cases.csv", "expected_followup_order", "slot_schema.csv", "slot_name"),
     Relationship("gold_evaluation_cases.csv", "expected_rule_ids", "rule_logic.csv", "rule_id"),
     Relationship("gold_evaluation_cases.csv", "expected_provision_ids", "legal_provisions.csv", "provision_id"),
     Relationship("gold_evaluation_cases.csv", "expected_penalty_record_ids", "offences_penalties.csv", "offence_id"),
     Relationship("gold_evaluation_cases.csv", "expected_procedure_ids", "procedures.csv", "procedure_id"),
     Relationship("gold_evaluation_cases.csv", "expected_source_ids", "legal_sources.csv", "source_id"),
     Relationship("adaptive_conversations.jsonl", "primary_intent_id", "intents.csv", "intent_id"),
+    Relationship("adaptive_conversations.jsonl", "initial_known_slots", "slot_schema.csv", "slot_name"),
+    Relationship("adaptive_conversations.jsonl", "initial_missing_slots", "slot_schema.csv", "slot_name"),
     Relationship("adaptive_conversations.jsonl", "ground_truth_rule_ids", "rule_logic.csv", "rule_id"),
     Relationship("adaptive_conversations.jsonl", "ground_truth_provision_ids", "legal_provisions.csv", "provision_id"),
     Relationship("adaptive_conversations.jsonl", "expected_procedure_ids", "procedures.csv", "procedure_id"),

@@ -25,6 +25,8 @@ def test_complete_audit():
     assert report['summary']['dataset_files'] == 23
     assert report['summary']['total_rows'] > 0
     assert report['relationship_checks']
+    assert report['review_dimensions']
+    assert report['split_analysis']['cross_split_texts'] >= 0
     assert any(i['code'] == 'UNRESOLVED_PLACEHOLDER_REFERENCE' for i in report['issues'])
 
 def test_missing_placeholder_and_duplicate_ids(tmp_path):
@@ -34,3 +36,26 @@ def test_missing_placeholder_and_duplicate_ids(tmp_path):
     codes = {item['code'] for item in report['issues']}
     assert {'DUPLICATE_PRIMARY_ID', 'MISSING_REFERENCE', 'UNRESOLVED_PLACEHOLDER_REFERENCE'} <= codes
     assert report['summary']['critical_errors'] > 0
+
+def test_synthetic_query_and_form_namespace(tmp_path):
+    (tmp_path / 'annotated_utterances.csv').write_text('utterance_id,text\nU1,Example\n')
+    (tmp_path / 'query_provision_relevance.csv').write_text(
+        'pair_id,query_id,query_text\nP1,Q_SYN_X_1,Standalone query\nP2,U1,Example\n')
+    (tmp_path / 'official_forms.csv').write_text('form_id\nFORM_2\n')
+    (tmp_path / 'document_requirements.csv').write_text('requirement_id\nREQ_1\n')
+    (tmp_path / 'procedure_steps.csv').write_text('procedure_step_id,required_document_ids\nS1,FORM_2|REQ_1\n')
+    report = audit_dataset(tmp_path)
+    assert any(i['code'] == 'STANDALONE_QUERY_ID' and i['value'] == 'Q_SYN_X_1' for i in report['issues'])
+    assert any(i['code'] == 'REFERENCE_TYPE_MISMATCH' and i['value'] == 'FORM_2' for i in report['issues'])
+    assert not any(i['code'] == 'MISSING_REFERENCE' and i['value'] in {'Q_SYN_X_1','FORM_2'} for i in report['issues'])
+
+def test_review_dimensions_and_malformed_record_value(tmp_path):
+    from app.services.dataset_validator import review_label
+    assert review_label({'review_status': 'UNDER_REVIEW'}) == 'pending_review'
+    assert review_label({'legal_reviewer': 'PENDING'}) == 'pending_review'
+    assert review_label({'human_review_status': 'pending', 'legal_review_status': 'not_reviewed'}) == 'not_verified'
+    (tmp_path / 'procedures.csv').write_text('procedure_id,source_id,review_status\nP1,SRC_1\n', encoding='utf-8')
+    report = audit_dataset(tmp_path)
+    malformed = next(i for i in report['issues'] if i['code'] == 'MALFORMED_RECORD')
+    assert malformed['value']['actual_columns'] == 2
+    assert malformed['value']['expected_columns'] == 3
