@@ -15,6 +15,8 @@ import { AppSidebar } from "@/components/understand/AppSidebar";
 import { UnderstandHeader } from "@/components/understand/UnderstandHeader";
 import { Button } from "@/components/ui/Button";
 import { useMatter } from "@/providers/MatterProvider";
+import { getMatter } from "@/lib/api/matters";
+import { getLegalStatus } from "@/lib/api/legal";
 import type { GuidanceResult, LegalSource, MatterContext, MatterFact, NextStep } from "@/types/matter";
 
 type SupportingGroup = {
@@ -27,6 +29,24 @@ export function SummaryWorkspace() {
   const { matter, setMatter } = useMatter();
   const [copied, setCopied] = useState(false);
   const [confirmNew, setConfirmNew] = useState(false);
+  const [loaded, setLoaded] = useState(() => !matter?.nlpAnalysis);
+  const [loadError, setLoadError] = useState("");
+
+  useEffect(() => {
+    if (!matter?.nlpAnalysis) return;
+    getMatter(matter.id).then(async (stored) => {
+      const status = await getLegalStatus();
+      if (!status.index.indexVersion || stored.guidance?.metadata?.indexVersion !== status.index.indexVersion) {
+        setMatter(stored);
+        router.replace("/guidance");
+        return;
+      }
+      setMatter(stored); setLoaded(true);
+    })
+      .catch((cause) => { setLoadError(cause instanceof Error ? cause.message : "Could not load the matter"); setLoaded(true); });
+  // Read the persisted record once when this page opens.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const guidance = matter?.guidance;
   const canRender =
@@ -34,6 +54,7 @@ export function SummaryWorkspace() {
     (matter?.stage === "GUIDANCE_GENERATED" || matter?.stage === "COMPLETED");
 
   useEffect(() => {
+    if (!loaded || loadError) return;
     if (!matter) {
       router.replace("/");
       return;
@@ -54,22 +75,22 @@ export function SummaryWorkspace() {
       return;
     }
 
-    if (matter.stage === "GUIDANCE_GENERATED") {
+    if (matter.stage === "GUIDANCE_GENERATED" && !matter.nlpAnalysis) {
       setMatter({
         ...matter,
         stage: "COMPLETED",
       });
     }
-  }, [matter, router, setMatter]);
+  }, [matter, router, setMatter, loaded, loadError]);
 
   const verifiedFacts = useMemo(
-    () => matter?.facts.filter((fact) => fact.state !== "unknown") ?? [],
+    () => matter?.facts.filter((fact) => matter.nlpAnalysis ? fact.provenance === "USER_CONFIRMED" && fact.confirmed : fact.state !== "unknown") ?? [],
     [matter],
   );
   const supportingGroups = useMemo(() => buildSupportingGroups(verifiedFacts), [verifiedFacts]);
   const isIncidentSummary = useMemo(() => isIncidentMatter(matter), [matter]);
 
-  if (!matter || !guidance || !canRender) {
+  if (!matter || !guidance || !canRender || !loaded || loadError) {
     return (
       <main className="grid min-h-screen place-items-center bg-[#F7F3EA] px-5 text-[#18150F]">
         <section className="max-w-xl rounded-lg border border-[#DED7CA] bg-[#FBF8F1] p-6">
@@ -78,7 +99,7 @@ export function SummaryWorkspace() {
             Preparing the correct step
           </h1>
           <p className="mt-3 text-sm font-semibold leading-6 text-[#6B665D]">
-            NyayaSaarthi is taking you back to the step needed for this matter.
+            {loadError || "NyayaSaarthi is loading the persisted matter or taking you back to the required step."}
           </p>
         </section>
       </main>
@@ -216,7 +237,7 @@ export function SummaryWorkspace() {
                     <article key={mapping.id} className="rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-4">
                       <div className="grid gap-3 lg:grid-cols-[1fr_1fr_1.25fr]">
                         <MappingCell label="Your Verified Fact" value={mapping.fact} />
-                        <MappingCell label="Relevant Official Rule" value={mapping.sourceTitle} />
+                        <MappingCell label="Relevant source record" value={mapping.sourceTitle} />
                         <MappingCell label="NyayaSaarthi Explanation" value={mapping.explanation} />
                       </div>
                     </article>
@@ -224,8 +245,9 @@ export function SummaryWorkspace() {
                 </div>
               </SummarySection>
 
-              <SummarySection number="06" title="Relevant Official Sources">
+              <SummarySection number="06" title="Retrieved Source Records">
                 <div className="space-y-3">
+                  {guidance.sources.length === 0 ? <p className="text-sm font-semibold text-[#6B665D]">No source record passed the applicability checks.</p> : null}
                   {guidance.sources.slice(0, 4).map((source) => (
                     <SourceRow key={source.id} source={source} />
                   ))}
@@ -239,7 +261,7 @@ export function SummaryWorkspace() {
                     <div className="space-y-2">
                       {(guidance.uncertainties.length > 0
                         ? guidance.uncertainties
-                        : ["No material unresolved context remains in the current guidance."]
+                        : ["No additional uncertainty was recorded by the current guidance engine."]
                       ).map((item) => (
                         <p key={item} className="text-sm font-semibold leading-6 text-[#4F4A42]">
                           {item}
@@ -277,7 +299,7 @@ export function SummaryWorkspace() {
               <SummarySection title="Information Source Key">
                 <div className="grid gap-3 md:grid-cols-3">
                   <LegendItem title="You" text="Information you provided or confirmed." />
-                  <LegendItem title="Official Source" text="Law, rule, notification or government guidance retrieved by NyayaSaarthi." />
+                  <LegendItem title="Source record" text="Dataset-reviewed legal information linked to a government page; live authenticity has not been checked." />
                   <LegendItem title="NyayaSaarthi Explanation" text="Plain-language explanation generated from your verified context and retrieved sources." />
                 </div>
               </SummarySection>
@@ -324,7 +346,7 @@ export function SummaryWorkspace() {
           <section className="w-full max-w-md rounded-lg border border-[#DED7CA] bg-[#FBF8F1] p-5 shadow-xl">
             <h2 className="font-editorial text-3xl font-bold text-[#18150F]">Start a new situation?</h2>
             <p className="mt-2 text-sm font-semibold leading-6 text-[#6B665D]">
-              This will clear the current frontend prototype matter.
+              This will clear the current matter from this browser.
             </p>
             <div className="mt-5 flex justify-end gap-3">
               <Button variant="secondary" onClick={() => setConfirmNew(false)}>
@@ -420,7 +442,7 @@ function SourceRow({ source }: { source: LegalSource }) {
     <article className="rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="text-xs font-extrabold uppercase text-[#A8752B]">Official Source</p>
+          <p className="text-xs font-extrabold uppercase text-[#A8752B]">Dataset source record</p>
           <h3 className="mt-1 text-base font-extrabold text-[#18150F]">{source.title}</h3>
         </div>
         <span className="rounded-md border border-[#DED7CA] bg-[#F7F3EA] px-2 py-1 text-[0.68rem] font-extrabold uppercase text-[#6B665D]">
@@ -428,18 +450,18 @@ function SourceRow({ source }: { source: LegalSource }) {
         </span>
       </div>
       <dl className="mt-4 grid gap-3 md:grid-cols-2">
-        <MetaBlock label="Provision" value={source.provision ?? "Not specified in prototype"} />
+        <MetaBlock label="Provision" value={source.provision ?? "Not specified"} />
         <MetaBlock label="Authority" value={source.authority} />
       </dl>
       <p className="mt-4 text-xs font-extrabold uppercase text-[#6B665D]">Why relevant</p>
       <p className="mt-1 text-sm font-semibold leading-6 text-[#4F4A42]">{source.relevantPoint}</p>
       {source.sourceUrl ? (
         <a className="mt-3 inline-flex items-center gap-2 text-sm font-extrabold text-[#071B3A]" href={source.sourceUrl}>
-          View official source
+          Open linked government page
         </a>
       ) : (
         <p className="mt-3 text-xs font-extrabold uppercase text-[#6B665D]">
-          Official link unavailable in prototype
+          Government link unavailable
         </p>
       )}
     </article>
@@ -573,12 +595,12 @@ function buildPlainTextSummary(
     guidance.qualification,
     "",
     "Relevant Sources:",
-    ...guidance.sources.map((source) => `${source.title} - ${source.authority}`),
+    ...guidance.sources.map((source) => `${source.title} - ${source.authority}; ${source.provision ?? ""}; ${source.evidenceId ?? ""}; ${source.sourceUrl ?? ""}`),
     "",
     "Remaining Uncertainty:",
     ...(guidance.uncertainties.length > 0
       ? guidance.uncertainties
-      : ["No material unresolved context remains in the current guidance."]),
+      : ["No additional uncertainty was recorded by the current guidance engine."]),
     "",
     "Recommended Actions:",
     ...guidance.nextSteps.map((step, index) => `${index + 1}. ${step.title}: ${step.description}`),

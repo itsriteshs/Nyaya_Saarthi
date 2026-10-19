@@ -15,7 +15,7 @@ export function FactLawMapping({ guidance }: FactLawMappingProps) {
         Fact, official law, explanation
       </h2>
 
-      <div className="mt-5 grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
+      {!primary ? <p className="mt-4 text-sm font-semibold text-[#6B665D]">No rule could be safely linked to confirmed facts. See the uncertainties below.</p> : <div className="mt-5 grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
         <MappingPanel
           eyebrow="Your Fact"
           tone="fact"
@@ -27,7 +27,7 @@ export function FactLawMapping({ guidance }: FactLawMappingProps) {
           eyebrow="Official Law"
           tone="law"
           title={primary.sourceTitle}
-          text="Speed limits may be prescribed for vehicle classes and road contexts."
+          text={primary.evidenceId ? `Evidence ${primary.evidenceId}` : "Dataset source record"}
         />
         <Connector />
         <MappingPanel
@@ -36,7 +36,7 @@ export function FactLawMapping({ guidance }: FactLawMappingProps) {
           title="What this may mean for you"
           text={primary.explanation}
         />
-      </div>
+      </div>}
     </section>
   );
 }

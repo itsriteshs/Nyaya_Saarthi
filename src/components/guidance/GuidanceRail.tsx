@@ -20,7 +20,7 @@ export function GuidanceRail({ matter, guidance, factCount }: GuidanceRailProps)
           <Metric label="Verified facts used" value={String(factCount)} />
         </div>
         <p className="mt-3 text-sm font-semibold leading-6 text-[#6B665D]">
-          Guidance is based on matched official sources and your verified context.
+          Retrieval mode: {guidance.metadata?.retrievalMode ?? "prototype"}. Dataset review does not authenticate a live government page.
         </p>
         <div className="mt-3 flex flex-wrap gap-2">
           {sourceTypes.map((type) => (
@@ -35,7 +35,7 @@ export function GuidanceRail({ matter, guidance, factCount }: GuidanceRailProps)
       </section>
 
       <section className="rounded-lg border border-[#DED7CA] bg-[#FBF8F1] p-5">
-        <p className="text-xs font-extrabold uppercase text-[#A8752B]">Official Sources</p>
+        <p className="text-xs font-extrabold uppercase text-[#A8752B]">Retrieved records</p>
         <div className="mt-3 grid gap-2">
           {guidance.sources.map((source) => (
             <div key={source.id} className="rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-3">
@@ -61,36 +61,12 @@ export function GuidanceRail({ matter, guidance, factCount }: GuidanceRailProps)
       </section>
 
       <section className="rounded-lg border border-[#DED7CA] bg-[#FBF8F1] p-5">
-        <p className="text-xs font-extrabold uppercase text-[#A8752B]">Ask About This Guidance</p>
-        <div className="mt-3 flex flex-wrap gap-2">
-          {guidance.suggestedQuestions.map((question) => (
-            <button
-              key={question}
-              type="button"
-              className="rounded-md border border-[#DED7CA] bg-[#FFFDF8] px-3 py-2 text-left text-xs font-extrabold text-[#18150F] transition-colors hover:border-[#A8752B]"
-            >
-              {question}
-            </button>
-          ))}
-        </div>
-        <label htmlFor="guidance-question" className="sr-only">
-          Ask your own question
-        </label>
-        <input
-          id="guidance-question"
-          placeholder="Ask your own question..."
-          className="mt-3 min-h-11 w-full rounded-md border border-[#DED7CA] bg-[#FFFDF8] px-3 text-sm font-semibold text-[#18150F] placeholder:text-[#8A8378]"
-        />
-      </section>
-
-      <section className="rounded-lg border border-[#DED7CA] bg-[#FBF8F1] p-5">
         <div className="flex items-start gap-3">
           <LockKeyhole size={17} className="mt-0.5 text-[#071B3A]" aria-hidden="true" />
           <div>
             <p className="text-sm font-extrabold text-[#18150F]">How this guidance was created</p>
             <p className="mt-2 text-sm font-semibold leading-6 text-[#6B665D]">
-              Verified facts from matter {matter.id.slice(0, 8)} were matched with mock official
-              legal sources, then explained separately from source material.
+              Confirmed facts from matter {matter.id.slice(0, 8)} were matched against dataset-reviewed legal records. Index version: {guidance.metadata?.indexVersion ?? "prototype"}.
             </p>
           </div>
         </div>

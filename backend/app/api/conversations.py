@@ -52,7 +52,6 @@ def answer(matter_id:str,payload:AnswerRequest,session:Session=Depends(get_sessi
 @router.patch('/{matter_id}/facts/{fact_id}',response_model=MatterResponse,response_model_exclude_none=True)
 def edit_fact(matter_id:str,fact_id:str,payload:FactEditRequest,session:Session=Depends(get_session)):
     record,context=_load(session,matter_id)
-    if context['stage'] in {'GUIDANCE_GENERATED','COMPLETED'}:raise HTTPException(409,'Create a new matter to revise guidance')
     if record.revision!=payload.revision:raise HTTPException(409,'Matter revision is stale')
     try:conversation.revise_fact(context,fact_id,payload.value)
     except KeyError:raise HTTPException(404,'Fact not found') from None

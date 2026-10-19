@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { AppSidebar } from "@/components/understand/AppSidebar";
@@ -13,14 +13,40 @@ import { NextSteps } from "@/components/guidance/NextSteps";
 import { SituationSnapshot } from "@/components/guidance/SituationSnapshot";
 import { Button } from "@/components/ui/Button";
 import { mockLegalRetrieval } from "@/lib/mock-legal-retrieval";
+import { getMatter } from "@/lib/api/matters";
+import { completeMatter, generateGuidance, getLegalStatus } from "@/lib/api/legal";
 import { useMatter } from "@/providers/MatterProvider";
 
 export function GuidanceWorkspace() {
   const router = useRouter();
   const { matter, setMatter } = useMatter();
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const operation = useRef("");
 
   const guidance = matter?.guidance;
-  const verified = matter?.stage === "USER_VERIFIED" || matter?.stage === "GUIDANCE_GENERATED";
+  const verified = matter?.stage === "USER_VERIFIED" || matter?.stage === "GUIDANCE_GENERATED" || matter?.stage === "COMPLETED";
+
+  useEffect(() => {
+    if (!matter?.nlpAnalysis || !matter.revision) return;
+    const key = `${matter.id}:${matter.revision}`;
+    if (operation.current === key) return;
+    operation.current = key;
+    setBusy(true);
+    getMatter(matter.id).then(async (stored) => {
+      if (stored.stage === "USER_VERIFIED") return generateGuidance(stored.id, stored.revision);
+      if (stored.guidance) {
+        const status = await getLegalStatus();
+        if (!status.index.indexVersion) throw new Error("Legal index is unavailable; rebuild it before viewing guidance");
+        if (stored.guidance.metadata?.indexVersion !== status.index.indexVersion) return generateGuidance(stored.id, stored.revision);
+      }
+      return stored;
+    }).then((stored) => {
+      if (stored) { setMatter(stored); setError(""); }
+    }).catch((cause) => {
+      setError(cause instanceof Error ? cause.message : "Guidance could not be loaded");
+    }).finally(() => setBusy(false));
+  }, [matter?.id, matter?.nlpAnalysis, matter?.revision, setMatter]);
 
   useEffect(() => {
     if (!matter || matter.nlpAnalysis || !verified || guidance) {
@@ -40,19 +66,27 @@ export function GuidanceWorkspace() {
   }, [guidance, matter, setMatter, verified]);
 
   const verifiedFacts = useMemo(
-    () => matter?.facts.filter((fact) => fact.state !== "unknown") ?? [],
+    () => matter?.facts.filter((fact) => matter.nlpAnalysis ? fact.provenance === "USER_CONFIRMED" && fact.confirmed : fact.state !== "unknown") ?? [],
     [matter],
   );
 
-  function handleContinueToSummary() {
+  async function handleContinueToSummary() {
     if (!matter?.guidance) {
       return;
     }
 
-    setMatter({
-      ...matter,
-      stage: "COMPLETED",
-    });
+    if (matter.nlpAnalysis && matter.revision && matter.stage === "GUIDANCE_GENERATED") {
+      setBusy(true);
+      try {
+        const stored = await completeMatter(matter.id, matter.revision);
+        setMatter(stored);
+        router.push("/summary");
+      } catch (cause) {
+        setError(cause instanceof Error ? cause.message : "Summary could not be prepared");
+      } finally { setBusy(false); }
+      return;
+    }
+    if (!matter.nlpAnalysis) setMatter({ ...matter, stage: "COMPLETED" });
     router.push("/summary");
   }
 
@@ -65,15 +99,6 @@ export function GuidanceWorkspace() {
         onAction={() => router.push("/")}
       />
     );
-  }
-
-  if (matter.nlpAnalysis) {
-    return <RouteGuardMessage
-      title="Legal guidance is not available for this analyzed matter yet."
-      text="Phase 2 identifies possible intent, facts, and missing context. Source retrieval and legal guidance are later phases."
-      action="Review Analysis"
-      onAction={() => router.push("/understand")}
-    />;
   }
 
   if (!verified) {
@@ -99,18 +124,20 @@ export function GuidanceWorkspace() {
                 Verified Context
               </span>
               <span className="ml-2 inline-flex rounded-md border border-[#DED7CA] bg-[#FFFDF8] px-3 py-1 text-xs font-extrabold uppercase text-[#6B665D]">
-                Prototype legal guidance
+                {matter.nlpAnalysis ? "Dataset-reviewed legal information" : "Prototype legal guidance"}
               </span>
               <h1 className="font-editorial mt-3 text-4xl font-bold leading-tight text-[#18150F] sm:text-5xl">
                 Guidance for Your Situation
               </h1>
               <p className="mt-3 max-w-4xl text-sm font-semibold leading-6 text-[#6B665D] sm:text-base">
-                Based on the situation you verified, NyayaSaarthi has matched relevant Motor
-                Vehicle Law sources and explained what they may mean for you.
+                Based on your confirmed facts, this page shows eligible dataset records and any
+                limits on their applicability. Linked government pages have not been independently authenticated.
               </p>
             </div>
 
-            {!guidance ? (
+            {error ? (
+              <section role="alert" className="rounded-lg border border-red-300 bg-white p-5 text-red-800">{error}</section>
+            ) : !guidance || busy && matter.nlpAnalysis && matter.stage === "USER_VERIFIED" ? (
               <RetrievalLoading />
             ) : (
               <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_380px]">
@@ -131,7 +158,7 @@ export function GuidanceWorkspace() {
                       Page 5 will use this same matter, verified facts, sources, uncertainties and
                       next steps to create the final guidance summary.
                     </p>
-                    <Button className="mt-4" onClick={handleContinueToSummary}>
+                    <Button className="mt-4" onClick={handleContinueToSummary} disabled={busy}>
                       Continue to Summary
                       <ArrowRight size={16} aria-hidden="true" />
                     </Button>
@@ -151,13 +178,13 @@ function RetrievalLoading() {
   return (
     <section className="rounded-lg border border-[#DED7CA] bg-[#FBF8F1] p-6">
       <p className="text-xs font-extrabold uppercase text-[#A8752B]">
-        Checking verified legal sources...
+        Checking dataset-reviewed legal records...
       </p>
       <h2 className="font-editorial mt-3 text-4xl font-bold text-[#18150F]">
         Preparing grounded guidance
       </h2>
       <div className="mt-5 grid gap-3 md:grid-cols-3">
-        {["Matching your verified situation", "Checking relevant official sources", "Preparing grounded guidance"].map(
+        {["Matching confirmed facts", "Filtering source records", "Preparing grounded guidance"].map(
           (step) => (
             <div key={step} className="rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-4">
               <p className="text-sm font-extrabold text-[#18150F]">{step}</p>

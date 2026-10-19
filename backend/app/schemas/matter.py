@@ -64,6 +64,9 @@ class LegalSource(StrictModel):
     relevantPoint: str
     sourceType: Literal["Act", "Rules", "Notification", "Guidance"]
     sourceUrl: str | None = None
+    evidenceId: str | None = None
+    reviewStatus: str | None = None
+    admissibility: str | None = None
 
 class Mapping(StrictModel):
     id: str
@@ -71,12 +74,14 @@ class Mapping(StrictModel):
     sourceId: str
     sourceTitle: str
     explanation: str
+    evidenceId: str | None = None
 
 class NextStep(StrictModel):
     id: str
     tag: Literal["Verify", "Check", "Keep", "Respond"]
     title: str
     description: str
+    evidenceId: str | None = None
 
 class Guidance(StrictModel):
     generatedAt: str
@@ -87,6 +92,7 @@ class Guidance(StrictModel):
     uncertainties: list[str]
     nextSteps: list[NextStep]
     suggestedQuestions: list[str]
+    metadata: dict[str, Any] | None = None
 
 class MatterCreate(StrictModel):
     originalText: str = Field(min_length=1, max_length=20000)

@@ -46,6 +46,9 @@ export interface LegalSource {
   relevantPoint: string;
   sourceType: "Act" | "Rules" | "Notification" | "Guidance";
   sourceUrl?: string;
+  evidenceId?: string;
+  reviewStatus?: string;
+  admissibility?: string;
 }
 
 export interface FactLawMapping {
@@ -54,6 +57,7 @@ export interface FactLawMapping {
   sourceId: string;
   sourceTitle: string;
   explanation: string;
+  evidenceId?: string;
 }
 
 export interface NextStep {
@@ -61,6 +65,7 @@ export interface NextStep {
   tag: "Verify" | "Check" | "Keep" | "Respond";
   title: string;
   description: string;
+  evidenceId?: string;
 }
 
 export interface GuidanceResult {
@@ -72,6 +77,13 @@ export interface GuidanceResult {
   uncertainties: string[];
   nextSteps: NextStep[];
   suggestedQuestions: string[];
+  metadata?: {
+    indexVersion?: string;
+    retrievalMode?: string;
+    jurisdictionId?: string | null;
+    eventDate?: string | null;
+    ruleEvaluations?: Array<{ ruleId: string; status: string; reasons: string[] }>;
+  };
 }
 
 export interface ConversationMessage {

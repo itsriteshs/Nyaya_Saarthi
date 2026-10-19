@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import FRONTEND_ORIGINS
 from app.db.database import init_database
-from app.api import health, datasets, matters, nlp, conversations
+from app.api import health, datasets, matters, nlp, conversations, legal
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -24,3 +24,4 @@ app.include_router(datasets.router, prefix="/api/v1")
 app.include_router(matters.router, prefix="/api/v1")
 app.include_router(nlp.router, prefix="/api/v1")
 app.include_router(conversations.router, prefix="/api/v1")
+app.include_router(legal.router, prefix="/api/v1")
