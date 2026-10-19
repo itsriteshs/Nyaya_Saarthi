@@ -23,7 +23,7 @@ export function GuidanceWorkspace() {
   const verified = matter?.stage === "USER_VERIFIED" || matter?.stage === "GUIDANCE_GENERATED";
 
   useEffect(() => {
-    if (!matter || !verified || guidance) {
+    if (!matter || matter.nlpAnalysis || !verified || guidance) {
       return;
     }
 
@@ -67,6 +67,15 @@ export function GuidanceWorkspace() {
     );
   }
 
+  if (matter.nlpAnalysis) {
+    return <RouteGuardMessage
+      title="Legal guidance is not available for this analyzed matter yet."
+      text="Phase 2 identifies possible intent, facts, and missing context. Source retrieval and legal guidance are later phases."
+      action="Review Analysis"
+      onAction={() => router.push("/understand")}
+    />;
+  }
+
   if (!verified) {
     return (
       <RouteGuardMessage
@@ -90,7 +99,7 @@ export function GuidanceWorkspace() {
                 Verified Context
               </span>
               <span className="ml-2 inline-flex rounded-md border border-[#DED7CA] bg-[#FFFDF8] px-3 py-1 text-xs font-extrabold uppercase text-[#6B665D]">
-                Official Sources Checked
+                Prototype legal guidance
               </span>
               <h1 className="font-editorial mt-3 text-4xl font-bold leading-tight text-[#18150F] sm:text-5xl">
                 Guidance for Your Situation

@@ -1,16 +1,16 @@
 # NyayaSaarthi
 
-NyayaSaarthi is a multilingual Motor Vehicle Law assistant prototype for India. The Next.js frontend has five pages: Home (`/`), Understand (`/understand`), Verify (`/verify`), Guidance (`/guidance`), and Summary (`/summary`). They currently use local mock NLP, questioning, and legal retrieval with `sessionStorage` for the journey. Phase 1 adds a separate FastAPI backend for dataset auditing and persistent matters, without changing the UI flow.
+NyayaSaarthi is a multilingual Motor Vehicle Law research prototype for India. The Next.js frontend has Home, Understand, Verify, Guidance, and Summary pages. The FastAPI backend stores matters in SQLite and runs a dataset-driven NLP baseline for language, intent, entities, normalization, and missing context.
 
 ## Run locally
+
+Set up and train the backend as described in [backend/README.md](backend/README.md), then start its FastAPI server. In another terminal:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`. Run frontend checks with `npm run lint`, `npm run typecheck`, and `npm run build`.
+Open `http://localhost:3000`. The Home page calls the backend for its NLP preview, creates a matter, and persists analysis before opening Understand. Understand and Verify use backend-managed adaptive questions, answers, fact edits, and verification. Set `NEXT_PUBLIC_API_BASE_URL` if FastAPI is not at `http://127.0.0.1:8000`. `NEXT_PUBLIC_NYAYA_DEMO_MODE=true` explicitly enables the older frontend mock journey for development; real mode never silently falls back to mock NLP.
 
-For backend setup, audit, API endpoints, and tests, see [backend/README.md](backend/README.md). The backend runs at `http://127.0.0.1:8000` and its Swagger docs are at `/docs`. The frontend API client uses `NEXT_PUBLIC_API_BASE_URL` (see `.env.example`), but the UI still uses the mock session flow until later phases.
-
-The original 23 CSV/JSONL datasets are preserved in `data/Dataset 2/`; see [Phase 1 findings](backend/reports/PHASE1_DATASET_FINDINGS.md). The older static HTML prototypes remain at the repository root. `NLP_FLOW.pdf`, `NLP_CONCEPTS.pdf`, and `Team_18 (1).pptx` remain historical product source material where available.
+The 23 original datasets remain in `data/Dataset 2/`. Phase 2 methods and evaluation are documented in [backend/PHASE2_IMPLEMENTATION.md](backend/PHASE2_IMPLEMENTATION.md); Phase 3 conversation behavior is documented in [backend/reports/PHASE3_IMPLEMENTATION.md](backend/reports/PHASE3_IMPLEMENTATION.md). Guidance and Summary retain a prototype journey for demo matters; real matters stop at a legal-retrieval gate. Frontend checks: `npm run lint`, `npm run typecheck`, `npm run build`.

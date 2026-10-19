@@ -20,7 +20,7 @@ export function ContextPanel({ context, readiness }: ContextPanelProps) {
         <p className="font-editorial text-3xl font-bold leading-none text-[#071B3A]">
           What NyayaSaarthi Understands
         </p>
-        <p className="mt-2 text-sm font-semibold text-[#6B665D]">Updated as you answer.</p>
+        <p className="mt-2 text-sm font-semibold text-[#6B665D]">{context.nlpAnalysis ? "Extracted from your original description." : "Updated as you answer."}</p>
       </div>
 
       <section className="mt-5 rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-4">
@@ -55,9 +55,14 @@ export function ContextPanel({ context, readiness }: ContextPanelProps) {
                 className="flex items-center gap-2 rounded-md border border-[#DED7CA] bg-[#F7F3EA] px-3 py-2 text-sm font-bold text-[#4F4A42]"
               >
                 <AlertCircle size={15} className="text-[#A8752B]" aria-hidden="true" />
-                {formatSlot(slot)}
+                {context.nlpAnalysis?.missingSlots.find((item) => item.slot === slot)?.label ?? formatSlot(slot)}
+                {context.conversation?.unknownSlots.includes(slot) ? " (unknown)" : ""}
               </div>
             ))
+          ) : context.nlpAnalysis && !context.conversation?.reviewEligible ? (
+            <div className="rounded-md border border-[#C49A55]/60 bg-[#F4E8D3] px-3 py-2 text-sm font-extrabold text-[#7A521F]">
+              Ambiguous or conflicting facts need clarification.
+            </div>
           ) : (
             <div className="flex items-center gap-2 rounded-md border border-[#C49A55]/60 bg-[#F4E8D3] px-3 py-2 text-sm font-extrabold text-[#18150F]">
               <CheckCircle2 size={15} className="text-[#647567]" aria-hidden="true" />
@@ -67,13 +72,20 @@ export function ContextPanel({ context, readiness }: ContextPanelProps) {
         </div>
       </section>
 
+      {context.conversation?.contradictions.some((item) => !item.resolved) ? <section className="mt-5 rounded-md border border-red-300 bg-red-50 p-4">
+        <h2 className="text-sm font-extrabold text-red-800">Conflicting details</h2>
+        {context.conversation.contradictions.filter((item) => !item.resolved).map((item) => <p key={item.id} className="mt-2 text-sm text-red-800">
+          {formatSlot(item.slot)} ({item.kind === "possible_timeline" ? "timeline needs clarification" : "different values"}): “{item.previous.value}” / “{item.candidate.value}”
+        </p>)}
+      </section> : null}
+
       <section className="mt-5 rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-4">
         <div className="flex gap-3">
           <CircleHelp size={17} className="mt-0.5 shrink-0 text-[#A8752B]" aria-hidden="true" />
           <div>
             <h2 className="text-sm font-extrabold text-[#18150F]">Why we are asking</h2>
             <p className="mt-1 text-sm font-semibold leading-6 text-[#6B665D]">
-              {context.currentQuestion?.why ??
+              {context.currentQuestion?.why ?? context.nlpAnalysis?.missingSlots[0]?.reason ??
                 "Legal applicability will be checked only after you verify the structured context."}
             </p>
           </div>

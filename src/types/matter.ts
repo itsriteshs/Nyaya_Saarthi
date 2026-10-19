@@ -30,6 +30,12 @@ export interface MatterFact {
   provenance: FactProvenance;
   confirmed: boolean;
   requiresConfirmation?: boolean;
+  normalizedValue?: string;
+  normalizedId?: string;
+  sourceMessageId?: string;
+  extractionMethod?: string;
+  resolutionStatus?: "resolved" | "ambiguous" | "unresolved";
+  updatedAt?: string;
 }
 
 export interface LegalSource {
@@ -80,7 +86,8 @@ export interface ClarificationOption {
 }
 
 export interface ClarificationQuestion {
-  slot: MatterSlot;
+  id?: string;
+  slot: string;
   question: string;
   type: "options" | "text";
   options?: ClarificationOption[];
@@ -96,7 +103,7 @@ export interface MatterContext {
     descriptor: string;
   };
   facts: MatterFact[];
-  missingSlots: MatterSlot[];
+  missingSlots: string[];
   contextReadiness: {
     found: number;
     total: number;
@@ -105,7 +112,23 @@ export interface MatterContext {
   createdAt: string;
   verifiedAt?: string;
   guidance?: GuidanceResult;
-  answers: Partial<Record<MatterSlot, string>>;
+  answers: Record<string, string>;
   currentQuestion?: ClarificationQuestion;
   messages: ConversationMessage[];
+  nlpAnalysis?: import("@/types/nlp").NlpAnalysis;
+  conversation?: {
+    askedSlots: string[];
+    unknownSlots: string[];
+    contradictions: Array<{ id: string; slot: string; previous: MatterFact; candidate: MatterFact; kind?: string; resolved: boolean }>;
+    factHistory: Array<Record<string, unknown>>;
+    displayLanguage: string;
+    reviewEligible: boolean;
+    verificationEligible?: boolean;
+    confirmationPending?: string[];
+    unresolvedRequirements: Array<{ slot: string; condition: string; reason: string }>;
+    ambiguousSlots?: string[];
+    urgentAssistance: boolean;
+    unknownsAcknowledged?: boolean;
+  };
+  revision?: number;
 }

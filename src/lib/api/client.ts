@@ -10,14 +10,28 @@ export class ApiError extends Error {
 export async function apiRequest<T>(path: string, init: RequestInit = {}): Promise<T> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 10000);
+  const cancel = () => controller.abort();
+  init.signal?.addEventListener("abort", cancel, { once: true });
   try {
+    if (init.signal?.aborted) controller.abort();
     const response = await fetch(`${BASE_URL}${path}`, {
       ...init,
       headers: { "Content-Type": "application/json", ...init.headers },
       signal: controller.signal,
     });
     if (!response.ok) {
-      throw new ApiError(`Backend request failed (${response.status})`, response.status);
+      let detail = `Backend request failed (${response.status})`;
+      try {
+        const body: unknown = await response.json();
+        if (body && typeof body === "object" && "detail" in body) {
+          const value = body.detail;
+          if (typeof value === "string") detail = value;
+          else if (value && typeof value === "object" && "blockers" in value && Array.isArray(value.blockers)) {
+            detail = value.blockers.filter((item): item is string => typeof item === "string").join("; ");
+          }
+        }
+      } catch { /* Keep the status message. */ }
+      throw new ApiError(detail, response.status);
     }
     if (response.status === 204) return undefined as T;
     try {
@@ -31,9 +45,10 @@ export async function apiRequest<T>(path: string, init: RequestInit = {}): Promi
     }
   } catch (error) {
     if (error instanceof ApiError) throw error;
-    if (error instanceof Error && error.name === "AbortError") throw new ApiError("Backend request timed out");
+    if (error instanceof Error && error.name === "AbortError") throw new ApiError(init.signal?.aborted ? "Request cancelled" : "Backend request timed out");
     throw new ApiError("Could not connect to the backend");
   } finally {
     clearTimeout(timeout);
+    init.signal?.removeEventListener("abort", cancel);
   }
 }

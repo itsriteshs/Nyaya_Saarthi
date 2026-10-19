@@ -3,7 +3,7 @@ import type { ClarificationQuestion as ClarificationQuestionType } from "@/types
 
 interface ClarificationQuestionProps {
   question: ClarificationQuestionType;
-  onAnswer: (answer: string) => void;
+  onAnswer: (answer: string) => Promise<boolean> | void;
 }
 
 export function ClarificationQuestion({ question, onAnswer }: ClarificationQuestionProps) {

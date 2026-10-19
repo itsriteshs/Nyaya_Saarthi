@@ -7,17 +7,17 @@ import type { MatterFact } from "@/types/matter";
 
 interface FactReviewRowProps {
   fact: MatterFact;
-  onConfirm: (factId: string) => void;
-  onChange: (factId: string, value: string) => void;
+  onConfirm: (factId: string) => Promise<boolean | void> | void;
+  onChange: (factId: string, value: string) => Promise<boolean | void> | void;
 }
 
 export function FactReviewRow({ fact, onConfirm, onChange }: FactReviewRowProps) {
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(fact.value === "Not answered yet" ? "" : fact.value);
 
-  function save() {
-    onChange(fact.id, value);
-    setEditing(false);
+  async function save() {
+    const saved = await onChange(fact.id, value);
+    if (saved !== false) setEditing(false);
   }
 
   return (
@@ -39,7 +39,7 @@ export function FactReviewRow({ fact, onConfirm, onChange }: FactReviewRowProps)
       </div>
 
       <div className="mt-3 flex flex-wrap gap-2 border-t border-[#DED7CA] pt-3">
-        {fact.requiresConfirmation && !editing ? (
+        {fact.requiresConfirmation && fact.resolutionStatus !== "ambiguous" && fact.resolutionStatus !== "unresolved" && !editing ? (
           <button
             type="button"
             className="inline-flex min-h-9 items-center gap-2 rounded-md border border-[#C49A55]/70 bg-[#F4E8D3] px-3 text-xs font-extrabold text-[#7A521F]"
@@ -62,7 +62,7 @@ export function FactReviewRow({ fact, onConfirm, onChange }: FactReviewRowProps)
         <button
           type="button"
           className="inline-flex min-h-9 items-center gap-2 rounded-md border border-[#DED7CA] px-3 text-xs font-extrabold text-[#071B3A]"
-          onClick={() => setEditing((current) => !current)}
+          onClick={() => { setValue(fact.value); setEditing((current) => !current); }}
         >
           <Pencil size={14} aria-hidden="true" />
           Change

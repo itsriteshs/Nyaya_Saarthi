@@ -22,6 +22,12 @@ class Fact(StrictModel):
     provenance: Provenance
     confirmed: bool
     requiresConfirmation: bool | None = None
+    normalizedValue: str | None = None
+    normalizedId: str | None = None
+    sourceMessageId: str | None = None
+    extractionMethod: str | None = None
+    resolutionStatus: Literal["resolved", "ambiguous", "unresolved"] | None = None
+    updatedAt: datetime | None = None
 
 class Readiness(StrictModel):
     found: int = Field(ge=0)
@@ -43,6 +49,7 @@ class QuestionOption(StrictModel):
     value: str = Field(min_length=1, max_length=200)
 
 class Question(StrictModel):
+    id: str | None = None
     slot: str = Field(min_length=1, max_length=100)
     question: str = Field(min_length=1, max_length=2000)
     type: Literal["options", "text"]
@@ -130,5 +137,7 @@ class MatterResponse(StrictModel):
     answers: dict[str, str]
     currentQuestion: Question | None = None
     messages: list[Message]
+    nlpAnalysis: dict[str, Any] | None = None
+    conversation: dict[str, Any] | None = None
     schemaVersion: int
     revision: int

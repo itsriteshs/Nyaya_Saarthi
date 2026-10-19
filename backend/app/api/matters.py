@@ -31,6 +31,8 @@ def patch(matter_id: str, payload: MatterPatch, session: Session = Depends(get_s
         result = matter_service.patch_matter(session, valid_id(matter_id), payload)
     except matter_service.StaleRevision:
         raise HTTPException(status_code=409, detail="Matter revision is stale") from None
+    except matter_service.ProtectedMatter:
+        raise HTTPException(status_code=409, detail="Use conversation and verification endpoints for analyzed matters") from None
     except ValidationError:
         raise HTTPException(status_code=422, detail="Invalid matter context") from None
     if result is None:

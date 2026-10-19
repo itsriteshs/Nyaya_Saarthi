@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import { loadStoredMatter, saveStoredMatter } from "@/lib/matter-storage";
 import type { MatterContext } from "@/types/matter";
 
@@ -15,12 +15,12 @@ const MatterContextValue = createContext<MatterProviderValue | undefined>(undefi
 export function MatterProvider({ children }: { children: React.ReactNode }) {
   const [matter, setMatterState] = useState<MatterContext | null>(() => loadStoredMatter());
 
-  function setMatter(nextMatter: MatterContext | null) {
+  const setMatter = useCallback((nextMatter: MatterContext | null) => {
     setMatterState(nextMatter);
     saveStoredMatter(nextMatter);
-  }
+  }, []);
 
-  function updateMatter(updater: (matter: MatterContext) => MatterContext) {
+  const updateMatter = useCallback((updater: (matter: MatterContext) => MatterContext) => {
     setMatterState((current) => {
       if (!current) {
         return current;
@@ -30,7 +30,7 @@ export function MatterProvider({ children }: { children: React.ReactNode }) {
       saveStoredMatter(nextMatter);
       return nextMatter;
     });
-  }
+  }, []);
 
   const value = useMemo(
     () => ({
@@ -38,7 +38,7 @@ export function MatterProvider({ children }: { children: React.ReactNode }) {
       setMatter,
       updateMatter,
     }),
-    [matter],
+    [matter, setMatter, updateMatter],
   );
 
   return <MatterContextValue.Provider value={value}>{children}</MatterContextValue.Provider>;

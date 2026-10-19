@@ -9,6 +9,9 @@ from app.schemas.matter import MatterCreate, MatterPatch, MatterResponse
 class StaleRevision(Exception):
     pass
 
+class ProtectedMatter(Exception):
+    pass
+
 def _response(record: MatterRecord) -> MatterResponse:
     return MatterResponse.model_validate({**json.loads(record.context_json), "schemaVersion": record.schema_version, "revision": record.revision, "updatedAt": record.updated_at})
 
@@ -36,6 +39,8 @@ def patch_matter(session: Session, matter_id: str, payload: MatterPatch) -> Matt
     if record.revision != payload.revision:
         raise StaleRevision()
     context = json.loads(record.context_json)
+    if context.get('nlpAnalysis'):
+        raise ProtectedMatter()
     for key, value in payload.model_dump(exclude_unset=True, exclude={"revision"}, mode="json").items():
         if value is None:
             context.pop(key, None)
@@ -57,3 +62,23 @@ def delete_matter(session: Session, matter_id: str) -> bool:
     session.delete(record)
     session.commit()
     return True
+
+def save_computed_context(session: Session, matter_id: str, revision: int, context: dict) -> MatterResponse:
+    """Validate and atomically replace a server-computed matter context."""
+    record = session.get(MatterRecord, matter_id)
+    if record is None:
+        raise KeyError(matter_id)
+    if record.revision != revision:
+        raise StaleRevision()
+    now = datetime.now(timezone.utc)
+    MatterResponse.model_validate({**context, "schemaVersion": record.schema_version,
+                                   "revision": revision + 1, "updatedAt": now})
+    changed = session.execute(update(MatterRecord).where(
+        MatterRecord.id == matter_id, MatterRecord.revision == revision
+    ).values(context_json=json.dumps(context, ensure_ascii=False, default=str),
+             stage=context["stage"], revision=revision + 1, updated_at=now))
+    if changed.rowcount != 1:
+        session.rollback()
+        raise StaleRevision()
+    session.commit()
+    return get_matter(session, matter_id)

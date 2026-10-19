@@ -16,3 +16,5 @@ backend/__pycache__/
 backend/**/__pycache__/
 backend/.venv/
 .pytest_cache/
+backend/artifacts/*.joblib
+backend/artifacts/*_local.json

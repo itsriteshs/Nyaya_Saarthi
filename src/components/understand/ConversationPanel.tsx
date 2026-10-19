@@ -7,10 +7,12 @@ import type { MatterContext } from "@/types/matter";
 
 interface ConversationPanelProps {
   context: MatterContext;
-  onAnswer: (answer: string) => void;
+  onAnswer: (answer: string) => Promise<boolean> | void;
+  busy?: boolean;
+  error?: string;
 }
 
-export function ConversationPanel({ context, onAnswer }: ConversationPanelProps) {
+export function ConversationPanel({ context, onAnswer, busy = false, error = "" }: ConversationPanelProps) {
   return (
     <section className="min-w-0">
       <div className="rounded-lg border border-[#DED7CA] bg-[#FBF8F1]">
@@ -31,8 +33,34 @@ export function ConversationPanel({ context, onAnswer }: ConversationPanelProps)
           {context.messages.map((message) => (
             <ConversationMessage key={message.id} message={message} />
           ))}
+          {error ? <p role="alert" className="rounded-md border border-red-300 p-3 text-sm font-bold text-red-700">{error}</p> : null}
 
-          {context.currentQuestion ? (
+          {context.nlpAnalysis && context.currentQuestion ? (
+            <>
+              <ClarificationQuestion question={context.currentQuestion} onAnswer={onAnswer} />
+              <button type="button" disabled={busy} onClick={() => onAnswer("I don't know")}
+                className="text-sm font-bold text-[#7A521F] underline disabled:opacity-50">I don&apos;t know / Skip with uncertainty</button>
+            </>
+          ) : context.nlpAnalysis ? (
+            <div className="rounded-lg border border-[#C49A55]/60 bg-[#F4E8D3] p-5">
+              <p className="text-sm font-extrabold uppercase text-[#7A521F]">Model analysis · {context.nlpAnalysis.intent.id}</p>
+              <h2 className="font-editorial mt-2 text-3xl font-bold text-[#18150F]">
+                {context.conversation?.reviewEligible ? "Review the extracted context" : "More context or confirmation is needed"}
+              </h2>
+              <p className="mt-2 text-sm font-semibold leading-6 text-[#6B665D]">
+                {context.currentQuestion?.question ??
+                  (context.nlpAnalysis.intent.needsClarification
+                    ? "The intent is uncertain. Review the alternatives and extracted facts."
+                    : "Confirm each extracted fact before relying on it.")}
+              </p>
+              {context.nlpAnalysis.unresolvedSlots.length ? <p className="mt-2 text-sm font-semibold text-[#7A521F]">
+                {context.nlpAnalysis.unresolvedSlots.length} conditional requirement(s) could not be resolved.
+              </p> : null}
+              {context.conversation?.reviewEligible ? <Link href="/verify" className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#071B3A] bg-[#071B3A] px-4 text-sm font-extrabold text-white">
+                Review My Situation <ArrowRight size={16} aria-hidden="true" />
+              </Link> : null}
+            </div>
+          ) : context.currentQuestion ? (
             <ClarificationQuestion question={context.currentQuestion} onAnswer={onAnswer} />
           ) : (
             <div className="rounded-lg border border-[#C49A55]/60 bg-[#F4E8D3] p-5">
@@ -59,7 +87,7 @@ export function ConversationPanel({ context, onAnswer }: ConversationPanelProps)
 
         {context.currentQuestion ? (
           <MessageComposer
-            disabled={context.currentQuestion.type !== "text"}
+            disabled={busy || context.currentQuestion.type !== "text"}
             onSend={onAnswer}
           />
         ) : null}

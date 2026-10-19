@@ -7,7 +7,7 @@ interface NLPPreviewProps {
 }
 
 export function NLPPreview({ result }: NLPPreviewProps) {
-  const progress = Math.round((result.readiness.found / result.readiness.total) * 100);
+  const progress = result.readiness.total ? Math.round((result.readiness.found / result.readiness.total) * 100) : 0;
 
   return (
     <Card className="relative overflow-hidden p-5 sm:p-6">

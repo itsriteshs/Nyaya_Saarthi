@@ -13,6 +13,7 @@ interface VerificationRailProps {
   };
   needsConfirmation: MatterFact[];
   canCheckLaw: boolean;
+  realMode?: boolean;
   onConfirmFact: (factId: string) => void;
   onChangeFact: (factId: string, value: string) => void;
   onVerify: () => void;
@@ -22,6 +23,7 @@ export function VerificationRail({
   readiness,
   needsConfirmation,
   canCheckLaw,
+  realMode = false,
   onConfirmFact,
   onChangeFact,
   onVerify,
@@ -29,14 +31,14 @@ export function VerificationRail({
   return (
     <aside className="space-y-5 xl:sticky xl:top-20 xl:max-h-[calc(100vh-6rem)] xl:overflow-auto">
       <section className="rounded-lg border border-[#DED7CA] bg-[#FBF8F1] p-5">
-        <p className="text-xs font-extrabold uppercase text-[#A8752B]">Legal Context Completeness</p>
+        <p className="text-xs font-extrabold uppercase text-[#A8752B]">Context Completeness</p>
         <p className="mt-2 text-2xl font-extrabold text-[#18150F]">
           {readiness.found} / {readiness.total}
         </p>
         <p className="mt-1 text-sm font-semibold leading-6 text-[#6B665D]">
           {needsConfirmation.length > 0
-            ? "One detail still needs confirmation before legal retrieval."
-            : "All required context is ready for verification."}
+            ? "Extracted details still need confirmation."
+            : "Known details are confirmed. Review any remaining unknowns."}
         </p>
         <div className="mt-4 h-2 overflow-hidden rounded-full bg-[#E5DDCF]">
           <div
@@ -89,12 +91,12 @@ export function VerificationRail({
 
       <section id="verification-actions" className="rounded-lg border border-[#DED7CA] bg-[#FBF8F1] p-5">
         <Button className="w-full" disabled={!canCheckLaw} onClick={onVerify}>
-          Confirm & Check Law
+          {realMode ? "Confirm Structured Situation" : "Confirm & Check Law"}
           <ArrowRight size={16} aria-hidden="true" />
         </Button>
         {!canCheckLaw ? (
           <p className="mt-2 text-xs font-bold text-[#6B665D]">
-            Confirm the remaining detail before checking the law.
+            Confirm facts and resolve required context before continuing.
           </p>
         ) : null}
         <Link

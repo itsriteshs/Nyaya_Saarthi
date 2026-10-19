@@ -5,20 +5,20 @@ import { Button } from "@/components/ui/Button";
 
 interface MessageComposerProps {
   disabled: boolean;
-  onSend: (answer: string) => void;
+  onSend: (answer: string) => Promise<boolean> | void;
 }
 
 export function MessageComposer({ disabled, onSend }: MessageComposerProps) {
   const [value, setValue] = useState("");
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!value.trim()) {
       return;
     }
 
-    onSend(value);
-    setValue("");
+    const saved = await onSend(value);
+    if (saved !== false) setValue("");
   }
 
   return (

@@ -15,19 +15,24 @@ export function StructuredContext({ matter, onConfirmFact, onChangeFact }: Struc
     },
     {
       title: "Vehicle",
-      facts: matter.facts.filter((fact) => fact.id === "vehicle_type"),
+      facts: matter.facts.filter((fact) => fact.key === "VEHICLE_CLASS" || fact.id === "vehicle_type"),
     },
     {
       title: "Road & Location",
-      facts: matter.facts.filter((fact) => fact.id === "location" || fact.id === "road_type"),
+      facts: matter.facts.filter((fact) => ["STATE","CITY","LOCATION","ROAD_TYPE","ROAD_NAME"].includes(fact.key) || fact.id === "location" || fact.id === "road_type"),
     },
     {
       title: "Driving Context",
-      facts: matter.facts.filter((fact) => fact.id === "speed"),
+      facts: matter.facts.filter((fact) => fact.key === "OBSERVED_SPEED" || fact.id === "speed"),
     },
     {
       title: "Enforcement",
-      facts: matter.facts.filter((fact) => fact.id === "police_stop" || fact.id === "challan_status"),
+      facts: matter.facts.filter((fact) => ["CHALLAN_STATUS","CHALLAN_DATE","POLICE_REPORTED"].includes(fact.key) || fact.id === "police_stop" || fact.id === "challan_status"),
+    },
+    {
+      title: "Other Details",
+      facts: matter.facts.filter((fact) => !["VEHICLE_CLASS","STATE","CITY","LOCATION","ROAD_TYPE","ROAD_NAME","OBSERVED_SPEED","CHALLAN_STATUS","CHALLAN_DATE","POLICE_REPORTED"].includes(fact.key)
+        && !["vehicle_type","location","road_type","speed","police_stop","challan_status"].includes(fact.id)),
     },
   ];
 

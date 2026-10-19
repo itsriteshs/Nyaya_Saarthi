@@ -29,3 +29,8 @@ export function updateMatter(id: string, update: MatterUpdate) {
 export function deleteMatter(id: string) {
   return apiRequest<void>(`/api/v1/matters/${encodeURIComponent(id)}`, { method: "DELETE" });
 }
+export function analyzeMatter(id: string, revision: number, referenceDatetime?: string) {
+  return apiRequest<StoredMatter>(`/api/v1/matters/${encodeURIComponent(id)}/analyze`, {
+    method: "POST", body: JSON.stringify({ revision, referenceDatetime }),
+  });
+}

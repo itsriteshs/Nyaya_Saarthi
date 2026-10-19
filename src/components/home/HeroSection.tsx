@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { NLPPreview } from "@/components/home/NLPPreview";
 import { QuickTopics } from "@/components/home/QuickTopics";
 import { SituationInput } from "@/components/home/SituationInput";
@@ -11,8 +11,17 @@ import { defaultSituation } from "@/data/examples";
 import { motorLawTopics } from "@/data/motor-law-topics";
 import { createMatterContext } from "@/lib/mock-context-engine";
 import { analyzeSituation } from "@/lib/mock-nlp";
+import { analyzeText, localReferenceDatetime, toPreview } from "@/lib/api/nlp";
+import { analyzeMatter, createMatter } from "@/lib/api/matters";
 import { useMatter } from "@/providers/MatterProvider";
-import type { LanguageOption, TopicId } from "@/types/nlp";
+import type { LanguageOption, MockNlpResult, TopicId } from "@/types/nlp";
+
+const demoMode = process.env.NEXT_PUBLIC_NYAYA_DEMO_MODE === "true";
+const emptyPreview: MockNlpResult = {
+  inputText: "", detectedIssue: { label: "Awaiting analysis", description: "Describe your situation to see the model's findings." },
+  extractedFacts: [], missingInformation: [], readiness: { found: 0, total: 0 },
+  nextQuestion: "Enter a description to begin.", visibleSignals: [],
+};
 
 export function HeroSection() {
   const router = useRouter();
@@ -21,18 +30,46 @@ export function HeroSection() {
   const [analysisInput, setAnalysisInput] = useState(defaultSituation);
   const [language, setLanguage] = useState<LanguageOption>("auto");
   const [activeTopic, setActiveTopic] = useState<TopicId>("traffic");
+  const [realPreview, setRealPreview] = useState<MockNlpResult>(emptyPreview);
+  const [previewLoading, setPreviewLoading] = useState(!demoMode);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const activeTopicData =
     motorLawTopics.find((topic) => topic.id === activeTopic) ?? motorLawTopics[0];
 
-  const preview = useMemo(() => analyzeSituation(analysisInput), [analysisInput]);
+  const demoPreview = useMemo(() => demoMode ? analyzeSituation(analysisInput) : emptyPreview, [analysisInput]);
+  const preview = demoMode ? demoPreview : realPreview;
+
+  useEffect(() => {
+    if (demoMode) return;
+    const controller = new AbortController();
+    const timer = window.setTimeout(async () => {
+      try {
+        const result = await analyzeText(analysisInput, language, controller.signal);
+        if (!controller.signal.aborted) setRealPreview(toPreview(result));
+      } catch (cause) {
+        if (!controller.signal.aborted) {
+          setRealPreview(emptyPreview);
+          setError(cause instanceof Error ? cause.message : "Analysis is unavailable.");
+        }
+      } finally {
+        if (!controller.signal.aborted) setPreviewLoading(false);
+      }
+    }, 350);
+    return () => { window.clearTimeout(timer); controller.abort(); };
+  }, [analysisInput, language]);
 
   function handleSituationChange(value: string) {
+    setPreviewLoading(true);
+    setError("");
     setSituation(value);
     setAnalysisInput(value.trim() ? value : activeTopicData.example);
   }
 
   function handleExampleSelect(example: string) {
+    setPreviewLoading(true);
+    setError("");
     setSituation(example);
     setAnalysisInput(example);
   }
@@ -42,19 +79,38 @@ export function HeroSection() {
     setActiveTopic(topic);
 
     if (!situation.trim() && selected) {
+      setPreviewLoading(true);
       setAnalysisInput(selected.example);
     }
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
+    if (submitting) return;
     const nextInput = situation.trim() || activeTopicData.example;
     setSituation(nextInput);
     setAnalysisInput(nextInput);
-    setMatter(createMatterContext(nextInput, language));
-    router.push("/understand");
+    if (demoMode) {
+      setMatter(createMatterContext(nextInput, language));
+      router.push("/understand");
+      return;
+    }
+    setSubmitting(true);
+    setError("");
+    try {
+      const created = await createMatter(nextInput, language);
+      const analyzed = await analyzeMatter(created.id, created.revision, localReferenceDatetime());
+      setMatter(analyzed);
+      router.push("/understand");
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Could not analyze your situation.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   function handleReset() {
+    setPreviewLoading(true);
+    setError("");
     setSituation("");
     setLanguage("auto");
     setActiveTopic("traffic");
@@ -81,11 +137,13 @@ export function HeroSection() {
             language={language}
             placeholder={activeTopicData.placeholder}
             onChange={handleSituationChange}
-            onLanguageChange={setLanguage}
+            onLanguageChange={(nextLanguage) => { setPreviewLoading(true); setError(""); setLanguage(nextLanguage); }}
             onExampleSelect={handleExampleSelect}
             onReset={handleReset}
             onSubmit={handleSubmit}
+            submitting={submitting}
           />
+          {error ? <p role="alert" className="mt-3 text-sm font-bold text-red-700">{error}</p> : null}
 
           <QuickTopics activeTopic={activeTopic} onSelect={handleTopicSelect} />
         </div>
@@ -93,6 +151,8 @@ export function HeroSection() {
         <div className="relative">
           <div className="absolute -right-8 -top-8 hidden h-40 w-40 border border-[#C49A55]/35 lg:block" aria-hidden="true" />
           <NLPPreview result={preview} />
+          {previewLoading ? <p className="mt-2 text-sm font-bold text-[#6B665D]">Analyzing description…</p> : null}
+          {demoMode ? <p className="mt-2 text-sm font-bold text-[#7A521F]">Demo NLP preview</p> : null}
           <div className="mt-5 flex items-center gap-3 border-l-2 border-[#A8752B] pl-4 text-sm font-bold text-[#6B665D]">
             <ArrowRight size={17} aria-hidden="true" />
             Understand first. Legal retrieval comes after verified context.

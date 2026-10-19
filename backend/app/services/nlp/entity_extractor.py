@@ -1,0 +1,80 @@
+"""Rule-based span extractor on original text; this is not trained NER."""
+import re
+import json
+from functools import lru_cache
+from datetime import datetime,timedelta
+from app.services.nlp.ontology import ontology
+from app.config import DATASET_DIR
+from app.services.dataset_loader import load_dataset
+
+SPEED=re.compile(r'(?<!\w)(?:(?:about|around|maybe|लगभग)\s+)?(?P<value>\d{2,3})\s*(?P<unit>km\s*/\s*h|kmph|kph|किमी\s*/\s*घंटा)(?!\w)',re.I)
+DATE_ISO=re.compile(r'\b\d{4}-\d{2}-\d{2}\b')
+DATE_WORD=re.compile(r'\b\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\b',re.I)
+ROAD=re.compile(r'\b(?:expressway|city road|highway|motorway|village road|residential road|urban road)\b|एक्सप्रेसवे|हाईवे|राजमार्ग',re.I)
+VEHICLES=re.compile(r'(?<!\w)(?:auto[- ]rickshaw|e[- ]rickshaw|motorcycle|scooter|bike|car|bus|truck|lorry|motor car|मोटरसाइकिल|स्कूटर|कार|बस)(?!\w)',re.I)
+INSURANCE=re.compile(r'\b(?:insurance|policy)\b.{0,24}\b(?:expired|valid|active|lapsed)\b|\b(?:no|without)\s+insurance\b|बीमा.{0,15}(?:खत्म|समाप्त|वैध)|\binsurance\s+expire(?:d)?\s+ho\s+gaya\b',re.I)
+CHALLAN=re.compile(r'\b(?:did not receive|didn.t get|no|without)\s+(?:a\s+)?challan\b|\b(?:received|got|issued|paid)\s+(?:a\s+)?challan\b|चालान.{0,15}(?:नहीं|कटा|मिला)|\bchallan\s+kat\s+gaya\b',re.I)
+LICENCE=re.compile(r'\b(?:licen[cs]e|dl)\b.{0,20}\b(?:expired|valid|suspended|seized)\b|\b(?:no|without)\s+(?:driving\s+)?licen[cs]e\b',re.I)
+AGE=re.compile(r'\b(?P<age>\d{1,2})\s*(?:years? old|yrs? old|साल)\b',re.I)
+AGE_LABEL=re.compile(r'(?:\bage\b|उम्र)\s*[:：-]\s*(?P<age>\d{1,2})',re.I)
+
+@lru_cache(maxsize=1)
+def status_vocabulary():
+    """Use annotation values as patterns, without learning a sequence model."""
+    values={kind:set() for kind in ('CHALLAN_STATUS','LICENCE_STATUS','INSURANCE_STATUS')}
+    _,rows=load_dataset(DATASET_DIR/'annotated_utterances.csv')
+    for _,row in rows:
+        if not isinstance(row,dict):continue
+        try: annotations=json.loads(row.get('entity_annotations_json') or '[]')
+        except json.JSONDecodeError:continue
+        for item in annotations:
+            if isinstance(item,dict) and item.get('slot_name') in values and isinstance(item.get('value'),str):
+                values[item['slot_name']].add(item['value'].casefold())
+    return {kind:sorted(items,key=len,reverse=True) for kind,items in values.items()}
+
+
+def extract(text: str, reference_datetime: datetime | None=None):
+    entities=[]
+    def add(kind,match,value=None,method='rule'):
+        entities.append({'type':kind,'text':match.group(0),'value':value or match.group(0),
+                         'start':match.start(),'end':match.end(),'method':method,'confidence':None})
+    for m in SPEED.finditer(text): add('OBSERVED_SPEED',m,m.group('value'))
+    for m in VEHICLES.finditer(text): add('VEHICLE_CLASS',m)
+    for m in ROAD.finditer(text): add('ROAD_TYPE',m)
+    for m in DATE_ISO.finditer(text): add('EVENT_DATE',m)
+    for m in DATE_WORD.finditer(text): add('EVENT_DATE',m)
+    if reference_datetime:
+        for m in re.finditer(r'\b(?:yesterday|today)\b|\b(?:कल|आज)\b',text,re.I):
+            token=m.group(0).casefold()
+            if token in {'yesterday','today','आज'}:
+                day=(reference_datetime.date()-timedelta(days=1)) if token=='yesterday' else reference_datetime.date()
+                add('EVENT_DATE',m,day.isoformat(),'relative_date')
+            # Hindi कल can mean yesterday or tomorrow, so leave unresolved.
+            else:add('EVENT_DATE',m,method='ambiguous_relative_date')
+    for m in INSURANCE.finditer(text): add('INSURANCE_STATUS',m)
+    for m in CHALLAN.finditer(text): add('CHALLAN_STATUS',m)
+    for m in LICENCE.finditer(text): add('LICENCE_STATUS',m)
+    for m in AGE.finditer(text): add('AGE',m,m.group('age'))
+    for m in AGE_LABEL.finditer(text):
+        if not any(e['type']=='AGE' and e['start']<=m.start('age')<e['end'] for e in entities):
+            entities.append({'type':'AGE','text':m.group('age'),'value':m.group('age'),
+                             'start':m.start('age'),'end':m.end('age'),'method':'rule','confidence':None})
+    cues={'CHALLAN_STATUS':r'challan|चालान','LICENCE_STATUS':r'licen[cs]e|\bdl\b|लाइसेंस',
+          'INSURANCE_STATUS':r'insurance|policy|बीमा'}
+    for kind,phrases in status_vocabulary().items():
+        for phrase in phrases:
+            for m in re.finditer(r'(?<!\w)'+re.escape(phrase)+r'(?!\w)',text,re.I):
+                vicinity=text[max(0,m.start()-45):min(len(text),m.end()+45)]
+                if not re.search(cues[kind],vicinity,re.I):continue
+                if any(e['type']==kind and e['start']<=m.start()<e['end'] for e in entities):continue
+                entities.append({'type':kind,'text':m.group(0),'value':m.group(0),
+                                 'start':m.start(),'end':m.end(),'method':'annotation_vocabulary','confidence':None})
+    # Match only dataset jurisdiction names and a few documented, unambiguous spellings.
+    names={r['state_ut_name'].casefold():r['state_ut_name'] for r in ontology()['jurisdictions'].values() if r['jurisdiction_level']!='CENTRAL'}
+    names['tamilnadu']='Tamil Nadu'
+    for name in sorted(names,key=len,reverse=True):
+        for m in re.finditer(r'(?<!\w)'+re.escape(name)+r'(?!\w)',text,re.I):
+            if not any(e['type']=='STATE' and e['start']<=m.start()<e['end'] for e in entities):
+                add('STATE',m)
+    entities.sort(key=lambda e:(e['start'],e['end'],e['type']))
+    return entities

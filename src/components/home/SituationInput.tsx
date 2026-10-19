@@ -21,6 +21,7 @@ interface SituationInputProps {
   onExampleSelect: (example: string) => void;
   onReset: () => void;
   onSubmit: () => void;
+  submitting?: boolean;
 }
 
 export function SituationInput({
@@ -32,6 +33,7 @@ export function SituationInput({
   onExampleSelect,
   onReset,
   onSubmit,
+  submitting = false,
 }: SituationInputProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -94,8 +96,8 @@ export function SituationInput({
           </button>
         </div>
 
-        <Button type="submit" className="w-full px-5 xl:w-auto">
-          Understand My Situation
+        <Button type="submit" disabled={submitting} className="w-full px-5 xl:w-auto">
+          {submitting ? "Analyzing…" : "Understand My Situation"}
           <ArrowRight size={17} aria-hidden="true" />
         </Button>
       </div>

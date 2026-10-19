@@ -62,7 +62,7 @@ export function createMatterContext(
 }
 
 export function answerCurrentQuestion(context: MatterContext, answer: string): MatterContext {
-  if (!context.currentQuestion || !answer.trim()) {
+  if (!context.currentQuestion || !answer.trim() || !isDemoSlot(context.currentQuestion.slot)) {
     return context;
   }
 
@@ -72,7 +72,8 @@ export function answerCurrentQuestion(context: MatterContext, answer: string): M
     ...context.answers,
     [slot]: cleanAnswer,
   };
-  const nextMissingSlots = context.missingSlots.filter((missingSlot) => missingSlot !== slot);
+  const nextMissingSlots = context.missingSlots.filter((missingSlot): missingSlot is MatterSlot =>
+    missingSlot !== slot && isDemoSlot(missingSlot));
   const answeredFacts = factsFromAnswer(slot, cleanAnswer);
   const nextFacts = addInferences(
     answeredFacts.reduce((facts, fact) => upsertFact(facts, fact), context.facts),
@@ -96,6 +97,10 @@ export function answerCurrentQuestion(context: MatterContext, answer: string): M
     currentQuestion: nextQuestion,
     messages,
   };
+}
+
+function isDemoSlot(slot: string): slot is MatterSlot {
+  return ["vehicle_type", "location", "enforcement_status", "licence_action"].includes(slot);
 }
 
 export function getReadiness(context: MatterContext) {
