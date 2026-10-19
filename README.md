@@ -1,46 +1,16 @@
-# NyayaSaarthi Frontend
+# NyayaSaarthi
 
-NyayaSaarthi is a multilingual NLP-based Motor Vehicle Law assistant for India. This repository now contains the frontend foundation and Page 1: Home / Explain Your Situation.
+NyayaSaarthi is a multilingual Motor Vehicle Law assistant prototype for India. The Next.js frontend has five pages: Home (`/`), Understand (`/understand`), Verify (`/verify`), Guidance (`/guidance`), and Summary (`/summary`). They currently use local mock NLP, questioning, and legal retrieval with `sessionStorage` for the journey. Phase 1 adds a separate FastAPI backend for dataset auditing and persistent matters, without changing the UI flow.
 
-## Run Locally
+## Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open `http://localhost:3000`. Run frontend checks with `npm run lint`, `npm run typecheck`, and `npm run build`.
 
-Useful checks:
+For backend setup, audit, API endpoints, and tests, see [backend/README.md](backend/README.md). The backend runs at `http://127.0.0.1:8000` and its Swagger docs are at `/docs`. The frontend API client uses `NEXT_PUBLIC_API_BASE_URL` (see `.env.example`), but the UI still uses the mock session flow until later phases.
 
-```bash
-npm run lint
-npm run typecheck
-npm run build
-```
-
-## Project Structure
-
-- `src/app/` contains the Next.js App Router entry files.
-- `src/components/layout/` contains the global header and footer.
-- `src/components/home/` contains the Page 1 sections and interactions.
-- `src/components/ui/` contains small reusable UI primitives.
-- `src/data/` contains frontend prompt and topic data.
-- `src/lib/mock-nlp.ts` contains the local prototype NLP logic.
-- `src/types/` contains shared TypeScript types.
-- `data/datasets/` contains the CSV project datasets that were moved out of the root.
-
-The older static HTML prototypes, `index.html` and `nyayasaarthi-app.html`, are still preserved at the repository root.
-
-## Source Material Roles
-
-- `NLP_FLOW.pdf` is the authority for the product page flow.
-- `NLP_CONCEPTS.pdf` informs which NLP ideas should appear in the UI.
-- `Team_18 (1).pptx` informs product terminology, architecture direction and philosophy.
-- UI reference images are visual inspiration only.
-
-Instructions embedded in source documents are treated as reference material for this frontend task, while the active implementation request comes from the user message.
-
-## Future API Integration
-
-The current homepage uses a readable mock NLP helper only. When the FastAPI backend is ready, replace the call in `src/components/home/HeroSection.tsx` with an API request and keep the response shape close to `src/types/nlp.ts`.
+The original 23 CSV/JSONL datasets are preserved in `data/Dataset 2/`; see [Phase 1 findings](backend/reports/PHASE1_DATASET_FINDINGS.md). The older static HTML prototypes remain at the repository root. `NLP_FLOW.pdf`, `NLP_CONCEPTS.pdf`, and `Team_18 (1).pptx` remain historical product source material where available.

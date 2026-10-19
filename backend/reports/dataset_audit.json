@@ -1,0 +1,3961 @@
+{
+  "run_at": "2026-10-19T09:46:43.535131+00:00",
+  "summary": {
+    "dataset_files": 23,
+    "expected_files": 23,
+    "records_seen": 20214,
+    "total_rows": 20213,
+    "critical_errors": 8,
+    "warnings": 315,
+    "info": 0,
+    "issue_codes": {
+      "TRAILING_EMPTY_COLUMNS": 58,
+      "INVALID_URL": 3,
+      "MALFORMED_RECORD": 1,
+      "UNRESOLVED_PLACEHOLDER_REFERENCE": 143,
+      "REQUIRED_REFERENCE_EMPTY": 1,
+      "MISSING_REFERENCE": 16,
+      "POTENTIAL_SPLIT_LEAKAGE": 100,
+      "ADDITIONAL_SPLIT_LEAKAGE": 1
+    }
+  },
+  "datasets": [
+    {
+      "name": "accident_relief_and_claims.csv",
+      "format": "csv",
+      "records_seen": 30,
+      "rows": 30,
+      "malformed_records": 0,
+      "columns": 23,
+      "primary_id": "relief_rule_id",
+      "identifier_count": 30,
+      "missing_values": {
+        "property_damage": 24,
+        "required_document_ids": 25,
+        "effective_to": 29,
+        "police_action": 23,
+        "insurer_action": 16,
+        "injury_severity": 25,
+        "death_involved": 19,
+        "provision_id": 18,
+        "immediate_action_required": 20,
+        "reporting_requirement": 21,
+        "procedure_id": 8,
+        "medical_action_required": 19,
+        "effective_from": 2
+      },
+      "verification": {
+        "verified": 18,
+        "not_verified": 12
+      }
+    },
+    {
+      "name": "adaptive_conversations.jsonl",
+      "format": "jsonl",
+      "records_seen": 3000,
+      "rows": 3000,
+      "malformed_records": 0,
+      "columns": 18,
+      "primary_id": "conversation_id",
+      "identifier_count": 3000,
+      "missing_values": {
+        "initial_known_slots": 1290,
+        "initial_missing_slots": 1
+      },
+      "verification": {
+        "not_verified": 3000
+      }
+    },
+    {
+      "name": "annotated_utterances.csv",
+      "format": "csv",
+      "records_seen": 10000,
+      "rows": 10000,
+      "malformed_records": 0,
+      "columns": 20,
+      "primary_id": "utterance_id",
+      "identifier_count": 10000,
+      "missing_values": {
+        "missing_slots": 7829,
+        "secondary_intent_ids": 9119,
+        "known_slots": 1130
+      },
+      "verification": {
+        "pending_review": 10000
+      }
+    },
+    {
+      "name": "case_law_interpretations.csv",
+      "format": "csv",
+      "records_seen": 25,
+      "rows": 25,
+      "malformed_records": 0,
+      "columns": 12,
+      "primary_id": "case_id",
+      "identifier_count": 25,
+      "missing_values": {
+        "provision_ids": 23
+      },
+      "verification": {
+        "verified": 3,
+        "not_verified": 22
+      }
+    },
+    {
+      "name": "coverage_registry.csv",
+      "format": "csv",
+      "records_seen": 30,
+      "rows": 30,
+      "malformed_records": 0,
+      "columns": 9,
+      "primary_id": "coverage_id",
+      "identifier_count": 30,
+      "missing_values": {
+        "latest_source_date": 11
+      },
+      "verification": {
+        "not_verified": 22,
+        "verified": 5,
+        "unknown": 3
+      }
+    },
+    {
+      "name": "document_requirements.csv",
+      "format": "csv",
+      "records_seen": 30,
+      "rows": 30,
+      "malformed_records": 0,
+      "columns": 21,
+      "primary_id": "requirement_id",
+      "identifier_count": 30,
+      "missing_values": {
+        "vehicle_class_id": 24,
+        "renewal_window": 23,
+        "effective_to": 30,
+        "effective_from": 22,
+        "provision_id": 19,
+        "accepted_digital_platform": 2
+      },
+      "verification": {
+        "verified": 5,
+        "not_verified": 25
+      }
+    },
+    {
+      "name": "gold_evaluation_cases.csv",
+      "format": "csv",
+      "records_seen": 420,
+      "rows": 420,
+      "malformed_records": 0,
+      "columns": 22,
+      "primary_id": "eval_id",
+      "identifier_count": 420,
+      "missing_values": {
+        "event_date": 420,
+        "expected_missing_slots": 332,
+        "expected_known_slots": 43
+      },
+      "verification": {
+        "unknown": 420
+      }
+    },
+    {
+      "name": "intents.csv",
+      "format": "csv",
+      "records_seen": 58,
+      "rows": 58,
+      "malformed_records": 0,
+      "columns": 12,
+      "primary_id": "intent_id",
+      "identifier_count": 58,
+      "missing_values": {
+        "parent_intent_id": 14,
+        "default_required_slot_ids": 1,
+        "conditional_slot_ids": 1,
+        "relevant_rule_ids": 58,
+        "relevant_procedure_ids": 58
+      },
+      "verification": {
+        "unknown": 58
+      }
+    },
+    {
+      "name": "jurisdictions.csv",
+      "format": "csv",
+      "records_seen": 37,
+      "rows": 37,
+      "malformed_records": 0,
+      "columns": 9,
+      "primary_id": "jurisdiction_id",
+      "identifier_count": 37,
+      "missing_values": {
+        "parent_jurisdiction_id": 1,
+        "valid_to": 37
+      },
+      "verification": {
+        "unknown": 37
+      }
+    },
+    {
+      "name": "legal_provisions.csv",
+      "format": "csv",
+      "records_seen": 11,
+      "rows": 11,
+      "malformed_records": 0,
+      "columns": 12,
+      "primary_id": "provision_id",
+      "identifier_count": 11,
+      "missing_values": {
+        "effective_to": 11,
+        "supersedes_provision_id": 11,
+        "effective_from": 1
+      },
+      "verification": {
+        "verified": 7,
+        "not_verified": 3,
+        "unknown": 1
+      }
+    },
+    {
+      "name": "legal_sources.csv",
+      "format": "csv",
+      "records_seen": 18,
+      "rows": 18,
+      "malformed_records": 0,
+      "columns": 13,
+      "primary_id": "source_id",
+      "identifier_count": 18,
+      "missing_values": {
+        "effective_to": 18,
+        "supersedes_source_id": 12,
+        "official_url": 8,
+        "last_verified_at": 9,
+        "effective_from": 3
+      },
+      "verification": {
+        "verified": 7,
+        "not_verified": 9,
+        "unknown": 2
+      }
+    },
+    {
+      "name": "offences_penalties.csv",
+      "format": "csv",
+      "records_seen": 30,
+      "rows": 30,
+      "malformed_records": 0,
+      "columns": 20,
+      "primary_id": "offence_id",
+      "identifier_count": 30,
+      "missing_values": {
+        "vehicle_class_id": 24,
+        "vehicle_consequence": 26,
+        "permit_consequence": 28,
+        "effective_to": 30,
+        "state_notification_source_id": 30,
+        "licence_consequence": 20,
+        "effective_from": 2,
+        "source_id": 1
+      },
+      "verification": {
+        "verified": 17,
+        "not_verified": 12,
+        "unknown": 1
+      }
+    },
+    {
+      "name": "official_forms.csv",
+      "format": "csv",
+      "records_seen": 30,
+      "rows": 30,
+      "malformed_records": 0,
+      "columns": 16,
+      "primary_id": "form_id",
+      "identifier_count": 30,
+      "missing_values": {
+        "effective_to": 30,
+        "legal_basis_provision_ids": 20,
+        "supporting_documents": 1,
+        "official_download_source": 8,
+        "effective_from": 4
+      },
+      "verification": {
+        "verified": 8,
+        "not_verified": 22
+      }
+    },
+    {
+      "name": "official_services.csv",
+      "format": "csv",
+      "records_seen": 30,
+      "rows": 30,
+      "malformed_records": 0,
+      "columns": 13,
+      "primary_id": "service_id",
+      "identifier_count": 30,
+      "missing_values": {},
+      "verification": {
+        "unknown": 30
+      }
+    },
+    {
+      "name": "plain_language_multilingual.csv",
+      "format": "csv",
+      "records_seen": 11,
+      "rows": 11,
+      "malformed_records": 0,
+      "columns": 15,
+      "primary_id": "explanation_id",
+      "identifier_count": 11,
+      "missing_values": {},
+      "verification": {
+        "pending_review": 11
+      }
+    },
+    {
+      "name": "procedure_steps.csv",
+      "format": "csv",
+      "records_seen": 30,
+      "rows": 30,
+      "malformed_records": 0,
+      "columns": 15,
+      "primary_id": "procedure_step_id",
+      "identifier_count": 30,
+      "missing_values": {
+        "required_document_ids": 14,
+        "online_portal": 7,
+        "deadline_from_event": 8
+      },
+      "verification": {
+        "unknown": 30
+      }
+    },
+    {
+      "name": "procedures.csv",
+      "format": "csv",
+      "records_seen": 30,
+      "rows": 29,
+      "malformed_records": 1,
+      "columns": 22,
+      "primary_id": "procedure_id",
+      "identifier_count": 29,
+      "missing_values": {
+        "effective_to": 29,
+        "legal_basis_provision_ids": 22,
+        "exceptions": 14,
+        "required_document_ids": 7,
+        "required_form_ids": 5,
+        "effective_from": 3,
+        "official_service_id": 5
+      },
+      "verification": {
+        "not_verified": 25,
+        "verified": 4
+      }
+    },
+    {
+      "name": "query_provision_relevance.csv",
+      "format": "csv",
+      "records_seen": 4474,
+      "rows": 4474,
+      "malformed_records": 0,
+      "columns": 11,
+      "primary_id": "pair_id",
+      "identifier_count": 4474,
+      "missing_values": {},
+      "verification": {
+        "pending_review": 4474
+      }
+    },
+    {
+      "name": "rule_logic.csv",
+      "format": "csv",
+      "records_seen": 30,
+      "rows": 30,
+      "malformed_records": 0,
+      "columns": 18,
+      "primary_id": "rule_id",
+      "identifier_count": 30,
+      "missing_values": {
+        "vehicle_class_id": 18,
+        "exception_json": 26,
+        "effective_to": 30,
+        "optional_slot_ids": 22,
+        "effective_from": 4
+      },
+      "verification": {
+        "verified": 13,
+        "not_verified": 15,
+        "unknown": 2
+      }
+    },
+    {
+      "name": "safety_challenge_cases.csv",
+      "format": "csv",
+      "records_seen": 1500,
+      "rows": 1500,
+      "malformed_records": 0,
+      "columns": 12,
+      "primary_id": "challenge_id",
+      "identifier_count": 1500,
+      "missing_values": {
+        "must_ask_slots": 107,
+        "allowed_source_ids": 1500
+      },
+      "verification": {
+        "pending_review": 1500
+      }
+    },
+    {
+      "name": "slot_schema.csv",
+      "format": "csv",
+      "records_seen": 330,
+      "rows": 330,
+      "malformed_records": 0,
+      "columns": 16,
+      "primary_id": "slot_id",
+      "identifier_count": 330,
+      "missing_values": {},
+      "verification": {
+        "unknown": 330
+      }
+    },
+    {
+      "name": "speed_limits.csv",
+      "format": "csv",
+      "records_seen": 30,
+      "rows": 30,
+      "malformed_records": 0,
+      "columns": 15,
+      "primary_id": "speed_rule_id",
+      "identifier_count": 30,
+      "missing_values": {
+        "road_name": 26,
+        "coordinates": 30,
+        "effective_to": 29,
+        "max_speed_kmph": 3,
+        "effective_from": 12
+      },
+      "verification": {
+        "unknown": 30
+      }
+    },
+    {
+      "name": "vehicle_classes.csv",
+      "format": "csv",
+      "records_seen": 30,
+      "rows": 30,
+      "malformed_records": 0,
+      "columns": 13,
+      "primary_id": "vehicle_class_id",
+      "identifier_count": 30,
+      "missing_values": {
+        "seating_capacity": 20,
+        "provision_id": 30,
+        "effective_to": 30,
+        "weight_range": 8,
+        "effective_from": 3
+      },
+      "verification": {
+        "unknown": 30
+      }
+    }
+  ],
+  "relationship_checks": [
+    {
+      "source": "legal_provisions.csv",
+      "column": "source_id",
+      "target": "legal_sources.csv",
+      "target_id": "source_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 11
+    },
+    {
+      "source": "legal_provisions.csv",
+      "column": "jurisdiction_id",
+      "target": "jurisdictions.csv",
+      "target_id": "jurisdiction_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 11
+    },
+    {
+      "source": "legal_provisions.csv",
+      "column": "supersedes_provision_id",
+      "target": "legal_provisions.csv",
+      "target_id": "provision_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 11
+    },
+    {
+      "source": "legal_sources.csv",
+      "column": "jurisdiction_id",
+      "target": "jurisdictions.csv",
+      "target_id": "jurisdiction_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 18
+    },
+    {
+      "source": "legal_sources.csv",
+      "column": "supersedes_source_id",
+      "target": "legal_sources.csv",
+      "target_id": "source_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 12,
+      "valid": 6
+    },
+    {
+      "source": "rule_logic.csv",
+      "column": "provision_id",
+      "target": "legal_provisions.csv",
+      "target_id": "provision_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 23,
+      "placeholder": 7
+    },
+    {
+      "source": "rule_logic.csv",
+      "column": "jurisdiction_id",
+      "target": "jurisdictions.csv",
+      "target_id": "jurisdiction_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 30
+    },
+    {
+      "source": "rule_logic.csv",
+      "column": "vehicle_class_id",
+      "target": "vehicle_classes.csv",
+      "target_id": "vehicle_class_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 18,
+      "valid": 12
+    },
+    {
+      "source": "rule_logic.csv",
+      "column": "required_slot_ids",
+      "target": "slot_schema.csv",
+      "target_id": "slot_name",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 60
+    },
+    {
+      "source": "rule_logic.csv",
+      "column": "optional_slot_ids",
+      "target": "slot_schema.csv",
+      "target_id": "slot_name",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 11,
+      "optional_empty": 22
+    },
+    {
+      "source": "offences_penalties.csv",
+      "column": "provision_id",
+      "target": "legal_provisions.csv",
+      "target_id": "provision_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 15,
+      "placeholder": 15
+    },
+    {
+      "source": "offences_penalties.csv",
+      "column": "source_id",
+      "target": "legal_sources.csv",
+      "target_id": "source_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 29,
+      "required_empty": 1
+    },
+    {
+      "source": "offences_penalties.csv",
+      "column": "state_notification_source_id",
+      "target": "legal_sources.csv",
+      "target_id": "source_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 30
+    },
+    {
+      "source": "offences_penalties.csv",
+      "column": "vehicle_class_id",
+      "target": "vehicle_classes.csv",
+      "target_id": "vehicle_class_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 24,
+      "valid": 6
+    },
+    {
+      "source": "procedure_steps.csv",
+      "column": "procedure_id",
+      "target": "procedures.csv",
+      "target_id": "procedure_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 30
+    },
+    {
+      "source": "procedure_steps.csv",
+      "column": "required_document_ids",
+      "target": "document_requirements.csv",
+      "target_id": "requirement_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 14,
+      "optional_empty": 14,
+      "missing": 7
+    },
+    {
+      "source": "procedure_steps.csv",
+      "column": "source_id",
+      "target": "legal_sources.csv",
+      "target_id": "source_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 30
+    },
+    {
+      "source": "procedures.csv",
+      "column": "official_service_id",
+      "target": "official_services.csv",
+      "target_id": "service_id",
+      "optional": true,
+      "encoding": "auto",
+      "placeholder": 24,
+      "optional_empty": 5
+    },
+    {
+      "source": "procedures.csv",
+      "column": "required_document_ids",
+      "target": "document_requirements.csv",
+      "target_id": "requirement_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 28,
+      "optional_empty": 7,
+      "missing": 1
+    },
+    {
+      "source": "procedures.csv",
+      "column": "required_form_ids",
+      "target": "official_forms.csv",
+      "target_id": "form_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 29,
+      "missing": 1,
+      "optional_empty": 5
+    },
+    {
+      "source": "procedures.csv",
+      "column": "legal_basis_provision_ids",
+      "target": "legal_provisions.csv",
+      "target_id": "provision_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 5,
+      "optional_empty": 22,
+      "placeholder": 2
+    },
+    {
+      "source": "procedures.csv",
+      "column": "source_id",
+      "target": "legal_sources.csv",
+      "target_id": "source_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 29
+    },
+    {
+      "source": "document_requirements.csv",
+      "column": "form_ids",
+      "target": "official_forms.csv",
+      "target_id": "form_id",
+      "optional": true,
+      "encoding": "auto",
+      "placeholder": 30
+    },
+    {
+      "source": "document_requirements.csv",
+      "column": "procedure_id",
+      "target": "procedures.csv",
+      "target_id": "procedure_id",
+      "optional": true,
+      "encoding": "auto",
+      "placeholder": 30
+    },
+    {
+      "source": "document_requirements.csv",
+      "column": "provision_id",
+      "target": "legal_provisions.csv",
+      "target_id": "provision_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 6,
+      "placeholder": 5,
+      "optional_empty": 19
+    },
+    {
+      "source": "document_requirements.csv",
+      "column": "source_id",
+      "target": "legal_sources.csv",
+      "target_id": "source_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 30
+    },
+    {
+      "source": "accident_relief_and_claims.csv",
+      "column": "required_document_ids",
+      "target": "document_requirements.csv",
+      "target_id": "requirement_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 25,
+      "valid": 6
+    },
+    {
+      "source": "accident_relief_and_claims.csv",
+      "column": "procedure_id",
+      "target": "procedures.csv",
+      "target_id": "procedure_id",
+      "optional": true,
+      "encoding": "auto",
+      "placeholder": 7,
+      "optional_empty": 8,
+      "valid": 15
+    },
+    {
+      "source": "accident_relief_and_claims.csv",
+      "column": "provision_id",
+      "target": "legal_provisions.csv",
+      "target_id": "provision_id",
+      "optional": true,
+      "encoding": "auto",
+      "placeholder": 9,
+      "optional_empty": 18,
+      "valid": 3
+    },
+    {
+      "source": "accident_relief_and_claims.csv",
+      "column": "scheme_source_id",
+      "target": "legal_sources.csv",
+      "target_id": "source_id",
+      "optional": true,
+      "encoding": "auto",
+      "placeholder": 8,
+      "valid": 22
+    },
+    {
+      "source": "case_law_interpretations.csv",
+      "column": "provision_ids",
+      "target": "legal_provisions.csv",
+      "target_id": "provision_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 23,
+      "valid": 2
+    },
+    {
+      "source": "plain_language_multilingual.csv",
+      "column": "provision_id",
+      "target": "legal_provisions.csv",
+      "target_id": "provision_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 11
+    },
+    {
+      "source": "plain_language_multilingual.csv",
+      "column": "source_id",
+      "target": "legal_sources.csv",
+      "target_id": "source_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 11
+    },
+    {
+      "source": "speed_limits.csv",
+      "column": "jurisdiction_id",
+      "target": "jurisdictions.csv",
+      "target_id": "jurisdiction_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 30
+    },
+    {
+      "source": "speed_limits.csv",
+      "column": "vehicle_class_id",
+      "target": "vehicle_classes.csv",
+      "target_id": "vehicle_class_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 30
+    },
+    {
+      "source": "speed_limits.csv",
+      "column": "source_id",
+      "target": "legal_sources.csv",
+      "target_id": "source_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 30
+    },
+    {
+      "source": "vehicle_classes.csv",
+      "column": "source_id",
+      "target": "legal_sources.csv",
+      "target_id": "source_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 30
+    },
+    {
+      "source": "vehicle_classes.csv",
+      "column": "provision_id",
+      "target": "legal_provisions.csv",
+      "target_id": "provision_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 30
+    },
+    {
+      "source": "slot_schema.csv",
+      "column": "intent_id",
+      "target": "intents.csv",
+      "target_id": "intent_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 330
+    },
+    {
+      "source": "intents.csv",
+      "column": "parent_intent_id",
+      "target": "intents.csv",
+      "target_id": "intent_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 14,
+      "valid": 44
+    },
+    {
+      "source": "intents.csv",
+      "column": "default_required_slot_ids",
+      "target": "slot_schema.csv",
+      "target_id": "slot_name",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 1,
+      "valid": 177
+    },
+    {
+      "source": "intents.csv",
+      "column": "conditional_slot_ids",
+      "target": "slot_schema.csv",
+      "target_id": "slot_name",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 1,
+      "valid": 192,
+      "missing": 1
+    },
+    {
+      "source": "intents.csv",
+      "column": "relevant_rule_ids",
+      "target": "rule_logic.csv",
+      "target_id": "rule_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 58
+    },
+    {
+      "source": "intents.csv",
+      "column": "relevant_procedure_ids",
+      "target": "procedures.csv",
+      "target_id": "procedure_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 58
+    },
+    {
+      "source": "query_provision_relevance.csv",
+      "column": "query_id",
+      "target": "annotated_utterances.csv",
+      "target_id": "utterance_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 4468,
+      "missing": 6
+    },
+    {
+      "source": "query_provision_relevance.csv",
+      "column": "intent_id",
+      "target": "intents.csv",
+      "target_id": "intent_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 4468,
+      "placeholder": 6
+    },
+    {
+      "source": "query_provision_relevance.csv",
+      "column": "provision_id",
+      "target": "legal_provisions.csv",
+      "target_id": "provision_id",
+      "optional": false,
+      "encoding": "auto",
+      "valid": 4474
+    },
+    {
+      "source": "query_provision_relevance.csv",
+      "column": "source_id",
+      "target": "legal_sources.csv",
+      "target_id": "source_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 4474
+    },
+    {
+      "source": "gold_evaluation_cases.csv",
+      "column": "expected_primary_intent",
+      "target": "intents.csv",
+      "target_id": "intent_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 420
+    },
+    {
+      "source": "gold_evaluation_cases.csv",
+      "column": "expected_rule_ids",
+      "target": "rule_logic.csv",
+      "target_id": "rule_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 420
+    },
+    {
+      "source": "gold_evaluation_cases.csv",
+      "column": "expected_provision_ids",
+      "target": "legal_provisions.csv",
+      "target_id": "provision_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 420
+    },
+    {
+      "source": "gold_evaluation_cases.csv",
+      "column": "expected_penalty_record_ids",
+      "target": "offences_penalties.csv",
+      "target_id": "offence_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 420
+    },
+    {
+      "source": "gold_evaluation_cases.csv",
+      "column": "expected_procedure_ids",
+      "target": "procedures.csv",
+      "target_id": "procedure_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 420
+    },
+    {
+      "source": "gold_evaluation_cases.csv",
+      "column": "expected_source_ids",
+      "target": "legal_sources.csv",
+      "target_id": "source_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 420
+    },
+    {
+      "source": "adaptive_conversations.jsonl",
+      "column": "primary_intent_id",
+      "target": "intents.csv",
+      "target_id": "intent_id",
+      "optional": true,
+      "encoding": "auto",
+      "valid": 3000
+    },
+    {
+      "source": "adaptive_conversations.jsonl",
+      "column": "ground_truth_rule_ids",
+      "target": "rule_logic.csv",
+      "target_id": "rule_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 3000
+    },
+    {
+      "source": "adaptive_conversations.jsonl",
+      "column": "ground_truth_provision_ids",
+      "target": "legal_provisions.csv",
+      "target_id": "provision_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 3000
+    },
+    {
+      "source": "adaptive_conversations.jsonl",
+      "column": "expected_procedure_ids",
+      "target": "procedures.csv",
+      "target_id": "procedure_id",
+      "optional": true,
+      "encoding": "auto",
+      "optional_empty": 3000
+    }
+  ],
+  "language_distribution": {
+    "adaptive_conversations.jsonl": {
+      "english": 1200,
+      "hindi": 900,
+      "hinglish": 900
+    },
+    "annotated_utterances.csv": {
+      "english": 4000,
+      "hindi": 3000,
+      "hinglish": 3000
+    },
+    "gold_evaluation_cases.csv": {
+      "english": 160,
+      "hindi": 130,
+      "hinglish": 130
+    },
+    "query_provision_relevance.csv": {
+      "hindi": 1349,
+      "hinglish": 1341,
+      "english": 1784
+    },
+    "safety_challenge_cases.csv": {
+      "hindi": 450,
+      "english": 600,
+      "hinglish": 450
+    }
+  },
+  "verification_summary": {
+    "verified": 87,
+    "not_verified": 3167,
+    "pending_review": 15985,
+    "unknown": 974
+  },
+  "issues": [
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 2,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 3,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 4,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 5,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 6,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 7,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 8,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 9,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 10,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 11,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 12,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 13,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 14,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 15,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 16,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 17,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 18,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 19,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 20,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 21,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 22,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 23,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 24,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 25,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 26,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 27,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 28,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 29,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 30,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 31,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 32,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 33,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 34,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 35,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 36,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 37,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 38,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 39,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 40,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 41,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 42,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 43,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 44,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 45,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 46,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 47,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 48,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 49,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 50,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 51,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 52,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 53,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 54,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 55,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 56,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 57,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 58,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 59,
+      "column": null,
+      "code": "TRAILING_EMPTY_COLUMNS",
+      "message": "Record has 1 extra empty trailing column(s)",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "official_services.csv",
+      "row": 17,
+      "column": "official_url",
+      "code": "INVALID_URL",
+      "message": "Official source URL has invalid syntax",
+      "value": "varies by State (e.g. delhitrafficpolice.nic.in, mumbaitrafficpolice.org)"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "official_services.csv",
+      "row": 27,
+      "column": "official_url",
+      "code": "INVALID_URL",
+      "message": "Official source URL has invalid syntax",
+      "value": "varies by State (accessible via respective High Court website or ecourts.gov.in)"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "official_services.csv",
+      "row": 28,
+      "column": "official_url",
+      "code": "INVALID_URL",
+      "message": "Official source URL has invalid syntax",
+      "value": "varies by State (linked from vahan.parivahan.gov.in Pay Your Tax option)"
+    },
+    {
+      "severity": "ERROR",
+      "dataset": "procedures.csv",
+      "row": 26,
+      "column": null,
+      "code": "MALFORMED_RECORD",
+      "message": "Record cannot be parsed or has inconsistent column count",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "rule_logic.csv",
+      "row": 5,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S7_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "rule_logic.csv",
+      "row": 6,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S7_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "rule_logic.csv",
+      "row": 8,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_CMVR_TRANSFER_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "rule_logic.csv",
+      "row": 28,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S132_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "rule_logic.csv",
+      "row": 29,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_GOODSAMARITAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "rule_logic.csv",
+      "row": 30,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_HITRUN_SCHEME_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "rule_logic.csv",
+      "row": 31,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_CMVR_PUC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 3,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S180_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 4,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S182_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 9,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S189_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 12,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S194C_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 13,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S194_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 14,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S194A_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 20,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S179_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 21,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S178_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 22,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S192A_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 23,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S193_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 24,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S182B_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 25,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S194E_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 26,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S199_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 27,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S197_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "offences_penalties.csv",
+      "row": 31,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_CMVR_PUC_PENDING_ADD"
+    },
+    {
+      "severity": "ERROR",
+      "dataset": "offences_penalties.csv",
+      "row": 31,
+      "column": "source_id",
+      "code": "REQUIRED_REFERENCE_EMPTY",
+      "message": "Required association is blank",
+      "value": null
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedure_steps.csv",
+      "row": 4,
+      "column": "required_document_ids",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from document_requirements.csv",
+      "value": "FORM_29"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedure_steps.csv",
+      "row": 5,
+      "column": "required_document_ids",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from document_requirements.csv",
+      "value": "FORM_30"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedure_steps.csv",
+      "row": 11,
+      "column": "required_document_ids",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from document_requirements.csv",
+      "value": "FORM_MACT_CLAIM_PETITION"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedure_steps.csv",
+      "row": 14,
+      "column": "required_document_ids",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from document_requirements.csv",
+      "value": "FORM_2"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedure_steps.csv",
+      "row": 26,
+      "column": "required_document_ids",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from document_requirements.csv",
+      "value": "FORM_20"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedure_steps.csv",
+      "row": 27,
+      "column": "required_document_ids",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from document_requirements.csv",
+      "value": "FORM_ROAD_TAX_PAYMENT"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedure_steps.csv",
+      "row": 28,
+      "column": "required_document_ids",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from document_requirements.csv",
+      "value": "FORM_20"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 2,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_SARATHI_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 3,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_SARATHI_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 4,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_SARATHI_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 5,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_SARATHI_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 6,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_SARATHI_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 7,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 8,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 9,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 10,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 11,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 12,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 13,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 14,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 15,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 16,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 17,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 19,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 20,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 21,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 22,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 23,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 24,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_VAHAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 25,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_ECHALLAN_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 31,
+      "column": "official_service_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SVC_SARATHI_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 17,
+      "column": "required_document_ids",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from document_requirements.csv",
+      "value": "FORM_ROAD_TAX_PAYMENT"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 12,
+      "column": "required_form_ids",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from official_forms.csv",
+      "value": "FORM_33"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 18,
+      "column": "legal_basis_provision_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_CMVR_PUC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "procedures.csv",
+      "row": 27,
+      "column": "legal_basis_provision_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S132_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 2,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 3,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 4,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 5,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 6,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 7,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 8,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 9,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 10,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 11,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 12,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 13,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 14,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 15,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 16,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 17,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 18,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 19,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 20,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 21,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 22,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 23,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 24,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 25,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 26,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 27,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 28,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 29,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 30,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 31,
+      "column": "form_ids",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "FORM_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 2,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 3,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 4,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 5,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 6,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 7,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 8,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 9,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 10,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 11,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 12,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 13,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 14,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 15,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 16,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 17,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 18,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 19,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 20,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 21,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 22,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 23,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 24,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 25,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 26,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 27,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 28,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 29,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 30,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 31,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 5,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_CMVR_PUC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 6,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S192A_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 7,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_CMVR_FITNESS_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 8,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S4_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "document_requirements.csv",
+      "row": 16,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_CMVR_PUC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 2,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 3,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 4,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 5,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 26,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 28,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 30,
+      "column": "procedure_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROC_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 2,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S162_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 3,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S162_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 4,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S162_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 6,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S164B_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 7,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S164B_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 8,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S164B_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 14,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S140_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 25,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S164B_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 31,
+      "column": "provision_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "PROV_MVA_S2_12A_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 2,
+      "column": "scheme_source_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SRC_PMRAHAT_2025_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 3,
+      "column": "scheme_source_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SRC_PMRAHAT_2025_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 4,
+      "column": "scheme_source_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SRC_PMRAHAT_2025_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 5,
+      "column": "scheme_source_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SRC_PMRAHAT_2025_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 26,
+      "column": "scheme_source_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SRC_PMRAHAT_2025_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 27,
+      "column": "scheme_source_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SRC_PMRAHAT_2025_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 28,
+      "column": "scheme_source_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SRC_PMRAHAT_2025_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "accident_relief_and_claims.csv",
+      "row": 30,
+      "column": "scheme_source_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "SRC_PMRAHAT_2025_PENDING_ADD"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "intents.csv",
+      "row": 17,
+      "column": "conditional_slot_ids",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from slot_schema.csv",
+      "value": "AGE"
+    },
+    {
+      "severity": "ERROR",
+      "dataset": "query_provision_relevance.csv",
+      "row": 4470,
+      "column": "query_id",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from annotated_utterances.csv",
+      "value": "Q_SYN_PROV_MVA_S39_1"
+    },
+    {
+      "severity": "ERROR",
+      "dataset": "query_provision_relevance.csv",
+      "row": 4471,
+      "column": "query_id",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from annotated_utterances.csv",
+      "value": "Q_SYN_PROV_MVA_S39_2"
+    },
+    {
+      "severity": "ERROR",
+      "dataset": "query_provision_relevance.csv",
+      "row": 4472,
+      "column": "query_id",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from annotated_utterances.csv",
+      "value": "Q_SYN_PROV_MVA_S39_3"
+    },
+    {
+      "severity": "ERROR",
+      "dataset": "query_provision_relevance.csv",
+      "row": 4473,
+      "column": "query_id",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from annotated_utterances.csv",
+      "value": "Q_SYN_PROV_MVA_S177_1"
+    },
+    {
+      "severity": "ERROR",
+      "dataset": "query_provision_relevance.csv",
+      "row": 4474,
+      "column": "query_id",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from annotated_utterances.csv",
+      "value": "Q_SYN_PROV_MVA_S177_2"
+    },
+    {
+      "severity": "ERROR",
+      "dataset": "query_provision_relevance.csv",
+      "row": 4475,
+      "column": "query_id",
+      "code": "MISSING_REFERENCE",
+      "message": "Reference absent from annotated_utterances.csv",
+      "value": "Q_SYN_PROV_MVA_S177_3"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "query_provision_relevance.csv",
+      "row": 4470,
+      "column": "intent_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "NOT_VERIFIED"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "query_provision_relevance.csv",
+      "row": 4471,
+      "column": "intent_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "NOT_VERIFIED"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "query_provision_relevance.csv",
+      "row": 4472,
+      "column": "intent_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "NOT_VERIFIED"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "query_provision_relevance.csv",
+      "row": 4473,
+      "column": "intent_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "NOT_VERIFIED"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "query_provision_relevance.csv",
+      "row": 4474,
+      "column": "intent_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "NOT_VERIFIED"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "query_provision_relevance.csv",
+      "row": 4475,
+      "column": "intent_id",
+      "code": "UNRESOLVED_PLACEHOLDER_REFERENCE",
+      "message": "Reference is an unfinished placeholder",
+      "value": "NOT_VERIFIED"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'test', 'train', 'validation']",
+      "value": "ki par main wrong side chala gaya tha. legal implications kya ho sakte hain is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'gold_test', 'test', 'train']",
+      "value": "what about this?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'gold_test', 'test', 'train']",
+      "value": "यहां क्या करना चाहिए?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'test', 'train']",
+      "value": "how can i check a traffic challan with status under dispute?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'gold_test', 'test', 'train']",
+      "value": "इस बारे में क्या नियम है?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'train']",
+      "value": "kerala में मेरी motorcycle के लिए फिटनेस की क्या आवश्यकता है?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "under dispute स्टेटस वाले ट्रैफिक चालान को मैं कैसे चेक करूं?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'test', 'train']",
+      "value": "इस स्थिति में कौन सा ट्रैफिक नियम लागू होता है?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'gold_test', 'test', 'train', 'validation']",
+      "value": "yahan kya karna chahiye?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "maine rajasthan mein bus kharidi hai. motor insurance transfer kaise karun ye legally allowed hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "mein mera vehicle par parked tha. kaise pata chalega ki parking prohibited thi?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "1 september 2026 ko kerala mein accident ke baad injury yes aur death thi. compensation ya relief ke liye kya dekhna cha"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "mein vehicle registration aur rc ko lekar mera general question hai.?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "29 august 2026 ko karnataka mein road accident hua. police ko report kaise karun is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'gold_test', 'test', 'train']",
+      "value": "need to know what applies here."
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'test', 'train']",
+      "value": "what traffic rule applies to this situation?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "29 august 2026 ko maharashtra mein road accident hua. ab mujhe kya karna chahiye ye legally allowed hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'gold_test', 'test', 'train', 'validation']",
+      "value": "isme kya rule hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'train']",
+      "value": "i was carrying extra load in a auto-rickshaw in gujarat. what rule should i check. context — date: 29 august 2026."
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "mein scooter ke liye witness ke taur par learner licence lene se pehle kya pata hona chahiye ye legally allowed hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "karnataka mein meri auto-rickshaw ke registered owner ka address change karna hai. kaise hoga is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "में auto-rickshaw के वाहन दस्तावेज को लेकर मेरा सवाल है। मुझे क्या जांचना चाहिए क्या यह मान्य है?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "gujarat mein motorcycle ke vehicle document ko lekar question hai. kya check karna chahiye is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "mein mere traffic challan ka status hai. ab kya karna chahiye is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'gold_test', 'test', 'train']",
+      "value": "मेरे ड्राइविंग लाइसेंस को लेकर एक सामान्य सवाल है। मुझे पहले क्या देखना चाहिए। संदर्भ — आपकी भूमिका: vehicle owner।"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "gujarat mein auto-rickshaw chalate time kaunse driver aur vehicle documents carry karne chahiye is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "mein meri ke liye fitness requirement kya hai ye legally allowed hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "west bengal mein motorcycle ke liye number-plate requirement kya hai yahan kya apply hoga?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "24 august 2026 ko rajasthan mein accident victim ki help ki. good samaritan protections ya responsibilities kya apply ho"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "29 august 2026 ko mein road accident hua. ab mujhe kya karna chahiye is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "mein meri bus ki rc mein hypothecation issue hai. procedure kya hai yahan kya apply hoga?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "mein goods vehicle ke liye victim ke taur par learner licence lene se pehle kya pata hona chahiye is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "में से जुड़ा मेरा ट्रैफिक नियम का सवाल किसी सामान्य श्रेणी में नहीं आता क्या यह कानूनी है?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "paid status wala traffic challan kaise check karun?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "mein goods vehicle ke liye permanent driving licence kaise apply karun?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "delhi mein car ke vehicle document ko lekar question hai. kya check karna chahiye?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "how can i check a traffic challan with status unpaid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "mein se related mera traffic-rule question usual categories mein fit nahi hota.?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'train']",
+      "value": "hey, what traffic rule applies to this situation?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "can i use a digital driving licence in maharashtra, or do i need a physical copy what applies here?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "delhi ki par main wrong side chala gaya tha. legal implications kya ho sakte hain yahan kya apply hoga?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "mein 29 august 2026 ko road accident ke immediately baad kya karna chahiye ye legally allowed hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "my challan is paid in tamil nadu. how do i handle payment?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "my challan is unpaid in . how do i handle payment?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "rajasthan mein apni auto-rickshaw ko legally scrap ya deregister kaise karun ye legally allowed hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'test', 'train']",
+      "value": "is situation mein kaunsa traffic rule apply hota hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'gold_test', 'train']",
+      "value": "mere driving licence ko lekar general question hai. pehle kya check karna chahiye. context — your role: witness."
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "mein meri bus par legal hai kya?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "mein meri ke liye fitness requirement kya hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "mujhe lagta hai mein 1 september 2026 ka challan wrong hai. isko challenge kaise karun is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "what traffic rule applies to this situation? i'm a bit confused."
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "1 september 2026 ko mein accident hua. insurance lapsed hai aur injury thi. claim kaise karun yahan kya apply hoga?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'train']",
+      "value": "how can i check a traffic challan with status is this okay legally?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['gold_test', 'test', 'train']",
+      "value": "what helmet requirement applies to a scooter in gujarat. context — date: 29 august 2026."
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'gold_test', 'train']",
+      "value": "मेरे ड्राइविंग लाइसेंस को लेकर एक सामान्य सवाल है। मुझे पहले क्या देखना चाहिए क्या यह मान्य है?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'train']",
+      "value": "after an accident in gujarat on 1 september 2026, what evidence should i collect. context — available evidence: witness "
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'gold_test', 'train']",
+      "value": "i have a general question about my driving licence. what should i check first. context — your role: witness."
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'train']",
+      "value": "gujarat mein car ke liye number-plate requirement kya hai. context — date: 29 august 2026."
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "29 august 2026 ko delhi mein accident ke baad other vehicle identified tha: . third-party claim kaise work karta hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "how can i check a traffic challan with status issued?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "west bengal mein city road par main 90 km/h se drive kar raha tha. kya ye speeding maana jayega is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "12 august 2026 ko gujarat mein accident ke baad injury yes aur death thi. compensation ya relief ke liye kya dekhna chah"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "rajasthan mein is type ki dangerous ya rash driving offence ho sakti hai ye legally allowed hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'train']",
+      "value": "delhi mein scooter ke liye number-plate requirement kya hai. context — date: 1 september 2026."
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "kerala mein meri bus ka puc status hai. kya check karna chahiye yahan kya apply hoga?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'gold_test', 'train']",
+      "value": "i have a general question about my driving licence. what should i check first. context — your role: driver."
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'test', 'train', 'validation']",
+      "value": "status wala traffic challan kaise check karun?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "24 august 2026 ko maharashtra mein accident ke baad kaunsa evidence collect karna chahiye yahan kya apply hoga?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "1 september 2026 ko karnataka mein accident ke baad other vehicle identified tha: . third-party claim kaise work karta h"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'train']",
+      "value": "my motor-vehicle situation in gujarat also involves another legal issue. how do i identify the relevant legal framework."
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "karnataka mein meri auto-rickshaw ki rc status hai. iska kya matlab hai ye legally allowed hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'train']",
+      "value": "can you help me with this? what traffic rule applies to this situation?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "mein ke liye permanent driving licence kaise apply karun?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['gold_test', 'test', 'train']",
+      "value": "mere driving licence ko lekar general question hai. pehle kya check karna chahiye. context — your role: vehicle owner."
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "i have a traffic challan with status issued in karnataka. what should i do?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "mein apni goods vehicle ko legally scrap ya deregister kaise karun is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "my challan is unpaid in maharashtra. how do i handle payment?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "gujarat mein driving ke time phone use kiya tha. isse kya legal issue ho sakta hai yahan kya apply hoga?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "maharashtra mein meri motor-vehicle situation ke saath ek aur legal issue bhi hai. relevant legal framework kaise identi"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "mein apni motorcycle ko legally scrap ya deregister kaise karun is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "29 august 2026 ko maharashtra mein road accident hua. police ko report kaise karun is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'train']",
+      "value": "kerala mein mera challan issued hai. payment kaise karna hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "mujhe lagta hai tamil nadu mein 1 september 2026 ka challan wrong hai. isko challenge kaise karun is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "mein ke liye permanent driving licence kaise apply karun is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "mein meri ke liye fitness requirement kya hai yahan kya apply hoga?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "mere driving licence ko lekar general question hai. pehle kya check karna chahiye ye legally allowed hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "maharashtra ki highway par ye overtaking manoeuvre allowed tha kya yahan kya apply hoga?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "mein mera challan issued hai. payment kaise karna hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "main apni goods vehicle ko west bengal se le ja raha hoon. noc chahiye kya?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "mein meri goods vehicle ki motor insurance ko lekar general question hai is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "मेरी एक शंका है—इस स्थिति में कौन सा ट्रैफिक नियम लागू होता है?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "29 august 2026 ko tamil nadu mein road accident hua. ab mujhe kya karna chahiye?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['train', 'validation']",
+      "value": "mera licence seized hai. tamil nadu mein driving ke liye iska kya matlab hai ye legally allowed hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'gold_test', 'train']",
+      "value": "i have a traffic challan with status issued in delhi. what should i do?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train', 'validation']",
+      "value": "12 august 2026 ko tamil nadu mein mera driving licence seize ho gaya. ab next kya karna chahiye is this valid?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['gold_test', 'test', 'train']",
+      "value": "में car के लिए सीट-बेल्ट से जुड़ा क्या नियम है क्या यह मान्य है?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "i crossed a traffic signal in west bengal. what rule or consequence should i check. context — date: 24 august 2026, your"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "delhi mein mera challan unpaid show ho raha hai. court wala next step kya hai yahan kya apply hoga?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['dev', 'train']",
+      "value": "which licence class do i need for a car in west bengal?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "POTENTIAL_SPLIT_LEAKAGE",
+      "message": "Identical normalized text occurs in splits ['test', 'train']",
+      "value": "maharashtra mein meri motorcycle ke registered owner ka address change karna hai. kaise hoga ye legally allowed hai?"
+    },
+    {
+      "severity": "WARNING",
+      "dataset": "evaluation",
+      "row": null,
+      "column": "split",
+      "code": "ADDITIONAL_SPLIT_LEAKAGE",
+      "message": "733 further duplicate texts across splits",
+      "value": null
+    }
+  ]
+}

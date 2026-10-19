@@ -1,0 +1,11 @@
+# Phase 1 implementation
+
+The FastAPI application is in `app/main.py`. Configuration uses backend-relative paths. `app/services/dataset_loader.py` reads CSV and JSONL without modifying originals; `dataset_relationships.py` declares observed relationships; `dataset_validator.py` checks format, IDs, references, dates, URLs, selected annotations, review labels, and split overlap. `scripts/validate_datasets.py` writes both audit formats. See `reports/PHASE1_DATASET_FINDINGS.md` for actual results.
+
+`app/db/models.py` defines one SQLite matter table with ID, schema version, revision, basic search fields, timestamps, and a complete JSON context. `schemas/matter.py` validates MatterContext-compatible camelCase payloads. `services/matter_service.py` performs CRUD and conditional revision updates. `api/` exposes health, dataset metadata, audit status, and matter endpoints. The frontend API client is in `src/lib/api/`, while `MatterProvider` and the existing mock pages retain session storage.
+
+The frontend sends `originalText` and selected `language` to create a matter. Create returns an honest DRAFT with empty intent and facts. Future NLP should update those fields after processing; future questioning can update answers/messages/question; future legal retrieval can fill guidance only after verification. Broad dataset slot names are permitted by backend arrays while the current frontend retains its narrow `MatterSlot` union. The full pipeline remains a later-phase task.
+
+Verification performed: `python -m scripts.validate_datasets` scanned 23 files and intentionally exited 1 due to 8 dataset errors; `pytest backend/tests -q` passed 9 tests; `npm run lint`, `npm run typecheck`, and `npm run build` passed. Next build listed `/`, `/understand`, `/verify`, `/guidance`, and `/summary`. The UI was not redesigned. The existing summary copy/print behavior and mock route flow remain in their original components; no browser journey was run in this phase.
+
+Limits: the audit currently summarizes duplicate split text with a capped list of 100 examples; it does not prove near-duplicate leakage. URL checks are offline syntax checks. Review labels are not legal verification. The API has no authentication and is local-development only. SQLite schema migrations and actual NLP/RAG must be added in future phases.

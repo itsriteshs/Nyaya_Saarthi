@@ -10,3 +10,9 @@ yarn-debug.log*
 yarn-error.log*
 tsconfig.tsbuildinfo
 .DS_Store
+backend/*.db
+backend/*.db-*
+backend/__pycache__/
+backend/**/__pycache__/
+backend/.venv/
+.pytest_cache/
