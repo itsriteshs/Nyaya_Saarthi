@@ -41,6 +41,15 @@ def _question(context, slot, reason='missing'):
     lang=state(context)['displayLanguage']
     column={'hindi':'question_template_hi','hinglish':'question_template_hinglish'}.get(lang,'question_template_en')
     template=(row or {}).get(column) or (row or {}).get('question_template_en') or f'Please clarify {_label(context,slot)}.'
+    if slot=='VEHICLE_CLASS' and any(
+        f['key']==slot and f.get('resolutionStatus')=='ambiguous'
+        and re.search(r'motorcycle|bike|scooter|मोटरसाइकिल|स्कूटर',f.get('value',''),re.I)
+        for f in context.get('facts',[])
+    ):
+        template={
+            'hindi':'आपकी मोटरसाइकिल या स्कूटर गियर वाला है या बिना गियर का? MCWG या MCWOG भी लिख सकते हैं।',
+            'hinglish':'Aapki motorcycle ya scooter geared hai ya gearless? MCWG ya MCWOG bhi likh sakte hain.',
+        }.get(lang,'Is your motorcycle or scooter geared or gearless? You can answer MCWG or MCWOG.')
     if reason=='contradiction':
         template=f"Two answers about {_label(context,slot)} differ. Which describes the event? {template}"
     return {'id':f"q-{slot}-{len(state(context)['askedSlots'])+1}", 'slot':slot,'question':template,
@@ -112,6 +121,12 @@ def _target_entity(slot, answer, entities):
     if slot=='CHALLAN_DATE': matches=[e for e in entities if e['type']=='EVENT_DATE']
     if matches:return matches[0]
     clean=answer.strip()
+    if slot=='VEHICLE_CLASS':
+        subtype={'geared':'MCWG','with gear':'MCWG','with gears':'MCWG',
+                 'gearless':'MCWOG','without gear':'MCWOG','without gears':'MCWOG'}
+        value=subtype.get(clean.casefold())
+        if value:
+            return normalize({'type':slot,'text':value,'value':value,'method':'question_context'})
     row=next((r for group in ontology()['slots'].values() for r in group if r['slot_name']==slot),None)
     if row and row.get('data_type')=='categorical':
         allowed={value.casefold().replace('_',' '):value.casefold() for value in row.get('allowed_values','').split('|')}

@@ -20,7 +20,13 @@ def normalize(entity):
         e.update(normalizedValue=str(int(value)),unit='km/h',status='resolved',vocabularySource='unit pattern')
         e['approximate']=any(x in raw.lower() for x in ('about','around','maybe','लगभग'))
     elif kind=='VEHICLE_CLASS':
-        options=[x for x in VEHICLE_ALIASES.get(raw.casefold(),[]) if x in ontology()['vehicles']]
+        key=raw.casefold().strip()
+        options=VEHICLE_ALIASES.get(key,[])
+        if key in {'mcwg','mcwog'}:
+            options=['VC_'+key.upper()]
+        elif re.fullmatch(r'(?:geared|gearless) (?:motorcycle|bike|scooter)|(?:motorcycle|bike|scooter) (?:with(?:out)? gears?|gearless)',key):
+            options=['VC_MCWOG' if 'without' in key or 'gearless' in key else 'VC_MCWG']
+        options=[x for x in options if x in ontology()['vehicles']]
         e['alternatives']=options
         if len(options)==1:e.update(normalizedValue=ontology()['vehicles'][options[0]]['common_name'],normalizedId=options[0],status='resolved')
         elif options:e.update(normalizedValue='Vehicle class needs clarification',status='ambiguous')

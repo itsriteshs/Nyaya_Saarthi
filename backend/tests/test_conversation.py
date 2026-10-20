@@ -117,3 +117,21 @@ def test_urgent_accident_notice_precedes_ordinary_question(client):
     question=next(i for i,item in enumerate(messages) if item['id'].startswith('q-'))
     assert urgent<question
     assert '112' in messages[urgent]['text']
+
+
+def test_motorcycle_subtype_clarification():
+    from app.services.conversation import _question, _target_entity
+    from app.services.nlp.entity_extractor import extract
+    from app.services.nlp.normalizer import normalize
+    generic=normalize({'type':'VEHICLE_CLASS','text':'motorcycle','value':'motorcycle'})
+    assert generic['status']=='ambiguous'
+    context={'facts':[{'key':'VEHICLE_CLASS','value':'motorcycle','resolutionStatus':'ambiguous'}]}
+    question=_question(context,'VEHICLE_CLASS')
+    assert 'geared or gearless' in question['question']
+    for answer,expected in [('geared','VC_MCWG'),('gearless','VC_MCWOG'),
+                            ('motorcycle with gear','VC_MCWG'),('motorcycle without gear','VC_MCWOG'),
+                            ('gearless scooter','VC_MCWOG'),('MCWG','VC_MCWG'),('MCWOG','VC_MCWOG')]:
+        entities=[normalize(e) for e in extract(answer,status_values={})]
+        entity=_target_entity('VEHICLE_CLASS',answer,entities)
+        assert entity['status']=='resolved', answer
+        assert entity['normalizedId']==expected, answer
