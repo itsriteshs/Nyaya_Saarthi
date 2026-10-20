@@ -1,43 +1,13 @@
 {
-  "model_version": "tfidf-language-v1",
-  "train_count": 7076,
-  "dev_count": 729,
-  "dev_accuracy": 1.0,
-  "dev_report": {
-    "english": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 310.0
-    },
-    "hindi": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 217.0
-    },
-    "hinglish": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 202.0
-    },
-    "accuracy": 1.0,
-    "macro avg": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 729.0
-    },
-    "weighted avg": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 729.0
-    }
-  },
-  "uncertainty_gap_threshold": 1.9907266308261207,
+  "model_version": "tfidf-language-grouped-v1",
+  "train_count": 4634,
+  "dev_count": 1156,
+  "test_evaluated": 0,
+  "manifest_sha256": "8563a1d4d1e9682bd9acbe2bf80a2adce650ed65167d1aee3b644a5d9b312614",
+  "uncertainty_gap_threshold": 1.9253355227911997,
   "score_type": "SVM decision margin gap, not probability",
-  "train_seconds": 1.059,
-  "review_status": "pending human review"
+  "random_seed": 471,
+  "sklearn_version": "1.9.1",
+  "review_status": "annotations unreviewed",
+  "ontology_examples": 0
 }

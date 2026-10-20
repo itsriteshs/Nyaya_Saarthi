@@ -1,0 +1,133 @@
+{
+  "matterId": "5a247f7f-ae9d-4ae0-a163-dfa0943a492d",
+  "clarificationMatterId": "98bee737-131a-4585-ac6d-cced983ca83c",
+  "clarificationSlot": "VEHICLE_CLASS",
+  "modelId": "deterministic",
+  "finalStage": "COMPLETED",
+  "retrievalMode": "lexical-only",
+  "retrievedCount": 1,
+  "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+  "fallbackUsed": false,
+  "steps": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/legal/status",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/models",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/matters/98bee737-131a-4585-ac6d-cced983ca83c/analyze",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/98bee737-131a-4585-ac6d-cced983ca83c/answers",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/matters/98bee737-131a-4585-ac6d-cced983ca83c/conversation",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/guidance",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/analyze",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/conversation",
+      "status": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/facts/observed_speed_1",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/facts/vehicle_class_0/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/facts/observed_speed_1/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/facts/road_type_2/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/facts/state_3/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/facts/event_date_4/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/verify",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/verify",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/legal/retrieve",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/generate",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/complete",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/complete",
+      "status": 200
+    }
+  ]
+}

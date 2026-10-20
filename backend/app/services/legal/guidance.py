@@ -140,8 +140,8 @@ def generate(matter):
                            'evidenceId':f"EVID:{row['procedure_id']}"})
     if excluded_procedures and not next_steps:
         uncertainties.append('Related procedure records have unresolved source, legal-basis, or service references; procedural instructions are withheld.')
-    if matter.get('language') in {'hindi','hinglish'}:
-        uncertainties.append('Dataset multilingual explanations have not completed legal and language review; this guidance is supplied in English.')
+    if matter.get('language') in {'hindi','hinglish'} or matter.get('nlpAnalysis',{}).get('language',{}).get('detectedLanguage') in {'hindi','hinglish'}:
+        uncertainties.append('Dataset multilingual explanations have not completed legal and language review.')
     if sources:
         direct=f"The dataset identifies {sources[0]['title']} as potentially relevant to your confirmed situation. {sources[0]['relevantPoint']}"
     else:
@@ -161,6 +161,7 @@ def generate(matter):
                                               'semanticScore':d['semanticScore']} for d in search['results']],
                         'evidenceIds':[s['evidenceId'] for s in sources]+[s['evidenceId'] for s in next_steps],
                         'generationMethod':'DETERMINISTIC_TEMPLATE_V1',
+                        'outputLanguage':'english',
                         'retrievalExclusions':search['excluded'],
                         'procedureExclusions':excluded_procedures,
                         'procedureEvidence':assembled['procedureEvidence'],

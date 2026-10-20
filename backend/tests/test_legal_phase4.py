@@ -25,7 +25,12 @@ def test_source_policy_and_dataset_gaps():
     assert report['sources']['eligible']==6
     assert report['provisions']['eligible']==4
     assert report['procedures']['eligible']==0
-    assert any(item['file']=='procedures.csv' and item['row']==26 for item in report['malformedRecords'])
+    assert not any(item['file']=='procedures.csv' and item['row']==26 for item in report['malformedRecords'])
+    repaired=knowledge['tables']['procedures']['PROC_CONTEST_ECHALLAN_COURT']
+    assert repaired['source_id']=='SRC_MVAA_2019'
+    assert repaired['review_status']=='NOT_VERIFIED'
+    from app.services.legal.guidance import procedure_policy
+    assert procedure_policy(repaired,knowledge)['status']=='excluded'
 
 
 def test_retrieval_requires_date_and_jurisdiction(lexical_index):

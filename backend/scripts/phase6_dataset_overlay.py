@@ -20,10 +20,13 @@ def materialize(destination: Path):
     target = next((i for i, row in enumerate(rows[1:], 1) if row and row[0] == "PROC_CONTEST_ECHALLAN_COURT"), None)
     if target is None: raise ValueError("Expected procedure record is missing")
     original = rows[target][:]
-    if len(original) != len(header) - 1 or original[13] != "Court filing fee (nominal, State-specific)" or original[17] != "SRC_MVAA_2019":
+    if len(original) == len(header) and original[13] == '' and original[14] == "Court filing fee (nominal, State-specific)" and original[18] == "SRC_MVAA_2019":
+        pass  # Production technical remediation already aligned this row.
+    elif len(original) == len(header) - 1 and original[13] == "Court filing fee (nominal, State-specific)" and original[17] == "SRC_MVAA_2019":
+        rows[target].insert(13, "")
+    else:
         raise ValueError("Expected unambiguous column shift was not found")
-    rows[target].insert(13, "")
-    assert len(rows[target]) == len(header) and rows[target][14] == original[13] and rows[target][18] == original[17]
+    assert len(rows[target]) == len(header) and rows[target][18] == 'SRC_MVAA_2019'
     with path.open("w", encoding="utf-8-sig", newline="") as stream: csv.writer(stream).writerows(rows)
     slot_path = destination / "slot_schema.csv"
     with slot_path.open(encoding="utf-8-sig", newline="") as stream:

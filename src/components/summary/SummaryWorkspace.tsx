@@ -124,7 +124,8 @@ export function SummaryWorkspace() {
     }
   }
 
-  function handlePrint() {
+  async function handlePrint() {
+    await document.fonts.ready;
     window.print();
   }
 
@@ -160,7 +161,7 @@ export function SummaryWorkspace() {
                     to it, and the recommended next steps.
                   </p>
                 </div>
-                <dl className="grid min-w-[260px] gap-2 rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-4 text-sm">
+                <dl className="grid min-w-0 gap-2 rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-4 text-sm sm:min-w-[260px]">
                   <MetaRow label="Created" value={formatDate(matter.createdAt)} />
                   <MetaRow label="Language" value={formatLanguage(matter.language)} />
                   <MetaRow label="Matter" value={matter.intent.label} />
@@ -227,6 +228,7 @@ export function SummaryWorkspace() {
               <SummarySection number="04" title="Guidance">
                 <div className="grid gap-4">
                   <p className="text-sm font-semibold text-[#6B665D]">{provenance(guidance)} Legal source records come from the NyayaSaarthi knowledge base.</p>
+                  <LabeledParagraph label="Generation provenance" text={generationProvenance(guidance)} muted />
                   <LabeledParagraph label="NyayaSaarthi Explanation" text={guidance.directAnswer} />
                   <LabeledParagraph label="Qualification" text={guidance.qualification} muted />
                 </div>
@@ -234,7 +236,8 @@ export function SummaryWorkspace() {
 
               <SummarySection number="05" title="Why This Guidance Was Given">
                 <div className="space-y-3">
-                  {guidance.mappings.slice(0, 3).map((mapping) => (
+                  {guidance.mappings.length === 0 ? <p className="text-sm font-semibold leading-6 text-[#6B665D]">No structured rule match was established. The source records below are potentially relevant; see the remaining uncertainty.</p> : null}
+                  {guidance.mappings.map((mapping) => (
                     <article key={mapping.id} className="rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-4">
                       <div className="grid gap-3 lg:grid-cols-[1fr_1fr_1.25fr]">
                         <MappingCell label="Your Verified Fact" value={mapping.fact} />
@@ -249,7 +252,7 @@ export function SummaryWorkspace() {
               <SummarySection number="06" title="Retrieved Source Records">
                 <div className="space-y-3">
                   {guidance.sources.length === 0 ? <p className="text-sm font-semibold text-[#6B665D]">No source record passed the applicability checks.</p> : null}
-                  {guidance.sources.slice(0, 4).map((source) => (
+                  {guidance.sources.map((source) => (
                     <SourceRow key={source.id} source={source} />
                   ))}
                 </div>
@@ -375,7 +378,7 @@ function SummarySection({
     <section className="summary-section rounded-lg border border-[#DED7CA] bg-[#FBF8F1] p-5 sm:p-6">
       <div className="mb-4 flex items-baseline gap-3">
         {number ? (
-          <span className="font-editorial text-2xl font-bold leading-none text-[#A8752B]">
+          <span className="font-editorial shrink-0 whitespace-nowrap text-2xl font-bold leading-none text-[#A8752B]">
             {number}
           </span>
         ) : null}
@@ -406,7 +409,7 @@ function MetaBlock({ label, value }: { label: string; value: string }) {
 
 function FactLine({ fact }: { fact: MatterFact }) {
   return (
-    <div className="border-b border-[#DED7CA] pb-3">
+    <div className="summary-print-block border-b border-[#DED7CA] pb-3">
       <div className="flex items-start justify-between gap-3">
         <p className="text-xs font-extrabold uppercase text-[#6B665D]">{fact.label}</p>
         <span className="shrink-0 rounded-md border border-[#DED7CA] bg-[#FFFDF8] px-2 py-1 text-[0.65rem] font-extrabold uppercase text-[#6B665D]">
@@ -420,7 +423,7 @@ function FactLine({ fact }: { fact: MatterFact }) {
 
 function LabeledParagraph({ label, text, muted }: { label: string; text: string; muted?: boolean }) {
   return (
-    <div className="rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-4">
+    <div className="summary-print-block rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-4">
       <p className="text-xs font-extrabold uppercase text-[#A8752B]">{label}</p>
       <p className={`mt-2 whitespace-pre-line text-base font-semibold leading-7 ${muted ? "text-[#4F4A42]" : "text-[#18150F]"}`}>
         {text}
@@ -453,6 +456,7 @@ function SourceRow({ source }: { source: LegalSource }) {
       <dl className="mt-4 grid gap-3 md:grid-cols-2">
         <MetaBlock label="Provision" value={source.provision ?? "Not specified"} />
         <MetaBlock label="Authority" value={source.authority} />
+        <MetaBlock label="Evidence ID" value={source.evidenceId ?? "Not recorded"} />
       </dl>
       <p className="mt-4 text-xs font-extrabold uppercase text-[#6B665D]">Why relevant</p>
       <p className="mt-1 text-sm font-semibold leading-6 text-[#4F4A42]">{source.relevantPoint}</p>
@@ -465,11 +469,13 @@ function SourceRow({ source }: { source: LegalSource }) {
           Government link unavailable
         </p>
       )}
+      {source.sourceUrl ? <p className="mt-2 break-all text-xs leading-5">{source.sourceUrl}</p> : null}
     </article>
   );
 }
 
 function RecommendedActions({ steps }: { steps: NextStep[] }) {
+  if (!steps.length) return <p className="text-sm font-semibold leading-6 text-[#6B665D]">No affirmative procedure is supported by the current eligible records.</p>;
   return (
     <div className="divide-y divide-[#DED7CA]">
       {steps.map((step, index) => (
@@ -593,6 +599,7 @@ function buildPlainTextSummary(
     "",
     "Guidance:",
     provenance(guidance) + " Legal source records come from the NyayaSaarthi knowledge base.",
+    generationProvenance(guidance),
     guidance.directAnswer,
     guidance.qualification,
     "",
@@ -617,4 +624,22 @@ function provenance(guidance: GuidanceResult) {
     return guidance.metadata.requestedModel === "llama3.2-3b" ? "AI-generated explanation by Llama 3.2 3B." : "AI-generated explanation by Mistral 7B.";
   }
   return guidance.metadata?.fallbackUsed ? "Deterministic guidance was used after the selected local model could not produce an accepted explanation." : "Deterministic guidance.";
+}
+
+function generationProvenance(guidance: GuidanceResult) {
+  const meta = guidance.metadata;
+  return [
+    `Method: ${meta?.generationMethod ?? "Not recorded"}`,
+    `Requested model: ${meta?.requestedModel ?? "deterministic"}`,
+    `Checkpoint: ${meta?.modelCheckpoint ?? "Not applicable"}`,
+    `Installed digest: ${meta?.installedDigest ?? "Not recorded"}`,
+    `Generated: ${meta?.generationTimestamp ?? guidance.generatedAt}`,
+    `Requested language: ${meta?.requestedLanguage ?? "Not recorded"}`,
+    `Output language: ${meta?.outputLanguage ?? (meta?.generationMethod === "LOCAL_LLM" && !meta.fallbackUsed ? meta.requestedLanguage ?? "Not recorded" : "english")}`,
+    `Fallback: ${meta?.fallbackUsed ? meta.failureReason ?? "Yes" : "No"}`,
+    `Prompt: ${meta?.promptVersion ?? "Not applicable"}`,
+    `Index: ${meta?.indexVersion ?? "Not recorded"}`,
+    `Evidence package: ${meta?.evidencePackageId ?? "Not recorded"}`,
+    `Source fingerprint: ${meta?.sourceFingerprint ?? "Not recorded"}`,
+  ].join(" · ");
 }

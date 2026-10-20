@@ -1,0 +1,133 @@
+{
+  "matterId": "4260ec47-9db7-4c6a-93f2-5620f8084196",
+  "clarificationMatterId": "3e3c2049-f0c8-4f55-8965-59afa3fb50a4",
+  "clarificationSlot": "VEHICLE_CLASS",
+  "modelId": "llama3.2-3b",
+  "finalStage": "COMPLETED",
+  "retrievalMode": "hybrid",
+  "retrievedCount": 1,
+  "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+  "fallbackUsed": true,
+  "steps": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/legal/status",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/models",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/matters/3e3c2049-f0c8-4f55-8965-59afa3fb50a4/analyze",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/3e3c2049-f0c8-4f55-8965-59afa3fb50a4/answers",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/matters/3e3c2049-f0c8-4f55-8965-59afa3fb50a4/conversation",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/guidance",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/analyze",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/conversation",
+      "status": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/facts/observed_speed_1",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/facts/vehicle_class_0/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/facts/observed_speed_1/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/facts/road_type_2/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/facts/state_3/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/facts/event_date_4/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/verify",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/verify",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/legal/retrieve",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/generate",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/complete",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/complete",
+      "status": 200
+    }
+  ]
+}

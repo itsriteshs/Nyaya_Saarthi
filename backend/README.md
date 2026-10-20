@@ -8,17 +8,18 @@ FastAPI stores matters in SQLite and reads the 23 source datasets without changi
 python3 -m venv backend/.venv
 backend/.venv/bin/pip install -r backend/requirements.txt
 backend/.venv/bin/pip install -r backend/requirements-semantic.txt
-backend/.venv/bin/python backend/scripts/build_legal_index.py
 cd backend
 .venv/bin/python -m scripts.initialize_database
-.venv/bin/python -m scripts.prepare_nlp_data
-.venv/bin/python -m scripts.train_intent_baseline
-.venv/bin/python -m scripts.train_language_baseline
-.venv/bin/python -m scripts.evaluate_nlp
+.venv/bin/python -m scripts.remediation_runtime_artifacts
+.venv/bin/python -m scripts.build_legal_index
 .venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 Swagger: `http://127.0.0.1:8000/docs`. Tests: `cd backend && .venv/bin/python -m pytest -q`.
+
+On Windows, the remediation used a repository-root `.venv` and bundled Node 24.19.0. From the repository root in PowerShell, set `$env:PYTHONPATH = (Join-Path (Get-Location) 'backend')`, then use `.venv/Scripts/python.exe -m scripts.remediation_runtime_artifacts`, `-m scripts.build_legal_index` and `-m uvicorn app.main:app --host 127.0.0.1 --port 8000` after installing the declared requirements.
+
+The current runtime rebuild uses **grouped train only**, with development uncertainty cutoffs and catalog-wide ontology descriptions. The old prepare/train/evaluate scripts reproduce historical experiments; do not use them as the current setup path or repeatedly tune on the grouped test partition. Development remediation is documented in [the full report](reports/post_phase6_remediation.md). From `backend/`, use `python -m scripts.remediation_nlp_dev --label <new-run> --runtime` for development-only diagnostics and `python -m scripts.remediation_llm_dev --run-id <new-run>` for identical frozen-evidence Llama/Mistral development retests. Existing run files are preserved.
 
 ## API
 
@@ -47,7 +48,7 @@ These tags correspond to `meta-llama/Llama-3.2-3B-Instruct` and `mistralai/Mistr
 
 ## Reproduce Phase 6 locally
 
-Use the setup commands above, then run these commands from `backend/`. The original dataset audit exits nonzero while the two documented source-data errors remain; its report is still generated. The derived overlay is for research review only. The Phase 6 runners write to `experiments/`, so move or archive existing results before rerunning if you need to preserve them.
+The following commands describe the historical Phase 6 protocol, not ongoing remediation. Preserve existing Phase 6 outputs; do not rerun the grouped-test experiment as part of tuning. Use the development-only commands above for new remediation runs. The current dataset audit retains one critical missing-source error after the technical CSV repair; the derived overlay remains for research review only.
 
 Install the plotting dependency with `.venv/bin/pip install -r requirements-evaluation.txt` from `backend/`.
 

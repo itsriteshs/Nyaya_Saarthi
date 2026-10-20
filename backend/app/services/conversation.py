@@ -7,6 +7,7 @@ from app.services.nlp.ontology import ontology
 from app.services.nlp.entity_extractor import extract
 from app.services.nlp.normalizer import normalize
 from app.services.nlp.language import analyze_language
+from app.services.nlp.slot_detector import detect_slots
 
 UNKNOWN = re.compile(r"^(?:i\s+(?:do\s+not|don't)\s+know|not\s+sure|i\s+can't\s+remember|skip|mujhe\s+nahi\s+pata|pata\s+nahi|पता\s+नहीं)[.!\s]*$", re.I)
 TIMELINE = re.compile(r"\b(?:yesterday|today|last\s+month|renewed|before|after|previously|now)\b|कल|आज|पहले|अब", re.I)
@@ -53,23 +54,16 @@ def recompute(context):
     conv=state(context)
     facts={f['key']:f for f in context.get('facts',[]) if _has_value(f)}
     conflicted={c['slot'] for c in conv['contradictions'] if not c.get('resolved')}
-    ambiguous={f['key'] for f in context.get('facts',[]) if f.get('resolutionStatus') in {'ambiguous','unresolved'}}
+    configured={r['slot_name'] for r in _rows(context)}
+    ambiguous={f['key'] for f in context.get('facts',[]) if f.get('resolutionStatus') in {'ambiguous','unresolved'} and f['key'] in configured}
     conv['ambiguousSlots']=sorted(ambiguous)
-    missing=[];unresolved=[];found=total=0
-    for row in _rows(context):
-        slot=row['slot_name'];level=row['required_level']
-        try:condition=json.loads(row.get('required_when_json') or '{}').get('when')
-        except json.JSONDecodeError:condition='invalid_json'
-        if level=='required' and condition=='intent_context':
-            total+=1
-            if slot in facts and slot not in conflicted:found+=1
-            else:missing.append(slot)
-        elif level=='conditional':
-            unresolved.append({'slot':slot,'condition':condition,'reason':'condition_not_implemented'})
-        elif level!='optional':
-            unresolved.append({'slot':slot,'condition':condition,'reason':'unsupported_requirement'})
-    if context.get('nlpAnalysis',{}).get('intent',{}).get('id')=='INT016':
-        unresolved.append({'slot':'AGE','condition':'schema_missing','reason':'provisional_schema_gap'})
+    entities=[{'type':f['key'],'normalizedValue':f.get('normalizedValue') or f['value'],
+               'status':'unresolved' if f['key'] in conflicted else f.get('resolutionStatus','resolved')}
+              for f in context.get('facts',[]) if f.get('state')!='unknown']
+    detected=detect_slots(context.get('nlpAnalysis',{}).get('intent',{}).get('id'),entities)
+    missing=[item['slot'] for item in detected['missingSlots']]
+    unresolved=detected['unresolvedSlots']
+    found=detected['readiness']['found'];total=detected['readiness']['total']
     conv['unresolvedRequirements']=unresolved
     context['missingSlots']=missing
     context['contextReadiness']={'found':found,'total':total}

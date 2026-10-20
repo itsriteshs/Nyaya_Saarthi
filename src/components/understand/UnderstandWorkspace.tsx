@@ -9,6 +9,7 @@ import { createMatterContext, answerCurrentQuestion, getReadiness } from "@/lib/
 import { useMatter } from "@/providers/MatterProvider";
 import { getMatter } from "@/lib/api/matters";
 import { submitAnswer } from "@/lib/api/conversations";
+import { ApiError } from "@/lib/api/client";
 import type { LanguageOption } from "@/types/nlp";
 
 interface UnderstandWorkspaceProps {
@@ -54,7 +55,7 @@ export function UnderstandWorkspace({ initialText, initialLanguage }: Understand
       return true;
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Could not save answer.");
-      if (cause instanceof Error && cause.message.includes("409")) {
+      if (cause instanceof ApiError && cause.status === 409) {
         try { setMatter(await getMatter(context.id)); } catch { /* Retain the saved view. */ }
       }
       return false;

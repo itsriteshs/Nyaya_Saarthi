@@ -5,6 +5,7 @@ import time
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 from app.services.llm.provider import Generation
+from app.schemas.llm import Explanation
 
 
 class RuntimeFailure(Exception):
@@ -44,11 +45,13 @@ class OllamaProvider:
                   "sizeBytes": installed.get(spec.runtime_name, {}).get("size")}
             for key, spec in MODELS.items()}}
 
-    def generate(self, model_name, messages, *, temperature, max_tokens, timeout):
+    def generate(self, model_name, messages, *, temperature, max_tokens, timeout, output_schema=None):
         start = time.monotonic()
         response = self._request("/api/chat", {"model": model_name, "messages": messages,
-            "stream": False, "format": "json", "options": {"temperature": temperature,
-            "num_predict": max_tokens}}, timeout=timeout)
+            "stream": False, "format": output_schema or Explanation.model_json_schema(), "options": {"temperature": temperature,
+            "seed": 471, "num_ctx": 8192, "num_predict": max_tokens}}, timeout=timeout)
+        if response.get("done_reason") == "length":
+            raise RuntimeFailure("OUTPUT_TRUNCATED")
         return Generation(text=response.get("message", {}).get("content", ""),
                           duration_ms=round((time.monotonic() - start) * 1000),
                           prompt_tokens=response.get("prompt_eval_count"),

@@ -56,7 +56,7 @@ export function ConversationPanel({ context, onAnswer, busy = false, error = "" 
               {context.nlpAnalysis.unresolvedSlots.length ? <p className="mt-2 text-sm font-semibold text-[#7A521F]">
                 {context.nlpAnalysis.unresolvedSlots.length} conditional requirement(s) could not be resolved.
               </p> : null}
-              {context.conversation?.reviewEligible ? <Link href="/verify" className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#071B3A] bg-[#071B3A] px-4 text-sm font-extrabold text-white">
+              {context.conversation?.reviewEligible ? <Link href="/verify" className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#071B3A] bg-[#071B3A] px-4 text-sm font-extrabold !text-white">
                 Review My Situation <ArrowRight size={16} aria-hidden="true" />
               </Link> : null}
             </div>
@@ -76,7 +76,7 @@ export function ConversationPanel({ context, onAnswer, busy = false, error = "" 
               </p>
               <Link
                 href="/verify"
-                className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#071B3A] bg-[#071B3A] px-4 text-sm font-extrabold text-white transition-colors hover:border-[#102A52] hover:bg-[#102A52]"
+                className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#071B3A] bg-[#071B3A] px-4 text-sm font-extrabold !text-white transition-colors hover:border-[#102A52] hover:bg-[#102A52]"
               >
                 Review My Situation
                 <ArrowRight size={16} aria-hidden="true" />

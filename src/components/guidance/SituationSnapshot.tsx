@@ -15,7 +15,7 @@ const preferredOrder = [
 ];
 
 export function SituationSnapshot({ matter, facts }: SituationSnapshotProps) {
-  const visibleFacts = [...facts]
+  const visibleFacts = matter.nlpAnalysis ? facts : [...facts]
     .filter((fact) => preferredOrder.includes(fact.id))
     .sort((a, b) => preferredOrder.indexOf(a.id) - preferredOrder.indexOf(b.id));
 

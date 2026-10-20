@@ -19,7 +19,7 @@ export function AppSidebar({ currentStep = "understand" }: AppSidebarProps) {
   const currentIndex = order.indexOf(currentStep);
 
   return (
-    <aside className="hidden min-h-screen border-r border-[#132D55] bg-[#071B3A] text-[#F7F3EA] lg:flex lg:flex-col">
+    <aside className="hidden sticky top-0 h-screen overflow-y-auto border-r border-[#132D55] bg-[#071B3A] text-[#F7F3EA] lg:flex lg:flex-col">
       <div className="border-b border-white/10 px-5 py-6">
         <Link href="/" className="flex items-center gap-3">
           <span className="grid size-10 place-items-center rounded-md border border-[#C49A55] text-[#C49A55]">
@@ -50,14 +50,14 @@ export function AppSidebar({ currentStep = "understand" }: AppSidebarProps) {
               className={cn(
                 "flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-extrabold transition-colors",
                 active
-                  ? "border border-[#C49A55]/55 bg-[#F7F3EA] text-[#071B3A]"
+                  ? "border border-[#C49A55]/55 bg-[#F7F3EA] !text-[#071B3A]"
                   : completed
-                    ? "border border-white/10 bg-white/8 text-white"
-                    : "text-[#E8DDCC] hover:bg-white/8 hover:text-white",
+                    ? "border border-white/10 bg-white/8 !text-white"
+                    : "!text-[#E8DDCC] hover:bg-white/8 hover:!text-white",
               )}
             >
-              <Icon size={17} aria-hidden="true" />
-              {item.label}
+              <Icon size={17} aria-hidden="true" className={active ? "!text-[#071B3A]" : ""} />
+              <span>{item.label}</span>
             </Link>
           );
         })}

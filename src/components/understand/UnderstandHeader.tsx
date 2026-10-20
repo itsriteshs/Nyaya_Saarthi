@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { CircleCheck, Menu, UserRound } from "lucide-react";
 import type { LanguageOption } from "@/types/nlp";
 
@@ -10,20 +13,24 @@ interface UnderstandHeaderProps {
 }
 
 export function UnderstandHeader({ language, currentStep }: UnderstandHeaderProps) {
+  const [navigationOpen, setNavigationOpen] = useState(false);
   const currentIndex = ["understand", "verify", "guidance", "summary"].indexOf(currentStep);
 
   return (
     <header className="app-top-header border-b border-[#DED7CA] bg-[#FBF8F1]">
-      <div className="flex min-h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-3 lg:hidden">
+      <div className="flex min-h-16 items-center justify-between gap-2 px-4 sm:gap-4 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-2 lg:hidden">
           <button
             type="button"
             aria-label="Open navigation"
-            className="grid size-10 place-items-center rounded-md border border-[#DED7CA] text-[#071B3A]"
+            aria-expanded={navigationOpen}
+            aria-controls="matter-mobile-navigation"
+            onClick={() => setNavigationOpen((open) => !open)}
+            className="grid size-11 shrink-0 place-items-center rounded-md border border-[#DED7CA] text-[#071B3A]"
           >
             <Menu size={19} aria-hidden="true" />
           </button>
-          <Link href="/" className="font-editorial text-2xl font-bold text-[#071B3A]">
+          <Link href="/" className="font-editorial whitespace-nowrap text-2xl font-bold text-[#071B3A]">
             Nyaya<span className="text-[#A8752B]">Saarthi</span>
           </Link>
         </div>
@@ -55,19 +62,23 @@ export function UnderstandHeader({ language, currentStep }: UnderstandHeaderProp
             <CircleCheck size={14} aria-hidden="true" />
             Confirm before guidance
           </span>
-          <span className="rounded-md border border-[#DED7CA] px-3 py-2 text-xs font-extrabold capitalize text-[#4F4A42]">
+          <span className="whitespace-nowrap rounded-md border border-[#DED7CA] px-3 py-2 text-xs font-extrabold capitalize text-[#4F4A42]">
             {language}
           </span>
-          <span className="grid size-9 place-items-center rounded-full border border-[#DED7CA] bg-[#F7F3EA] text-[#071B3A]">
+          <span className="hidden size-9 place-items-center rounded-full border border-[#DED7CA] bg-[#F7F3EA] text-[#071B3A] sm:grid">
             <UserRound size={17} aria-hidden="true" />
           </span>
         </div>
       </div>
+      {navigationOpen ? <nav id="matter-mobile-navigation" aria-label="Matter navigation" className="grid gap-1 border-t border-[#DED7CA] p-3 lg:hidden">
+        <Link className="rounded p-3 font-bold" href="/" onClick={() => setNavigationOpen(false)}>Home</Link>
+        {progressItems.map((item) => <Link key={item} className="rounded p-3 font-bold" href={`/${item.toLowerCase()}`} onClick={() => setNavigationOpen(false)}>{item}</Link>)}
+      </nav> : null}
       <div className="grid grid-cols-4 border-t border-[#DED7CA] lg:hidden">
         {progressItems.map((item, index) => (
-          <div key={item} className="px-2 py-2 text-center text-[0.7rem] font-extrabold text-[#6B665D]">
+          <div key={item} className="px-1 py-2 text-center text-[0.7rem] font-extrabold text-[#6B665D]">
             <span className={index === currentIndex ? "text-[#071B3A]" : undefined}>
-              {index < currentIndex ? "✓" : index + 1} {item}
+              <span className="block">{index < currentIndex ? "✓" : index + 1}</span><span className="whitespace-nowrap">{item}</span>
             </span>
           </div>
         ))}

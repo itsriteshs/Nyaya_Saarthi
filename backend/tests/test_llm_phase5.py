@@ -80,6 +80,11 @@ def test_fake_provider_and_fallback(monkeypatch):
     assert bad["directAnswer"] == "Baseline"
     assert bad["metadata"]["fallbackUsed"]
     assert "UNSUPPORTED_PENALTY" in bad["metadata"]["failureReason"]
+    hindi = explanation_service.generate_explanation(matter, "llama3.2-3b", "hindi", FakeProvider(json.dumps(output())))
+    assert hindi['metadata']['fallbackUsed']
+    assert hindi['metadata']['requestedLanguage']=='hindi'
+    assert hindi['metadata']['outputLanguage']=='english'
+    assert 'OUTPUT_LANGUAGE_MISMATCH' in hindi['metadata']['failureReason']
 
 
 def test_models_and_revision_gate(client):

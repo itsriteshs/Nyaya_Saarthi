@@ -14,7 +14,7 @@ import { analyzeSituation } from "@/lib/mock-nlp";
 import { analyzeText, localReferenceDatetime, toPreview } from "@/lib/api/nlp";
 import { analyzeMatter, createMatter } from "@/lib/api/matters";
 import { useMatter } from "@/providers/MatterProvider";
-import type { LanguageOption, MockNlpResult, TopicId } from "@/types/nlp";
+import type { MockNlpResult, TopicId } from "@/types/nlp";
 
 const demoMode = process.env.NEXT_PUBLIC_NYAYA_DEMO_MODE === "true";
 const emptyPreview: MockNlpResult = {
@@ -25,10 +25,9 @@ const emptyPreview: MockNlpResult = {
 
 export function HeroSection() {
   const router = useRouter();
-  const { setMatter } = useMatter();
+  const { setMatter, intakeLanguage: language, setIntakeLanguage: setLanguage } = useMatter();
   const [situation, setSituation] = useState("");
   const [analysisInput, setAnalysisInput] = useState(defaultSituation);
-  const [language, setLanguage] = useState<LanguageOption>("auto");
   const [activeTopic, setActiveTopic] = useState<TopicId>("traffic");
   const [realPreview, setRealPreview] = useState<MockNlpResult>(emptyPreview);
   const [previewLoading, setPreviewLoading] = useState(!demoMode);

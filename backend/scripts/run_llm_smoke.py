@@ -10,7 +10,8 @@ from app.services.legal.guidance import generate as deterministic_generate
 from app.services.llm.evidence import build_package
 from app.services.llm.local_runtime import OllamaProvider
 from app.services.llm.model_registry import MODELS, settings
-from app.services.llm.prompt_builder import messages
+from app.services.llm.prompt_builder import messages, response_schema
+from app.services.llm.output_checks import check_language
 from app.services.llm.response_parser import parse_response
 from app.services.llm.grounding_validator import validate
 
@@ -40,8 +41,10 @@ def main():
         else:
             try:
                 response = provider.generate(spec.runtime_name, messages(package, matter["originalText"], args.language),
-                                             temperature=config["temperature"], max_tokens=config["maxTokens"], timeout=config["timeout"])
+                                             temperature=config["temperature"], max_tokens=config["maxTokens"], timeout=config["timeout"],
+                                             output_schema=response_schema(package,args.language))
                 parsed = parse_response(response.text)
+                check_language(parsed,args.language)
                 verdict = validate(parsed, package)
                 row.update({"status": "accepted" if verdict["accepted"] else "rejected",
                             "fallbackUsed": not verdict["accepted"], "validation": verdict,

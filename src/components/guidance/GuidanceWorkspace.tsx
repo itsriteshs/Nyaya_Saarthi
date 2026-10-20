@@ -20,7 +20,7 @@ import { useMatter } from "@/providers/MatterProvider";
 
 export function GuidanceWorkspace() {
   const router = useRouter();
-  const { matter, setMatter } = useMatter();
+  const { matter, restored, setMatter } = useMatter();
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [modelChoice, setModelChoice] = useState<ModelChoice>(() => {
@@ -62,6 +62,10 @@ export function GuidanceWorkspace() {
         return generateGuidance(stored.id, stored.revision);
       }
       if (stored.guidance) {
+        const selected = stored.guidance.metadata?.requestedModel;
+        setModelChoice(selected === "llama3.2-3b" || selected === "mistral-7b" ? selected : "deterministic");
+        const language = stored.guidance.metadata?.requestedLanguage;
+        setOutputLanguage(language === "hindi" || language === "hinglish" ? language : "english");
         const status = await getLegalStatus();
         if (!status.index.indexVersion) throw new Error("Legal index is unavailable; rebuild it before viewing guidance");
         if (stored.guidance.metadata?.indexVersion !== status.index.indexVersion) return generateGuidance(stored.id, stored.revision);
@@ -75,7 +79,7 @@ export function GuidanceWorkspace() {
   }, [matter?.id, matter?.nlpAnalysis, matter?.revision, setMatter]);
 
   useEffect(() => {
-    if (!matter || matter.nlpAnalysis || !verified || guidance) {
+    if (process.env.NEXT_PUBLIC_NYAYA_DEMO_MODE !== "true" || !matter || matter.nlpAnalysis || !verified || guidance) {
       return;
     }
 
@@ -126,6 +130,8 @@ export function GuidanceWorkspace() {
       setError(cause instanceof Error ? cause.message : "Explanation could not be generated");
     } finally { setBusy(false); }
   }
+
+  if (!restored) return <main className="p-6" aria-live="polite">Loading saved situation…</main>;
 
   if (!matter) {
     return (
@@ -196,7 +202,7 @@ export function GuidanceWorkspace() {
               </section>
             ) : null}
 
-            {error ? <section role="alert" className="mb-5 rounded-lg border border-red-300 bg-white p-5 text-red-800">{error}</section> : null}
+            {error ? <section role="alert" className="mb-5 rounded-lg border border-red-300 bg-white p-5 text-red-800">{error}<Button className="ml-3" onClick={() => window.location.reload()}>Retry loading</Button></section> : null}
             {!guidance || busy && matter.nlpAnalysis && matter.stage === "USER_VERIFIED" ? (
               <RetrievalLoading />
             ) : (

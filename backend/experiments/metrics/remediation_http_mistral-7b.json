@@ -1,0 +1,133 @@
+{
+  "matterId": "cf16d25b-e127-4bcd-9392-a640b74301e4",
+  "clarificationMatterId": "e030b34a-0daa-4313-b3fd-0dad78eb9f01",
+  "clarificationSlot": "VEHICLE_CLASS",
+  "modelId": "mistral-7b",
+  "finalStage": "COMPLETED",
+  "retrievalMode": "lexical-only",
+  "retrievedCount": 1,
+  "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+  "fallbackUsed": true,
+  "steps": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/legal/status",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/models",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/matters/e030b34a-0daa-4313-b3fd-0dad78eb9f01/analyze",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/e030b34a-0daa-4313-b3fd-0dad78eb9f01/answers",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/matters/e030b34a-0daa-4313-b3fd-0dad78eb9f01/conversation",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/guidance",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/analyze",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/conversation",
+      "status": 200
+    },
+    {
+      "method": "PATCH",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/facts/observed_speed_1",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/facts/vehicle_class_0/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/facts/observed_speed_1/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/facts/road_type_2/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/facts/state_3/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/facts/event_date_4/confirm",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/verify",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/verify",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/legal/retrieve",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/generate",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/complete",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/complete",
+      "status": 200
+    }
+  ]
+}

@@ -1,0 +1,1125 @@
+{
+  "backend": {
+    "command": "python -m pytest backend/tests -q",
+    "passed": 46,
+    "failed": 0
+  },
+  "frontend": {
+    "node": "24.19.0",
+    "next": "16.3.4",
+    "eslintExitCode": 0,
+    "tscNoEmitExitCode": 0,
+    "productionBuildExitCode": 0,
+    "cleanInstallDryRunExitCode": 0,
+    "actualInitialCleanInstallFailed": true,
+    "lockfileRepaired": true
+  },
+  "httpSmokes": {
+    "deterministic": {
+      "matterId": "5a247f7f-ae9d-4ae0-a163-dfa0943a492d",
+      "clarificationMatterId": "98bee737-131a-4585-ac6d-cced983ca83c",
+      "clarificationSlot": "VEHICLE_CLASS",
+      "modelId": "deterministic",
+      "finalStage": "COMPLETED",
+      "retrievalMode": "lexical-only",
+      "retrievedCount": 1,
+      "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+      "fallbackUsed": false,
+      "steps": [
+        {
+          "method": "GET",
+          "path": "/health",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/legal/status",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/models",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters",
+          "status": 201
+        },
+        {
+          "method": "POST",
+          "path": "/matters/98bee737-131a-4585-ac6d-cced983ca83c/analyze",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/98bee737-131a-4585-ac6d-cced983ca83c/answers",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/98bee737-131a-4585-ac6d-cced983ca83c/conversation",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters",
+          "status": 201
+        },
+        {
+          "method": "POST",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/guidance",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/analyze",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/conversation",
+          "status": 200
+        },
+        {
+          "method": "PATCH",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/facts/observed_speed_1",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/facts/vehicle_class_0/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/facts/observed_speed_1/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/facts/road_type_2/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/facts/state_3/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/facts/event_date_4/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/verify",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/verify",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/legal/retrieve",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/generate",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/complete",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/5a247f7f-ae9d-4ae0-a163-dfa0943a492d/complete",
+          "status": 200
+        }
+      ]
+    },
+    "llama3.2-3b": {
+      "matterId": "1158550f-6442-4a51-9caa-0d1126ad9f76",
+      "clarificationMatterId": "04503497-84b6-4a77-ab83-298dfd2d0c9b",
+      "clarificationSlot": "VEHICLE_CLASS",
+      "modelId": "llama3.2-3b",
+      "finalStage": "COMPLETED",
+      "retrievalMode": "lexical-only",
+      "retrievedCount": 1,
+      "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+      "fallbackUsed": true,
+      "steps": [
+        {
+          "method": "GET",
+          "path": "/health",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/legal/status",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/models",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters",
+          "status": 201
+        },
+        {
+          "method": "POST",
+          "path": "/matters/04503497-84b6-4a77-ab83-298dfd2d0c9b/analyze",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/04503497-84b6-4a77-ab83-298dfd2d0c9b/answers",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/04503497-84b6-4a77-ab83-298dfd2d0c9b/conversation",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters",
+          "status": 201
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/guidance",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/analyze",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/conversation",
+          "status": 200
+        },
+        {
+          "method": "PATCH",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/facts/observed_speed_1",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/facts/vehicle_class_0/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/facts/observed_speed_1/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/facts/road_type_2/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/facts/state_3/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/facts/event_date_4/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/verify",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/verify",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/legal/retrieve",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/generate",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/complete",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1158550f-6442-4a51-9caa-0d1126ad9f76/complete",
+          "status": 200
+        }
+      ]
+    },
+    "mistral-7b": {
+      "matterId": "cf16d25b-e127-4bcd-9392-a640b74301e4",
+      "clarificationMatterId": "e030b34a-0daa-4313-b3fd-0dad78eb9f01",
+      "clarificationSlot": "VEHICLE_CLASS",
+      "modelId": "mistral-7b",
+      "finalStage": "COMPLETED",
+      "retrievalMode": "lexical-only",
+      "retrievedCount": 1,
+      "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+      "fallbackUsed": true,
+      "steps": [
+        {
+          "method": "GET",
+          "path": "/health",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/legal/status",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/models",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters",
+          "status": 201
+        },
+        {
+          "method": "POST",
+          "path": "/matters/e030b34a-0daa-4313-b3fd-0dad78eb9f01/analyze",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/e030b34a-0daa-4313-b3fd-0dad78eb9f01/answers",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/e030b34a-0daa-4313-b3fd-0dad78eb9f01/conversation",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters",
+          "status": 201
+        },
+        {
+          "method": "POST",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/guidance",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/analyze",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/conversation",
+          "status": 200
+        },
+        {
+          "method": "PATCH",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/facts/observed_speed_1",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/facts/vehicle_class_0/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/facts/observed_speed_1/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/facts/road_type_2/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/facts/state_3/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/facts/event_date_4/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/verify",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/verify",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/legal/retrieve",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/generate",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/complete",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/cf16d25b-e127-4bcd-9392-a640b74301e4/complete",
+          "status": 200
+        }
+      ]
+    }
+  },
+  "developmentOnly": true,
+  "newGroupedTestEvaluation": false,
+  "goldLabelsChanged": false,
+  "independentLegalReview": false,
+  "realUserAcceptanceAudit": false,
+  "pdfSavedAndInspected": true,
+  "finalMobilePatchesBrowserRechecked": false,
+  "finalPDFPaginationReexportVerified": false,
+  "hybrid": {
+    "manifest": {
+      "indexVersion": "15930382a608885b",
+      "sourceFingerprint": "90f62bfb87ba4215d287af4cac7348f82ac69f69cc965db9c7643040e3c56309",
+      "documentCount": 4,
+      "excludedProvisionCount": 7,
+      "excludedProvisions": [
+        {
+          "id": "PROV_MVA_S129",
+          "kind": "provision",
+          "reasons": [
+            "COMMENCEMENT_NOT_ESTABLISHED",
+            "OFFICIAL_URL_UNAVAILABLE",
+            "SOURCE_NOT_VERIFIED",
+            "SOURCE_REVIEW_DATE_MISSING"
+          ]
+        },
+        {
+          "id": "PROV_MVA_S177",
+          "kind": "provision",
+          "reasons": [
+            "COMMENCEMENT_NOT_ESTABLISHED",
+            "OFFICIAL_URL_UNAVAILABLE",
+            "SOURCE_NOT_VERIFIED",
+            "SOURCE_REVIEW_DATE_MISSING"
+          ]
+        },
+        {
+          "id": "PROV_MVA_S184",
+          "kind": "provision",
+          "reasons": [
+            "COMMENCEMENT_NOT_ESTABLISHED",
+            "LEGAL_REVIEW_PENDING",
+            "OFFICIAL_URL_UNAVAILABLE",
+            "SOURCE_NOT_VERIFIED",
+            "SOURCE_REVIEW_DATE_MISSING"
+          ]
+        },
+        {
+          "id": "PROV_MVA_S185",
+          "kind": "provision",
+          "reasons": [
+            "COMMENCEMENT_NOT_ESTABLISHED",
+            "LEGAL_REVIEW_PENDING",
+            "OFFICIAL_URL_UNAVAILABLE",
+            "SOURCE_NOT_VERIFIED",
+            "SOURCE_REVIEW_DATE_MISSING"
+          ]
+        },
+        {
+          "id": "PROV_MVA_S194B",
+          "kind": "provision",
+          "reasons": [
+            "COMMENCEMENT_NOT_ESTABLISHED",
+            "OFFICIAL_URL_UNAVAILABLE",
+            "SOURCE_NOT_VERIFIED",
+            "SOURCE_REVIEW_DATE_MISSING"
+          ]
+        },
+        {
+          "id": "PROV_BNS_S106_1",
+          "kind": "provision",
+          "reasons": [
+            "COMMENCEMENT_NOT_ESTABLISHED",
+            "LEGAL_REVIEW_PENDING"
+          ]
+        },
+        {
+          "id": "PROV_BNS_S106_2",
+          "kind": "provision",
+          "reasons": [
+            "COMMENCEMENT_NOT_ESTABLISHED",
+            "LEGAL_REVIEW_PENDING",
+            "PROVISION_NOT_ACTIVE"
+          ]
+        }
+      ],
+      "malformedRecords": [],
+      "retrievalMode": "hybrid",
+      "embeddingModel": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "embeddingModelRevision": "local-sha256:7f4f89d628f87ade0e0b",
+      "embeddingModelLicense": "Apache-2.0",
+      "rankFusion": "RRF(k=60); lexical and semantic ranks equally weighted",
+      "documentSha256": "a945fe924840bd9e5aa6fe503bbc77f21c91a3ee68c4ff2b6431f1fa46c90c17"
+    },
+    "queries": [
+      {
+        "query": "speed regulation",
+        "results": {
+          "indexVersion": "15930382a608885b",
+          "sourceFingerprint": "90f62bfb87ba4215d287af4cac7348f82ac69f69cc965db9c7643040e3c56309",
+          "retrievalMode": "hybrid",
+          "results": [
+            {
+              "authority": "Ministry of Law and Justice (Parliament of India)",
+              "documentId": "provision:PROV_MVA_S112",
+              "domains": [
+                "SPEED"
+              ],
+              "effectiveFrom": "1989-07-01",
+              "effectiveTo": "",
+              "evidenceId": "EVID:PROV_MVA_S112",
+              "file": "legal_provisions.csv",
+              "jurisdictionId": "JX_IN_CENTRAL",
+              "kind": "provision",
+              "passage": "Drivers must stay within the maximum and minimum speed limits set for their vehicle class; the enabling section itself does not set the numeric limits, which come from separate central/state notifications (see legal_sources: SRC_SPEEDLIMIT_SO1522E_2018).",
+              "recordId": "PROV_MVA_S112",
+              "reviewStatus": "VERIFIED",
+              "row": 4,
+              "sourceId": "SRC_MVA_1988",
+              "sourceReviewStatus": "VERIFIED",
+              "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/1798",
+              "text": "SPEED Section 112(1) No person shall drive a motor vehicle in any public place at a speed exceeding the maximum speed, or lower than the minimum speed, fixed for that vehicle or class of vehicle under this Act. Drivers must stay within the maximum and minimum speed limits set for their vehicle class; the enabling section itself does not set the numeric limits, which come from separate central/state notifications (see legal_sources: SRC_SPEEDLIMIT_SO1522E_2018). Speed limit check for light motor vehicles Speed limit check for geared motorcycles Speed limit check for heavy goods vehicles",
+              "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) \u00b7 Section 112(1)",
+              "rank": 1,
+              "lexicalScore": 0.55035,
+              "semanticScore": 0.59856,
+              "combinedRankScore": 0.0327869,
+              "admissibility": "eligible",
+              "relevanceReason": "Text similarity only; applicability requires separate rule evaluation."
+            }
+          ],
+          "excluded": [
+            {
+              "id": "PROV_MVA_S3",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            },
+            {
+              "id": "PROV_MVA_S39",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            },
+            {
+              "id": "PROV_MVA_S146",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "query": "third party insurance policy",
+        "results": {
+          "indexVersion": "15930382a608885b",
+          "sourceFingerprint": "90f62bfb87ba4215d287af4cac7348f82ac69f69cc965db9c7643040e3c56309",
+          "retrievalMode": "hybrid",
+          "results": [
+            {
+              "authority": "Ministry of Law and Justice (Parliament of India)",
+              "documentId": "provision:PROV_MVA_S146",
+              "domains": [
+                "INSURANCE"
+              ],
+              "effectiveFrom": "1989-07-01",
+              "effectiveTo": "",
+              "evidenceId": "EVID:PROV_MVA_S146",
+              "file": "legal_provisions.csv",
+              "jurisdictionId": "JX_IN_CENTRAL",
+              "kind": "provision",
+              "passage": "Every motor vehicle used in a public place must be covered by a valid third-party insurance policy meeting statutory requirements, except where a specific exemption applies.",
+              "recordId": "PROV_MVA_S146",
+              "reviewStatus": "VERIFIED",
+              "row": 6,
+              "sourceId": "SRC_MVA_1988",
+              "sourceReviewStatus": "VERIFIED",
+              "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/1798",
+              "text": "INSURANCE Section 146(1) No person shall use, except as a passenger, a motor vehicle in a public place, and no person shall cause or allow any other person to use a vehicle in a public place, unless there is in force a policy of insurance complying with the requirements of this Chapter. Every motor vehicle used in a public place must be covered by a valid third-party insurance policy meeting statutory requirements, except where a specific exemption applies. Third-party insurance required to use vehicle in public place",
+              "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) \u00b7 Section 146(1)",
+              "rank": 1,
+              "lexicalScore": 1.67354,
+              "semanticScore": 0.51763,
+              "combinedRankScore": 0.0327869,
+              "admissibility": "eligible",
+              "relevanceReason": "Text similarity only; applicability requires separate rule evaluation."
+            }
+          ],
+          "excluded": [
+            {
+              "id": "PROV_MVA_S3",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            },
+            {
+              "id": "PROV_MVA_S39",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            },
+            {
+              "id": "PROV_MVA_S112",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "query": "registration certificate",
+        "results": {
+          "indexVersion": "15930382a608885b",
+          "sourceFingerprint": "90f62bfb87ba4215d287af4cac7348f82ac69f69cc965db9c7643040e3c56309",
+          "retrievalMode": "hybrid",
+          "results": [
+            {
+              "authority": "Ministry of Law and Justice (Parliament of India)",
+              "documentId": "provision:PROV_MVA_S39",
+              "domains": [
+                "REGISTRATION"
+              ],
+              "effectiveFrom": "1989-07-01",
+              "effectiveTo": "",
+              "evidenceId": "EVID:PROV_MVA_S39",
+              "file": "legal_provisions.csv",
+              "jurisdictionId": "JX_IN_CENTRAL",
+              "kind": "provision",
+              "passage": "A vehicle cannot legally be driven in a public place unless it is registered and that registration is currently valid (not suspended or cancelled).",
+              "recordId": "PROV_MVA_S39",
+              "reviewStatus": "VERIFIED",
+              "row": 3,
+              "sourceId": "SRC_MVA_1988",
+              "sourceReviewStatus": "VERIFIED",
+              "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/1798",
+              "text": "REGISTRATION Section 39 No owner of a motor vehicle shall permit the vehicle to be driven in any public place unless it has been registered in accordance with this Chapter and the certificate of registration has not been suspended or cancelled. A vehicle cannot legally be driven in a public place unless it is registered and that registration is currently valid (not suspended or cancelled). Registration required for any public-place driving",
+              "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) \u00b7 Section 39",
+              "rank": 1,
+              "lexicalScore": 0.77453,
+              "semanticScore": 0.46165,
+              "combinedRankScore": 0.0327869,
+              "admissibility": "eligible",
+              "relevanceReason": "Text similarity only; applicability requires separate rule evaluation."
+            }
+          ],
+          "excluded": [
+            {
+              "id": "PROV_MVA_S3",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            },
+            {
+              "id": "PROV_MVA_S112",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            },
+            {
+              "id": "PROV_MVA_S146",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "missingDateAndJurisdictionAbstained": true,
+    "kind": "functional smoke, not relevance evaluation"
+  },
+  "hybridHttpSmokes": {
+    "deterministic": {
+      "matterId": "f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14",
+      "clarificationMatterId": "e6be8c23-fef7-43dc-afaf-27e9fc1645f3",
+      "clarificationSlot": "VEHICLE_CLASS",
+      "modelId": "deterministic",
+      "finalStage": "COMPLETED",
+      "retrievalMode": "hybrid",
+      "retrievedCount": 1,
+      "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+      "fallbackUsed": false,
+      "steps": [
+        {
+          "method": "GET",
+          "path": "/health",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/legal/status",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/models",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters",
+          "status": 201
+        },
+        {
+          "method": "POST",
+          "path": "/matters/e6be8c23-fef7-43dc-afaf-27e9fc1645f3/analyze",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/e6be8c23-fef7-43dc-afaf-27e9fc1645f3/answers",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/e6be8c23-fef7-43dc-afaf-27e9fc1645f3/conversation",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters",
+          "status": 201
+        },
+        {
+          "method": "POST",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/guidance",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/analyze",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/conversation",
+          "status": 200
+        },
+        {
+          "method": "PATCH",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/facts/observed_speed_1",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/facts/vehicle_class_0/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/facts/observed_speed_1/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/facts/road_type_2/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/facts/state_3/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/facts/event_date_4/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/verify",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/verify",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/legal/retrieve",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/generate",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/complete",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/f9f0954a-bcb8-4af6-b26a-f2d1d5a47e14/complete",
+          "status": 200
+        }
+      ]
+    },
+    "llama3.2-3b": {
+      "matterId": "4260ec47-9db7-4c6a-93f2-5620f8084196",
+      "clarificationMatterId": "3e3c2049-f0c8-4f55-8965-59afa3fb50a4",
+      "clarificationSlot": "VEHICLE_CLASS",
+      "modelId": "llama3.2-3b",
+      "finalStage": "COMPLETED",
+      "retrievalMode": "hybrid",
+      "retrievedCount": 1,
+      "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+      "fallbackUsed": true,
+      "steps": [
+        {
+          "method": "GET",
+          "path": "/health",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/legal/status",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/models",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters",
+          "status": 201
+        },
+        {
+          "method": "POST",
+          "path": "/matters/3e3c2049-f0c8-4f55-8965-59afa3fb50a4/analyze",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/3e3c2049-f0c8-4f55-8965-59afa3fb50a4/answers",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/3e3c2049-f0c8-4f55-8965-59afa3fb50a4/conversation",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters",
+          "status": 201
+        },
+        {
+          "method": "POST",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/guidance",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/analyze",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/conversation",
+          "status": 200
+        },
+        {
+          "method": "PATCH",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/facts/observed_speed_1",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/facts/vehicle_class_0/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/facts/observed_speed_1/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/facts/road_type_2/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/facts/state_3/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/facts/event_date_4/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/verify",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/verify",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/legal/retrieve",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/generate",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/complete",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/4260ec47-9db7-4c6a-93f2-5620f8084196/complete",
+          "status": 200
+        }
+      ]
+    },
+    "mistral-7b": {
+      "matterId": "8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9",
+      "clarificationMatterId": "1a37a89d-23f5-46ad-916b-b18fb17bd76c",
+      "clarificationSlot": "VEHICLE_CLASS",
+      "modelId": "mistral-7b",
+      "finalStage": "COMPLETED",
+      "retrievalMode": "hybrid",
+      "retrievedCount": 1,
+      "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+      "fallbackUsed": true,
+      "steps": [
+        {
+          "method": "GET",
+          "path": "/health",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/legal/status",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/models",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters",
+          "status": 201
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1a37a89d-23f5-46ad-916b-b18fb17bd76c/analyze",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/1a37a89d-23f5-46ad-916b-b18fb17bd76c/answers",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/1a37a89d-23f5-46ad-916b-b18fb17bd76c/conversation",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters",
+          "status": 201
+        },
+        {
+          "method": "POST",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/guidance",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/analyze",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/conversation",
+          "status": 200
+        },
+        {
+          "method": "PATCH",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/facts/observed_speed_1",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/facts/vehicle_class_0/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/facts/observed_speed_1/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/facts/road_type_2/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/facts/state_3/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/facts/event_date_4/confirm",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/verify",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/verify",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/legal/retrieve",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/generate",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/complete",
+          "status": 409
+        },
+        {
+          "method": "POST",
+          "path": "/matters/8b9fe82f-c6a1-45eb-82ac-b752a72b6fc9/complete",
+          "status": 200
+        }
+      ]
+    }
+  },
+  "finalBackendPassed": 46,
+  "finalFrontendChecksPassed": true,
+  "finalAdditionalLanguageFixesBrowserVerified": false,
+  "historicalPhase6AndGoldFilesUnchanged": true,
+  "datasetValidationSummary": {
+    "dataset_files": 23,
+    "expected_files": 23,
+    "records_seen": 20214,
+    "total_rows": 20214,
+    "critical_errors": 1,
+    "warnings": 341,
+    "info": 6,
+    "issue_codes": {
+      "TRAILING_EMPTY_COLUMNS": 58,
+      "INVALID_URL": 3,
+      "UNRESOLVED_PLACEHOLDER_REFERENCE": 143,
+      "REQUIRED_REFERENCE_EMPTY": 1,
+      "REFERENCE_TYPE_MISMATCH": 8,
+      "MISSING_REFERENCE": 28,
+      "STANDALONE_QUERY_ID": 6,
+      "POTENTIAL_SPLIT_LEAKAGE": 100,
+      "ADDITIONAL_SPLIT_LEAKAGE": 1
+    }
+  },
+  "temporaryTestServersStopped": true
+}

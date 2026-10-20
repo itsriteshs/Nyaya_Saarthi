@@ -78,7 +78,7 @@ export function SituationInput({
               className={cn(
                 "min-h-10 rounded-md border px-3 text-sm font-extrabold transition-colors",
                 language === option.value
-                  ? "border-[#071B3A] bg-[#071B3A] text-white"
+                  ? "border-[#071B3A] bg-[#071B3A] !text-white"
                   : "border-[#DED7CA] bg-[#FBF8F1] text-[#18150F] hover:border-[#A8752B]",
               )}
               onClick={() => onLanguageChange(option.value)}

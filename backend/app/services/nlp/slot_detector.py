@@ -5,19 +5,20 @@ from app.services.nlp.ontology import ontology
 PROVISIONAL_AGE={'intent_id':'INT016','slot_name':'AGE','status':'provisional',
                  'source':'INT016.conditional_slot_ids and 26 annotated utterances; absent from slot_schema.csv'}
 
-def detect_slots(intent_id: str, entities: list[dict]):
+def detect_slots(intent_id: str, entities: list[dict], *, required_slots=()):
     configured=ontology()['slots'].get(intent_id,[])
     by_type={}
     for entity in entities:by_type.setdefault(entity['type'],[]).append(entity)
     missing=[];unresolved=[];found=0;total=0
     for row in sorted(configured,key=lambda r:int(r['ask_priority'] or 999)):
         slot=row['slot_name'];level=row['required_level']
-        condition=json.loads(row['required_when_json'] or '{}').get('when')
+        try:condition=json.loads(row['required_when_json'] or '{}').get('when')
+        except (ValueError,TypeError):condition='invalid_json'
         values=by_type.get(slot,[])
         valid=[x for x in values if x['status']=='resolved']
         conflicting=len({str(x['normalizedValue']) for x in valid})>1
         ambiguous=bool(values) and (not valid or conflicting)
-        if level=='required' and condition=='intent_context':
+        if level=='required' and condition=='intent_context' or level=='conditional' and slot in required_slots:
             total+=1
             if valid and not conflicting:found+=1
             else:
@@ -25,8 +26,9 @@ def detect_slots(intent_id: str, entities: list[dict]):
                       'question':row['question_template_en'],'reason':'ambiguous_or_conflicting' if ambiguous else 'missing'}
                 missing.append(item)
         elif level=='conditional':
-            unresolved.append({'slot':slot,'reason':'condition_not_implemented',
-                               'condition':condition,'present':bool(valid)})
+            if not valid or conflicting:
+                unresolved.append({'slot':slot,'reason':'condition_not_implemented',
+                                   'condition':condition,'present':bool(valid) and not conflicting})
         elif level=='optional':
             continue
         else:

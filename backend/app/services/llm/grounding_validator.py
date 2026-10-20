@@ -27,7 +27,17 @@ def validate(output, package):
     allowed_sections = {s.lower() for e in package["evidence"] for s in SECTION.findall(e["provision"] + " " + e["passage"])}
     if any(section.lower() not in allowed_sections for section in SECTION.findall(full)):
         reasons.append("UNKNOWN_SECTION")
-    if OUTCOME.search(full): reasons.append("DEFINITE_OUTCOME")
+    # Exact server-authored limitations are already trusted uncertainty, not a
+    # model assertion of liability. E.g. "no ... penalty is asserted" previously
+    # matched "penalty is". All generated prose/actions/claims and every changed
+    # uncertainty still pass the unchanged outcome gate; numeric gates above
+    # continue to examine the entire output.
+    outcome_text = ' '.join([output.answer, output.explanation] + [c.text for c in output.legalClaims]
+                            + output.recommendedActions + [u for u in output.uncertainties
+                                if u not in package.get('uncertainties', [])])
+    if OUTCOME.search(outcome_text): reasons.append("DEFINITE_OUTCOME")
+    if package.get('uncertainties') and not output.uncertainties:
+        reasons.append('OMITTED_UNCERTAINTY')
     titles = {step["title"] for step in package["supportedActions"]}
     omitted_actions = [action for action in output.recommendedActions if action not in titles]
     # Deterministic limitations are appended server-side and cannot be deleted

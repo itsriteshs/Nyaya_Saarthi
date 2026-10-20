@@ -1,5 +1,6 @@
 .next/
 node_modules/
+.venv/
 out/
 build/
 dist/
@@ -19,3 +20,7 @@ backend/.venv/
 backend/artifacts/*.joblib
 backend/artifacts/*_local.json
 backend/artifacts/legal_index/
+backend/experiments/*.db
+backend/experiments/*.db-*
+backend/experiments/remediation_browser_index/
+backend/experiments/remediation_http_index/

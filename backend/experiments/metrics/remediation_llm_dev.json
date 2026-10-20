@@ -1,0 +1,40 @@
+{
+  "kind": "development retest, not held-out",
+  "frozenEvidenceSHA256": "0664014e964b86683b9aa7412f1e1711c6ea86fc7b420cff131a016c2f3fdbf3",
+  "models": {
+    "llama3.2-3b": {
+      "cells": 9,
+      "generatedOutputs": 0,
+      "accepted": 0,
+      "acceptanceRate": null,
+      "fallbackCells": 9,
+      "reasons": {
+        "RUNTIME_UNREACHABLE": 9
+      }
+    },
+    "mistral-7b": {
+      "cells": 9,
+      "generatedOutputs": 0,
+      "accepted": 0,
+      "acceptanceRate": null,
+      "fallbackCells": 9,
+      "reasons": {
+        "RUNTIME_UNREACHABLE": 9
+      }
+    }
+  },
+  "runtime": {
+    "runtime": "unreachable",
+    "models": {
+      "llama3.2-3b": {
+        "status": "runtime_unreachable",
+        "available": false
+      },
+      "mistral-7b": {
+        "status": "runtime_unreachable",
+        "available": false
+      }
+    }
+  },
+  "semanticSupportIndependentlyReviewed": false
+}

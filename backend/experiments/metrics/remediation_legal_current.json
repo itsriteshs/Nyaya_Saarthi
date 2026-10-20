@@ -1,0 +1,1785 @@
+{
+  "coverage": {
+    "sources": {
+      "total": 18,
+      "eligible": 6,
+      "eligibleIds": [
+        "SRC_MVA_1988",
+        "SRC_CMVR_1989",
+        "SRC_BNSS_2023",
+        "SRC_LSAA_1987",
+        "SRC_NHA_1956",
+        "SRC_CPA_2019"
+      ]
+    },
+    "provisions": {
+      "total": 11,
+      "eligible": 4,
+      "eligibleIds": [
+        "PROV_MVA_S3",
+        "PROV_MVA_S39",
+        "PROV_MVA_S112",
+        "PROV_MVA_S146"
+      ]
+    },
+    "procedures": {
+      "total": 30,
+      "eligible": 0,
+      "eligibleIds": []
+    },
+    "rules": {
+      "total": 30,
+      "datasetReviewed": 13
+    },
+    "offences": {
+      "total": 30,
+      "usablePenaltyRecords": 0,
+      "usableIds": []
+    },
+    "speedLimits": {
+      "total": 30,
+      "reviewedNumericLimits": 0
+    },
+    "malformedRecords": [],
+    "sourceFingerprint": "90f62bfb87ba4215d287af4cac7348f82ac69f69cc965db9c7643040e3c56309"
+  },
+  "records": [
+    {
+      "table": "provisions",
+      "id": "PROV_MVA_S3",
+      "sourceId": "SRC_MVA_1988",
+      "file": "legal_provisions.csv",
+      "row": 2,
+      "status": "eligible",
+      "reasons": [],
+      "resolutionCategories": []
+    },
+    {
+      "table": "provisions",
+      "id": "PROV_MVA_S39",
+      "sourceId": "SRC_MVA_1988",
+      "file": "legal_provisions.csv",
+      "row": 3,
+      "status": "eligible",
+      "reasons": [],
+      "resolutionCategories": []
+    },
+    {
+      "table": "provisions",
+      "id": "PROV_MVA_S112",
+      "sourceId": "SRC_MVA_1988",
+      "file": "legal_provisions.csv",
+      "row": 4,
+      "status": "eligible",
+      "reasons": [],
+      "resolutionCategories": []
+    },
+    {
+      "table": "provisions",
+      "id": "PROV_MVA_S129",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "legal_provisions.csv",
+      "row": 5,
+      "status": "conditional",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "provisions",
+      "id": "PROV_MVA_S146",
+      "sourceId": "SRC_MVA_1988",
+      "file": "legal_provisions.csv",
+      "row": 6,
+      "status": "eligible",
+      "reasons": [],
+      "resolutionCategories": []
+    },
+    {
+      "table": "provisions",
+      "id": "PROV_MVA_S177",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "legal_provisions.csv",
+      "row": 7,
+      "status": "conditional",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "provisions",
+      "id": "PROV_MVA_S184",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "legal_provisions.csv",
+      "row": 8,
+      "status": "conditional",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "LEGAL_REVIEW_PENDING",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "provisions",
+      "id": "PROV_MVA_S185",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "legal_provisions.csv",
+      "row": 9,
+      "status": "conditional",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "LEGAL_REVIEW_PENDING",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "provisions",
+      "id": "PROV_MVA_S194B",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "legal_provisions.csv",
+      "row": 10,
+      "status": "conditional",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "provisions",
+      "id": "PROV_BNS_S106_1",
+      "sourceId": "SRC_BNS_2023",
+      "file": "legal_provisions.csv",
+      "row": 11,
+      "status": "conditional",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "LEGAL_REVIEW_PENDING"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "provisions",
+      "id": "PROV_BNS_S106_2",
+      "sourceId": "SRC_BNS_2023",
+      "file": "legal_provisions.csv",
+      "row": 12,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "LEGAL_REVIEW_PENDING",
+        "PROVISION_NOT_ACTIVE"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review",
+        "remain_excluded_pending_commencement"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_APPLY_LEARNERS_LICENCE",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 2,
+      "status": "excluded",
+      "reasons": [
+        "PROCEDURE_NOT_VERIFIED",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED",
+        "STEP_DOCUMENT_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_APPLY_PERMANENT_DL",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 3,
+      "status": "excluded",
+      "reasons": [
+        "PROCEDURE_NOT_VERIFIED",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_RENEW_DL",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 4,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_DUPLICATE_DL",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 5,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_APPLY_IDP",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 6,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_NEW_VEHICLE_REGISTRATION",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 7,
+      "status": "excluded",
+      "reasons": [
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED",
+        "STEP_DOCUMENT_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_TEMP_REGISTRATION",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 8,
+      "status": "excluded",
+      "reasons": [
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_RENEW_RC",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 9,
+      "status": "excluded",
+      "reasons": [
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_DUPLICATE_RC",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 10,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_TRANSFER_OWNERSHIP_RC",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 11,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED",
+        "STEP_DOCUMENT_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_ADDRESS_CHANGE_RC",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 12,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "REQUIRED_REFERENCE_UNRESOLVED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_ADD_HYPOTHECATION",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 13,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_STEPS_MISSING",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_REMOVE_HYPOTHECATION",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 14,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_NOC_INTERSTATE_TRANSFER",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 15,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_ASSIGN_NEW_REGISTRATION_MARK",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 16,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_PAY_ROAD_TAX",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 17,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_REFERENCE_UNRESOLVED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_OBTAIN_PUC_CERTIFICATE",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 18,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_NOT_ELIGIBLE",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_FITNESS_CERTIFICATE_INITIAL",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 19,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_FITNESS_CERTIFICATE_RENEWAL",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 20,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_PERMIT_GOODS_CARRIAGE",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 21,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_PERMIT_PASSENGER_CARRIAGE",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 22,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_BH_SERIES_REGISTRATION",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 23,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_VEHICLE_SCRAPPING",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 24,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_PAY_ECHALLAN",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "procedures.csv",
+      "row": 25,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "LEGAL_BASIS_MISSING",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "SERVICE_REFERENCE_UNRESOLVED",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_CONTEST_ECHALLAN_COURT",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "procedures.csv",
+      "row": 26,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "LEGAL_BASIS_MISSING",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_FILE_FIR_ACCIDENT",
+      "sourceId": "SRC_MVA_1988",
+      "file": "procedures.csv",
+      "row": 27,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_NOT_ELIGIBLE",
+        "PROCEDURE_NOT_VERIFIED",
+        "REQUIRED_RECORD_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_FILE_MACT_CLAIM",
+      "sourceId": "SRC_MVA_1988",
+      "file": "procedures.csv",
+      "row": 28,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "STEP_DOCUMENT_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_APPLY_HITRUN_COMPENSATION_SCHEME",
+      "sourceId": "SRC_HITRUN_SCHEME_2022",
+      "file": "procedures.csv",
+      "row": 29,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_GOOD_SAMARITAN_PROTECTION_INVOKE",
+      "sourceId": "SRC_GOODSAMARITAN_2016",
+      "file": "procedures.csv",
+      "row": 30,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "procedures",
+      "id": "PROC_ADD_VEHICLE_CLASS_DL",
+      "sourceId": "SRC_CMVR_1989",
+      "file": "procedures.csv",
+      "row": 31,
+      "status": "excluded",
+      "reasons": [
+        "LEGAL_BASIS_MISSING",
+        "PROCEDURE_NOT_VERIFIED",
+        "PROCEDURE_STEPS_MISSING",
+        "REQUIRED_RECORD_NOT_VERIFIED",
+        "SERVICE_REFERENCE_UNRESOLVED"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_NO_LICENCE",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 2,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_UNAUTHORIZED_USE_WITHOUT_LICENCE",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 3,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROVISION_REFERENCE_MISSING",
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_DRIVING_DESPITE_DISQUALIFICATION",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 4,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROVISION_REFERENCE_MISSING",
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_NO_REGISTRATION",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 5,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_SPEEDING_LMV",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 6,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_SPEEDING_MCWG",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 7,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_SPEEDING_HGV",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 8,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_RACING_SPEED_TRIAL",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 9,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROVISION_REFERENCE_MISSING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_NO_HELMET",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 10,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_NO_SEATBELT",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 11,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_TRIPLE_RIDING_TWOWHEELER",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 12,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROVISION_REFERENCE_MISSING",
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_OVERLOADING_GOODS",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 13,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROVISION_REFERENCE_MISSING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_OVERLOADING_PASSENGERS",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 14,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROVISION_REFERENCE_MISSING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_NO_INSURANCE",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 15,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_DRUNK_DRIVING_FIRST",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 16,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "LEGAL_REVIEW_PENDING",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_DRUNK_DRIVING_REPEAT",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 17,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "LEGAL_REVIEW_PENDING",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_DANGEROUS_DRIVING_FIRST",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 18,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "LEGAL_REVIEW_PENDING",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_DANGEROUS_DRIVING_REPEAT",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 19,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "LEGAL_REVIEW_PENDING",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_DISOBEYING_AUTHORITY",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 20,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROVISION_REFERENCE_MISSING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_TRAVEL_WITHOUT_TICKET",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 21,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROVISION_REFERENCE_MISSING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_VEHICLE_WITHOUT_PERMIT",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 22,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROVISION_REFERENCE_MISSING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_AGGREGATOR_LICENCE_VIOLATION",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 23,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROVISION_REFERENCE_MISSING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_OVERSIZED_VEHICLE",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 24,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROVISION_REFERENCE_MISSING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_EMERGENCY_VEHICLE_OBSTRUCTION",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 25,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROVISION_REFERENCE_MISSING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_JUVENILE_DRIVING",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 26,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "PROVISION_REFERENCE_MISSING",
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_TAKING_VEHICLE_WITHOUT_CONSENT",
+      "sourceId": "SRC_MVA_1988",
+      "file": "offences_penalties.csv",
+      "row": 27,
+      "status": "excluded",
+      "reasons": [
+        "PROVISION_REFERENCE_MISSING",
+        "RECORD_LEGAL_REVIEW_PENDING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_GENERAL_RESIDUAL",
+      "sourceId": "SRC_MVAA_2019",
+      "file": "offences_penalties.csv",
+      "row": 28,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "OFFICIAL_URL_UNAVAILABLE",
+        "SOURCE_NOT_VERIFIED",
+        "SOURCE_REVIEW_DATE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_HIT_RUN_REPORTED",
+      "sourceId": "SRC_BNS_2023",
+      "file": "offences_penalties.csv",
+      "row": 29,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "LEGAL_REVIEW_PENDING",
+        "RECORD_LEGAL_REVIEW_PENDING"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_HIT_RUN_FLED",
+      "sourceId": "SRC_BNS_2023",
+      "file": "offences_penalties.csv",
+      "row": 30,
+      "status": "excluded",
+      "reasons": [
+        "COMMENCEMENT_NOT_ESTABLISHED",
+        "LEGAL_REVIEW_PENDING",
+        "PROVISION_NOT_ACTIVE",
+        "RECORD_LEGAL_REVIEW_PENDING"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "offences",
+      "id": "OFF_NO_PUC",
+      "sourceId": "",
+      "file": "offences_penalties.csv",
+      "row": 31,
+      "status": "excluded",
+      "reasons": [
+        "PROVISION_REFERENCE_MISSING",
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_REFERENCE_MISSING"
+      ],
+      "resolutionCategories": [
+        "authoritative_reference_lookup",
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_EXPWY_M1",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 2,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_EXPWY_HPMV",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 3,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_EXPWY_GOODS",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 4,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_EXPWY_2W_BAN",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 5,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_EXPWY_3W_BAN",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 6,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_NH4LANE_M1",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 7,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_NH_UNDIVIDED_M1",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 8,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_SH_UNDIVIDED_M1",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 9,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_MUNICIPAL_M1",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 10,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_MUNICIPAL_GOODS",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 11,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_MUNICIPAL_HPMV",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 12,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_NH_UNDIVIDED_GOODS",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 13,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_SH_UNDIVIDED_GOODS",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 14,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_HILLY_M1",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 15,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_HILLY_GOODS",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 16,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_KERALA_NH6LANE_M1",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 17,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_KERALA_NH6LANE_M2M3",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 18,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_MH_MUMBAI_PUNE_PLAIN",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 19,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_MH_MUMBAI_PUNE_GHAT",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 20,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_DL_MEERUT_EXPWY_LMV",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 21,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_DL_MEERUT_EXPWY_GOODS",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 22,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_TN_QUASHED_NOTIFICATION",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 23,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_AP_DEFAULT_MCWG",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 24,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_AP_DEFAULT_MPV",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 25,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_AP_DEFAULT_MGV",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 26,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_MH_DEFAULT_MCWG",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 27,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_MH_DEFAULT_MPV_MGV",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 28,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_MH_DEFAULT_HGV",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 29,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_CENTRAL_NH4LANE_MCWG",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 30,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    },
+    {
+      "table": "speed_limits",
+      "id": "SL_GENERIC_CONSTRUCTION_ZONE",
+      "sourceId": "SRC_SPEEDLIMIT_SO1522E_2018",
+      "file": "speed_limits.csv",
+      "row": 31,
+      "status": "excluded",
+      "reasons": [
+        "RECORD_LEGAL_REVIEW_PENDING",
+        "SOURCE_NOT_VERIFIED"
+      ],
+      "resolutionCategories": [
+        "qualified_legal_review"
+      ]
+    }
+  ],
+  "independentLegalReview": false
+}

@@ -1,0 +1,105 @@
+{
+  "environment": "production Next.js 16.3.4; real FastAPI; isolated SQLite; lexical-only browser-test index",
+  "matterId": "3f49dc35",
+  "syntheticNarrative": "Hindi with Tamil Nadu, 2026-07-09, expressway, car and 90 km/h",
+  "journey": [
+    "Home",
+    "Understand",
+    "Verify",
+    "Guidance",
+    "Summary"
+  ],
+  "individualFactConfirmations": 5,
+  "pagesAt320px": [
+    {
+      "page": "Home",
+      "viewportWidth": 320,
+      "documentScrollWidth": 305,
+      "horizontalOverflow": false
+    },
+    {
+      "page": "Understand",
+      "viewportWidth": 320,
+      "documentScrollWidth": 305,
+      "horizontalOverflow": false
+    },
+    {
+      "page": "Verify",
+      "viewportWidth": 320,
+      "documentScrollWidth": 305,
+      "horizontalOverflow": false
+    },
+    {
+      "page": "Guidance",
+      "viewportWidth": 320,
+      "documentScrollWidth": 305,
+      "horizontalOverflow": false
+    },
+    {
+      "page": "Summary",
+      "viewportWidth": 320,
+      "documentScrollWidth": 305,
+      "horizontalOverflow": false
+    }
+  ],
+  "contentObserved": {
+    "verifiedFacts": true,
+    "evidenceId": "EVID:PROV_MVA_S112",
+    "sourceURLVisible": true,
+    "uncertaintiesVisible": true,
+    "generationProvenanceVisible": true,
+    "modelsUnavailableDisabled": true
+  },
+  "foundAndPatched": [
+    "320px brand/language/progress labels wrapping badly",
+    "Mobile Open navigation had no action",
+    "Guidance snapshot filtered production fact identifiers by mock identifiers"
+  ],
+  "finalPatchesBrowserRechecked": false,
+  "otherMobileWidthsVerified": false,
+  "summaryRefreshVerifiedThisRun": false,
+  "pdf": {
+    "printButtonInvoked": true,
+    "savedPDFVerified": true,
+    "reason": "IAB print action timed out and exposed no save dialog; native Chrome approval was granted by user, but computer-use then stopped because current URL could not be confidently verified",
+    "artifactInspection": {
+      "path": "D:\\Documents\\Nyaya_Saarthi\\report.pdf",
+      "sha256": "06b2225eccd2a0b0b48581de7bcbfc39b93c91390a2ebb8677c3c1e47c9dfd14",
+      "pages": 5,
+      "producer": "Microsoft: Print To PDF",
+      "title": "NyayaSaarthi",
+      "creationRoute": "not independently established; file appeared in workspace after the print attempt; native automation had stopped",
+      "allPagesRenderedAndVisuallyInspected": true,
+      "verifiedContent": [
+        "five confirmed facts",
+        "Hindi narrative and car label readable",
+        "EVID:PROV_MVA_S112",
+        "government source URL",
+        "three deterministic uncertainty statements",
+        "generation method, timestamp, fallback, index and source fingerprint"
+      ],
+      "noObservedTextClippingOrMissingHindiGlyphs": true,
+      "textExtraction": "empty on all pages; artifact is not text-searchable through pypdf extraction",
+      "observedLayoutDefects": [
+        "fact labels split from values between pages 1 and 2",
+        "provenance paragraph split between pages 2 and 3",
+        "empty mapping/action sections"
+      ],
+      "codeFixes": [
+        "keep each fact/provenance block together in print",
+        "explicit empty mapping/procedure text",
+        "prevent summary section number wrapping"
+      ],
+      "freshExportAfterPaginationFixVerified": false,
+      "finalCorpusIndexExportVerified": false,
+      "renderedPages": [
+        "backend/experiments/pdf_preview/page-1.png",
+        "backend/experiments/pdf_preview/page-2.png",
+        "backend/experiments/pdf_preview/page-3.png",
+        "backend/experiments/pdf_preview/page-4.png",
+        "backend/experiments/pdf_preview/page-5.png"
+      ]
+    }
+  },
+  "independentUserAcceptanceTesting": false
+}

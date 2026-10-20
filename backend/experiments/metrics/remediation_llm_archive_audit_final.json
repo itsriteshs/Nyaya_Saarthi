@@ -1,0 +1,51 @@
+{
+  "kind": "archived replay, not new inference",
+  "frozenEvidenceSHA256": "0664014e964b86683b9aa7412f1e1711c6ea86fc7b420cff131a016c2f3fdbf3",
+  "models": {
+    "llama3.2-3b": {
+      "cells": 9,
+      "generatedOutputs": 0,
+      "accepted": 0,
+      "acceptanceRate": null,
+      "fallbackCells": 0,
+      "reasons": {},
+      "archivedOutputs": 9,
+      "originalAccepted": 3,
+      "replayAccepted": 1,
+      "replayReasons": {
+        "UNLINKED_CLAIM": 3,
+        "OUTPUT_LANGUAGE_MISMATCH": 6
+      }
+    },
+    "mistral-7b": {
+      "cells": 9,
+      "generatedOutputs": 0,
+      "accepted": 0,
+      "acceptanceRate": null,
+      "fallbackCells": 0,
+      "reasons": {},
+      "archivedOutputs": 9,
+      "originalAccepted": 1,
+      "replayAccepted": 0,
+      "replayReasons": {
+        "UNLINKED_CLAIM": 5,
+        "INSUFFICIENT_CITED_EVIDENCE": 1,
+        "OUTPUT_LANGUAGE_MISMATCH": 5
+      }
+    }
+  },
+  "runtime": {
+    "runtime": "unreachable",
+    "models": {
+      "llama3.2-3b": {
+        "status": "runtime_unreachable",
+        "available": false
+      },
+      "mistral-7b": {
+        "status": "runtime_unreachable",
+        "available": false
+      }
+    }
+  },
+  "semanticSupportIndependentlyReviewed": false
+}

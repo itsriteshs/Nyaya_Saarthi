@@ -4,6 +4,8 @@ import { Menu, Scale, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import { useMatter } from "@/providers/MatterProvider";
+import type { LanguageOption } from "@/types/nlp";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -14,6 +16,7 @@ const navItems = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { intakeLanguage, setIntakeLanguage } = useMatter();
 
   function focusIntake() {
     document.getElementById("home")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -57,8 +60,10 @@ export function Header() {
           <select
             id="site-language"
             className="h-11 rounded-md border border-[#DED7CA] bg-[#FBF8F1] px-3 text-sm font-bold text-[#18150F]"
-            defaultValue="english"
+            value={intakeLanguage}
+            onChange={(event) => setIntakeLanguage(event.target.value as LanguageOption)}
           >
+            <option value="auto">Auto</option>
             <option value="english">English</option>
             <option value="hindi">Hindi</option>
             <option value="hinglish">Hinglish</option>
@@ -100,9 +105,11 @@ export function Header() {
         <div className="mt-4 grid gap-3 border-t border-[#DED7CA] pt-4">
           <select
             className="h-11 rounded-md border border-[#DED7CA] bg-[#FBF8F1] px-3 text-sm font-bold"
-            defaultValue="english"
+            value={intakeLanguage}
+            onChange={(event) => setIntakeLanguage(event.target.value as LanguageOption)}
             aria-label="Language"
           >
+            <option value="auto">Auto</option>
             <option value="english">English</option>
             <option value="hindi">Hindi</option>
             <option value="hinglish">Hinglish</option>

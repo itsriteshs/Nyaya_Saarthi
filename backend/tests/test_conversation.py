@@ -82,7 +82,9 @@ def test_multilingual_templates_and_relative_date(client):
     assert any('\u0900' <= character <= '\u097f' for character in hindi['currentQuestion']['question'])
     _,hinglish=_analyzed(client,'Mera challan kat gaya',language='hinglish')
     assert hinglish['currentQuestion']
-    assert 'hai' in hinglish['currentQuestion']['question'].lower() or 'kab' in hinglish['currentQuestion']['question'].lower()
+    from app.services.nlp.ontology import ontology
+    expected_templates={r['question_template_hinglish'] for group in ontology()['slots'].values() for r in group}
+    assert hinglish['currentQuestion']['question'] in expected_templates
     _,dated=_analyzed(client,'My insurance expired yesterday',reference='2026-10-19T15:00:00+05:30')
     assert any(f['key']=='EVENT_DATE' and f['normalizedValue']=='2026-10-18' for f in dated['facts'])
 

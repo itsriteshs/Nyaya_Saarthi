@@ -1,0 +1,36 @@
+{
+  "causes": {
+    "normalization_ambiguity_or_conflict_fp": 319,
+    "extraction_absence_fp": 385,
+    "schema_label_disagreement_fp": 153
+  },
+  "fpBySlot": {
+    "VEHICLE_CLASS": 368,
+    "CHALLAN_DATE": 68,
+    "USER_ROLE": 72,
+    "INJURY_PRESENT": 85,
+    "RC_STATUS": 44,
+    "STATE": 57,
+    "LOCATION": 16,
+    "INSURANCE_STATUS": 23,
+    "DESTINATION_STATE": 22,
+    "PUC_STATUS": 18,
+    "EVENT_DATE": 24,
+    "LICENCE_EXPIRY_DATE": 34,
+    "EVIDENCE_AVAILABLE": 16,
+    "OTHER_VEHICLE_IDENTIFIED": 8,
+    "LICENCE_STATUS": 2
+  },
+  "fnBySlot": {
+    "INSURANCE_STATUS": 6,
+    "INJURY_PRESENT": 5,
+    "DEATH_PRESENT": 9,
+    "EVENT_DATE": 3,
+    "RC_STATUS": 10,
+    "LICENCE_STATUS": 4,
+    "USER_ROLE": 22,
+    "STATE": 2,
+    "OTHER_VEHICLE_IDENTIFIED": 3,
+    "VEHICLE_CLASS": 3
+  }
+}

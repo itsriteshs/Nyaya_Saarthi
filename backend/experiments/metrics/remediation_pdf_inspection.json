@@ -1,0 +1,38 @@
+{
+  "path": "D:\\Documents\\Nyaya_Saarthi\\report.pdf",
+  "sha256": "06b2225eccd2a0b0b48581de7bcbfc39b93c91390a2ebb8677c3c1e47c9dfd14",
+  "pages": 5,
+  "producer": "Microsoft: Print To PDF",
+  "title": "NyayaSaarthi",
+  "creationRoute": "not independently established; file appeared in workspace after the print attempt; native automation had stopped",
+  "allPagesRenderedAndVisuallyInspected": true,
+  "verifiedContent": [
+    "five confirmed facts",
+    "Hindi narrative and car label readable",
+    "EVID:PROV_MVA_S112",
+    "government source URL",
+    "three deterministic uncertainty statements",
+    "generation method, timestamp, fallback, index and source fingerprint"
+  ],
+  "noObservedTextClippingOrMissingHindiGlyphs": true,
+  "textExtraction": "empty on all pages; artifact is not text-searchable through pypdf extraction",
+  "observedLayoutDefects": [
+    "fact labels split from values between pages 1 and 2",
+    "provenance paragraph split between pages 2 and 3",
+    "empty mapping/action sections"
+  ],
+  "codeFixes": [
+    "keep each fact/provenance block together in print",
+    "explicit empty mapping/procedure text",
+    "prevent summary section number wrapping"
+  ],
+  "freshExportAfterPaginationFixVerified": false,
+  "finalCorpusIndexExportVerified": false,
+  "renderedPages": [
+    "backend/experiments/pdf_preview/page-1.png",
+    "backend/experiments/pdf_preview/page-2.png",
+    "backend/experiments/pdf_preview/page-3.png",
+    "backend/experiments/pdf_preview/page-4.png",
+    "backend/experiments/pdf_preview/page-5.png"
+  ]
+}

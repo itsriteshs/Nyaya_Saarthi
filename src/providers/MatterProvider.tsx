@@ -3,10 +3,13 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { loadStoredMatter, saveStoredMatter } from "@/lib/matter-storage";
 import type { MatterContext } from "@/types/matter";
+import type { LanguageOption } from "@/types/nlp";
 
 interface MatterProviderValue {
   matter: MatterContext | null;
   restored: boolean;
+  intakeLanguage: LanguageOption;
+  setIntakeLanguage: (language: LanguageOption) => void;
   setMatter: (matter: MatterContext | null) => void;
   updateMatter: (updater: (matter: MatterContext) => MatterContext) => void;
 }
@@ -16,6 +19,7 @@ const MatterContextValue = createContext<MatterProviderValue | undefined>(undefi
 export function MatterProvider({ children }: { children: React.ReactNode }) {
   const [matter, setMatterState] = useState<MatterContext | null>(null);
   const [restored, setRestored] = useState(false);
+  const [intakeLanguage, setIntakeLanguage] = useState<LanguageOption>("auto");
 
   // Keep the server and first client render identical, then restore this tab's
   // persisted matter after hydration.
@@ -48,10 +52,12 @@ export function MatterProvider({ children }: { children: React.ReactNode }) {
     () => ({
       matter,
       restored,
+      intakeLanguage,
+      setIntakeLanguage,
       setMatter,
       updateMatter,
     }),
-    [matter, restored, setMatter, updateMatter],
+    [matter, restored, intakeLanguage, setMatter, updateMatter],
   );
 
   return <MatterContextValue.Provider value={value}>{children}</MatterContextValue.Provider>;

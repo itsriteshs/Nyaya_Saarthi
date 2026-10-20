@@ -1,5 +1,6 @@
 """Ground entity normalization in vehicle and jurisdiction CSV vocabularies."""
 from datetime import date,datetime
+import re
 from app.services.nlp.ontology import ontology
 
 VEHICLE_ALIASES={
@@ -24,12 +25,12 @@ def normalize(entity):
         if len(options)==1:e.update(normalizedValue=ontology()['vehicles'][options[0]]['common_name'],normalizedId=options[0],status='resolved')
         elif options:e.update(normalizedValue='Vehicle class needs clarification',status='ambiguous')
         e['vocabularySource']='vehicle_classes.csv + documented informal aliases'
-    elif kind=='STATE':
+    elif kind in {'STATE','DESTINATION_STATE'}:
         lookup={r['state_ut_name'].casefold():r for r in ontology()['jurisdictions'].values() if r['jurisdiction_level']!='CENTRAL'}
         key=raw.casefold().replace('tamilnadu','tamil nadu')
         if key in lookup:e.update(normalizedValue=lookup[key]['state_ut_name'],normalizedId=lookup[key]['jurisdiction_id'],status='resolved')
         e['vocabularySource']='jurisdictions.csv'
-    elif kind=='EVENT_DATE':
+    elif kind.endswith('_DATE'):
         try:
             if e['method']=='ambiguous_relative_date':return e
             if e['method']=='relative_date':day=date.fromisoformat(value)
@@ -42,16 +43,26 @@ def normalize(entity):
         e.update(normalizedValue=str(int(value)),status='resolved',vocabularySource='provisional AGE extractor; absent from slot_schema.csv')
     elif kind=='ROAD_TYPE':
         e.update(normalizedValue=raw.casefold(),status='resolved',vocabularySource='road-type phrase rules')
-    elif kind in {'INSURANCE_STATUS','CHALLAN_STATUS','LICENCE_STATUS'}:
+    elif kind in {'INSURANCE_STATUS','CHALLAN_STATUS','LICENCE_STATUS','RC_STATUS','PUC_STATUS','FITNESS_STATUS','PERMIT_STATUS'}:
         lower=raw.casefold()
-        negative=any(s in lower for s in ('no ','without ','not ','n.t ','नहीं'))
+        negative=bool(re.search(r"\b(?:no|without|not|invalid|didn't|don't)\b|नहीं",lower))
         if 'unknown' in lower:
             e.update(normalizedValue='unknown',status='unresolved',vocabularySource='annotation status vocabulary')
         else:
-            terms=('under dispute','referred to court','disqualified','suspended','seized',
+            terms=('under dispute','referred to court','disqualified','suspended','seized','cancelled','transferred',
                    'unpaid','paid','issued','expired','lapsed','active','valid')
-            identified=next((term for term in terms if term in lower),None)
+            identified=next((term for term in terms if re.search(r'(?<!\w)'+re.escape(term)+r'(?!\w)',lower)),None)
+            if kind=='CHALLAN_STATUS' and re.search(r'\b(?:received|got)\b|कटा|मिला|\bkat gaya\b',lower):identified='issued'
             e.update(normalizedValue='absent' if negative else identified,
                      status='resolved' if negative or identified else 'unresolved',
                      vocabularySource='annotation status vocabulary and negation rules')
+    elif e.get('method') in {'explicit_schema_label','explicit_role'}:
+        rows=[r for group in ontology()['slots'].values() for r in group if r['slot_name']==kind]
+        allowed={v.casefold().replace('_',' '):v.casefold() for r in rows for v in r['allowed_values'].split('|')}
+        key=value.casefold().replace('_',' ')
+        if kind=='USER_ROLE' and key.startswith('vehicle '):key=key.removeprefix('vehicle ')
+        if key in allowed and key not in {'unknown','uncertain'}:
+            e.update(normalizedValue=allowed[key],status='resolved',vocabularySource='slot_schema.csv explicit value')
+        elif any(r['data_type']=='string' for r in rows):
+            e.update(normalizedValue=value,status='resolved',vocabularySource='explicit labelled text; not inferred')
     return e

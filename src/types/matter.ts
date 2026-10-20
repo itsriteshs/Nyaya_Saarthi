@@ -86,9 +86,15 @@ export interface GuidanceResult {
     generationMethod?: string;
     requestedModel?: string;
     requestedLanguage?: string;
+    outputLanguage?: string;
     fallbackUsed?: boolean;
     failureReason?: string;
     evidencePackageId?: string;
+    modelCheckpoint?: string;
+    installedDigest?: string;
+    generationTimestamp?: string;
+    promptVersion?: string;
+    sourceFingerprint?: string;
   };
 }
 
