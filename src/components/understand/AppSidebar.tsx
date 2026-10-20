@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ClipboardCheck, FileCheck2, FileText, Home, Scale, Settings, ShieldCheck } from "lucide-react";
+import { ClipboardCheck, FileCheck2, FileText, Scale, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -7,7 +7,6 @@ const navItems = [
   { key: "verify", label: "Verify", href: "/verify", icon: FileCheck2 },
   { key: "guidance", label: "Guidance", href: "/guidance", icon: Scale },
   { key: "summary", label: "Summary", href: "/summary", icon: FileText },
-  { key: "matters", label: "My Matters", href: "#", icon: Home },
 ];
 
 interface AppSidebarProps {
@@ -64,10 +63,7 @@ export function AppSidebar({ currentStep = "understand" }: AppSidebarProps) {
       </nav>
 
       <div className="border-t border-white/10 p-3">
-        <button className="flex min-h-11 w-full items-center gap-3 rounded-md px-3 text-sm font-extrabold text-[#E8DDCC] transition-colors hover:bg-white/8 hover:text-white">
-          <Settings size={17} aria-hidden="true" />
-          Settings
-        </button>
+
         <div className="mt-4 rounded-md border border-white/10 p-3 text-xs font-semibold leading-5 text-[#D8CCBA]">
           <ShieldCheck size={16} className="mb-2 text-[#C49A55]" aria-hidden="true" />
           Context is reviewed before law retrieval.

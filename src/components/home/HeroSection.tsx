@@ -27,10 +27,10 @@ export function HeroSection() {
   const router = useRouter();
   const { setMatter, intakeLanguage: language, setIntakeLanguage: setLanguage } = useMatter();
   const [situation, setSituation] = useState("");
-  const [analysisInput, setAnalysisInput] = useState(defaultSituation);
+  const [analysisInput, setAnalysisInput] = useState(demoMode ? defaultSituation : "");
   const [activeTopic, setActiveTopic] = useState<TopicId>("traffic");
   const [realPreview, setRealPreview] = useState<MockNlpResult>(emptyPreview);
-  const [previewLoading, setPreviewLoading] = useState(!demoMode);
+  const [previewLoading, setPreviewLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -38,10 +38,11 @@ export function HeroSection() {
     motorLawTopics.find((topic) => topic.id === activeTopic) ?? motorLawTopics[0];
 
   const demoPreview = useMemo(() => demoMode ? analyzeSituation(analysisInput) : emptyPreview, [analysisInput]);
-  const preview = demoMode ? demoPreview : realPreview;
+  const preview = demoMode ? demoPreview : (!analysisInput.trim() || previewLoading ? emptyPreview : realPreview);
 
   useEffect(() => {
     if (demoMode) return;
+    if (!analysisInput.trim()) return;
     const controller = new AbortController();
     const timer = window.setTimeout(async () => {
       try {
@@ -60,10 +61,10 @@ export function HeroSection() {
   }, [analysisInput, language]);
 
   function handleSituationChange(value: string) {
-    setPreviewLoading(true);
+    setPreviewLoading(!!value.trim());
     setError("");
     setSituation(value);
-    setAnalysisInput(value.trim() ? value : activeTopicData.example);
+    setAnalysisInput(value);
   }
 
   function handleExampleSelect(example: string) {
@@ -77,7 +78,7 @@ export function HeroSection() {
     const selected = motorLawTopics.find((item) => item.id === topic);
     setActiveTopic(topic);
 
-    if (!situation.trim() && selected) {
+    if (demoMode && !situation.trim() && selected) {
       setPreviewLoading(true);
       setAnalysisInput(selected.example);
     }
@@ -85,7 +86,11 @@ export function HeroSection() {
 
   async function handleSubmit() {
     if (submitting) return;
-    const nextInput = situation.trim() || activeTopicData.example;
+    const nextInput = situation.trim() || (demoMode ? activeTopicData.example : "");
+    if (!nextInput) {
+      setError("Please describe your situation or select an example before continuing.");
+      return;
+    }
     setSituation(nextInput);
     setAnalysisInput(nextInput);
     if (demoMode) {
@@ -108,12 +113,12 @@ export function HeroSection() {
   }
 
   function handleReset() {
-    setPreviewLoading(true);
+    setPreviewLoading(demoMode);
     setError("");
     setSituation("");
     setLanguage("auto");
     setActiveTopic("traffic");
-    setAnalysisInput(defaultSituation);
+    setAnalysisInput(demoMode ? defaultSituation : "");
   }
 
   return (

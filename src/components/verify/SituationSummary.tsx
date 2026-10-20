@@ -34,6 +34,13 @@ export function SituationSummary({ matter }: SituationSummaryProps) {
 }
 
 function buildSummary(matter: MatterContext) {
+  if (matter.nlpAnalysis) {
+    const facts = matter.facts.filter((item) => item.state !== "unknown");
+    return facts.length
+      ? facts.map((item) => `${item.label}: ${item.value}${item.normalizedValue && item.normalizedValue !== item.value ? ` (${item.normalizedValue})` : ""}${item.resolutionStatus === "ambiguous" || item.resolutionStatus === "unresolved" ? " (needs clarification)" : ""}`).join(". ")
+      : "No structured facts have been established. Review the original description and unresolved context.";
+  }
+
   const fact = (id: string) => matter.facts.find((item) => item.id === id)?.value;
   const vehicle = fact("vehicle_type");
   const speed = fact("speed");

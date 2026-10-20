@@ -24,3 +24,5 @@ backend/experiments/*.db
 backend/experiments/*.db-*
 backend/experiments/remediation_browser_index/
 backend/experiments/remediation_http_index/
+
+.next-uat/

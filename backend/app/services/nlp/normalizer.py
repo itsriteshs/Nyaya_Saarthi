@@ -8,7 +8,7 @@ VEHICLE_ALIASES={
     'auto-rickshaw':['VC_THREE_WHEELER_TRANSPORT'],'auto rickshaw':['VC_THREE_WHEELER_TRANSPORT'],
     'e-rickshaw':['VC_E_RICKSHAW'],
     'bike':['VC_MCWG','VC_MCWOG'],'motorcycle':['VC_MCWG','VC_MCWOG'],
-    'मोटरसाइकिल':['VC_MCWG','VC_MCWOG'],'scooter':['VC_MCWG','VC_MCWOG'],'स्कूटर':['VC_MCWG','VC_MCWOG'],
+    'बाइक':['VC_MCWG','VC_MCWOG'],'मोटरसाइकिल':['VC_MCWG','VC_MCWOG'],'scooter':['VC_MCWG','VC_MCWOG'],'स्कूटर':['VC_MCWG','VC_MCWOG'],
     'bus':['VC_OMNIBUS','VC_MPV','VC_HPMV'],'बस':['VC_OMNIBUS','VC_MPV','VC_HPMV'],
     'truck':['VC_MGV','VC_HGV'],'lorry':['VC_MGV','VC_HGV'],
 }

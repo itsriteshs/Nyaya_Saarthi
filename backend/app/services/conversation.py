@@ -94,9 +94,21 @@ def recompute(context):
     context['stage']='READY_FOR_REVIEW' if conv['reviewEligible'] else 'NEEDS_CLARIFICATION'
     return context
 
+def needs_urgent_assistance(text):
+    # Evaluate each injury mention independently: negating one must not hide another.
+    for match in re.finditer(r'\b(?:injur(?:y|ies|ed)|bleeding|unconscious)\b|घायल|खून बह|बेहोश|serious accident|गंभीर दुर्घटना',text,re.I):
+        prefix=re.split(r'[.!?;।,]|\bbut\b',text[:match.start()],flags=re.I)[-1]
+        if re.search(r'\b(?:no|not|nobody|none|without)\b[^.!?;।,]{0,35}$',prefix,re.I):
+            continue
+        suffix=text[match.end():match.end()+20]
+        if re.match(r'\s*(?:नहीं|नही)',suffix):continue
+        return True
+    return False
+
+
 def initialize(context):
     conv=state(context);conv['displayLanguage']=_language(context)
-    conv['urgentAssistance']=bool(re.search(r'(?:injur(?:y|ed)|घायल|serious accident|गंभीर दुर्घटना)',context['originalText'],re.I))
+    conv['urgentAssistance']=needs_urgent_assistance(context['originalText'])
     for index,fact in enumerate(context['facts']):
         entity=context['nlpAnalysis']['entities'][index]
         fact.update(normalizedValue=entity.get('normalizedValue'),normalizedId=entity.get('normalizedId'),

@@ -1,0 +1,15 @@
+﻿bug_id,severity,reproduction,root_cause,affected_module,fix_status,regression_status
+UAT001,High,Sparse speed classified parking,TF-IDF classification/generalization,nlp/intent_classifier.py,UNRESOLVED,Browser baseline recorded
+UAT002,High,Hindi speed/expiry and PUC wrong workflows,Intent model and limited extraction,nlp,PARTIALLY FIXED,Hindi speed/vehicle unit+HTTP pass; intent unresolved
+UAT003,High,Bleeding misses emergency; nobody injured triggers it,Narrow regex and missing negation,conversation.py; ConversationPanel.tsx,FIXED,Detection tests and actual bleeding/no-injury browser regressions pass
+UAT004,High,Empty Home analyzes/submits sample,Default example substitution in real mode,HeroSection.tsx,FIXED,Empty view and empty-submit validation inspected
+UAT005,High,Verify says user driving regardless of facts,Demo ID lookup and unconditional prose,SituationSummary.tsx,FIXED,Actual Kerala70 Verify summary inspected
+UAT006,Medium,I am17 age missing,Limited age span pattern,entity_extractor.py,FIXED,Nearby ages16/19/42 tests and live19HTTP
+UAT007,High,Expired licence associated with insurance,Vocabulary cue crosses clause,entity_extractor.py,FIXED,Clause regression and liveHTTP
+UAT008,High,Turbopack crashes reading backend report,Tailwind scans changing backend files on Windows,globals.css,PARTIALLY FIXED,Scoped src; dev page recovered
+UAT009,High,Guidance first request timeout,Cold retrieval/resource latency unresolved,legal/index.py,UNRESOLVED,Retry with bounded thread runtime succeeded; root cause not proved
+UAT010,High,Pasta routed to insurance,No effective OOD gate,intent_classifier.py,UNRESOLVED,Browser observed
+UAT011,High,Both models unavailable,Ollama unreachable/not discovered,runtime,BLOCKED,GET models available=false
+UAT012,Medium,Print no saved PDF,Browser export interaction limitation,Summary/browser,BLOCKED,Invocation timed out; no file claimed
+UAT013,Medium,Copy says Copied but clipboard read empty,Clipboard bridge or application unresolved,Summary/browser,NOT VERIFIED,No actual clipboard acceptance
+UAT014,High,Witness/multiple vehicles flattened,Single vehicle slot and weak role extraction,nlp/conversation,UNRESOLVED,Scenario12 browser baseline

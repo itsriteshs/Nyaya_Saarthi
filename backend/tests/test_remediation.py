@@ -86,3 +86,21 @@ def test_known_server_uncertainty_does_not_assert_an_outcome():
         assert 'DEFINITE_OUTCOME' in validate(bad,evidence)['reasonCodes']
     bad=parse_response(json.dumps(output(uncertainties=['The penalty is payable.'])))
     assert 'DEFINITE_OUTCOME' in validate(bad,evidence)['reasonCodes']
+
+
+def test_explicit_age_and_hindi_speed_variations():
+    from app.services.nlp.entity_extractor import extract
+    from app.services.nlp.normalizer import normalize
+    for age in [16, 19, 42]:
+        entities=extract(f'I am {age} and applying for a licence',status_values={})
+        assert any(e['type']=='AGE' and e['value']==str(age) for e in entities)
+    for speed in [45, 75, 110]:
+        entities=[normalize(e) for e in extract(f'बाइक की स्पीड {speed} किलोमीटर प्रति घंटा',status_values={})]
+        assert any(e['type']=='OBSERVED_SPEED' and e['normalizedValue']==str(speed) for e in entities)
+        assert any(e['type']=='VEHICLE_CLASS' and e['status']=='ambiguous' for e in entities)
+
+
+def test_status_phrases_do_not_cross_clause_boundaries():
+    from app.services.nlp.entity_extractor import extract
+    entities=extract('My licence expired, my insurance is over.',status_values={'INSURANCE_STATUS':['expired']})
+    assert not any(e['type']=='INSURANCE_STATUS' for e in entities)

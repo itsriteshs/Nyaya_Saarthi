@@ -29,6 +29,11 @@ export function ConversationPanel({ context, onAnswer, busy = false, error = "" 
           </p>
         </div>
 
+        {context.conversation?.urgentAssistance ? (
+          <div role="alert" className="mx-4 mt-4 rounded-md border border-red-400 bg-red-50 p-4 text-base font-bold leading-7 text-red-900">
+            {context.messages.find((message) => message.id === "urgent-assistance")?.text}
+          </div>
+        ) : null}
         <div className="space-y-4 px-4 py-5 sm:px-6">
           {context.messages.map((message) => (
             <ConversationMessage key={message.id} message={message} />

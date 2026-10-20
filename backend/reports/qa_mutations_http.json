@@ -1,0 +1,788 @@
+[
+  {
+    "input": "I drove a car at 60 km/h on a city road in Kerala on 2026-10-19",
+    "seconds": 0.027244299999438226,
+    "result": {
+      "inputText": "I drove a car at 60 km/h on a city road in Kerala on 2026-10-19",
+      "normalizedText": "i drove a car at 60 km/h on a city road in kerala on 2026-10-19",
+      "language": {
+        "requestedLanguage": "english",
+        "detectedLanguage": "uncertain",
+        "confidenceCategory": "low",
+        "evidence": "Character TF-IDF language classifier; decision gap 1.359 (not probability)",
+        "candidateLanguage": "english"
+      },
+      "intent": {
+        "id": "INT002",
+        "name": "TRAFFIC_SPEEDING",
+        "domain": "Traffic",
+        "score": 0.094,
+        "scoreType": "SVM decision margin gap, not probability",
+        "marginGap": 0.7313,
+        "alternatives": [
+          {
+            "id": "INT009",
+            "name": "WRONG_WAY_DRIVING",
+            "score": -0.6373
+          },
+          {
+            "id": "INT050",
+            "name": "ACCIDENT_POLICE_REPORTING",
+            "score": -0.8763
+          },
+          {
+            "id": "INT022",
+            "name": "LICENCE_CLASS_REQUIREMENT",
+            "score": -0.9947
+          }
+        ],
+        "needsClarification": true,
+        "modelVersion": "tfidf-intent-grouped-v1"
+      },
+      "entities": [
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "car",
+          "value": "car",
+          "normalizedValue": "Motor Car",
+          "normalizedId": "VC_MOTORCAR",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MOTORCAR"
+          ],
+          "start": 10,
+          "end": 13,
+          "method": "rule"
+        },
+        {
+          "type": "OBSERVED_SPEED",
+          "text": "60 km/h",
+          "value": "60",
+          "normalizedValue": "60",
+          "status": "resolved",
+          "vocabularySource": "unit pattern",
+          "alternatives": [],
+          "unit": "km/h",
+          "approximate": false,
+          "start": 17,
+          "end": 24,
+          "method": "rule"
+        },
+        {
+          "type": "ROAD_TYPE",
+          "text": "city road",
+          "value": "city road",
+          "normalizedValue": "city road",
+          "status": "resolved",
+          "vocabularySource": "road-type phrase rules",
+          "alternatives": [],
+          "start": 30,
+          "end": 39,
+          "method": "rule"
+        },
+        {
+          "type": "STATE",
+          "text": "Kerala",
+          "value": "Kerala",
+          "normalizedValue": "Kerala",
+          "normalizedId": "JX_IN_KL",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": [],
+          "start": 43,
+          "end": 49,
+          "method": "rule"
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "2026-10-19",
+          "value": "2026-10-19",
+          "normalizedValue": "2026-10-19",
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": [],
+          "start": 53,
+          "end": 63,
+          "method": "rule"
+        }
+      ],
+      "missingSlots": [],
+      "unresolvedSlots": [
+        {
+          "slot": "LOCATION",
+          "reason": "condition_not_implemented",
+          "condition": "only_when_relevant_to_rule_or_situation",
+          "present": false
+        }
+      ],
+      "readiness": {
+        "found": 3,
+        "total": 3,
+        "percentage": 99,
+        "status": "conditional_unresolved"
+      },
+      "warnings": [
+        "Intent classifier is uncertain; review alternatives before relying on the selected intent.",
+        "Language could not be identified confidently.",
+        "Some conditional slot requirements could not be resolved in Phase 2."
+      ],
+      "modelVersion": "tfidf-intent-grouped-v1"
+    }
+  },
+  {
+    "input": "I drove a car at 60 km/h on a city road in Tamil Nadu on 2026-10-19",
+    "seconds": 0.004324599984101951,
+    "result": {
+      "inputText": "I drove a car at 60 km/h on a city road in Tamil Nadu on 2026-10-19",
+      "normalizedText": "i drove a car at 60 km/h on a city road in tamil nadu on 2026-10-19",
+      "language": {
+        "requestedLanguage": "english",
+        "detectedLanguage": "uncertain",
+        "confidenceCategory": "low",
+        "evidence": "Character TF-IDF language classifier; decision gap 1.348 (not probability)",
+        "candidateLanguage": "english"
+      },
+      "intent": {
+        "id": "INT002",
+        "name": "TRAFFIC_SPEEDING",
+        "domain": "Traffic",
+        "score": 0.0522,
+        "scoreType": "SVM decision margin gap, not probability",
+        "marginGap": 0.6942,
+        "alternatives": [
+          {
+            "id": "INT009",
+            "name": "WRONG_WAY_DRIVING",
+            "score": -0.642
+          },
+          {
+            "id": "INT050",
+            "name": "ACCIDENT_POLICE_REPORTING",
+            "score": -0.8683
+          },
+          {
+            "id": "INT022",
+            "name": "LICENCE_CLASS_REQUIREMENT",
+            "score": -0.9795
+          }
+        ],
+        "needsClarification": true,
+        "modelVersion": "tfidf-intent-grouped-v1"
+      },
+      "entities": [
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "car",
+          "value": "car",
+          "normalizedValue": "Motor Car",
+          "normalizedId": "VC_MOTORCAR",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MOTORCAR"
+          ],
+          "start": 10,
+          "end": 13,
+          "method": "rule"
+        },
+        {
+          "type": "OBSERVED_SPEED",
+          "text": "60 km/h",
+          "value": "60",
+          "normalizedValue": "60",
+          "status": "resolved",
+          "vocabularySource": "unit pattern",
+          "alternatives": [],
+          "unit": "km/h",
+          "approximate": false,
+          "start": 17,
+          "end": 24,
+          "method": "rule"
+        },
+        {
+          "type": "ROAD_TYPE",
+          "text": "city road",
+          "value": "city road",
+          "normalizedValue": "city road",
+          "status": "resolved",
+          "vocabularySource": "road-type phrase rules",
+          "alternatives": [],
+          "start": 30,
+          "end": 39,
+          "method": "rule"
+        },
+        {
+          "type": "STATE",
+          "text": "Tamil Nadu",
+          "value": "Tamil Nadu",
+          "normalizedValue": "Tamil Nadu",
+          "normalizedId": "JX_IN_TN",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": [],
+          "start": 43,
+          "end": 53,
+          "method": "rule"
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "2026-10-19",
+          "value": "2026-10-19",
+          "normalizedValue": "2026-10-19",
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": [],
+          "start": 57,
+          "end": 67,
+          "method": "rule"
+        }
+      ],
+      "missingSlots": [],
+      "unresolvedSlots": [
+        {
+          "slot": "LOCATION",
+          "reason": "condition_not_implemented",
+          "condition": "only_when_relevant_to_rule_or_situation",
+          "present": false
+        }
+      ],
+      "readiness": {
+        "found": 3,
+        "total": 3,
+        "percentage": 99,
+        "status": "conditional_unresolved"
+      },
+      "warnings": [
+        "Intent classifier is uncertain; review alternatives before relying on the selected intent.",
+        "Language could not be identified confidently.",
+        "Some conditional slot requirements could not be resolved in Phase 2."
+      ],
+      "modelVersion": "tfidf-intent-grouped-v1"
+    }
+  },
+  {
+    "input": "I drove a car at 100 km/h on a city road in Kerala on 2026-10-19",
+    "seconds": 0.0034187999553978443,
+    "result": {
+      "inputText": "I drove a car at 100 km/h on a city road in Kerala on 2026-10-19",
+      "normalizedText": "i drove a car at 100 km/h on a city road in kerala on 2026-10-19",
+      "language": {
+        "requestedLanguage": "english",
+        "detectedLanguage": "uncertain",
+        "confidenceCategory": "low",
+        "evidence": "Character TF-IDF language classifier; decision gap 1.353 (not probability)",
+        "candidateLanguage": "english"
+      },
+      "intent": {
+        "id": "INT002",
+        "name": "TRAFFIC_SPEEDING",
+        "domain": "Traffic",
+        "score": 0.0139,
+        "scoreType": "SVM decision margin gap, not probability",
+        "marginGap": 0.62,
+        "alternatives": [
+          {
+            "id": "INT009",
+            "name": "WRONG_WAY_DRIVING",
+            "score": -0.6062
+          },
+          {
+            "id": "INT050",
+            "name": "ACCIDENT_POLICE_REPORTING",
+            "score": -0.8741
+          },
+          {
+            "id": "INT018",
+            "name": "LICENCE_RENEWAL",
+            "score": -0.9618
+          }
+        ],
+        "needsClarification": true,
+        "modelVersion": "tfidf-intent-grouped-v1"
+      },
+      "entities": [
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "car",
+          "value": "car",
+          "normalizedValue": "Motor Car",
+          "normalizedId": "VC_MOTORCAR",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MOTORCAR"
+          ],
+          "start": 10,
+          "end": 13,
+          "method": "rule"
+        },
+        {
+          "type": "OBSERVED_SPEED",
+          "text": "100 km/h",
+          "value": "100",
+          "normalizedValue": "100",
+          "status": "resolved",
+          "vocabularySource": "unit pattern",
+          "alternatives": [],
+          "unit": "km/h",
+          "approximate": false,
+          "start": 17,
+          "end": 25,
+          "method": "rule"
+        },
+        {
+          "type": "ROAD_TYPE",
+          "text": "city road",
+          "value": "city road",
+          "normalizedValue": "city road",
+          "status": "resolved",
+          "vocabularySource": "road-type phrase rules",
+          "alternatives": [],
+          "start": 31,
+          "end": 40,
+          "method": "rule"
+        },
+        {
+          "type": "STATE",
+          "text": "Kerala",
+          "value": "Kerala",
+          "normalizedValue": "Kerala",
+          "normalizedId": "JX_IN_KL",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": [],
+          "start": 44,
+          "end": 50,
+          "method": "rule"
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "2026-10-19",
+          "value": "2026-10-19",
+          "normalizedValue": "2026-10-19",
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": [],
+          "start": 54,
+          "end": 64,
+          "method": "rule"
+        }
+      ],
+      "missingSlots": [],
+      "unresolvedSlots": [
+        {
+          "slot": "LOCATION",
+          "reason": "condition_not_implemented",
+          "condition": "only_when_relevant_to_rule_or_situation",
+          "present": false
+        }
+      ],
+      "readiness": {
+        "found": 3,
+        "total": 3,
+        "percentage": 99,
+        "status": "conditional_unresolved"
+      },
+      "warnings": [
+        "Intent classifier is uncertain; review alternatives before relying on the selected intent.",
+        "Language could not be identified confidently.",
+        "Some conditional slot requirements could not be resolved in Phase 2."
+      ],
+      "modelVersion": "tfidf-intent-grouped-v1"
+    }
+  },
+  {
+    "input": "I drove a car at 100 km/h on a city road in Tamil Nadu on 2026-10-19",
+    "seconds": 0.0037438999861478806,
+    "result": {
+      "inputText": "I drove a car at 100 km/h on a city road in Tamil Nadu on 2026-10-19",
+      "normalizedText": "i drove a car at 100 km/h on a city road in tamil nadu on 2026-10-19",
+      "language": {
+        "requestedLanguage": "english",
+        "detectedLanguage": "uncertain",
+        "confidenceCategory": "low",
+        "evidence": "Character TF-IDF language classifier; decision gap 1.342 (not probability)",
+        "candidateLanguage": "english"
+      },
+      "intent": {
+        "id": "INT002",
+        "name": "TRAFFIC_SPEEDING",
+        "domain": "Traffic",
+        "score": -0.0281,
+        "scoreType": "SVM decision margin gap, not probability",
+        "marginGap": 0.5842,
+        "alternatives": [
+          {
+            "id": "INT009",
+            "name": "WRONG_WAY_DRIVING",
+            "score": -0.6124
+          },
+          {
+            "id": "INT050",
+            "name": "ACCIDENT_POLICE_REPORTING",
+            "score": -0.8661
+          },
+          {
+            "id": "INT022",
+            "name": "LICENCE_CLASS_REQUIREMENT",
+            "score": -0.9798
+          }
+        ],
+        "needsClarification": true,
+        "modelVersion": "tfidf-intent-grouped-v1"
+      },
+      "entities": [
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "car",
+          "value": "car",
+          "normalizedValue": "Motor Car",
+          "normalizedId": "VC_MOTORCAR",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MOTORCAR"
+          ],
+          "start": 10,
+          "end": 13,
+          "method": "rule"
+        },
+        {
+          "type": "OBSERVED_SPEED",
+          "text": "100 km/h",
+          "value": "100",
+          "normalizedValue": "100",
+          "status": "resolved",
+          "vocabularySource": "unit pattern",
+          "alternatives": [],
+          "unit": "km/h",
+          "approximate": false,
+          "start": 17,
+          "end": 25,
+          "method": "rule"
+        },
+        {
+          "type": "ROAD_TYPE",
+          "text": "city road",
+          "value": "city road",
+          "normalizedValue": "city road",
+          "status": "resolved",
+          "vocabularySource": "road-type phrase rules",
+          "alternatives": [],
+          "start": 31,
+          "end": 40,
+          "method": "rule"
+        },
+        {
+          "type": "STATE",
+          "text": "Tamil Nadu",
+          "value": "Tamil Nadu",
+          "normalizedValue": "Tamil Nadu",
+          "normalizedId": "JX_IN_TN",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": [],
+          "start": 44,
+          "end": 54,
+          "method": "rule"
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "2026-10-19",
+          "value": "2026-10-19",
+          "normalizedValue": "2026-10-19",
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": [],
+          "start": 58,
+          "end": 68,
+          "method": "rule"
+        }
+      ],
+      "missingSlots": [],
+      "unresolvedSlots": [
+        {
+          "slot": "LOCATION",
+          "reason": "condition_not_implemented",
+          "condition": "only_when_relevant_to_rule_or_situation",
+          "present": false
+        }
+      ],
+      "readiness": {
+        "found": 3,
+        "total": 3,
+        "percentage": 99,
+        "status": "conditional_unresolved"
+      },
+      "warnings": [
+        "Intent classifier is uncertain; review alternatives before relying on the selected intent.",
+        "Language could not be identified confidently.",
+        "Some conditional slot requirements could not be resolved in Phase 2."
+      ],
+      "modelVersion": "tfidf-intent-grouped-v1"
+    }
+  },
+  {
+    "input": "I drove a car at 140 km/h on a city road in Kerala on 2026-10-19",
+    "seconds": 0.0037097999593243003,
+    "result": {
+      "inputText": "I drove a car at 140 km/h on a city road in Kerala on 2026-10-19",
+      "normalizedText": "i drove a car at 140 km/h on a city road in kerala on 2026-10-19",
+      "language": {
+        "requestedLanguage": "english",
+        "detectedLanguage": "uncertain",
+        "confidenceCategory": "low",
+        "evidence": "Character TF-IDF language classifier; decision gap 1.406 (not probability)",
+        "candidateLanguage": "english"
+      },
+      "intent": {
+        "id": "INT002",
+        "name": "TRAFFIC_SPEEDING",
+        "domain": "Traffic",
+        "score": 0.0293,
+        "scoreType": "SVM decision margin gap, not probability",
+        "marginGap": 0.6274,
+        "alternatives": [
+          {
+            "id": "INT009",
+            "name": "WRONG_WAY_DRIVING",
+            "score": -0.5981
+          },
+          {
+            "id": "INT050",
+            "name": "ACCIDENT_POLICE_REPORTING",
+            "score": -0.8646
+          },
+          {
+            "id": "INT048",
+            "name": "ACCIDENT",
+            "score": -0.9811
+          }
+        ],
+        "needsClarification": true,
+        "modelVersion": "tfidf-intent-grouped-v1"
+      },
+      "entities": [
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "car",
+          "value": "car",
+          "normalizedValue": "Motor Car",
+          "normalizedId": "VC_MOTORCAR",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MOTORCAR"
+          ],
+          "start": 10,
+          "end": 13,
+          "method": "rule"
+        },
+        {
+          "type": "OBSERVED_SPEED",
+          "text": "140 km/h",
+          "value": "140",
+          "normalizedValue": "140",
+          "status": "resolved",
+          "vocabularySource": "unit pattern",
+          "alternatives": [],
+          "unit": "km/h",
+          "approximate": false,
+          "start": 17,
+          "end": 25,
+          "method": "rule"
+        },
+        {
+          "type": "ROAD_TYPE",
+          "text": "city road",
+          "value": "city road",
+          "normalizedValue": "city road",
+          "status": "resolved",
+          "vocabularySource": "road-type phrase rules",
+          "alternatives": [],
+          "start": 31,
+          "end": 40,
+          "method": "rule"
+        },
+        {
+          "type": "STATE",
+          "text": "Kerala",
+          "value": "Kerala",
+          "normalizedValue": "Kerala",
+          "normalizedId": "JX_IN_KL",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": [],
+          "start": 44,
+          "end": 50,
+          "method": "rule"
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "2026-10-19",
+          "value": "2026-10-19",
+          "normalizedValue": "2026-10-19",
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": [],
+          "start": 54,
+          "end": 64,
+          "method": "rule"
+        }
+      ],
+      "missingSlots": [],
+      "unresolvedSlots": [
+        {
+          "slot": "LOCATION",
+          "reason": "condition_not_implemented",
+          "condition": "only_when_relevant_to_rule_or_situation",
+          "present": false
+        }
+      ],
+      "readiness": {
+        "found": 3,
+        "total": 3,
+        "percentage": 99,
+        "status": "conditional_unresolved"
+      },
+      "warnings": [
+        "Intent classifier is uncertain; review alternatives before relying on the selected intent.",
+        "Language could not be identified confidently.",
+        "Some conditional slot requirements could not be resolved in Phase 2."
+      ],
+      "modelVersion": "tfidf-intent-grouped-v1"
+    }
+  },
+  {
+    "input": "I drove a car at 140 km/h on a city road in Tamil Nadu on 2026-10-19",
+    "seconds": 0.0035373999853618443,
+    "result": {
+      "inputText": "I drove a car at 140 km/h on a city road in Tamil Nadu on 2026-10-19",
+      "normalizedText": "i drove a car at 140 km/h on a city road in tamil nadu on 2026-10-19",
+      "language": {
+        "requestedLanguage": "english",
+        "detectedLanguage": "uncertain",
+        "confidenceCategory": "low",
+        "evidence": "Character TF-IDF language classifier; decision gap 1.391 (not probability)",
+        "candidateLanguage": "english"
+      },
+      "intent": {
+        "id": "INT002",
+        "name": "TRAFFIC_SPEEDING",
+        "domain": "Traffic",
+        "score": -0.014,
+        "scoreType": "SVM decision margin gap, not probability",
+        "marginGap": 0.5907,
+        "alternatives": [
+          {
+            "id": "INT009",
+            "name": "WRONG_WAY_DRIVING",
+            "score": -0.6048
+          },
+          {
+            "id": "INT050",
+            "name": "ACCIDENT_POLICE_REPORTING",
+            "score": -0.8569
+          },
+          {
+            "id": "INT022",
+            "name": "LICENCE_CLASS_REQUIREMENT",
+            "score": -0.9789
+          }
+        ],
+        "needsClarification": true,
+        "modelVersion": "tfidf-intent-grouped-v1"
+      },
+      "entities": [
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "car",
+          "value": "car",
+          "normalizedValue": "Motor Car",
+          "normalizedId": "VC_MOTORCAR",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MOTORCAR"
+          ],
+          "start": 10,
+          "end": 13,
+          "method": "rule"
+        },
+        {
+          "type": "OBSERVED_SPEED",
+          "text": "140 km/h",
+          "value": "140",
+          "normalizedValue": "140",
+          "status": "resolved",
+          "vocabularySource": "unit pattern",
+          "alternatives": [],
+          "unit": "km/h",
+          "approximate": false,
+          "start": 17,
+          "end": 25,
+          "method": "rule"
+        },
+        {
+          "type": "ROAD_TYPE",
+          "text": "city road",
+          "value": "city road",
+          "normalizedValue": "city road",
+          "status": "resolved",
+          "vocabularySource": "road-type phrase rules",
+          "alternatives": [],
+          "start": 31,
+          "end": 40,
+          "method": "rule"
+        },
+        {
+          "type": "STATE",
+          "text": "Tamil Nadu",
+          "value": "Tamil Nadu",
+          "normalizedValue": "Tamil Nadu",
+          "normalizedId": "JX_IN_TN",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": [],
+          "start": 44,
+          "end": 54,
+          "method": "rule"
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "2026-10-19",
+          "value": "2026-10-19",
+          "normalizedValue": "2026-10-19",
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": [],
+          "start": 58,
+          "end": 68,
+          "method": "rule"
+        }
+      ],
+      "missingSlots": [],
+      "unresolvedSlots": [
+        {
+          "slot": "LOCATION",
+          "reason": "condition_not_implemented",
+          "condition": "only_when_relevant_to_rule_or_situation",
+          "present": false
+        }
+      ],
+      "readiness": {
+        "found": 3,
+        "total": 3,
+        "percentage": 99,
+        "status": "conditional_unresolved"
+      },
+      "warnings": [
+        "Intent classifier is uncertain; review alternatives before relying on the selected intent.",
+        "Language could not be identified confidently.",
+        "Some conditional slot requirements could not be resolved in Phase 2."
+      ],
+      "modelVersion": "tfidf-intent-grouped-v1"
+    }
+  }
+]

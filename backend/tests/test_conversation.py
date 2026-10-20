@@ -135,3 +135,11 @@ def test_motorcycle_subtype_clarification():
         entity=_target_entity('VEHICLE_CLASS',answer,entities)
         assert entity['status']=='resolved', answer
         assert entity['normalizedId']==expected, answer
+
+
+def test_urgent_assistance_respects_negation_and_independent_injuries():
+    from app.services.conversation import needs_urgent_assistance
+    for text in ['The rider is bleeding.', 'Someone is unconscious.', 'Nobody was injured, but a passenger is bleeding.']:
+        assert needs_urgent_assistance(text), text
+    for text in ['Nobody was injured.', 'There were no injuries.', 'The passenger is not injured.']:
+        assert not needs_urgent_assistance(text), text

@@ -8,15 +8,16 @@ from app.services.nlp.ontology import ontology
 from app.config import DATASET_DIR, BACKEND_DIR
 from app.services.dataset_loader import load_dataset
 
-SPEED=re.compile(r'(?<!\w)(?:(?:about|around|maybe|लगभग)\s+)?(?P<value>\d{2,3})\s*(?P<unit>km\s*/\s*h|kmph|kph|किमी\s*/\s*घंटा)(?!\w)',re.I)
+SPEED=re.compile(r'(?<!\w)(?:(?:about|around|maybe|लगभग)\s+)?(?P<value>\d{2,3})\s*(?P<unit>km\s*/\s*h|kmph|kph|किमी\s*/\s*घंटा|किलोमीटर\s+प्रति\s+घंटा)(?!\w)',re.I)
 DATE_ISO=re.compile(r'\b\d{4}-\d{2}-\d{2}\b')
 DATE_WORD=re.compile(r'\b\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\b',re.I)
 ROAD=re.compile(r'\b(?:expressway|national highway|state highway|service road|parking area|city road|highway|motorway|village road|residential road|urban road)\b|एक्सप्रेसवे|हाईवे|राजमार्ग',re.I)
-VEHICLES=re.compile(r'(?<!\w)(?:auto[- ]rickshaw|e[- ]rickshaw|(?:motorcycle|bike|scooter)\s+(?:with(?:out)?\s+gears?|gearless)|(?:geared|gearless)\s+(?:motorcycle|bike|scooter)|MCWOG|MCWG|motorcycle|scooter|bike|car|bus|truck|lorry|motor car|मोटरसाइकिल|स्कूटर|कार|बस)(?!\w)',re.I)
+VEHICLES=re.compile(r'(?<!\w)(?:auto[- ]rickshaw|e[- ]rickshaw|(?:motorcycle|bike|scooter)\s+(?:with(?:out)?\s+gears?|gearless)|(?:geared|gearless)\s+(?:motorcycle|bike|scooter)|MCWOG|MCWG|motorcycle|scooter|bike|car|bus|truck|lorry|motor car|मोटरसाइकिल|बाइक|स्कूटर|कार|बस)(?!\w)',re.I)
 INSURANCE=re.compile(r'\b(?:insurance|policy)\b.{0,24}\b(?:expired|valid|active|lapsed)\b|\b(?:no|without)\s+insurance\b|बीमा.{0,15}(?:खत्म|समाप्त|वैध)|\binsurance\s+expire(?:d)?\s+ho\s+gaya\b',re.I)
 CHALLAN=re.compile(r'\b(?:did not receive|didn.t get|no|without)\s+(?:a\s+)?challan\b|\b(?:received|got|issued|paid)\s+(?:a\s+)?challan\b|चालान.{0,15}(?:नहीं|कटा|मिला)|\bchallan\s+kat\s+gaya\b',re.I)
 LICENCE=re.compile(r'\b(?:licen[cs]e|dl)\b.{0,20}\b(?:expired|valid|suspended|seized)\b|\b(?:no|without)\s+(?:driving\s+)?licen[cs]e\b',re.I)
 AGE=re.compile(r'\b(?P<age>\d{1,2})\s*(?:years? old|yrs? old|साल)\b',re.I)
+AGE_SELF=re.compile(r'\bI\s+am\s+(?P<age>\d{1,2})(?!\d)(?!\s*(?:km|years? of experience))',re.I)
 AGE_LABEL=re.compile(r'(?:\bage\b|उम्र)\s*[:：-]\s*(?P<age>\d{1,2})',re.I)
 
 @lru_cache(maxsize=1)
@@ -66,7 +67,7 @@ def extract(text: str, reference_datetime: datetime | None=None, status_values=N
     for m in CHALLAN.finditer(text): add('CHALLAN_STATUS',m)
     for m in LICENCE.finditer(text): add('LICENCE_STATUS',m)
     for m in AGE.finditer(text): add('AGE',m,m.group('age'))
-    for m in AGE_LABEL.finditer(text):
+    for m in list(AGE_LABEL.finditer(text))+list(AGE_SELF.finditer(text)):
         if not any(e['type']=='AGE' and e['start']<=m.start('age')<e['end'] for e in entities):
             entities.append({'type':'AGE','text':m.group('age'),'value':m.group('age'),
                              'start':m.start('age'),'end':m.end('age'),'method':'rule','confidence':None})
@@ -75,7 +76,7 @@ def extract(text: str, reference_datetime: datetime | None=None, status_values=N
     for kind,phrases in (status_values if status_values is not None else status_vocabulary()).items():
         for phrase in phrases:
             for m in re.finditer(r'(?<!\w)'+re.escape(phrase)+r'(?!\w)',text,re.I):
-                vicinity=text[max(0,m.start()-45):min(len(text),m.end()+45)]
+                vicinity=re.split(r'[,;.!?।]',text[:m.start()])[-1][-45:]+m.group(0)+re.split(r'[,;.!?।]',text[m.end():])[0][:45]
                 if not re.search(cues[kind],vicinity,re.I):continue
                 if any(e['type']==kind and e['start']<=m.start()<e['end'] for e in entities):continue
                 entities.append({'type':kind,'text':m.group(0),'value':m.group(0),

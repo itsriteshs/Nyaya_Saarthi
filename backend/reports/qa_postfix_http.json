@@ -1,0 +1,298 @@
+[
+  {
+    "text": "I am 19 and need a learner licence",
+    "seconds": 0.02569540002150461,
+    "result": {
+      "inputText": "I am 19 and need a learner licence",
+      "normalizedText": "i am 19 and need a learner licence",
+      "language": {
+        "requestedLanguage": "auto",
+        "detectedLanguage": "uncertain",
+        "confidenceCategory": "low",
+        "evidence": "Character TF-IDF language classifier; decision gap 1.267 (not probability)",
+        "candidateLanguage": "english"
+      },
+      "intent": {
+        "id": "INT016",
+        "name": "LEARNER_LICENCE",
+        "domain": "Licence",
+        "score": 0.713,
+        "scoreType": "SVM decision margin gap, not probability",
+        "marginGap": 1.572,
+        "alternatives": [
+          {
+            "id": "INT027",
+            "name": "NOC_INTERSTATE_TRANSFER",
+            "score": -0.8591
+          },
+          {
+            "id": "INT023",
+            "name": "DIGITAL_LICENCE",
+            "score": -0.8767
+          },
+          {
+            "id": "INT025",
+            "name": "RC_TRANSFER",
+            "score": -0.9157
+          }
+        ],
+        "needsClarification": false,
+        "modelVersion": "tfidf-intent-grouped-v1"
+      },
+      "entities": [
+        {
+          "type": "AGE",
+          "text": "19",
+          "value": "19",
+          "normalizedValue": "19",
+          "status": "resolved",
+          "vocabularySource": "provisional AGE extractor; absent from slot_schema.csv",
+          "alternatives": [],
+          "start": 5,
+          "end": 7,
+          "method": "rule"
+        }
+      ],
+      "missingSlots": [
+        {
+          "slot": "USER_ROLE",
+          "label": "User role",
+          "priority": 1,
+          "question": "What was your role in this situation?",
+          "reason": "missing"
+        },
+        {
+          "slot": "VEHICLE_CLASS",
+          "label": "Vehicle type",
+          "priority": 2,
+          "question": "What type of vehicle was involved?",
+          "reason": "missing"
+        },
+        {
+          "slot": "STATE",
+          "label": "State/UT",
+          "priority": 3,
+          "question": "Which State or Union Territory was this in?",
+          "reason": "missing"
+        }
+      ],
+      "unresolvedSlots": [
+        {
+          "slot": "AGE",
+          "reason": "provisional_schema_gap",
+          "condition": "only_when_relevant_to_rule_or_situation",
+          "present": true
+        }
+      ],
+      "readiness": {
+        "found": 0,
+        "total": 3,
+        "percentage": 0,
+        "status": "needs_context"
+      },
+      "warnings": [
+        "Language could not be identified confidently.",
+        "Some conditional slot requirements could not be resolved in Phase 2."
+      ],
+      "modelVersion": "tfidf-intent-grouped-v1"
+    }
+  },
+  {
+    "text": "बाइक की स्पीड 75 किलोमीटर प्रति घंटा थी",
+    "seconds": 0.002729900006670505,
+    "result": {
+      "inputText": "बाइक की स्पीड 75 किलोमीटर प्रति घंटा थी",
+      "normalizedText": "बाइक की स्पीड 75 किलोमीटर प्रति घंटा थी",
+      "language": {
+        "requestedLanguage": "auto",
+        "detectedLanguage": "hindi",
+        "confidenceCategory": "high",
+        "evidence": "Devanagari script occurs"
+      },
+      "intent": {
+        "id": "INT023",
+        "name": "DIGITAL_LICENCE",
+        "domain": "Licence",
+        "score": -0.4192,
+        "scoreType": "SVM decision margin gap, not probability",
+        "marginGap": 0.1921,
+        "alternatives": [
+          {
+            "id": "INT010",
+            "name": "ILLEGAL_PARKING",
+            "score": -0.6114
+          },
+          {
+            "id": "INT054",
+            "name": "GOOD_SAMARITAN",
+            "score": -0.9132
+          },
+          {
+            "id": "INT002",
+            "name": "TRAFFIC_SPEEDING",
+            "score": -0.9318
+          }
+        ],
+        "needsClarification": true,
+        "modelVersion": "tfidf-intent-grouped-v1"
+      },
+      "entities": [
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "बाइक",
+          "value": "बाइक",
+          "normalizedValue": "Vehicle class needs clarification",
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MCWG",
+            "VC_MCWOG"
+          ],
+          "start": 0,
+          "end": 4,
+          "method": "rule"
+        },
+        {
+          "type": "OBSERVED_SPEED",
+          "text": "75 किलोमीटर प्रति घंटा",
+          "value": "75",
+          "normalizedValue": "75",
+          "status": "resolved",
+          "vocabularySource": "unit pattern",
+          "alternatives": [],
+          "unit": "km/h",
+          "approximate": false,
+          "start": 14,
+          "end": 36,
+          "method": "rule"
+        }
+      ],
+      "missingSlots": [
+        {
+          "slot": "EVENT_DATE",
+          "label": "Event date",
+          "priority": 1,
+          "question": "When did this happen?",
+          "reason": "missing"
+        },
+        {
+          "slot": "STATE",
+          "label": "State/UT",
+          "priority": 2,
+          "question": "Which State or Union Territory was this in?",
+          "reason": "missing"
+        },
+        {
+          "slot": "USER_ROLE",
+          "label": "User role",
+          "priority": 3,
+          "question": "What was your role in this situation?",
+          "reason": "missing"
+        }
+      ],
+      "unresolvedSlots": [],
+      "readiness": {
+        "found": 0,
+        "total": 3,
+        "percentage": 0,
+        "status": "needs_context"
+      },
+      "warnings": [
+        "Intent classifier is uncertain; review alternatives before relying on the selected intent.",
+        "Some extracted facts need user confirmation."
+      ],
+      "modelVersion": "tfidf-intent-grouped-v1"
+    }
+  },
+  {
+    "text": "My licence expired, my insurance is over.",
+    "seconds": 0.004447999992407858,
+    "result": {
+      "inputText": "My licence expired, my insurance is over.",
+      "normalizedText": "my licence expired, my insurance is over.",
+      "language": {
+        "requestedLanguage": "auto",
+        "detectedLanguage": "uncertain",
+        "confidenceCategory": "low",
+        "evidence": "Character TF-IDF language classifier; decision gap 1.212 (not probability)",
+        "candidateLanguage": "english"
+      },
+      "intent": {
+        "id": "INT032",
+        "name": "INSURANCE_EXPIRED",
+        "domain": "Insurance",
+        "score": -0.3634,
+        "scoreType": "SVM decision margin gap, not probability",
+        "marginGap": 0.4572,
+        "alternatives": [
+          {
+            "id": "INT011",
+            "name": "ILLEGAL_OVERTAKING",
+            "score": -0.8206
+          },
+          {
+            "id": "INT021",
+            "name": "LICENCE_SUSPENDED_OR_DISQUALIFIED",
+            "score": -0.8524
+          },
+          {
+            "id": "INT031",
+            "name": "INSURANCE",
+            "score": -0.8908
+          }
+        ],
+        "needsClarification": true,
+        "modelVersion": "tfidf-intent-grouped-v1"
+      },
+      "entities": [
+        {
+          "type": "LICENCE_STATUS",
+          "text": "licence expired",
+          "value": "licence expired",
+          "normalizedValue": "expired",
+          "status": "resolved",
+          "vocabularySource": "annotation status vocabulary and negation rules",
+          "alternatives": [],
+          "start": 3,
+          "end": 18,
+          "method": "rule"
+        }
+      ],
+      "missingSlots": [
+        {
+          "slot": "INSURANCE_STATUS",
+          "label": "Insurance status",
+          "priority": 1,
+          "question": "What is the current status of your insurance?",
+          "reason": "missing"
+        },
+        {
+          "slot": "EVENT_DATE",
+          "label": "Event date",
+          "priority": 2,
+          "question": "When did this happen?",
+          "reason": "missing"
+        },
+        {
+          "slot": "STATE",
+          "label": "State/UT",
+          "priority": 3,
+          "question": "Which State or Union Territory was this in?",
+          "reason": "missing"
+        }
+      ],
+      "unresolvedSlots": [],
+      "readiness": {
+        "found": 0,
+        "total": 3,
+        "percentage": 0,
+        "status": "needs_context"
+      },
+      "warnings": [
+        "Intent classifier is uncertain; review alternatives before relying on the selected intent.",
+        "Language could not be identified confidently."
+      ],
+      "modelVersion": "tfidf-intent-grouped-v1"
+    }
+  }
+]
