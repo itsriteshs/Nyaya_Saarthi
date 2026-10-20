@@ -9,7 +9,7 @@ const principles = [
   },
   {
     title: "Official Sources",
-    text: "Guidance is grounded in verified legal material",
+    text: "Guidance uses eligible dataset sources and states coverage gaps",
   },
   {
     title: "Explainable",
@@ -44,8 +44,7 @@ export function TrustStrip() {
           </div>
         </div>
         <p id="privacy" className="mt-8 max-w-4xl border-t border-[#C49A55]/45 pt-5 text-sm font-semibold leading-6 text-[#E8DDCC]">
-          The prototype separates user-provided facts, retrieved law and system interpretation so
-          later guidance can stay auditable.
+          User-provided facts, retrieved law and system interpretation remain separate and auditable.
         </p>
       </div>
     </section>

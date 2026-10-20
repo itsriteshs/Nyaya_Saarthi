@@ -23,7 +23,12 @@ def analyze_language(text: str, requested: str):
     if len(text.strip()) < 5:
         return {"requestedLanguage": requested, "detectedLanguage": "uncertain", "confidenceCategory": "low", "evidence": "Text is too short for reliable language classification"}
     if devanagari and latin:
-        return {"requestedLanguage": requested, "detectedLanguage": "mixed", "confidenceCategory": "high", "evidence": "Both Devanagari and Latin scripts occur"}
+        devanagari_letters = sum('\u0900' <= char <= '\u097f' for char in text)
+        latin_letters = sum(char.isascii() and char.isalpha() for char in text)
+        dominant_hindi = devanagari_letters > latin_letters
+        return {"requestedLanguage": requested, "detectedLanguage": "hindi" if dominant_hindi else "mixed",
+                "confidenceCategory": "high" if dominant_hindi else "low",
+                "evidence": "Devanagari is dominant" if dominant_hindi else "Mixed scripts without Devanagari dominance"}
     if devanagari and not latin:
         return {"requestedLanguage": requested, "detectedLanguage": "hindi", "confidenceCategory": "high", "evidence": "Devanagari script occurs"}
     label = str(model.predict([text])[0]).lower()

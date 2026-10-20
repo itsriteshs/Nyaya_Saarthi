@@ -1,0 +1,19 @@
+{
+  "protocol": "Interactive Chrome browser journey against isolated Next.js port 3010 and FastAPI port 8010; synthetic speed scenario, 20 October 2026",
+  "routesVisitedInOrder": ["/", "/understand", "/verify", "/guidance", "/summary"],
+  "scenario": "Synthetic Tamil Nadu speed query with vehicle, speed, road, state and event date; no personal data",
+  "observations": {
+    "nlpAndMatterPersisted": true,
+    "fiveFactsConfirmed": true,
+    "verificationCompleted": true,
+    "selectedModel": "llama3.2-3b",
+    "eligibleSourceCardsShown": 1,
+    "groundingRejectionCodes": ["DEFINITE_OUTCOME", "UNLINKED_CLAIM"],
+    "deterministicFallbackShown": true,
+    "summaryUsedPersistedGuidance": true,
+    "summaryRefreshRestoredMatter": true,
+    "consoleErrorsAfterHydrationFix": 0
+  },
+  "notVerified": ["completed browser PDF export", "mobile visual QA", "all language and error branches through the interactive browser"],
+  "scope": "One interactive journey. Other language, error, revision, unknown-answer and model branches were exercised through isolated HTTP and offline evaluations, not all through this browser journey."
+}

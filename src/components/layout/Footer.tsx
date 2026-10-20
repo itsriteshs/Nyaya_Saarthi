@@ -6,7 +6,7 @@ export function Footer() {
           <p className="font-editorial text-2xl font-bold text-[#071B3A]">
             Nyaya<span className="text-[#A8752B]">Saarthi</span>
           </p>
-          <p className="mt-1 font-semibold">Motor Vehicle Law guidance prototype</p>
+          <p className="mt-1 font-semibold">Motor Vehicle Law research assistant</p>
           <p className="mt-3 max-w-3xl">
             NyayaSaarthi provides informational guidance and does not replace professional
             legal advice or official determinations.

@@ -2,8 +2,7 @@ import type { MatterContext } from "@/types/matter";
 
 const STORAGE_KEY = "nyayasaarthi.matter";
 
-// Prototype persistence only.
-// The production version will store matter state through the FastAPI backend.
+// Tab-local pointer/cache for the matter persisted by the FastAPI backend.
 export function loadStoredMatter() {
   if (typeof window === "undefined") {
     return null;

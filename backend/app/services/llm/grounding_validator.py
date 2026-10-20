@@ -29,15 +29,15 @@ def validate(output, package):
         reasons.append("UNKNOWN_SECTION")
     if OUTCOME.search(full): reasons.append("DEFINITE_OUTCOME")
     titles = {step["title"] for step in package["supportedActions"]}
-    if any(action not in titles for action in output.recommendedActions):
-        reasons.append("UNSUPPORTED_ACTION")
-    # The model may add uncertainty, but may not delete deterministic limitations.
-    if not all(item in output.uncertainties for item in package["uncertainties"]):
-        reasons.append("MISSING_QUALIFICATION")
+    omitted_actions = [action for action in output.recommendedActions if action not in titles]
+    # Deterministic limitations are appended server-side and cannot be deleted
+    # by an incomplete or translated model uncertainty list.
     for claim in output.legalClaims:
         if claim.text not in output.answer and claim.text not in output.explanation:
             reasons.append("UNLINKED_CLAIM")
         if not claim.evidenceIds or any(ref not in ids for ref in claim.evidenceIds):
             reasons.append("CLAIM_CITATION_INVALID")
     return {"accepted": not reasons, "reasonCodes": sorted(set(reasons)),
+            "warningCodes": ["UNSUPPORTED_ACTION_OMITTED"] if omitted_actions else [],
+            "omittedActions": omitted_actions,
             "unsupportedCitations": sorted(used - ids), "fallbackRequired": bool(reasons)}

@@ -1,0 +1,102 @@
+{
+  "protocol": "One frozen synthetic evidence package per case; identical system prompt, schema, context, languages and generation settings for both models. Ollama supplies model-specific chat templates. Temperature 0; no seed exposed by this adapter; one trial unless specified.",
+  "modelId": "mistral-7b",
+  "runtimeTag": "mistral:7b-instruct-v0.3-q4_K_M",
+  "installedDigest": "6577803aa9a036369e481d648a2baebb381ebc6e897f2bb9a766a2aa7bfbc1cf",
+  "promptVersion": "phase6-grounded-v2",
+  "evidenceSetVersion": "phase6-synthetic-v1",
+  "overall": {
+    "n": 9,
+    "statuses": {
+      "grounding_rejected": 4,
+      "language_rejected": 4,
+      "accepted": 1
+    },
+    "acceptedRate": 0.1111111111111111,
+    "fallbackRate": 0.8888888888888888,
+    "citationValidityProxyRate": 1.0,
+    "unsupportedActionOmissionCount": 2,
+    "reasonCodes": {
+      "DEFINITE_OUTCOME": 3,
+      "UNLINKED_CLAIM": 5,
+      "INSUFFICIENT_CITED_EVIDENCE": 1
+    },
+    "latencyMs": {
+      "mean": 20948,
+      "median": 18541,
+      "p95": 37356
+    },
+    "meanPromptTokens": 1472.6666666666667,
+    "meanOutputTokens": 298.1111111111111
+  },
+  "byLanguage": {
+    "english": {
+      "n": 3,
+      "statuses": {
+        "grounding_rejected": 3
+      },
+      "acceptedRate": 0.0,
+      "fallbackRate": 1.0,
+      "citationValidityProxyRate": 1.0,
+      "unsupportedActionOmissionCount": 0,
+      "reasonCodes": {
+        "DEFINITE_OUTCOME": 1,
+        "UNLINKED_CLAIM": 3
+      },
+      "latencyMs": {
+        "mean": 23934,
+        "median": 25433,
+        "p95": null
+      },
+      "meanPromptTokens": 1468,
+      "meanOutputTokens": 258.6666666666667
+    },
+    "hindi": {
+      "n": 3,
+      "statuses": {
+        "language_rejected": 1,
+        "grounding_rejected": 1,
+        "accepted": 1
+      },
+      "acceptedRate": 0.3333333333333333,
+      "fallbackRate": 0.6666666666666666,
+      "citationValidityProxyRate": 1.0,
+      "unsupportedActionOmissionCount": 1,
+      "reasonCodes": {
+        "DEFINITE_OUTCOME": 1,
+        "INSUFFICIENT_CITED_EVIDENCE": 1,
+        "UNLINKED_CLAIM": 1
+      },
+      "latencyMs": {
+        "mean": 23046.666666666668,
+        "median": 19815,
+        "p95": null
+      },
+      "meanPromptTokens": 1475,
+      "meanOutputTokens": 367.3333333333333
+    },
+    "hinglish": {
+      "n": 3,
+      "statuses": {
+        "language_rejected": 3
+      },
+      "acceptedRate": 0.0,
+      "fallbackRate": 1.0,
+      "citationValidityProxyRate": 1.0,
+      "unsupportedActionOmissionCount": 1,
+      "reasonCodes": {
+        "DEFINITE_OUTCOME": 1,
+        "UNLINKED_CLAIM": 1
+      },
+      "latencyMs": {
+        "mean": 15863.333333333334,
+        "median": 16091,
+        "p95": null
+      },
+      "meanPromptTokens": 1475,
+      "meanOutputTokens": 268.3333333333333
+    }
+  },
+  "semanticClaimSupport": null,
+  "semanticClaimSupportReason": "No qualified human reviewer scored legal meaning; structural checks are proxies only."
+}

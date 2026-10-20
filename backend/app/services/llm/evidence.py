@@ -10,11 +10,15 @@ def build_package(matter: dict, baseline: dict, max_chars: int) -> dict:
     facts = [{"key": f["key"], "value": f.get("normalizedValue") or f["value"]}
              for f in matter["facts"] if f.get("confirmed") and f.get("provenance") == "USER_CONFIRMED"
              and f.get("resolutionStatus", "resolved") == "resolved"]
+    rules = baseline["metadata"].get("ruleEvaluations", [])
+    safe_rules = [{key: rule.get(key) for key in ("ruleId", "status", "reasons", "provisionId", "matchedFactIds", "missingSlots")}
+                  for rule in rules if rule.get("status") in {"MATCHED", "INSUFFICIENT_CONTEXT", "UNSUPPORTED_CONDITION"}]
     package = {"matterId": matter["id"], "intent": matter.get("nlpAnalysis", {}).get("intent", {}).get("name") or matter["intent"]["label"],
                "facts": facts, "unresolvedFacts": matter.get("missingSlots", []),
                "jurisdiction": baseline["metadata"].get("jurisdictionId"),
                "eventDate": baseline["metadata"].get("eventDate"),
-               "ruleEvaluations": baseline["metadata"].get("ruleEvaluations", []),
+               "ruleEvaluations": safe_rules,
+               "excludedRuleIds": [rule["ruleId"] for rule in rules if rule.get("status") in {"EXCLUDED_UNVERIFIED", "NOT_MATCHED"}],
                "evidence": sources, "supportedActions": baseline["nextSteps"],
                "uncertainties": baseline["uncertainties"],
                "excludedEvidence": baseline["metadata"].get("retrievalExclusions", []),

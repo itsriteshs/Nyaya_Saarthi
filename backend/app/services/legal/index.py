@@ -55,8 +55,13 @@ def build(semantic=True):
         except ImportError as exc:
             raise RuntimeError('Install backend/requirements-semantic.txt, then rerun the index build') from exc
         model_path=INDEX_DIR/'embedding_model'
-        model=SentenceTransformer(MODEL_NAME,cache_folder=str(INDEX_DIR/'model_cache'))
-        model.save(str(model_path))
+        # Rebuild from a previously saved local checkpoint without a fresh Hub
+        # lookup. A first-time build still downloads the documented model.
+        if model_path.is_dir():
+            model=SentenceTransformer(str(model_path),local_files_only=True)
+        else:
+            model=SentenceTransformer(MODEL_NAME,cache_folder=str(INDEX_DIR/'model_cache'))
+            model.save(str(model_path))
         vectors=model.encode([d['text'] for d in docs],normalize_embeddings=True,show_progress_bar=False)
         np.save(INDEX_DIR/'vectors.npy',np.asarray(vectors,dtype='float32'))
         capability='hybrid'

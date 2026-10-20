@@ -20,6 +20,7 @@ def test_preprocessing_preserves_meaning_and_original_spans():
 def test_language_script_and_uncertainty():
     assert analyze_language("तेज गाड़ी चलाने पर चालान मिला", "auto")["detectedLanguage"] == "hindi"
     assert analyze_language("Meri car का चालान", "english")["detectedLanguage"] == "mixed"
+    assert analyze_language("मेरी कार का insurance खत्म हो गया", "auto")["detectedLanguage"] == "hindi"
     assert analyze_language("hi", "auto")["detectedLanguage"] == "uncertain"
     assert analyze_language("Mera speeding ka challan kat gaya", "auto")["detectedLanguage"] in {"hinglish", "uncertain"}
     assert analyze_language("I received a speeding challan", "auto")["detectedLanguage"] in {"english", "uncertain"}
@@ -64,6 +65,16 @@ def test_status_negation_and_age_gap():
     assert any(e["type"] == "CHALLAN_STATUS" for e in yes)
     assert any(e["type"] == "AGE" for e in extract("My age: 17"))
     assert any(s["slot"] == "AGE" and s["reason"] == "provisional_schema_gap" for s in detect_slots("INT016", [] )["unresolvedSlots"])
+
+
+def test_status_phrase_vocabulary_uses_only_allowed_training_rows(monkeypatch):
+    from app.services.nlp import entity_extractor
+    rows = [(2, {"utterance_id": "train", "entity_annotations_json": '[{"slot_name":"INSURANCE_STATUS","value":"active policy"}]'}),
+            (3, {"utterance_id": "test", "entity_annotations_json": '[{"slot_name":"INSURANCE_STATUS","value":"held out phrase"}]'})]
+    monkeypatch.setattr(entity_extractor, "load_dataset", lambda _: ([], rows))
+    vocab = entity_extractor.build_status_vocabulary({"train"})
+    assert "active policy" in vocab["INSURANCE_STATUS"]
+    assert "held out phrase" not in vocab["INSURANCE_STATUS"]
 
 
 def test_slot_requirements_are_intent_specific():

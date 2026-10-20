@@ -20,7 +20,7 @@ export function GuidanceRail({ matter, guidance, factCount }: GuidanceRailProps)
           <Metric label="Verified facts used" value={String(factCount)} />
         </div>
         <p className="mt-3 text-sm font-semibold leading-6 text-[#6B665D]">
-          Retrieval mode: {guidance.metadata?.retrievalMode ?? "prototype"}. Dataset review does not authenticate a live government page.
+          Retrieval mode: {guidance.metadata?.retrievalMode ?? "unavailable"}. Dataset review does not authenticate a live government page.
         </p>
         <div className="mt-3 flex flex-wrap gap-2">
           {sourceTypes.map((type) => (
@@ -66,7 +66,7 @@ export function GuidanceRail({ matter, guidance, factCount }: GuidanceRailProps)
           <div>
             <p className="text-sm font-extrabold text-[#18150F]">How this guidance was created</p>
             <p className="mt-2 text-sm font-semibold leading-6 text-[#6B665D]">
-              Confirmed facts from matter {matter.id.slice(0, 8)} were matched against dataset-reviewed legal records. Index version: {guidance.metadata?.indexVersion ?? "prototype"}.
+              Confirmed facts from matter {matter.id.slice(0, 8)} were matched against dataset-reviewed legal records. Index version: {guidance.metadata?.indexVersion ?? "unavailable"}.
             </p>
           </div>
         </div>

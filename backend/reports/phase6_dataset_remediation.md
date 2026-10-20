@@ -1,0 +1,15 @@
+# Phase 6 dataset remediation and review boundary
+
+The original 23 source files were not modified. The baseline validator still reports 2 errors and 341 warnings across 20,213 parsed rows. A reproducible, reversible research overlay is produced by `python -m scripts.phase6_dataset_overlay /tmp/nyaya_phase6_dataset_overlay`; its change log retains the original malformed row. The overlay audit reports 1 error and 314 warnings across 20,215 parsed rows. It is not the production legal dataset.
+
+| Priority | Record | Finding and action | Production impact |
+|---|---|---|---|
+| High | `procedures.csv:26`, `PROC_CONTEST_ECHALLAN_COURT` | One missing `deadline` CSV field shifts later columns. In the overlay, an empty field is inserted before the unambiguously fee-labelled value. Original strings are retained. | The record remains `NOT_VERIFIED`, so the legal guidance policy still excludes it. |
+| High | `offences_penalties.csv:31`, `OFF_NO_PUC` | Empty `source_id`; its provision also points to a pending placeholder. No source is guessed. | Penalty claim remains blocked; this is the overlay's one remaining critical error. |
+| Medium | `slot_schema.csv`, learner-licence intent `INT016` | The intent and 26 annotations name `AGE`, but the source schema has no row. The overlay adds a **provisional conditional** AGE row. | The condition is not legally reviewed or executable; production still reports AGE as unresolved rather than asking or deciding on an assumed age rule. |
+
+Other placeholders are prioritized by workflow. Speed-limit rows have no reviewed numeric limit; no numeric advice is enabled. Licence and registration service placeholders block affirmative procedures. Challan payment/contest links and accident relief references remain incomplete. Insurance has an eligible general provision but no usable penalty. The [Phase 1 inventory](PHASE1_REFERENCE_INVENTORY.csv) retains per-record references; this phase has not promoted a placeholder to a legal source.
+
+The grouped data audit found 124 normalized exact texts and 175 digit-masked template families crossing the **original** source splits. It found 0 invalid annotation spans among the 10,000 rows under a direct substring check, 0 English-labelled rows containing Devanagari, and 26 provisional AGE entity annotations. These checks do not establish overall annotation correctness. The derived grouped research split assigns connected scenario/template families to a single partition and excludes 2,766 rows with gold-query template overlap. It contains 4,634 train, 1,156 dev, and 1,444 test rows; no connected group crosses these partitions. The original test was previously exposed, and semantic paraphrase leakage is still possible.
+
+Dataset files distinguish technical parseability, internal review flags, official-looking source links, and independent legal validation. The last category has **not** been established by this project. All 10,000 utterances and 4,474 relevance judgments remain pending human review; the 420 gold cases remain pending legal review. No source policy was weakened.

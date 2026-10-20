@@ -128,8 +128,8 @@ export function HeroSection() {
           </h1>
           <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-[#4F4A42]">
             Describe what happened in your own words. NyayaSaarthi identifies the important
-            facts, asks only for missing details, and helps you reach verified Motor Vehicle Law
-            guidance.
+            facts, asks for missing details, and helps you reach source-grounded Motor Vehicle Law
+            guidance after you verify your situation.
           </p>
 
           <SituationInput

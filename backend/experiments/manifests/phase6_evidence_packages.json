@@ -1,0 +1,1027 @@
+{
+  "version": "phase6-synthetic-v1",
+  "cases": [
+    {
+      "caseId": "SYN_SPEED_01",
+      "synthetic": true,
+      "question": "What legal provision may regulate speed on an expressway in Tamil Nadu? I do not know the posted limit.",
+      "package": {
+        "matterId": "SYN_SPEED_01",
+        "intent": "SPEEDING",
+        "facts": [
+          {
+            "key": "STATE",
+            "value": "Tamil Nadu"
+          },
+          {
+            "key": "EVENT_DATE",
+            "value": "2026-01-01"
+          },
+          {
+            "key": "VEHICLE_CLASS",
+            "value": "car"
+          },
+          {
+            "key": "ROAD_TYPE",
+            "value": "expressway"
+          }
+        ],
+        "unresolvedFacts": [],
+        "jurisdiction": "JX_IN_TN",
+        "eventDate": "2026-01-01",
+        "ruleEvaluations": [
+          {
+            "ruleId": "RULE_SPEED_HGV_LIMIT_CHECK",
+            "status": "INSUFFICIENT_CONTEXT",
+            "reasons": [
+              "REQUIRED_FACT_MISSING",
+              "SPEED_LIMIT_REVIEW_MISSING",
+              "VEHICLE_CLASS_SCOPE_UNPROVEN"
+            ],
+            "provisionId": "PROV_MVA_S112",
+            "matchedFactIds": [],
+            "missingSlots": [
+              "OBSERVED_SPEED"
+            ]
+          },
+          {
+            "ruleId": "RULE_SPEED_LMV_LIMIT_CHECK",
+            "status": "INSUFFICIENT_CONTEXT",
+            "reasons": [
+              "REQUIRED_FACT_MISSING",
+              "SPEED_LIMIT_REVIEW_MISSING",
+              "VEHICLE_CLASS_SCOPE_UNPROVEN"
+            ],
+            "provisionId": "PROV_MVA_S112",
+            "matchedFactIds": [],
+            "missingSlots": [
+              "OBSERVED_SPEED"
+            ]
+          },
+          {
+            "ruleId": "RULE_SPEED_MCWG_LIMIT_CHECK",
+            "status": "INSUFFICIENT_CONTEXT",
+            "reasons": [
+              "REQUIRED_FACT_MISSING",
+              "SPEED_LIMIT_REVIEW_MISSING",
+              "VEHICLE_CLASS_SCOPE_UNPROVEN"
+            ],
+            "provisionId": "PROV_MVA_S112",
+            "matchedFactIds": [],
+            "missingSlots": [
+              "OBSERVED_SPEED"
+            ]
+          }
+        ],
+        "excludedRuleIds": [
+          "RULE_SPEED_TN_JUDICIAL_OVERRIDE"
+        ],
+        "evidence": [
+          {
+            "evidenceId": "EVID:PROV_MVA_S112",
+            "provisionId": "PROV_MVA_S112",
+            "provision": "Section 112(1)",
+            "passage": "Drivers must stay within the maximum and minimum speed limits set for their vehicle class; the enabling section itself does not set the numeric limits, which come from separate central/state notifications (see legal_sources: SRC_SPEEDLIMIT_SO1522E_2018).",
+            "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 112(1)"
+          }
+        ],
+        "supportedActions": [],
+        "uncertainties": [
+          "No structured rule was established as applicable to the confirmed facts.",
+          "Some candidate rules need more confirmed facts or reviewed lookup data.",
+          "Numeric speed-limit records lack legal-source review; no speed threshold or penalty is asserted."
+        ],
+        "excludedEvidence": [
+          {
+            "id": "PROV_MVA_S3",
+            "status": "excluded",
+            "reasons": [
+              "DOMAIN_MISMATCH"
+            ]
+          },
+          {
+            "id": "PROV_MVA_S39",
+            "status": "excluded",
+            "reasons": [
+              "DOMAIN_MISMATCH"
+            ]
+          },
+          {
+            "id": "PROV_MVA_S146",
+            "status": "excluded",
+            "reasons": [
+              "DOMAIN_MISMATCH"
+            ]
+          }
+        ],
+        "excludedProcedures": [],
+        "indexVersion": "a6183dd22a43ad0b",
+        "sourceFingerprint": "b0521a641e94c970ab3b12b41f66357705feae5acbcf0d3d84cc9dc21ed2cb2c",
+        "fingerprint": "be17475cb1d69f5cf8beb89b7368fcc47e634e0bf3149fb35a5d22d327585f5a"
+      },
+      "baseline": {
+        "generatedAt": "2026-10-20T00:56:15.983115+00:00",
+        "directAnswer": "The dataset identifies Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 112(1) as potentially relevant to your confirmed situation. Drivers must stay within the maximum and minimum speed limits set for their vehicle class; the enabling section itself does not set the numeric limits, which come from separate central/state notifications (see legal_sources: SRC_SPEEDLIMIT_SO1522E_2018).",
+        "qualification": "This is legal information, not an offence finding. Source and provision review statuses come from the local dataset; the application has not independently authenticated the linked government pages. No numeric penalty, deadline, or procedural requirement is stated without an eligible supporting record.",
+        "sources": [
+          {
+            "id": "PROV_MVA_S112",
+            "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 112(1)",
+            "authority": "Ministry of Law and Justice (Parliament of India)",
+            "provision": "Section 112(1)",
+            "relevantPoint": "Drivers must stay within the maximum and minimum speed limits set for their vehicle class; the enabling section itself does not set the numeric limits, which come from separate central/state notifications (see legal_sources: SRC_SPEEDLIMIT_SO1522E_2018).",
+            "sourceType": "Act",
+            "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/1798",
+            "evidenceId": "EVID:PROV_MVA_S112",
+            "reviewStatus": "VERIFIED",
+            "admissibility": "eligible"
+          }
+        ],
+        "mappings": [],
+        "uncertainties": [
+          "No structured rule was established as applicable to the confirmed facts.",
+          "Some candidate rules need more confirmed facts or reviewed lookup data.",
+          "Numeric speed-limit records lack legal-source review; no speed threshold or penalty is asserted."
+        ],
+        "nextSteps": [],
+        "suggestedQuestions": [],
+        "metadata": {
+          "indexVersion": "a6183dd22a43ad0b",
+          "sourceFingerprint": "b0521a641e94c970ab3b12b41f66357705feae5acbcf0d3d84cc9dc21ed2cb2c",
+          "retrievalMode": "hybrid",
+          "eventDate": "2026-01-01",
+          "jurisdictionId": "JX_IN_TN",
+          "ruleEvaluations": [
+            {
+              "ruleId": "RULE_SPEED_TN_JUDICIAL_OVERRIDE",
+              "status": "EXCLUDED_UNVERIFIED",
+              "provisionId": "PROV_MVA_S112",
+              "sourceId": "SRC_MVA_1988",
+              "matchedFactIds": [
+                "SYN_SPEED_01:STATE"
+              ],
+              "missingSlots": [],
+              "conditions": [
+                {
+                  "predicate": "state",
+                  "expected": "Tamil Nadu",
+                  "result": "true",
+                  "factId": "SYN_SPEED_01:STATE"
+                },
+                {
+                  "predicate": "numeric_limit_source",
+                  "expected": "SRC_SPEEDLIMIT_SO1522E_2018",
+                  "result": "unsupported",
+                  "factId": null
+                }
+              ],
+              "exception": {
+                "basis": "CASE_TN_SPEEDLIMIT_MHC_2021 quashed S.O. 1522(E) as applied in Tamil Nadu"
+              },
+              "conclusionType": "ESCALATE_TO_STATE_NOTIFICATION",
+              "conclusionData": {
+                "note": "system must not assert the central 120 km/h figure for Tamil Nadu highways; defer to fresh state notification or mark NOT_VERIFIED"
+              },
+              "reasons": [
+                "EXCEPTION_NOT_EVALUATED",
+                "RULE_NOT_VERIFIED",
+                "UNSUPPORTED_CONDITION"
+              ],
+              "reviewStatus": "UNDER_REVIEW",
+              "file": "rule_logic.csv",
+              "row": 12
+            },
+            {
+              "ruleId": "RULE_SPEED_HGV_LIMIT_CHECK",
+              "status": "INSUFFICIENT_CONTEXT",
+              "provisionId": "PROV_MVA_S112",
+              "sourceId": "SRC_MVA_1988",
+              "matchedFactIds": [],
+              "missingSlots": [
+                "OBSERVED_SPEED"
+              ],
+              "conditions": [
+                {
+                  "predicate": "observed_speed_gt",
+                  "expected": "lookup:speed_limits.max_speed_kmph",
+                  "result": "unknown",
+                  "factId": null
+                }
+              ],
+              "exception": {},
+              "conclusionType": "PENALTY_APPLIES",
+              "conclusionData": {
+                "offence_ref": "OFF_SPEEDING_HGV",
+                "numeric_limit_source": "SRC_SPEEDLIMIT_SO1522E_2018"
+              },
+              "reasons": [
+                "REQUIRED_FACT_MISSING",
+                "SPEED_LIMIT_REVIEW_MISSING",
+                "VEHICLE_CLASS_SCOPE_UNPROVEN"
+              ],
+              "reviewStatus": "VERIFIED",
+              "file": "rule_logic.csv",
+              "row": 11
+            },
+            {
+              "ruleId": "RULE_SPEED_LMV_LIMIT_CHECK",
+              "status": "INSUFFICIENT_CONTEXT",
+              "provisionId": "PROV_MVA_S112",
+              "sourceId": "SRC_MVA_1988",
+              "matchedFactIds": [],
+              "missingSlots": [
+                "OBSERVED_SPEED"
+              ],
+              "conditions": [
+                {
+                  "predicate": "observed_speed_gt",
+                  "expected": "lookup:speed_limits.max_speed_kmph",
+                  "result": "unknown",
+                  "factId": null
+                }
+              ],
+              "exception": {},
+              "conclusionType": "PENALTY_APPLIES",
+              "conclusionData": {
+                "offence_ref": "OFF_SPEEDING_LMV",
+                "numeric_limit_source": "SRC_SPEEDLIMIT_SO1522E_2018"
+              },
+              "reasons": [
+                "REQUIRED_FACT_MISSING",
+                "SPEED_LIMIT_REVIEW_MISSING",
+                "VEHICLE_CLASS_SCOPE_UNPROVEN"
+              ],
+              "reviewStatus": "VERIFIED",
+              "file": "rule_logic.csv",
+              "row": 9
+            },
+            {
+              "ruleId": "RULE_SPEED_MCWG_LIMIT_CHECK",
+              "status": "INSUFFICIENT_CONTEXT",
+              "provisionId": "PROV_MVA_S112",
+              "sourceId": "SRC_MVA_1988",
+              "matchedFactIds": [],
+              "missingSlots": [
+                "OBSERVED_SPEED"
+              ],
+              "conditions": [
+                {
+                  "predicate": "observed_speed_gt",
+                  "expected": "lookup:speed_limits.max_speed_kmph",
+                  "result": "unknown",
+                  "factId": null
+                }
+              ],
+              "exception": {},
+              "conclusionType": "PENALTY_APPLIES",
+              "conclusionData": {
+                "offence_ref": "OFF_SPEEDING_MCWG",
+                "numeric_limit_source": "SRC_SPEEDLIMIT_SO1522E_2018"
+              },
+              "reasons": [
+                "REQUIRED_FACT_MISSING",
+                "SPEED_LIMIT_REVIEW_MISSING",
+                "VEHICLE_CLASS_SCOPE_UNPROVEN"
+              ],
+              "reviewStatus": "VERIFIED",
+              "file": "rule_logic.csv",
+              "row": 10
+            }
+          ],
+          "retrievedEvidence": [
+            {
+              "evidenceId": "EVID:PROV_MVA_S112",
+              "documentId": "provision:PROV_MVA_S112",
+              "rank": 1,
+              "lexicalScore": 0.0,
+              "semanticScore": 0.45024
+            }
+          ],
+          "evidenceIds": [
+            "EVID:PROV_MVA_S112"
+          ],
+          "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+          "retrievalExclusions": [
+            {
+              "id": "PROV_MVA_S3",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            },
+            {
+              "id": "PROV_MVA_S39",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            },
+            {
+              "id": "PROV_MVA_S146",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            }
+          ],
+          "procedureExclusions": [],
+          "procedureEvidence": [],
+          "penaltyPolicy": "WITHHELD_UNVERIFIED_RELATIONSHIPS"
+        }
+      }
+    },
+    {
+      "caseId": "SYN_INSURANCE_01",
+      "synthetic": true,
+      "question": "My car insurance expired in Tamil Nadu. Which provision may be relevant?",
+      "package": {
+        "matterId": "SYN_INSURANCE_01",
+        "intent": "INSURANCE",
+        "facts": [
+          {
+            "key": "STATE",
+            "value": "Tamil Nadu"
+          },
+          {
+            "key": "EVENT_DATE",
+            "value": "2026-01-01"
+          },
+          {
+            "key": "VEHICLE_CLASS",
+            "value": "car"
+          },
+          {
+            "key": "INSURANCE_STATUS",
+            "value": "expired"
+          }
+        ],
+        "unresolvedFacts": [],
+        "jurisdiction": "JX_IN_TN",
+        "eventDate": "2026-01-01",
+        "ruleEvaluations": [
+          {
+            "ruleId": "RULE_INSURANCE_REQUIRED_GENERAL",
+            "status": "MATCHED",
+            "reasons": [],
+            "provisionId": "PROV_MVA_S146",
+            "matchedFactIds": [
+              "SYN_INSURANCE_01:INSURANCE_STATUS"
+            ],
+            "missingSlots": []
+          }
+        ],
+        "excludedRuleIds": [
+          "RULE_INSURANCE_EXEMPT_GOVT_OWNED"
+        ],
+        "evidence": [
+          {
+            "evidenceId": "EVID:PROV_MVA_S146",
+            "provisionId": "PROV_MVA_S146",
+            "provision": "Section 146(1)",
+            "passage": "Every motor vehicle used in a public place must be covered by a valid third-party insurance policy meeting statutory requirements, except where a specific exemption applies.",
+            "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 146(1)"
+          }
+        ],
+        "supportedActions": [],
+        "uncertainties": [],
+        "excludedEvidence": [
+          {
+            "id": "PROV_MVA_S3",
+            "status": "excluded",
+            "reasons": [
+              "DOMAIN_MISMATCH"
+            ]
+          },
+          {
+            "id": "PROV_MVA_S39",
+            "status": "excluded",
+            "reasons": [
+              "DOMAIN_MISMATCH"
+            ]
+          },
+          {
+            "id": "PROV_MVA_S112",
+            "status": "excluded",
+            "reasons": [
+              "DOMAIN_MISMATCH"
+            ]
+          }
+        ],
+        "excludedProcedures": [],
+        "indexVersion": "a6183dd22a43ad0b",
+        "sourceFingerprint": "b0521a641e94c970ab3b12b41f66357705feae5acbcf0d3d84cc9dc21ed2cb2c",
+        "fingerprint": "59f1c243e7c746ec8852037b190b75e6ba404006328f53b8f34c6981a8a2ccfd"
+      },
+      "baseline": {
+        "generatedAt": "2026-10-20T00:56:15.996070+00:00",
+        "directAnswer": "The dataset identifies Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 146(1) as potentially relevant to your confirmed situation. Every motor vehicle used in a public place must be covered by a valid third-party insurance policy meeting statutory requirements, except where a specific exemption applies.",
+        "qualification": "This is legal information, not an offence finding. Source and provision review statuses come from the local dataset; the application has not independently authenticated the linked government pages. No numeric penalty, deadline, or procedural requirement is stated without an eligible supporting record.",
+        "sources": [
+          {
+            "id": "PROV_MVA_S146",
+            "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 146(1)",
+            "authority": "Ministry of Law and Justice (Parliament of India)",
+            "provision": "Section 146(1)",
+            "relevantPoint": "Every motor vehicle used in a public place must be covered by a valid third-party insurance policy meeting statutory requirements, except where a specific exemption applies.",
+            "sourceType": "Act",
+            "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/1798",
+            "evidenceId": "EVID:PROV_MVA_S146",
+            "reviewStatus": "VERIFIED",
+            "admissibility": "eligible"
+          }
+        ],
+        "mappings": [
+          {
+            "id": "RULE_INSURANCE_REQUIRED_GENERAL:SYN_INSURANCE_01:INSURANCE_STATUS",
+            "fact": "Insurance Status: expired",
+            "sourceId": "PROV_MVA_S146",
+            "sourceTitle": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 146(1)",
+            "explanation": "Dataset rule RULE_INSURANCE_REQUIRED_GENERAL matched this confirmed fact. The provision appears relevant; this is not an offence finding.",
+            "evidenceId": "EVID:PROV_MVA_S146"
+          }
+        ],
+        "uncertainties": [],
+        "nextSteps": [],
+        "suggestedQuestions": [],
+        "metadata": {
+          "indexVersion": "a6183dd22a43ad0b",
+          "sourceFingerprint": "b0521a641e94c970ab3b12b41f66357705feae5acbcf0d3d84cc9dc21ed2cb2c",
+          "retrievalMode": "hybrid",
+          "eventDate": "2026-01-01",
+          "jurisdictionId": "JX_IN_TN",
+          "ruleEvaluations": [
+            {
+              "ruleId": "RULE_INSURANCE_EXEMPT_GOVT_OWNED",
+              "status": "EXCLUDED_UNVERIFIED",
+              "provisionId": "PROV_MVA_S146",
+              "sourceId": "SRC_MVA_1988",
+              "matchedFactIds": [],
+              "missingSlots": [
+                "USER_ROLE"
+              ],
+              "conditions": [
+                {
+                  "predicate": "owner_type",
+                  "expected": "GOVERNMENT",
+                  "result": "unsupported",
+                  "factId": null
+                },
+                {
+                  "predicate": "use_type",
+                  "expected": "GOVERNMENT_PURPOSE",
+                  "result": "unsupported",
+                  "factId": null
+                }
+              ],
+              "exception": {
+                "basis": "Section 146 exception for government-owned vehicles - exact statutory scope NOT_VERIFIED"
+              },
+              "conclusionType": "EXEMPT",
+              "conclusionData": {
+                "note": "requires confirmation of exact statutory conditions before relying on this exemption"
+              },
+              "reasons": [
+                "EXCEPTION_NOT_EVALUATED",
+                "REQUIRED_FACT_MISSING",
+                "RULE_NOT_VERIFIED",
+                "UNSUPPORTED_CONDITION"
+              ],
+              "reviewStatus": "NOT_VERIFIED",
+              "file": "rule_logic.csv",
+              "row": 20
+            },
+            {
+              "ruleId": "RULE_INSURANCE_REQUIRED_GENERAL",
+              "status": "MATCHED",
+              "provisionId": "PROV_MVA_S146",
+              "sourceId": "SRC_MVA_1988",
+              "matchedFactIds": [
+                "SYN_INSURANCE_01:INSURANCE_STATUS"
+              ],
+              "missingSlots": [],
+              "conditions": [
+                {
+                  "predicate": "insurance_status_not_valid",
+                  "expected": true,
+                  "result": "true",
+                  "factId": "SYN_INSURANCE_01:INSURANCE_STATUS"
+                }
+              ],
+              "exception": {},
+              "conclusionType": "PENALTY_APPLIES",
+              "conclusionData": {
+                "offence_ref": "OFF_NO_INSURANCE"
+              },
+              "reasons": [],
+              "reviewStatus": "VERIFIED",
+              "file": "rule_logic.csv",
+              "row": 19
+            }
+          ],
+          "retrievedEvidence": [
+            {
+              "evidenceId": "EVID:PROV_MVA_S146",
+              "documentId": "provision:PROV_MVA_S146",
+              "rank": 1,
+              "lexicalScore": 0.48685,
+              "semanticScore": 0.22477
+            }
+          ],
+          "evidenceIds": [
+            "EVID:PROV_MVA_S146"
+          ],
+          "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+          "retrievalExclusions": [
+            {
+              "id": "PROV_MVA_S3",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            },
+            {
+              "id": "PROV_MVA_S39",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            },
+            {
+              "id": "PROV_MVA_S112",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            }
+          ],
+          "procedureExclusions": [],
+          "procedureEvidence": [],
+          "penaltyPolicy": "WITHHELD_UNVERIFIED_RELATIONSHIPS"
+        }
+      }
+    },
+    {
+      "caseId": "SYN_REGISTRATION_01",
+      "synthetic": true,
+      "question": "My car registration expired in Tamil Nadu. Which provision may be relevant?",
+      "package": {
+        "matterId": "SYN_REGISTRATION_01",
+        "intent": "REGISTRATION",
+        "facts": [
+          {
+            "key": "STATE",
+            "value": "Tamil Nadu"
+          },
+          {
+            "key": "EVENT_DATE",
+            "value": "2026-01-01"
+          },
+          {
+            "key": "VEHICLE_CLASS",
+            "value": "car"
+          },
+          {
+            "key": "RC_STATUS",
+            "value": "expired"
+          }
+        ],
+        "unresolvedFacts": [],
+        "jurisdiction": "JX_IN_TN",
+        "eventDate": "2026-01-01",
+        "ruleEvaluations": [
+          {
+            "ruleId": "RULE_REG_REQUIRED_GENERAL",
+            "status": "MATCHED",
+            "reasons": [],
+            "provisionId": "PROV_MVA_S39",
+            "matchedFactIds": [
+              "SYN_REGISTRATION_01:RC_STATUS"
+            ],
+            "missingSlots": []
+          }
+        ],
+        "excludedRuleIds": [
+          "RULE_REG_TRANSFER_TIMELINE"
+        ],
+        "evidence": [
+          {
+            "evidenceId": "EVID:PROV_MVA_S39",
+            "provisionId": "PROV_MVA_S39",
+            "provision": "Section 39",
+            "passage": "A vehicle cannot legally be driven in a public place unless it is registered and that registration is currently valid (not suspended or cancelled).",
+            "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 39"
+          }
+        ],
+        "supportedActions": [],
+        "uncertainties": [
+          "Related procedure records have unresolved source, legal-basis, or service references; procedural instructions are withheld."
+        ],
+        "excludedEvidence": [
+          {
+            "id": "PROV_MVA_S3",
+            "status": "excluded",
+            "reasons": [
+              "DOMAIN_MISMATCH"
+            ]
+          },
+          {
+            "id": "PROV_MVA_S112",
+            "status": "excluded",
+            "reasons": [
+              "DOMAIN_MISMATCH"
+            ]
+          },
+          {
+            "id": "PROV_MVA_S146",
+            "status": "excluded",
+            "reasons": [
+              "DOMAIN_MISMATCH"
+            ]
+          }
+        ],
+        "excludedProcedures": [
+          {
+            "procedureId": "PROC_NEW_VEHICLE_REGISTRATION",
+            "reasons": [
+              "REQUIRED_RECORD_NOT_VERIFIED",
+              "SERVICE_REFERENCE_UNRESOLVED",
+              "STEP_DOCUMENT_REFERENCE_UNRESOLVED"
+            ]
+          },
+          {
+            "procedureId": "PROC_TEMP_REGISTRATION",
+            "reasons": [
+              "PROCEDURE_NOT_VERIFIED",
+              "PROCEDURE_STEPS_MISSING",
+              "REQUIRED_RECORD_NOT_VERIFIED",
+              "SERVICE_REFERENCE_UNRESOLVED"
+            ]
+          },
+          {
+            "procedureId": "PROC_RENEW_RC",
+            "reasons": [
+              "PROCEDURE_NOT_VERIFIED",
+              "PROCEDURE_STEPS_MISSING",
+              "REQUIRED_RECORD_NOT_VERIFIED",
+              "SERVICE_REFERENCE_UNRESOLVED"
+            ]
+          },
+          {
+            "procedureId": "PROC_DUPLICATE_RC",
+            "reasons": [
+              "LEGAL_BASIS_MISSING",
+              "PROCEDURE_STEPS_MISSING",
+              "REQUIRED_RECORD_NOT_VERIFIED",
+              "SERVICE_REFERENCE_UNRESOLVED"
+            ]
+          },
+          {
+            "procedureId": "PROC_TRANSFER_OWNERSHIP_RC",
+            "reasons": [
+              "LEGAL_BASIS_MISSING",
+              "PROCEDURE_NOT_VERIFIED",
+              "REQUIRED_RECORD_NOT_VERIFIED",
+              "SERVICE_REFERENCE_UNRESOLVED",
+              "STEP_DOCUMENT_REFERENCE_UNRESOLVED"
+            ]
+          },
+          {
+            "procedureId": "PROC_ADDRESS_CHANGE_RC",
+            "reasons": [
+              "LEGAL_BASIS_MISSING",
+              "PROCEDURE_NOT_VERIFIED",
+              "PROCEDURE_STEPS_MISSING",
+              "REQUIRED_RECORD_NOT_VERIFIED",
+              "REQUIRED_REFERENCE_UNRESOLVED",
+              "SERVICE_REFERENCE_UNRESOLVED"
+            ]
+          },
+          {
+            "procedureId": "PROC_ADD_HYPOTHECATION",
+            "reasons": [
+              "LEGAL_BASIS_MISSING",
+              "PROCEDURE_STEPS_MISSING",
+              "SERVICE_REFERENCE_UNRESOLVED"
+            ]
+          },
+          {
+            "procedureId": "PROC_REMOVE_HYPOTHECATION",
+            "reasons": [
+              "LEGAL_BASIS_MISSING",
+              "PROCEDURE_STEPS_MISSING",
+              "REQUIRED_RECORD_NOT_VERIFIED",
+              "SERVICE_REFERENCE_UNRESOLVED"
+            ]
+          },
+          {
+            "procedureId": "PROC_NOC_INTERSTATE_TRANSFER",
+            "reasons": [
+              "LEGAL_BASIS_MISSING",
+              "PROCEDURE_NOT_VERIFIED",
+              "PROCEDURE_STEPS_MISSING",
+              "REQUIRED_RECORD_NOT_VERIFIED",
+              "SERVICE_REFERENCE_UNRESOLVED"
+            ]
+          },
+          {
+            "procedureId": "PROC_ASSIGN_NEW_REGISTRATION_MARK",
+            "reasons": [
+              "LEGAL_BASIS_MISSING",
+              "PROCEDURE_NOT_VERIFIED",
+              "PROCEDURE_STEPS_MISSING",
+              "REQUIRED_RECORD_NOT_VERIFIED",
+              "SERVICE_REFERENCE_UNRESOLVED"
+            ]
+          },
+          {
+            "procedureId": "PROC_PAY_ROAD_TAX",
+            "reasons": [
+              "LEGAL_BASIS_MISSING",
+              "PROCEDURE_NOT_VERIFIED",
+              "PROCEDURE_STEPS_MISSING",
+              "REQUIRED_REFERENCE_UNRESOLVED",
+              "SERVICE_REFERENCE_UNRESOLVED"
+            ]
+          },
+          {
+            "procedureId": "PROC_BH_SERIES_REGISTRATION",
+            "reasons": [
+              "LEGAL_BASIS_MISSING",
+              "PROCEDURE_NOT_VERIFIED",
+              "PROCEDURE_STEPS_MISSING",
+              "REQUIRED_RECORD_NOT_VERIFIED",
+              "SERVICE_REFERENCE_UNRESOLVED"
+            ]
+          }
+        ],
+        "indexVersion": "a6183dd22a43ad0b",
+        "sourceFingerprint": "b0521a641e94c970ab3b12b41f66357705feae5acbcf0d3d84cc9dc21ed2cb2c",
+        "fingerprint": "fabf0a31c80bb5a4d6f5370be99861cd20ff4d3d23bff9db6834488160adddfb"
+      },
+      "baseline": {
+        "generatedAt": "2026-10-20T00:56:16.008059+00:00",
+        "directAnswer": "The dataset identifies Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 39 as potentially relevant to your confirmed situation. A vehicle cannot legally be driven in a public place unless it is registered and that registration is currently valid (not suspended or cancelled).",
+        "qualification": "This is legal information, not an offence finding. Source and provision review statuses come from the local dataset; the application has not independently authenticated the linked government pages. No numeric penalty, deadline, or procedural requirement is stated without an eligible supporting record.",
+        "sources": [
+          {
+            "id": "PROV_MVA_S39",
+            "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 39",
+            "authority": "Ministry of Law and Justice (Parliament of India)",
+            "provision": "Section 39",
+            "relevantPoint": "A vehicle cannot legally be driven in a public place unless it is registered and that registration is currently valid (not suspended or cancelled).",
+            "sourceType": "Act",
+            "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/1798",
+            "evidenceId": "EVID:PROV_MVA_S39",
+            "reviewStatus": "VERIFIED",
+            "admissibility": "eligible"
+          }
+        ],
+        "mappings": [
+          {
+            "id": "RULE_REG_REQUIRED_GENERAL:SYN_REGISTRATION_01:RC_STATUS",
+            "fact": "Rc Status: expired",
+            "sourceId": "PROV_MVA_S39",
+            "sourceTitle": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 39",
+            "explanation": "Dataset rule RULE_REG_REQUIRED_GENERAL matched this confirmed fact. The provision appears relevant; this is not an offence finding.",
+            "evidenceId": "EVID:PROV_MVA_S39"
+          }
+        ],
+        "uncertainties": [
+          "Related procedure records have unresolved source, legal-basis, or service references; procedural instructions are withheld."
+        ],
+        "nextSteps": [],
+        "suggestedQuestions": [],
+        "metadata": {
+          "indexVersion": "a6183dd22a43ad0b",
+          "sourceFingerprint": "b0521a641e94c970ab3b12b41f66357705feae5acbcf0d3d84cc9dc21ed2cb2c",
+          "retrievalMode": "hybrid",
+          "eventDate": "2026-01-01",
+          "jurisdictionId": "JX_IN_TN",
+          "ruleEvaluations": [
+            {
+              "ruleId": "RULE_REG_REQUIRED_GENERAL",
+              "status": "MATCHED",
+              "provisionId": "PROV_MVA_S39",
+              "sourceId": "SRC_MVA_1988",
+              "matchedFactIds": [
+                "SYN_REGISTRATION_01:RC_STATUS"
+              ],
+              "missingSlots": [],
+              "conditions": [
+                {
+                  "predicate": "rc_status_not_valid",
+                  "expected": true,
+                  "result": "true",
+                  "factId": "SYN_REGISTRATION_01:RC_STATUS"
+                }
+              ],
+              "exception": {},
+              "conclusionType": "PENALTY_APPLIES",
+              "conclusionData": {
+                "offence_ref": "OFF_NO_REGISTRATION"
+              },
+              "reasons": [],
+              "reviewStatus": "VERIFIED",
+              "file": "rule_logic.csv",
+              "row": 7
+            },
+            {
+              "ruleId": "RULE_REG_TRANSFER_TIMELINE",
+              "status": "EXCLUDED_UNVERIFIED",
+              "provisionId": "PROV_CMVR_TRANSFER_PENDING_ADD",
+              "sourceId": null,
+              "matchedFactIds": [],
+              "missingSlots": [],
+              "conditions": [
+                {
+                  "predicate": "ownership_changed",
+                  "expected": true,
+                  "result": "unsupported",
+                  "factId": null
+                },
+                {
+                  "predicate": "rc_transfer_completed",
+                  "expected": false,
+                  "result": "unsupported",
+                  "factId": null
+                },
+                {
+                  "predicate": "days_since_change_gt",
+                  "expected": 14,
+                  "result": "unsupported",
+                  "factId": null
+                }
+              ],
+              "exception": {},
+              "conclusionType": "PROCEDURAL_DUTY_BREACHED",
+              "conclusionData": {
+                "reference": "CMVR ownership-transfer rules - exact rule number and day-count NOT_VERIFIED"
+              },
+              "reasons": [
+                "PROVISION_REFERENCE_MISSING",
+                "RULE_NOT_VERIFIED",
+                "UNSUPPORTED_CONDITION"
+              ],
+              "reviewStatus": "NOT_VERIFIED",
+              "file": "rule_logic.csv",
+              "row": 8
+            }
+          ],
+          "retrievedEvidence": [
+            {
+              "evidenceId": "EVID:PROV_MVA_S39",
+              "documentId": "provision:PROV_MVA_S39",
+              "rank": 1,
+              "lexicalScore": 0.48685,
+              "semanticScore": 0.41234
+            }
+          ],
+          "evidenceIds": [
+            "EVID:PROV_MVA_S39"
+          ],
+          "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+          "retrievalExclusions": [
+            {
+              "id": "PROV_MVA_S3",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            },
+            {
+              "id": "PROV_MVA_S112",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            },
+            {
+              "id": "PROV_MVA_S146",
+              "status": "excluded",
+              "reasons": [
+                "DOMAIN_MISMATCH"
+              ]
+            }
+          ],
+          "procedureExclusions": [
+            {
+              "procedureId": "PROC_NEW_VEHICLE_REGISTRATION",
+              "reasons": [
+                "REQUIRED_RECORD_NOT_VERIFIED",
+                "SERVICE_REFERENCE_UNRESOLVED",
+                "STEP_DOCUMENT_REFERENCE_UNRESOLVED"
+              ]
+            },
+            {
+              "procedureId": "PROC_TEMP_REGISTRATION",
+              "reasons": [
+                "PROCEDURE_NOT_VERIFIED",
+                "PROCEDURE_STEPS_MISSING",
+                "REQUIRED_RECORD_NOT_VERIFIED",
+                "SERVICE_REFERENCE_UNRESOLVED"
+              ]
+            },
+            {
+              "procedureId": "PROC_RENEW_RC",
+              "reasons": [
+                "PROCEDURE_NOT_VERIFIED",
+                "PROCEDURE_STEPS_MISSING",
+                "REQUIRED_RECORD_NOT_VERIFIED",
+                "SERVICE_REFERENCE_UNRESOLVED"
+              ]
+            },
+            {
+              "procedureId": "PROC_DUPLICATE_RC",
+              "reasons": [
+                "LEGAL_BASIS_MISSING",
+                "PROCEDURE_STEPS_MISSING",
+                "REQUIRED_RECORD_NOT_VERIFIED",
+                "SERVICE_REFERENCE_UNRESOLVED"
+              ]
+            },
+            {
+              "procedureId": "PROC_TRANSFER_OWNERSHIP_RC",
+              "reasons": [
+                "LEGAL_BASIS_MISSING",
+                "PROCEDURE_NOT_VERIFIED",
+                "REQUIRED_RECORD_NOT_VERIFIED",
+                "SERVICE_REFERENCE_UNRESOLVED",
+                "STEP_DOCUMENT_REFERENCE_UNRESOLVED"
+              ]
+            },
+            {
+              "procedureId": "PROC_ADDRESS_CHANGE_RC",
+              "reasons": [
+                "LEGAL_BASIS_MISSING",
+                "PROCEDURE_NOT_VERIFIED",
+                "PROCEDURE_STEPS_MISSING",
+                "REQUIRED_RECORD_NOT_VERIFIED",
+                "REQUIRED_REFERENCE_UNRESOLVED",
+                "SERVICE_REFERENCE_UNRESOLVED"
+              ]
+            },
+            {
+              "procedureId": "PROC_ADD_HYPOTHECATION",
+              "reasons": [
+                "LEGAL_BASIS_MISSING",
+                "PROCEDURE_STEPS_MISSING",
+                "SERVICE_REFERENCE_UNRESOLVED"
+              ]
+            },
+            {
+              "procedureId": "PROC_REMOVE_HYPOTHECATION",
+              "reasons": [
+                "LEGAL_BASIS_MISSING",
+                "PROCEDURE_STEPS_MISSING",
+                "REQUIRED_RECORD_NOT_VERIFIED",
+                "SERVICE_REFERENCE_UNRESOLVED"
+              ]
+            },
+            {
+              "procedureId": "PROC_NOC_INTERSTATE_TRANSFER",
+              "reasons": [
+                "LEGAL_BASIS_MISSING",
+                "PROCEDURE_NOT_VERIFIED",
+                "PROCEDURE_STEPS_MISSING",
+                "REQUIRED_RECORD_NOT_VERIFIED",
+                "SERVICE_REFERENCE_UNRESOLVED"
+              ]
+            },
+            {
+              "procedureId": "PROC_ASSIGN_NEW_REGISTRATION_MARK",
+              "reasons": [
+                "LEGAL_BASIS_MISSING",
+                "PROCEDURE_NOT_VERIFIED",
+                "PROCEDURE_STEPS_MISSING",
+                "REQUIRED_RECORD_NOT_VERIFIED",
+                "SERVICE_REFERENCE_UNRESOLVED"
+              ]
+            },
+            {
+              "procedureId": "PROC_PAY_ROAD_TAX",
+              "reasons": [
+                "LEGAL_BASIS_MISSING",
+                "PROCEDURE_NOT_VERIFIED",
+                "PROCEDURE_STEPS_MISSING",
+                "REQUIRED_REFERENCE_UNRESOLVED",
+                "SERVICE_REFERENCE_UNRESOLVED"
+              ]
+            },
+            {
+              "procedureId": "PROC_BH_SERIES_REGISTRATION",
+              "reasons": [
+                "LEGAL_BASIS_MISSING",
+                "PROCEDURE_NOT_VERIFIED",
+                "PROCEDURE_STEPS_MISSING",
+                "REQUIRED_RECORD_NOT_VERIFIED",
+                "SERVICE_REFERENCE_UNRESOLVED"
+              ]
+            }
+          ],
+          "procedureEvidence": [],
+          "penaltyPolicy": "WITHHELD_UNVERIFIED_RELATIONSHIPS"
+        }
+      }
+    }
+  ]
+}

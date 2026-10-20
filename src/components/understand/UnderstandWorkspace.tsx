@@ -17,7 +17,7 @@ interface UnderstandWorkspaceProps {
 }
 
 export function UnderstandWorkspace({ initialText, initialLanguage }: UnderstandWorkspaceProps) {
-  const { matter, setMatter } = useMatter();
+  const { matter, restored, setMatter } = useMatter();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const demoMode = process.env.NEXT_PUBLIC_NYAYA_DEMO_MODE === "true";
@@ -30,8 +30,8 @@ export function UnderstandWorkspace({ initialText, initialLanguage }: Understand
     return () => { active = false; };
   }, [matterId, setMatter]);
   const fallbackMatter = useMemo(
-    () => demoMode ? createMatterContext(initialText, initialLanguage) : null,
-    [demoMode, initialText, initialLanguage],
+    () => demoMode && restored ? createMatterContext(initialText, initialLanguage) : null,
+    [demoMode, restored, initialText, initialLanguage],
   );
   const context = matter ?? (demoMode ? fallbackMatter : null);
 

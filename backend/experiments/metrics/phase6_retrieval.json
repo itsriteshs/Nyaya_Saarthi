@@ -1,0 +1,55 @@
+{
+  "label": "exploratory: all relevance judgments are PENDING review",
+  "indexVersion": "a6183dd22a43ad0b",
+  "sourceFingerprint": "b0521a641e94c970ab3b12b41f66357705feae5acbcf0d3d84cc9dc21ed2cb2c",
+  "corpusSize": 4,
+  "queryCount": 2159,
+  "queriesWithExcludedPositive": 997,
+  "queriesWithNoAdmittedPositive": 997,
+  "variants": {
+    "bm25": {
+      "n": 2159,
+      "answerable": 1162,
+      "recall@1": 0.5731497418244407,
+      "hit@1": 0.5731497418244407,
+      "recall@3": 0.7323580034423408,
+      "hit@3": 0.7323580034423408,
+      "recall@5": 0.7564543889845095,
+      "hit@5": 0.7564543889845095,
+      "mrr": 0.6481640849110728,
+      "nonemptyRankingRate": 0.7633163501621121
+    },
+    "semantic": {
+      "n": 2159,
+      "answerable": 1162,
+      "recall@1": 0.6549053356282272,
+      "hit@1": 0.6549053356282272,
+      "recall@3": 0.9724612736660929,
+      "hit@3": 0.9724612736660929,
+      "recall@5": 1.0,
+      "hit@5": 1.0,
+      "mrr": 0.8059380378657487,
+      "nonemptyRankingRate": 1.0
+    },
+    "hybrid": {
+      "n": 2159,
+      "answerable": 1162,
+      "recall@1": 0.774526678141136,
+      "hit@1": 0.774526678141136,
+      "recall@3": 0.9690189328743546,
+      "hit@3": 0.9690189328743546,
+      "recall@5": 1.0,
+      "hit@5": 1.0,
+      "mrr": 0.8699082042455537,
+      "nonemptyRankingRate": 1.0
+    }
+  },
+  "precisionAtK": null,
+  "precisionReason": "Most admitted query-document pairs are unjudged; treating them as negatives would fabricate precision.",
+  "protocol": "Rank the same four globally eligible provisions for every query without matter-specific jurisdiction, date, or domain filters; this measures ranking only. Queries without an admitted positive are reported separately.",
+  "limitations": [
+    "Synthetic relevance pairs are not human reviewed.",
+    "The eligible corpus contains only four provisions; Recall@5 has little discrimination.",
+    "This is not an end-to-end legal applicability score."
+  ]
+}

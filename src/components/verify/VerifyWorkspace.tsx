@@ -113,7 +113,7 @@ export function VerifyWorkspace() {
                 description and answers.
               </p>
               {matter.nlpAnalysis ? <p className="mt-3 rounded-md border border-[#C49A55]/60 bg-[#F4E8D3] p-3 text-sm font-bold text-[#7A521F]">
-                Confirmed facts are saved to this matter. Verification records your review; legal source checking is not available yet.
+                Confirmed facts are saved to this matter. Legal source checking begins after you verify this context.
               </p> : null}
               {error ? <p role="alert" className="mt-3 text-sm font-bold text-red-700">{error}</p> : null}
               {matter.nlpAnalysis && matter.conversation?.unknownSlots.length ? <label className="mt-3 flex items-center gap-2 text-sm font-bold text-[#4F4A42]">

@@ -1,10 +1,11 @@
 """Rule-based span extractor on original text; this is not trained NER."""
 import re
 import json
+import csv
 from functools import lru_cache
 from datetime import datetime,timedelta
 from app.services.nlp.ontology import ontology
-from app.config import DATASET_DIR
+from app.config import DATASET_DIR, BACKEND_DIR
 from app.services.dataset_loader import load_dataset
 
 SPEED=re.compile(r'(?<!\w)(?:(?:about|around|maybe|लगभग)\s+)?(?P<value>\d{2,3})\s*(?P<unit>km\s*/\s*h|kmph|kph|किमी\s*/\s*घंटा)(?!\w)',re.I)
@@ -20,11 +21,21 @@ AGE_LABEL=re.compile(r'(?:\bage\b|उम्र)\s*[:：-]\s*(?P<age>\d{1,2})',re
 
 @lru_cache(maxsize=1)
 def status_vocabulary():
-    """Use annotation values as patterns, without learning a sequence model."""
+    """Only training annotations may supply status phrases used at inference."""
+    manifest=BACKEND_DIR/'artifacts'/'nlp_split_manifest.csv'
+    if not manifest.is_file():
+        raise FileNotFoundError('Prepare the NLP training split before entity inference')
+    with manifest.open(encoding='utf-8',newline='') as stream:
+        allowed={row['utterance_id'] for row in csv.DictReader(stream) if row['derived_split']=='train'}
+    return build_status_vocabulary(allowed)
+
+
+def build_status_vocabulary(allowed_ids):
+    """Create a vocabulary from a specified training fold only."""
     values={kind:set() for kind in ('CHALLAN_STATUS','LICENCE_STATUS','INSURANCE_STATUS')}
     _,rows=load_dataset(DATASET_DIR/'annotated_utterances.csv')
     for _,row in rows:
-        if not isinstance(row,dict):continue
+        if not isinstance(row,dict) or row.get('utterance_id') not in allowed_ids:continue
         try: annotations=json.loads(row.get('entity_annotations_json') or '[]')
         except json.JSONDecodeError:continue
         for item in annotations:
@@ -33,7 +44,7 @@ def status_vocabulary():
     return {kind:sorted(items,key=len,reverse=True) for kind,items in values.items()}
 
 
-def extract(text: str, reference_datetime: datetime | None=None):
+def extract(text: str, reference_datetime: datetime | None=None, status_values=None):
     entities=[]
     def add(kind,match,value=None,method='rule'):
         entities.append({'type':kind,'text':match.group(0),'value':value or match.group(0),
@@ -61,7 +72,7 @@ def extract(text: str, reference_datetime: datetime | None=None):
                              'start':m.start('age'),'end':m.end('age'),'method':'rule','confidence':None})
     cues={'CHALLAN_STATUS':r'challan|चालान','LICENCE_STATUS':r'licen[cs]e|\bdl\b|लाइसेंस',
           'INSURANCE_STATUS':r'insurance|policy|बीमा'}
-    for kind,phrases in status_vocabulary().items():
+    for kind,phrases in (status_values if status_values is not None else status_vocabulary()).items():
         for phrase in phrases:
             for m in re.finditer(r'(?<!\w)'+re.escape(phrase)+r'(?!\w)',text,re.I):
                 vicinity=text[max(0,m.start()-45):min(len(text),m.end()+45)]

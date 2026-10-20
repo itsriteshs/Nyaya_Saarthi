@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LockKeyhole, Menu, UserRound } from "lucide-react";
+import { CircleCheck, Menu, UserRound } from "lucide-react";
 import type { LanguageOption } from "@/types/nlp";
 
 const progressItems = ["Understand", "Verify", "Guidance", "Summary"];
@@ -52,8 +52,8 @@ export function UnderstandHeader({ language, currentStep }: UnderstandHeaderProp
 
         <div className="ml-auto flex items-center gap-3">
           <span className="hidden items-center gap-2 rounded-md border border-[#DED7CA] px-3 py-2 text-xs font-extrabold text-[#4F4A42] sm:inline-flex">
-            <LockKeyhole size={14} aria-hidden="true" />
-            Secure & Private
+            <CircleCheck size={14} aria-hidden="true" />
+            Confirm before guidance
           </span>
           <span className="rounded-md border border-[#DED7CA] px-3 py-2 text-xs font-extrabold capitalize text-[#4F4A42]">
             {language}

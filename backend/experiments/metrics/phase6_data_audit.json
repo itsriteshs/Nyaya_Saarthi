@@ -1,0 +1,31 @@
+{
+  "sourceRows": 10000,
+  "sourceSplits": {
+    "train": 8000,
+    "dev": 1000,
+    "test": 1000
+  },
+  "groupedSplits": {
+    "dev": 1156,
+    "train": 4634,
+    "excluded_gold_overlap": 2766,
+    "test": 1444
+  },
+  "groupCount": 3622,
+  "scenarioCrossSourceSplits": 0,
+  "exactTextCrossSourceSplits": 124,
+  "digitMaskedTemplateCrossSourceSplits": 175,
+  "groupCrossDerivedSplits": 0,
+  "goldTemplateOverlapExcludedRows": 2766,
+  "invalidAnnotationSpans": 0,
+  "englishLabelWithDevanagari": 0,
+  "provisionalEntityLabels": {
+    "AGE_PROVISIONAL": 26
+  },
+  "manifestSha256": "8563a1d4d1e9682bd9acbe2bf80a2adce650ed65167d1aee3b644a5d9b312614",
+  "limitations": [
+    "All utterance labels remain pending human review.",
+    "The prior source test set was already exposed during Phase 2 development.",
+    "Scenario and digit-masked text grouping does not prove absence of semantic paraphrase leakage."
+  ]
+}

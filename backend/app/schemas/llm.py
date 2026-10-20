@@ -1,5 +1,5 @@
 from typing import Literal
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 
 
 class GenerateRequest(BaseModel):
@@ -24,4 +24,4 @@ class Explanation(BaseModel):
     uncertainties: list[str]
     recommendedActions: list[str]
     language: Literal["english", "hindi", "hinglish"]
-    requiresHumanHelp: bool
+    requiresHumanHelp: StrictBool

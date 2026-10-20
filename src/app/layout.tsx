@@ -19,7 +19,7 @@ const sans = Manrope({
 
 export const metadata: Metadata = {
   title: "NyayaSaarthi",
-  description: "A multilingual Motor Vehicle Law guidance prototype for India.",
+  description: "A multilingual Motor Vehicle Law research assistant for India.",
 };
 
 export default function RootLayout({

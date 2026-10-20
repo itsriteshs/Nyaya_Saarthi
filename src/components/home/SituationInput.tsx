@@ -1,4 +1,4 @@
-import { ArrowRight, Mic, RotateCcw } from "lucide-react";
+import { ArrowRight, RotateCcw } from "lucide-react";
 import type { FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
 import { examplePrompts } from "@/data/examples";
@@ -86,14 +86,6 @@ export function SituationInput({
               {option.label}
             </button>
           ))}
-          <button
-            type="button"
-            className="ml-0 inline-flex min-h-10 items-center gap-2 rounded-md border border-[#DED7CA] bg-[#FBF8F1] px-3 text-sm font-extrabold text-[#18150F] transition-colors hover:border-[#A8752B] md:ml-2"
-            aria-label="Speak your situation"
-          >
-            <Mic size={16} aria-hidden="true" />
-            Speak
-          </button>
         </div>
 
         <Button type="submit" disabled={submitting} className="w-full px-5 xl:w-auto">

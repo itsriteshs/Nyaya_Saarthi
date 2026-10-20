@@ -65,6 +65,8 @@ def generate_explanation(matter: dict, model_id: str, language: str, provider=No
             raise ValueError("OUTPUT_LANGUAGE_MISMATCH")
         if language == "hinglish" and any("\u0900" <= c <= "\u097f" for c in output.answer):
             raise ValueError("OUTPUT_LANGUAGE_MISMATCH")
+        output.recommendedActions = [action for action in output.recommendedActions
+                                     if action in {step["title"] for step in baseline["nextSteps"]}]
         citation_ids = sorted({ref for claim in output.legalClaims for ref in claim.evidenceIds})
         baseline["directAnswer"] = output.answer + "\n\n" + output.explanation + "\n\nEvidence: " + ", ".join(citation_ids)
         baseline["uncertainties"] = list(dict.fromkeys(baseline["uncertainties"] + output.uncertainties))

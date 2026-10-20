@@ -42,6 +42,21 @@ def test_registry_prompt_parser_and_grounding():
         assert False
 
 
+def test_phase6_parser_alias_and_unsupported_actions_are_safe():
+    aliased = parse_response(json.dumps(output(language="en", recommendedActions=["Pay an invented fee"])))
+    assert aliased.language == "english"
+    validation = validate(aliased, package())
+    assert validation["accepted"]
+    assert validation["omittedActions"] == ["Pay an invented fee"]
+    assert "UNSUPPORTED_ACTION_OMITTED" in validation["warningCodes"]
+    try:
+        parse_response(json.dumps(output(requiresHumanHelp="false")))
+    except ValueError as exc:
+        assert str(exc) == "OUTPUT_SCHEMA_INVALID"
+    else:
+        assert False
+
+
 def test_fake_provider_and_fallback(monkeypatch):
     matter = {"id": "test", "originalText": "Is speed regulated?", "intent": {"label": "Speed"},
               "facts": [], "missingSlots": [], "language": "english"}

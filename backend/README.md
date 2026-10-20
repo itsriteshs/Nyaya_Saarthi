@@ -43,7 +43,40 @@ cd backend
 
 These tags correspond to `meta-llama/Llama-3.2-3B-Instruct` and `mistralai/Mistral-7B-Instruct-v0.3`; verify and comply with the [Meta Llama community licence](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct) and [Mistral Apache-2.0 licence](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3). The Q4_K_M downloads are approximately 2.0 GB and 4.4 GB. Runtime memory also depends on context and concurrent processes. Weights are never downloaded during backend startup or a request. The default is Llama; set `NYAYA_LLM_DEFAULT_MODEL=mistral-7b` to change it. Other options and defaults are in `.env.example`. Only localhost Ollama URLs are accepted. The deterministic path works with neither model installed.
 
-`GET /api/v1/models` and `/models/health` report actual local readiness. `POST /api/v1/matters/{id}/generate` takes `modelId` (`llama3.2-3b`, `mistral-7b`, or `deterministic`), `language` (`english`, `hindi`, `hinglish`), `expectedRevision`, and optional `regenerate: true`. It returns the updated persisted matter. To try both installed models with one frozen verified matter without changing it: `.venv/bin/python -m scripts.run_llm_smoke MATTER_UUID --language hindi`. This script prints metadata only. See [Phase 5 implementation](reports/PHASE5_IMPLEMENTATION.md) and [runtime readiness](reports/model_runtime_readiness.md). Real model inference on this development machine has not yet been tested because the selected weights are absent.
+`GET /api/v1/models` and `/models/health` report actual local readiness. `POST /api/v1/matters/{id}/generate` takes `modelId` (`llama3.2-3b`, `mistral-7b`, or `deterministic`), `language` (`english`, `hindi`, `hinglish`), `expectedRevision`, and optional `regenerate: true`. It returns the updated persisted matter. To try both installed models with one frozen verified matter without changing it: `.venv/bin/python -m scripts.run_llm_smoke MATTER_UUID --language hindi`. This script prints metadata only. See [Phase 5 implementation](reports/PHASE5_IMPLEMENTATION.md) for the earlier implementation state and [Phase 6 comparison](reports/llm_comparison.md) for actual local inference results.
+
+## Reproduce Phase 6 locally
+
+Use the setup commands above, then run these commands from `backend/`. The original dataset audit exits nonzero while the two documented source-data errors remain; its report is still generated. The derived overlay is for research review only. The Phase 6 runners write to `experiments/`, so move or archive existing results before rerunning if you need to preserve them.
+
+Install the plotting dependency with `.venv/bin/pip install -r requirements-evaluation.txt` from `backend/`.
+
+```bash
+.venv/bin/python -m scripts.validate_datasets
+.venv/bin/python -m scripts.phase6_dataset_overlay /tmp/nyaya_phase6_dataset_overlay
+.venv/bin/python -m scripts.phase6_data_audit
+.venv/bin/python -m scripts.phase6_nlp_experiment
+.venv/bin/python -m scripts.build_legal_index
+.venv/bin/python -m scripts.phase6_retrieval_eval
+.venv/bin/python -m scripts.phase6_freeze_cases
+.venv/bin/python -m scripts.phase6_llm_compare --model llama3.2-3b
+ollama stop llama3.2:3b-instruct-q4_K_M
+.venv/bin/python -m scripts.phase6_llm_compare --model mistral-7b
+.venv/bin/python -m scripts.phase6_ablations
+.venv/bin/python scripts/phase6_plots.py
+.venv/bin/python scripts/phase6_write_reports.py
+.venv/bin/python -m pytest tests -q
+```
+
+For an isolated HTTP demonstration, start FastAPI with a temporary database and the matching frontend CORS origin, then use `NEXT_PUBLIC_API_BASE_URL` for the Next.js process:
+
+```bash
+NYAYA_DATABASE_URL=sqlite:////tmp/nyaya_phase6_demo.db NYAYA_FRONTEND_ORIGINS=http://127.0.0.1:3010 .venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8010
+NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8010 npm run dev -- --hostname 127.0.0.1 --port 3010
+.venv/bin/python -m scripts.phase6_e2e_smoke --base-url http://127.0.0.1:8010 --model deterministic
+```
+
+Run the Next.js command from the repository root and the other commands from `backend/`. The SQLite file stores test matters; do not expose the unauthenticated API publicly. See [Phase 6 deployment readiness](reports/deployment_readiness.md) for the tested environment and limits.
 
 ## Configuration and limits
 
