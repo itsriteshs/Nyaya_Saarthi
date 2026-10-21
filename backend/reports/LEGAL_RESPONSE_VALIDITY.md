@@ -1,3 +1,9 @@
+# Current recheck — 21 October 2026
+
+Nineteen current-code deterministic journeys now reach Summary with uncertainty and provenance; S18 is outside scope. This expands workflow coverage, not independent legal correctness. Eligible corpus remains4/11; numeric/procedure assertions remain withheld. See [UAT_RECHECK_REPORT.md](UAT_RECHECK_REPORT.md) and [UAT_RECHECK_SCENARIOS.csv](UAT_RECHECK_SCENARIOS.csv) for evidence and limitations. The earlier audit below is retained as historical evidence.
+
+---
+
 # Legal response validity
 
 Scenario20 was inspected end-to-end. Hybrid index15930382a608885b retrieved EVID:PROV_MVA_S112, Section112(1), Motor Vehicles Act1988, source https://www.indiacode.nic.in/handle/123456789/1798 . It described an enabling speed-limit provision and explicitly withheld numeric limits, penalties and procedures; no structured rule was asserted applicable. Confirmed StateTamil Nadu/date today were displayed, with remaining uncertainty in Summary.

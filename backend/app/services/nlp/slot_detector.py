@@ -5,8 +5,8 @@ from app.services.nlp.ontology import ontology
 PROVISIONAL_AGE={'intent_id':'INT016','slot_name':'AGE','status':'provisional',
                  'source':'INT016.conditional_slot_ids and 26 annotated utterances; absent from slot_schema.csv'}
 
-def detect_slots(intent_id: str, entities: list[dict], *, required_slots=()):
-    configured=ontology()['slots'].get(intent_id,[])
+def detect_slots(intent_id: str, entities: list[dict], *, required_slots=(), configured_rows=None):
+    configured=ontology()['slots'].get(intent_id,[]) if configured_rows is None else configured_rows
     by_type={}
     for entity in entities:by_type.setdefault(entity['type'],[]).append(entity)
     missing=[];unresolved=[];found=0;total=0
@@ -18,7 +18,7 @@ def detect_slots(intent_id: str, entities: list[dict], *, required_slots=()):
         valid=[x for x in values if x['status']=='resolved']
         conflicting=len({str(x['normalizedValue']) for x in valid})>1
         ambiguous=bool(values) and (not valid or conflicting)
-        if level=='required' and condition=='intent_context' or level=='conditional' and slot in required_slots:
+        if level=='required' and condition=='intent_context' or slot in required_slots:
             total+=1
             if valid and not conflicting:found+=1
             else:

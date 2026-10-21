@@ -1,0 +1,26 @@
+{
+  "train": 4634,
+  "dev": 1156,
+  "ontologyExamples": 116,
+  "testEvaluated": 0,
+  "uatUsedForSelection": false,
+  "manifestSHA256": "8563a1d4d1e9682bd9acbe2bf80a2adce650ed65167d1aee3b644a5d9b312614",
+  "results": {
+    "existing": {
+      "accuracy": 1.0,
+      "macroF1": 1.0,
+      "seconds": 0.13654960005078465
+    },
+    "word": {
+      "accuracy": 1.0,
+      "macroF1": 1.0,
+      "seconds": 0.39075579994823784
+    },
+    "word_char": {
+      "accuracy": 1.0,
+      "macroF1": 1.0,
+      "seconds": 1.877090899972245
+    }
+  },
+  "note": "Development-only comparison on reused synthetic/unreviewed dev labels. No automatic model promotion and no new held-out claim."
+}

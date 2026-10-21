@@ -42,13 +42,13 @@ export function ConversationPanel({ context, onAnswer, busy = false, error = "" 
 
           {context.nlpAnalysis && context.currentQuestion ? (
             <>
-              <ClarificationQuestion question={context.currentQuestion} onAnswer={onAnswer} />
+              <ClarificationQuestion question={context.currentQuestion} onAnswer={onAnswer} busy={busy} />
               <button type="button" disabled={busy} onClick={() => onAnswer("I don't know")}
                 className="text-sm font-bold text-[#7A521F] underline disabled:opacity-50">I don&apos;t know / Skip with uncertainty</button>
             </>
           ) : context.nlpAnalysis ? (
             <div className="rounded-lg border border-[#C49A55]/60 bg-[#F4E8D3] p-5">
-              <p className="text-sm font-extrabold uppercase text-[#7A521F]">Model analysis · {context.nlpAnalysis.intent.id}</p>
+              <p className="text-sm font-extrabold uppercase text-[#7A521F]">{context.nlpAnalysis.intent.scoreType.startsWith("User-selected") ? "Issue selected by you" : "Model suggestion"}</p>
               <h2 className="font-editorial mt-2 text-3xl font-bold text-[#18150F]">
                 {context.conversation?.reviewEligible ? "Review the extracted context" : "More context or confirmation is needed"}
               </h2>
@@ -66,7 +66,7 @@ export function ConversationPanel({ context, onAnswer, busy = false, error = "" 
               </Link> : null}
             </div>
           ) : context.currentQuestion ? (
-            <ClarificationQuestion question={context.currentQuestion} onAnswer={onAnswer} />
+            <ClarificationQuestion question={context.currentQuestion} onAnswer={onAnswer} busy={busy} />
           ) : (
             <div className="rounded-lg border border-[#C49A55]/60 bg-[#F4E8D3] p-5">
               <p className="text-sm font-extrabold uppercase text-[#7A521F]">

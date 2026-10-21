@@ -20,12 +20,12 @@ export function ContextPanel({ context, readiness }: ContextPanelProps) {
         <p className="font-editorial text-3xl font-bold leading-none text-[#071B3A]">
           What NyayaSaarthi Understands
         </p>
-        <p className="mt-2 text-sm font-semibold text-[#6B665D]">{context.nlpAnalysis ? "Extracted from your original description." : "Updated as you answer."}</p>
+        <p className="mt-2 text-sm font-semibold text-[#6B665D]">{context.nlpAnalysis ? "Updated from your description and answers." : "Updated as you answer."}</p>
       </div>
 
       <section className="mt-5 rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-4">
         <div className="flex items-start gap-3">
-          <CheckCircle2 className="mt-1 text-[#647567]" size={18} aria-hidden="true" />
+          {context.currentQuestion?.slot.startsWith("INTENT") ? <CircleHelp className="mt-1 text-[#A8752B]" size={18} aria-hidden="true" /> : <CheckCircle2 className="mt-1 text-[#647567]" size={18} aria-hidden="true" />}
           <div>
             <p className="text-xs font-extrabold uppercase text-[#6B665D]">Detected Issue</p>
             <p className="mt-1 text-base font-extrabold text-[#18150F]">{context.intent.label}</p>
@@ -117,5 +117,5 @@ function formatSlot(slot: string) {
     licence_action: "Meaning of licence action",
   };
 
-  return labels[slot] ?? slot;
+  return labels[slot] ?? slot.replaceAll("_", " ").toLowerCase();
 }

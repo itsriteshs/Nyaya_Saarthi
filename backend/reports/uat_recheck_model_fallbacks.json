@@ -1,0 +1,1340 @@
+{
+  "models": {
+    "models": [
+      {
+        "id": "llama3.2-3b",
+        "displayName": "Llama 3.2 3B Instruct",
+        "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+        "runtimeName": "llama3.2:3b-instruct-q4_K_M",
+        "license": "Meta Llama 3.2 Community License",
+        "status": "runtime_unreachable",
+        "available": false,
+        "default": true
+      },
+      {
+        "id": "mistral-7b",
+        "displayName": "Mistral 7B Instruct v0.3",
+        "checkpoint": "mistralai/Mistral-7B-Instruct-v0.3",
+        "runtimeName": "mistral:7b-instruct-v0.3-q4_K_M",
+        "license": "Apache-2.0",
+        "status": "runtime_unreachable",
+        "available": false,
+        "default": false
+      }
+    ],
+    "runtime": "unreachable"
+  },
+  "pairs": [
+    {
+      "scenario": "S01",
+      "attempts": [
+        {
+          "model": "llama3.2-3b",
+          "seconds": 2.9466007000301033,
+          "metadata": {
+            "indexVersion": "15930382a608885b",
+            "sourceFingerprint": "90f62bfb87ba4215d287af4cac7348f82ac69f69cc965db9c7643040e3c56309",
+            "retrievalMode": "hybrid",
+            "eventDate": "2026-10-19",
+            "jurisdictionId": "JX_IN_TN",
+            "ruleEvaluations": [
+              {
+                "ruleId": "RULE_SPEED_TN_JUDICIAL_OVERRIDE",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_MVA_S112",
+                "sourceId": "SRC_MVA_1988",
+                "matchedFactIds": [
+                  "58da9684-d1a6-497e-b593-97d1b651e7a1"
+                ],
+                "missingSlots": [],
+                "conditions": [
+                  {
+                    "predicate": "state",
+                    "expected": "Tamil Nadu",
+                    "result": "true",
+                    "factId": "58da9684-d1a6-497e-b593-97d1b651e7a1"
+                  },
+                  {
+                    "predicate": "numeric_limit_source",
+                    "expected": "SRC_SPEEDLIMIT_SO1522E_2018",
+                    "result": "unsupported",
+                    "factId": null
+                  }
+                ],
+                "exception": {
+                  "basis": "CASE_TN_SPEEDLIMIT_MHC_2021 quashed S.O. 1522(E) as applied in Tamil Nadu"
+                },
+                "conclusionType": "ESCALATE_TO_STATE_NOTIFICATION",
+                "conclusionData": {
+                  "note": "system must not assert the central 120 km/h figure for Tamil Nadu highways; defer to fresh state notification or mark NOT_VERIFIED"
+                },
+                "reasons": [
+                  "EXCEPTION_NOT_EVALUATED",
+                  "RULE_NOT_VERIFIED",
+                  "UNSUPPORTED_CONDITION"
+                ],
+                "reviewStatus": "UNDER_REVIEW",
+                "file": "rule_logic.csv",
+                "row": 12
+              },
+              {
+                "ruleId": "RULE_SPEED_HGV_LIMIT_CHECK",
+                "status": "INSUFFICIENT_CONTEXT",
+                "provisionId": "PROV_MVA_S112",
+                "sourceId": "SRC_MVA_1988",
+                "matchedFactIds": [],
+                "missingSlots": [],
+                "conditions": [
+                  {
+                    "predicate": "observed_speed_gt",
+                    "expected": "lookup:speed_limits.max_speed_kmph",
+                    "result": "unknown",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PENALTY_APPLIES",
+                "conclusionData": {
+                  "offence_ref": "OFF_SPEEDING_HGV",
+                  "numeric_limit_source": "SRC_SPEEDLIMIT_SO1522E_2018"
+                },
+                "reasons": [
+                  "SPEED_LIMIT_REVIEW_MISSING",
+                  "VEHICLE_CLASS_SCOPE_UNPROVEN"
+                ],
+                "reviewStatus": "VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 11
+              },
+              {
+                "ruleId": "RULE_SPEED_LMV_LIMIT_CHECK",
+                "status": "INSUFFICIENT_CONTEXT",
+                "provisionId": "PROV_MVA_S112",
+                "sourceId": "SRC_MVA_1988",
+                "matchedFactIds": [],
+                "missingSlots": [],
+                "conditions": [
+                  {
+                    "predicate": "observed_speed_gt",
+                    "expected": "lookup:speed_limits.max_speed_kmph",
+                    "result": "unknown",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PENALTY_APPLIES",
+                "conclusionData": {
+                  "offence_ref": "OFF_SPEEDING_LMV",
+                  "numeric_limit_source": "SRC_SPEEDLIMIT_SO1522E_2018"
+                },
+                "reasons": [
+                  "SPEED_LIMIT_REVIEW_MISSING",
+                  "VEHICLE_CLASS_SCOPE_UNPROVEN"
+                ],
+                "reviewStatus": "VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 9
+              },
+              {
+                "ruleId": "RULE_SPEED_MCWG_LIMIT_CHECK",
+                "status": "INSUFFICIENT_CONTEXT",
+                "provisionId": "PROV_MVA_S112",
+                "sourceId": "SRC_MVA_1988",
+                "matchedFactIds": [],
+                "missingSlots": [],
+                "conditions": [
+                  {
+                    "predicate": "observed_speed_gt",
+                    "expected": "lookup:speed_limits.max_speed_kmph",
+                    "result": "unknown",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PENALTY_APPLIES",
+                "conclusionData": {
+                  "offence_ref": "OFF_SPEEDING_MCWG",
+                  "numeric_limit_source": "SRC_SPEEDLIMIT_SO1522E_2018"
+                },
+                "reasons": [
+                  "SPEED_LIMIT_REVIEW_MISSING",
+                  "VEHICLE_CLASS_SCOPE_UNPROVEN"
+                ],
+                "reviewStatus": "VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 10
+              }
+            ],
+            "retrievedEvidence": [
+              {
+                "evidenceId": "EVID:PROV_MVA_S112",
+                "documentId": "provision:PROV_MVA_S112",
+                "rank": 1,
+                "lexicalScore": 0.39556,
+                "semanticScore": 0.47617
+              }
+            ],
+            "evidenceIds": [
+              "EVID:PROV_MVA_S112"
+            ],
+            "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+            "outputLanguage": "english",
+            "retrievalExclusions": [
+              {
+                "id": "PROV_MVA_S3",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S39",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S146",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              }
+            ],
+            "procedureExclusions": [],
+            "procedureEvidence": [],
+            "penaltyPolicy": "WITHHELD_UNVERIFIED_RELATIONSHIPS",
+            "requestedModel": "llama3.2-3b",
+            "requestedLanguage": "english",
+            "inputLanguage": "uncertain",
+            "promptVersion": "remediation-grounded-v3",
+            "runtime": "ollama",
+            "generationParameters": {
+              "temperature": 0,
+              "maxTokens": 700,
+              "seed": 471,
+              "contextTokens": 8192,
+              "format": "Explanation JSON schema"
+            },
+            "generationTimestamp": "2026-10-20T19:14:52.416184+00:00",
+            "evidencePackageId": "c38e0fd40b17cdbfe5b01b906ab3d342fb641efd3ed4044e4e0b8cb3272cbfac",
+            "modelCheckpoint": "meta-llama/Llama-3.2-3B-Instruct",
+            "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+            "quantization": "Q4_K_M",
+            "fallbackUsed": true,
+            "failureReason": "RUNTIME_UNREACHABLE",
+            "validation": {
+              "accepted": false,
+              "reasonCodes": [
+                "RUNTIME_UNREACHABLE"
+              ],
+              "fallbackRequired": true
+            }
+          },
+          "sources": [
+            {
+              "id": "PROV_MVA_S112",
+              "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 112(1)",
+              "authority": "Ministry of Law and Justice (Parliament of India)",
+              "provision": "Section 112(1)",
+              "relevantPoint": "Drivers must stay within the maximum and minimum speed limits set for their vehicle class; the enabling section itself does not set the numeric limits, which come from separate central/state notifications (see legal_sources: SRC_SPEEDLIMIT_SO1522E_2018).",
+              "sourceType": "Act",
+              "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/1798",
+              "evidenceId": "EVID:PROV_MVA_S112",
+              "reviewStatus": "VERIFIED",
+              "admissibility": "eligible"
+            }
+          ]
+        },
+        {
+          "model": "mistral-7b",
+          "seconds": 2.062697199988179,
+          "metadata": {
+            "indexVersion": "15930382a608885b",
+            "sourceFingerprint": "90f62bfb87ba4215d287af4cac7348f82ac69f69cc965db9c7643040e3c56309",
+            "retrievalMode": "hybrid",
+            "eventDate": "2026-10-19",
+            "jurisdictionId": "JX_IN_TN",
+            "ruleEvaluations": [
+              {
+                "ruleId": "RULE_SPEED_TN_JUDICIAL_OVERRIDE",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_MVA_S112",
+                "sourceId": "SRC_MVA_1988",
+                "matchedFactIds": [
+                  "58da9684-d1a6-497e-b593-97d1b651e7a1"
+                ],
+                "missingSlots": [],
+                "conditions": [
+                  {
+                    "predicate": "state",
+                    "expected": "Tamil Nadu",
+                    "result": "true",
+                    "factId": "58da9684-d1a6-497e-b593-97d1b651e7a1"
+                  },
+                  {
+                    "predicate": "numeric_limit_source",
+                    "expected": "SRC_SPEEDLIMIT_SO1522E_2018",
+                    "result": "unsupported",
+                    "factId": null
+                  }
+                ],
+                "exception": {
+                  "basis": "CASE_TN_SPEEDLIMIT_MHC_2021 quashed S.O. 1522(E) as applied in Tamil Nadu"
+                },
+                "conclusionType": "ESCALATE_TO_STATE_NOTIFICATION",
+                "conclusionData": {
+                  "note": "system must not assert the central 120 km/h figure for Tamil Nadu highways; defer to fresh state notification or mark NOT_VERIFIED"
+                },
+                "reasons": [
+                  "EXCEPTION_NOT_EVALUATED",
+                  "RULE_NOT_VERIFIED",
+                  "UNSUPPORTED_CONDITION"
+                ],
+                "reviewStatus": "UNDER_REVIEW",
+                "file": "rule_logic.csv",
+                "row": 12
+              },
+              {
+                "ruleId": "RULE_SPEED_HGV_LIMIT_CHECK",
+                "status": "INSUFFICIENT_CONTEXT",
+                "provisionId": "PROV_MVA_S112",
+                "sourceId": "SRC_MVA_1988",
+                "matchedFactIds": [],
+                "missingSlots": [],
+                "conditions": [
+                  {
+                    "predicate": "observed_speed_gt",
+                    "expected": "lookup:speed_limits.max_speed_kmph",
+                    "result": "unknown",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PENALTY_APPLIES",
+                "conclusionData": {
+                  "offence_ref": "OFF_SPEEDING_HGV",
+                  "numeric_limit_source": "SRC_SPEEDLIMIT_SO1522E_2018"
+                },
+                "reasons": [
+                  "SPEED_LIMIT_REVIEW_MISSING",
+                  "VEHICLE_CLASS_SCOPE_UNPROVEN"
+                ],
+                "reviewStatus": "VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 11
+              },
+              {
+                "ruleId": "RULE_SPEED_LMV_LIMIT_CHECK",
+                "status": "INSUFFICIENT_CONTEXT",
+                "provisionId": "PROV_MVA_S112",
+                "sourceId": "SRC_MVA_1988",
+                "matchedFactIds": [],
+                "missingSlots": [],
+                "conditions": [
+                  {
+                    "predicate": "observed_speed_gt",
+                    "expected": "lookup:speed_limits.max_speed_kmph",
+                    "result": "unknown",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PENALTY_APPLIES",
+                "conclusionData": {
+                  "offence_ref": "OFF_SPEEDING_LMV",
+                  "numeric_limit_source": "SRC_SPEEDLIMIT_SO1522E_2018"
+                },
+                "reasons": [
+                  "SPEED_LIMIT_REVIEW_MISSING",
+                  "VEHICLE_CLASS_SCOPE_UNPROVEN"
+                ],
+                "reviewStatus": "VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 9
+              },
+              {
+                "ruleId": "RULE_SPEED_MCWG_LIMIT_CHECK",
+                "status": "INSUFFICIENT_CONTEXT",
+                "provisionId": "PROV_MVA_S112",
+                "sourceId": "SRC_MVA_1988",
+                "matchedFactIds": [],
+                "missingSlots": [],
+                "conditions": [
+                  {
+                    "predicate": "observed_speed_gt",
+                    "expected": "lookup:speed_limits.max_speed_kmph",
+                    "result": "unknown",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PENALTY_APPLIES",
+                "conclusionData": {
+                  "offence_ref": "OFF_SPEEDING_MCWG",
+                  "numeric_limit_source": "SRC_SPEEDLIMIT_SO1522E_2018"
+                },
+                "reasons": [
+                  "SPEED_LIMIT_REVIEW_MISSING",
+                  "VEHICLE_CLASS_SCOPE_UNPROVEN"
+                ],
+                "reviewStatus": "VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 10
+              }
+            ],
+            "retrievedEvidence": [
+              {
+                "evidenceId": "EVID:PROV_MVA_S112",
+                "documentId": "provision:PROV_MVA_S112",
+                "rank": 1,
+                "lexicalScore": 0.39556,
+                "semanticScore": 0.47617
+              }
+            ],
+            "evidenceIds": [
+              "EVID:PROV_MVA_S112"
+            ],
+            "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+            "outputLanguage": "english",
+            "retrievalExclusions": [
+              {
+                "id": "PROV_MVA_S3",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S39",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S146",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              }
+            ],
+            "procedureExclusions": [],
+            "procedureEvidence": [],
+            "penaltyPolicy": "WITHHELD_UNVERIFIED_RELATIONSHIPS",
+            "requestedModel": "mistral-7b",
+            "requestedLanguage": "english",
+            "inputLanguage": "uncertain",
+            "promptVersion": "remediation-grounded-v3",
+            "runtime": "ollama",
+            "generationParameters": {
+              "temperature": 0,
+              "maxTokens": 700,
+              "seed": 471,
+              "contextTokens": 8192,
+              "format": "Explanation JSON schema"
+            },
+            "generationTimestamp": "2026-10-20T19:14:55.361743+00:00",
+            "evidencePackageId": "c38e0fd40b17cdbfe5b01b906ab3d342fb641efd3ed4044e4e0b8cb3272cbfac",
+            "modelCheckpoint": "mistralai/Mistral-7B-Instruct-v0.3",
+            "runtimeModel": "mistral:7b-instruct-v0.3-q4_K_M",
+            "quantization": "Q4_K_M",
+            "fallbackUsed": true,
+            "failureReason": "RUNTIME_UNREACHABLE",
+            "validation": {
+              "accepted": false,
+              "reasonCodes": [
+                "RUNTIME_UNREACHABLE"
+              ],
+              "fallbackRequired": true
+            }
+          },
+          "sources": [
+            {
+              "id": "PROV_MVA_S112",
+              "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 112(1)",
+              "authority": "Ministry of Law and Justice (Parliament of India)",
+              "provision": "Section 112(1)",
+              "relevantPoint": "Drivers must stay within the maximum and minimum speed limits set for their vehicle class; the enabling section itself does not set the numeric limits, which come from separate central/state notifications (see legal_sources: SRC_SPEEDLIMIT_SO1522E_2018).",
+              "sourceType": "Act",
+              "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/1798",
+              "evidenceId": "EVID:PROV_MVA_S112",
+              "reviewStatus": "VERIFIED",
+              "admissibility": "eligible"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "S05",
+      "attempts": [
+        {
+          "model": "llama3.2-3b",
+          "seconds": 2.0623167000012472,
+          "metadata": {
+            "indexVersion": "15930382a608885b",
+            "sourceFingerprint": "90f62bfb87ba4215d287af4cac7348f82ac69f69cc965db9c7643040e3c56309",
+            "retrievalMode": "hybrid",
+            "eventDate": "2026-10-19",
+            "jurisdictionId": "JX_IN_KL",
+            "ruleEvaluations": [
+              {
+                "ruleId": "RULE_INSURANCE_EXEMPT_GOVT_OWNED",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_MVA_S146",
+                "sourceId": "SRC_MVA_1988",
+                "matchedFactIds": [],
+                "missingSlots": [
+                  "USER_ROLE"
+                ],
+                "conditions": [
+                  {
+                    "predicate": "owner_type",
+                    "expected": "GOVERNMENT",
+                    "result": "unsupported",
+                    "factId": null
+                  },
+                  {
+                    "predicate": "use_type",
+                    "expected": "GOVERNMENT_PURPOSE",
+                    "result": "unsupported",
+                    "factId": null
+                  }
+                ],
+                "exception": {
+                  "basis": "Section 146 exception for government-owned vehicles - exact statutory scope NOT_VERIFIED"
+                },
+                "conclusionType": "EXEMPT",
+                "conclusionData": {
+                  "note": "requires confirmation of exact statutory conditions before relying on this exemption"
+                },
+                "reasons": [
+                  "EXCEPTION_NOT_EVALUATED",
+                  "REQUIRED_FACT_MISSING",
+                  "RULE_NOT_VERIFIED",
+                  "UNSUPPORTED_CONDITION"
+                ],
+                "reviewStatus": "NOT_VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 20
+              },
+              {
+                "ruleId": "RULE_INSURANCE_REQUIRED_GENERAL",
+                "status": "MATCHED",
+                "provisionId": "PROV_MVA_S146",
+                "sourceId": "SRC_MVA_1988",
+                "matchedFactIds": [
+                  "insurance_status_1"
+                ],
+                "missingSlots": [],
+                "conditions": [
+                  {
+                    "predicate": "insurance_status_not_valid",
+                    "expected": true,
+                    "result": "true",
+                    "factId": "insurance_status_1"
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PENALTY_APPLIES",
+                "conclusionData": {
+                  "offence_ref": "OFF_NO_INSURANCE"
+                },
+                "reasons": [],
+                "reviewStatus": "VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 19
+              }
+            ],
+            "retrievedEvidence": [
+              {
+                "evidenceId": "EVID:PROV_MVA_S146",
+                "documentId": "provision:PROV_MVA_S146",
+                "rank": 1,
+                "lexicalScore": 0.68324,
+                "semanticScore": 0.23302
+              }
+            ],
+            "evidenceIds": [
+              "EVID:PROV_MVA_S146"
+            ],
+            "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+            "outputLanguage": "english",
+            "retrievalExclusions": [
+              {
+                "id": "PROV_MVA_S3",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S39",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S112",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              }
+            ],
+            "procedureExclusions": [],
+            "procedureEvidence": [],
+            "penaltyPolicy": "WITHHELD_UNVERIFIED_RELATIONSHIPS",
+            "requestedModel": "llama3.2-3b",
+            "requestedLanguage": "english",
+            "inputLanguage": "uncertain",
+            "promptVersion": "remediation-grounded-v3",
+            "runtime": "ollama",
+            "generationParameters": {
+              "temperature": 0,
+              "maxTokens": 700,
+              "seed": 471,
+              "contextTokens": 8192,
+              "format": "Explanation JSON schema"
+            },
+            "generationTimestamp": "2026-10-20T19:14:57.426305+00:00",
+            "evidencePackageId": "631687226648b73414251d6bf4429971b86e2075f15f80844e1005e8351ed8b2",
+            "modelCheckpoint": "meta-llama/Llama-3.2-3B-Instruct",
+            "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+            "quantization": "Q4_K_M",
+            "fallbackUsed": true,
+            "failureReason": "RUNTIME_UNREACHABLE",
+            "validation": {
+              "accepted": false,
+              "reasonCodes": [
+                "RUNTIME_UNREACHABLE"
+              ],
+              "fallbackRequired": true
+            }
+          },
+          "sources": [
+            {
+              "id": "PROV_MVA_S146",
+              "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 146(1)",
+              "authority": "Ministry of Law and Justice (Parliament of India)",
+              "provision": "Section 146(1)",
+              "relevantPoint": "Every motor vehicle used in a public place must be covered by a valid third-party insurance policy meeting statutory requirements, except where a specific exemption applies.",
+              "sourceType": "Act",
+              "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/1798",
+              "evidenceId": "EVID:PROV_MVA_S146",
+              "reviewStatus": "VERIFIED",
+              "admissibility": "eligible"
+            }
+          ]
+        },
+        {
+          "model": "mistral-7b",
+          "seconds": 2.0726042999885976,
+          "metadata": {
+            "indexVersion": "15930382a608885b",
+            "sourceFingerprint": "90f62bfb87ba4215d287af4cac7348f82ac69f69cc965db9c7643040e3c56309",
+            "retrievalMode": "hybrid",
+            "eventDate": "2026-10-19",
+            "jurisdictionId": "JX_IN_KL",
+            "ruleEvaluations": [
+              {
+                "ruleId": "RULE_INSURANCE_EXEMPT_GOVT_OWNED",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_MVA_S146",
+                "sourceId": "SRC_MVA_1988",
+                "matchedFactIds": [],
+                "missingSlots": [
+                  "USER_ROLE"
+                ],
+                "conditions": [
+                  {
+                    "predicate": "owner_type",
+                    "expected": "GOVERNMENT",
+                    "result": "unsupported",
+                    "factId": null
+                  },
+                  {
+                    "predicate": "use_type",
+                    "expected": "GOVERNMENT_PURPOSE",
+                    "result": "unsupported",
+                    "factId": null
+                  }
+                ],
+                "exception": {
+                  "basis": "Section 146 exception for government-owned vehicles - exact statutory scope NOT_VERIFIED"
+                },
+                "conclusionType": "EXEMPT",
+                "conclusionData": {
+                  "note": "requires confirmation of exact statutory conditions before relying on this exemption"
+                },
+                "reasons": [
+                  "EXCEPTION_NOT_EVALUATED",
+                  "REQUIRED_FACT_MISSING",
+                  "RULE_NOT_VERIFIED",
+                  "UNSUPPORTED_CONDITION"
+                ],
+                "reviewStatus": "NOT_VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 20
+              },
+              {
+                "ruleId": "RULE_INSURANCE_REQUIRED_GENERAL",
+                "status": "MATCHED",
+                "provisionId": "PROV_MVA_S146",
+                "sourceId": "SRC_MVA_1988",
+                "matchedFactIds": [
+                  "insurance_status_1"
+                ],
+                "missingSlots": [],
+                "conditions": [
+                  {
+                    "predicate": "insurance_status_not_valid",
+                    "expected": true,
+                    "result": "true",
+                    "factId": "insurance_status_1"
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PENALTY_APPLIES",
+                "conclusionData": {
+                  "offence_ref": "OFF_NO_INSURANCE"
+                },
+                "reasons": [],
+                "reviewStatus": "VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 19
+              }
+            ],
+            "retrievedEvidence": [
+              {
+                "evidenceId": "EVID:PROV_MVA_S146",
+                "documentId": "provision:PROV_MVA_S146",
+                "rank": 1,
+                "lexicalScore": 0.68324,
+                "semanticScore": 0.23302
+              }
+            ],
+            "evidenceIds": [
+              "EVID:PROV_MVA_S146"
+            ],
+            "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+            "outputLanguage": "english",
+            "retrievalExclusions": [
+              {
+                "id": "PROV_MVA_S3",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S39",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S112",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              }
+            ],
+            "procedureExclusions": [],
+            "procedureEvidence": [],
+            "penaltyPolicy": "WITHHELD_UNVERIFIED_RELATIONSHIPS",
+            "requestedModel": "mistral-7b",
+            "requestedLanguage": "english",
+            "inputLanguage": "uncertain",
+            "promptVersion": "remediation-grounded-v3",
+            "runtime": "ollama",
+            "generationParameters": {
+              "temperature": 0,
+              "maxTokens": 700,
+              "seed": 471,
+              "contextTokens": 8192,
+              "format": "Explanation JSON schema"
+            },
+            "generationTimestamp": "2026-10-20T19:14:59.491187+00:00",
+            "evidencePackageId": "631687226648b73414251d6bf4429971b86e2075f15f80844e1005e8351ed8b2",
+            "modelCheckpoint": "mistralai/Mistral-7B-Instruct-v0.3",
+            "runtimeModel": "mistral:7b-instruct-v0.3-q4_K_M",
+            "quantization": "Q4_K_M",
+            "fallbackUsed": true,
+            "failureReason": "RUNTIME_UNREACHABLE",
+            "validation": {
+              "accepted": false,
+              "reasonCodes": [
+                "RUNTIME_UNREACHABLE"
+              ],
+              "fallbackRequired": true
+            }
+          },
+          "sources": [
+            {
+              "id": "PROV_MVA_S146",
+              "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 146(1)",
+              "authority": "Ministry of Law and Justice (Parliament of India)",
+              "provision": "Section 146(1)",
+              "relevantPoint": "Every motor vehicle used in a public place must be covered by a valid third-party insurance policy meeting statutory requirements, except where a specific exemption applies.",
+              "sourceType": "Act",
+              "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/1798",
+              "evidenceId": "EVID:PROV_MVA_S146",
+              "reviewStatus": "VERIFIED",
+              "admissibility": "eligible"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "S11",
+      "attempts": [
+        {
+          "model": "llama3.2-3b",
+          "seconds": 0.04564849997404963,
+          "metadata": {
+            "indexVersion": "15930382a608885b",
+            "sourceFingerprint": "90f62bfb87ba4215d287af4cac7348f82ac69f69cc965db9c7643040e3c56309",
+            "retrievalMode": "hybrid",
+            "eventDate": "2026-10-19",
+            "jurisdictionId": "JX_IN_KL",
+            "ruleEvaluations": [
+              {
+                "ruleId": "RULE_GOOD_SAMARITAN_PROTECTION",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_GOODSAMARITAN_PENDING_ADD",
+                "sourceId": null,
+                "matchedFactIds": [],
+                "missingSlots": [],
+                "conditions": [
+                  {
+                    "predicate": "voluntary_emergency_assistance_rendered",
+                    "expected": true,
+                    "result": "unsupported",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PROTECTION_APPLIES",
+                "conclusionData": {
+                  "source_id": "SRC_GOODSAMARITAN_2016",
+                  "note": "exempt from civil/criminal liability and from being compelled as a witness unless willing"
+                },
+                "reasons": [
+                  "PROVISION_REFERENCE_MISSING",
+                  "RULE_NOT_VERIFIED",
+                  "UNSUPPORTED_CONDITION"
+                ],
+                "reviewStatus": "NOT_VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 29
+              },
+              {
+                "ruleId": "RULE_ACCIDENT_REPORTING_DUTY",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_MVA_S132_PENDING_ADD",
+                "sourceId": null,
+                "matchedFactIds": [],
+                "missingSlots": [
+                  "DEATH_PRESENT",
+                  "POLICE_REPORTED"
+                ],
+                "conditions": [
+                  {
+                    "predicate": "accident_occurred",
+                    "expected": true,
+                    "result": "unsupported",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PROCEDURAL_DUTY",
+                "conclusionData": {
+                  "reference": "MVA Sections 132/134 duty to report accidents - not yet added to legal_provisions.csv"
+                },
+                "reasons": [
+                  "PROVISION_REFERENCE_MISSING",
+                  "REQUIRED_FACT_MISSING",
+                  "RULE_NOT_VERIFIED",
+                  "UNSUPPORTED_CONDITION"
+                ],
+                "reviewStatus": "NOT_VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 28
+              },
+              {
+                "ruleId": "RULE_HIT_RUN_COMPENSATION_ELIGIBILITY",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_HITRUN_SCHEME_PENDING_ADD",
+                "sourceId": null,
+                "matchedFactIds": [],
+                "missingSlots": [
+                  "OTHER_VEHICLE_IDENTIFIED",
+                  "DEATH_PRESENT"
+                ],
+                "conditions": [
+                  {
+                    "predicate": "other_vehicle_identified",
+                    "expected": false,
+                    "result": "unknown",
+                    "factId": null
+                  },
+                  {
+                    "predicate": "injury_or_death_present",
+                    "expected": true,
+                    "result": "unsupported",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "ELIGIBLE_FOR_SCHEME",
+                "conclusionData": {
+                  "source_id": "SRC_HITRUN_SCHEME_2022",
+                  "refer_to": "accident_relief_and_claims.csv"
+                },
+                "reasons": [
+                  "PROVISION_REFERENCE_MISSING",
+                  "REQUIRED_FACT_MISSING",
+                  "RULE_NOT_VERIFIED",
+                  "UNSUPPORTED_CONDITION"
+                ],
+                "reviewStatus": "NOT_VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 30
+              },
+              {
+                "ruleId": "RULE_HIT_AND_RUN_FLED",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_BNS_S106_2",
+                "sourceId": "SRC_BNS_2023",
+                "matchedFactIds": [],
+                "missingSlots": [
+                  "DEATH_PRESENT",
+                  "POLICE_REPORTED"
+                ],
+                "conditions": [
+                  {
+                    "predicate": "death_present",
+                    "expected": true,
+                    "result": "unknown",
+                    "factId": null
+                  },
+                  {
+                    "predicate": "police_reported_promptly",
+                    "expected": false,
+                    "result": "unknown",
+                    "factId": null
+                  },
+                  {
+                    "predicate": "driver_fled",
+                    "expected": true,
+                    "result": "unsupported",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PENALTY_APPLIES_WITH_CAUTION",
+                "conclusionData": {
+                  "offence_ref": "OFF_HIT_RUN_FLED",
+                  "max_imprisonment_years": 10,
+                  "caution": "Section 106(2) commencement status unresolved as of last verification - system should flag uncertainty rather than assert confidently"
+                },
+                "reasons": [
+                  "COMMENCEMENT_NOT_ESTABLISHED",
+                  "LEGAL_REVIEW_PENDING",
+                  "PROVISION_NOT_ACTIVE",
+                  "REQUIRED_FACT_MISSING",
+                  "RULE_NOT_VERIFIED",
+                  "UNSUPPORTED_CONDITION"
+                ],
+                "reviewStatus": "UNDER_REVIEW",
+                "file": "rule_logic.csv",
+                "row": 27
+              },
+              {
+                "ruleId": "RULE_HIT_AND_RUN_REPORTED",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_BNS_S106_1",
+                "sourceId": "SRC_BNS_2023",
+                "matchedFactIds": [],
+                "missingSlots": [
+                  "DEATH_PRESENT",
+                  "POLICE_REPORTED"
+                ],
+                "conditions": [
+                  {
+                    "predicate": "death_present",
+                    "expected": true,
+                    "result": "unknown",
+                    "factId": null
+                  },
+                  {
+                    "predicate": "police_reported_promptly",
+                    "expected": true,
+                    "result": "unknown",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PENALTY_APPLIES",
+                "conclusionData": {
+                  "offence_ref": "OFF_HIT_RUN_REPORTED",
+                  "max_imprisonment_years": 5
+                },
+                "reasons": [
+                  "COMMENCEMENT_NOT_ESTABLISHED",
+                  "LEGAL_REVIEW_PENDING",
+                  "REQUIRED_FACT_MISSING",
+                  "RULE_NOT_VERIFIED"
+                ],
+                "reviewStatus": "NOT_VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 26
+              }
+            ],
+            "retrievedEvidence": [],
+            "evidenceIds": [],
+            "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+            "outputLanguage": "english",
+            "retrievalExclusions": [
+              {
+                "id": "PROV_MVA_S3",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S39",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S112",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S146",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              }
+            ],
+            "procedureExclusions": [],
+            "procedureEvidence": [],
+            "penaltyPolicy": "WITHHELD_UNVERIFIED_RELATIONSHIPS",
+            "requestedModel": "llama3.2-3b",
+            "requestedLanguage": "english",
+            "inputLanguage": "uncertain",
+            "promptVersion": "remediation-grounded-v3",
+            "runtime": "ollama",
+            "generationParameters": {
+              "temperature": 0,
+              "maxTokens": 700,
+              "seed": 471,
+              "contextTokens": 8192,
+              "format": "Explanation JSON schema"
+            },
+            "generationTimestamp": "2026-10-20T19:15:01.584988+00:00",
+            "evidencePackageId": "a860b445f37ec62bda56da831de74cfe3ed794e71a667c6109d2978ac0eb5799",
+            "modelCheckpoint": "meta-llama/Llama-3.2-3B-Instruct",
+            "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+            "quantization": "Q4_K_M",
+            "fallbackUsed": true,
+            "failureReason": "INSUFFICIENT_ELIGIBLE_EVIDENCE",
+            "validation": {
+              "accepted": false,
+              "reasonCodes": [
+                "INSUFFICIENT_ELIGIBLE_EVIDENCE"
+              ],
+              "fallbackRequired": true
+            }
+          },
+          "sources": []
+        },
+        {
+          "model": "mistral-7b",
+          "seconds": 0.04867910000029951,
+          "metadata": {
+            "indexVersion": "15930382a608885b",
+            "sourceFingerprint": "90f62bfb87ba4215d287af4cac7348f82ac69f69cc965db9c7643040e3c56309",
+            "retrievalMode": "hybrid",
+            "eventDate": "2026-10-19",
+            "jurisdictionId": "JX_IN_KL",
+            "ruleEvaluations": [
+              {
+                "ruleId": "RULE_GOOD_SAMARITAN_PROTECTION",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_GOODSAMARITAN_PENDING_ADD",
+                "sourceId": null,
+                "matchedFactIds": [],
+                "missingSlots": [],
+                "conditions": [
+                  {
+                    "predicate": "voluntary_emergency_assistance_rendered",
+                    "expected": true,
+                    "result": "unsupported",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PROTECTION_APPLIES",
+                "conclusionData": {
+                  "source_id": "SRC_GOODSAMARITAN_2016",
+                  "note": "exempt from civil/criminal liability and from being compelled as a witness unless willing"
+                },
+                "reasons": [
+                  "PROVISION_REFERENCE_MISSING",
+                  "RULE_NOT_VERIFIED",
+                  "UNSUPPORTED_CONDITION"
+                ],
+                "reviewStatus": "NOT_VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 29
+              },
+              {
+                "ruleId": "RULE_ACCIDENT_REPORTING_DUTY",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_MVA_S132_PENDING_ADD",
+                "sourceId": null,
+                "matchedFactIds": [],
+                "missingSlots": [
+                  "DEATH_PRESENT",
+                  "POLICE_REPORTED"
+                ],
+                "conditions": [
+                  {
+                    "predicate": "accident_occurred",
+                    "expected": true,
+                    "result": "unsupported",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PROCEDURAL_DUTY",
+                "conclusionData": {
+                  "reference": "MVA Sections 132/134 duty to report accidents - not yet added to legal_provisions.csv"
+                },
+                "reasons": [
+                  "PROVISION_REFERENCE_MISSING",
+                  "REQUIRED_FACT_MISSING",
+                  "RULE_NOT_VERIFIED",
+                  "UNSUPPORTED_CONDITION"
+                ],
+                "reviewStatus": "NOT_VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 28
+              },
+              {
+                "ruleId": "RULE_HIT_RUN_COMPENSATION_ELIGIBILITY",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_HITRUN_SCHEME_PENDING_ADD",
+                "sourceId": null,
+                "matchedFactIds": [],
+                "missingSlots": [
+                  "OTHER_VEHICLE_IDENTIFIED",
+                  "DEATH_PRESENT"
+                ],
+                "conditions": [
+                  {
+                    "predicate": "other_vehicle_identified",
+                    "expected": false,
+                    "result": "unknown",
+                    "factId": null
+                  },
+                  {
+                    "predicate": "injury_or_death_present",
+                    "expected": true,
+                    "result": "unsupported",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "ELIGIBLE_FOR_SCHEME",
+                "conclusionData": {
+                  "source_id": "SRC_HITRUN_SCHEME_2022",
+                  "refer_to": "accident_relief_and_claims.csv"
+                },
+                "reasons": [
+                  "PROVISION_REFERENCE_MISSING",
+                  "REQUIRED_FACT_MISSING",
+                  "RULE_NOT_VERIFIED",
+                  "UNSUPPORTED_CONDITION"
+                ],
+                "reviewStatus": "NOT_VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 30
+              },
+              {
+                "ruleId": "RULE_HIT_AND_RUN_FLED",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_BNS_S106_2",
+                "sourceId": "SRC_BNS_2023",
+                "matchedFactIds": [],
+                "missingSlots": [
+                  "DEATH_PRESENT",
+                  "POLICE_REPORTED"
+                ],
+                "conditions": [
+                  {
+                    "predicate": "death_present",
+                    "expected": true,
+                    "result": "unknown",
+                    "factId": null
+                  },
+                  {
+                    "predicate": "police_reported_promptly",
+                    "expected": false,
+                    "result": "unknown",
+                    "factId": null
+                  },
+                  {
+                    "predicate": "driver_fled",
+                    "expected": true,
+                    "result": "unsupported",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PENALTY_APPLIES_WITH_CAUTION",
+                "conclusionData": {
+                  "offence_ref": "OFF_HIT_RUN_FLED",
+                  "max_imprisonment_years": 10,
+                  "caution": "Section 106(2) commencement status unresolved as of last verification - system should flag uncertainty rather than assert confidently"
+                },
+                "reasons": [
+                  "COMMENCEMENT_NOT_ESTABLISHED",
+                  "LEGAL_REVIEW_PENDING",
+                  "PROVISION_NOT_ACTIVE",
+                  "REQUIRED_FACT_MISSING",
+                  "RULE_NOT_VERIFIED",
+                  "UNSUPPORTED_CONDITION"
+                ],
+                "reviewStatus": "UNDER_REVIEW",
+                "file": "rule_logic.csv",
+                "row": 27
+              },
+              {
+                "ruleId": "RULE_HIT_AND_RUN_REPORTED",
+                "status": "EXCLUDED_UNVERIFIED",
+                "provisionId": "PROV_BNS_S106_1",
+                "sourceId": "SRC_BNS_2023",
+                "matchedFactIds": [],
+                "missingSlots": [
+                  "DEATH_PRESENT",
+                  "POLICE_REPORTED"
+                ],
+                "conditions": [
+                  {
+                    "predicate": "death_present",
+                    "expected": true,
+                    "result": "unknown",
+                    "factId": null
+                  },
+                  {
+                    "predicate": "police_reported_promptly",
+                    "expected": true,
+                    "result": "unknown",
+                    "factId": null
+                  }
+                ],
+                "exception": {},
+                "conclusionType": "PENALTY_APPLIES",
+                "conclusionData": {
+                  "offence_ref": "OFF_HIT_RUN_REPORTED",
+                  "max_imprisonment_years": 5
+                },
+                "reasons": [
+                  "COMMENCEMENT_NOT_ESTABLISHED",
+                  "LEGAL_REVIEW_PENDING",
+                  "REQUIRED_FACT_MISSING",
+                  "RULE_NOT_VERIFIED"
+                ],
+                "reviewStatus": "NOT_VERIFIED",
+                "file": "rule_logic.csv",
+                "row": 26
+              }
+            ],
+            "retrievedEvidence": [],
+            "evidenceIds": [],
+            "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+            "outputLanguage": "english",
+            "retrievalExclusions": [
+              {
+                "id": "PROV_MVA_S3",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S39",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S112",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              },
+              {
+                "id": "PROV_MVA_S146",
+                "status": "excluded",
+                "reasons": [
+                  "DOMAIN_MISMATCH"
+                ]
+              }
+            ],
+            "procedureExclusions": [],
+            "procedureEvidence": [],
+            "penaltyPolicy": "WITHHELD_UNVERIFIED_RELATIONSHIPS",
+            "requestedModel": "mistral-7b",
+            "requestedLanguage": "english",
+            "inputLanguage": "uncertain",
+            "promptVersion": "remediation-grounded-v3",
+            "runtime": "ollama",
+            "generationParameters": {
+              "temperature": 0,
+              "maxTokens": 700,
+              "seed": 471,
+              "contextTokens": 8192,
+              "format": "Explanation JSON schema"
+            },
+            "generationTimestamp": "2026-10-20T19:15:01.634463+00:00",
+            "evidencePackageId": "a860b445f37ec62bda56da831de74cfe3ed794e71a667c6109d2978ac0eb5799",
+            "modelCheckpoint": "mistralai/Mistral-7B-Instruct-v0.3",
+            "runtimeModel": "mistral:7b-instruct-v0.3-q4_K_M",
+            "quantization": "Q4_K_M",
+            "fallbackUsed": true,
+            "failureReason": "INSUFFICIENT_ELIGIBLE_EVIDENCE",
+            "validation": {
+              "accepted": false,
+              "reasonCodes": [
+                "INSUFFICIENT_ELIGIBLE_EVIDENCE"
+              ],
+              "fallbackRequired": true
+            }
+          },
+          "sources": []
+        }
+      ]
+    }
+  ]
+}

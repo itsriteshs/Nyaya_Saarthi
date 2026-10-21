@@ -1,3 +1,4 @@
+from workflow_helpers import establish_issue
 from uuid import uuid4
 
 def _analyzed(client, text='I was driving my car at 120 km/h', language='auto', reference=None):
@@ -5,7 +6,7 @@ def _analyzed(client, text='I was driving my car at 120 km/h', language='auto', 
     url=f"/api/v1/matters/{created['id']}"
     response=client.post(url+'/analyze',json={'revision':created['revision'],'referenceDatetime':reference})
     assert response.status_code==200,response.text
-    return url,response.json()
+    return url,establish_issue(client,url,response.json())
 
 def test_question_answer_persistence_and_revision(client):
     url,matter=_analyzed(client)
@@ -42,7 +43,7 @@ def test_fact_edit_confirmation_and_history(client):
     edited=client.patch(url+'/facts/'+fact['id'],json={'revision':matter['revision'],'value':'90 km/h'})
     assert edited.status_code==200,edited.text
     changed=edited.json()
-    assert changed['conversation']['factHistory'][0]['previous']['value']==fact['value']
+    assert next(h for h in changed['conversation']['factHistory'] if h['action']=='edit')['previous']['value']==fact['value']
     assert next(f for f in changed['facts'] if f['id']==fact['id'])['confirmed'] is False
     confirmed=client.post(url+'/facts/'+fact['id']+'/confirm',json={'revision':changed['revision']})
     assert confirmed.status_code==200,confirmed.text
@@ -64,7 +65,7 @@ def test_conflicting_claims_are_preserved_and_block_verification(client):
     assert client.post(url+'/verify',json={'revision':updated['revision']}).status_code==409
 
 def test_explicit_verification_and_protected_patch(client):
-    url,matter=_analyzed(client,'I drove my car at 120 km/h on an expressway')
+    url,matter=_analyzed(client,'I drove my car at 120 km/h on an expressway in Kerala on 2026-10-19')
     assert matter['conversation']['reviewEligible']
     assert client.patch(url,json={'revision':matter['revision'],'stage':'USER_VERIFIED'}).status_code==409
     for fact in matter['facts']:

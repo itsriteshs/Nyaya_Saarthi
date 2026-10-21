@@ -1,3 +1,9 @@
+# Current recheck — 21 October 2026
+
+Current result: 19 full deterministic user-assisted browser/HTTP journeys completed; one outside-scope request safely blocked. This supersedes the old incomplete journey coverage, not the original classifier findings or model/legal limitations. See [UAT_RECHECK_REPORT.md](UAT_RECHECK_REPORT.md) and [UAT_RECHECK_SCENARIOS.csv](UAT_RECHECK_SCENARIOS.csv) for evidence and limitations. The earlier audit below is retained as historical evidence.
+
+---
+
 # Final UAT report — NOT READY
 
 Audit performed 2026-10-20 using synthetic browser-created matters only. This is an agent-operated acceptance audit, not independent human user testing or held-out NLP evaluation.

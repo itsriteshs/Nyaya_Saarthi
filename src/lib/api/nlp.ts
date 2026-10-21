@@ -23,8 +23,8 @@ export function toPreview(result: NlpAnalysis): MockNlpResult {
   return {
     inputText: result.inputText,
     detectedIssue: {
-      label: result.intent.name.replaceAll("_", " "),
-      description: `${result.intent.domain} · ${result.intent.id}${result.intent.needsClarification ? " · Needs confirmation" : ""}`,
+      label: result.intent.needsClarification ? "Issue needs confirmation" : result.intent.name.replaceAll("_", " "),
+      description: `${result.intent.needsClarification ? "Possible topic: " + result.intent.name.replaceAll("_", " ") + " · " : ""}${result.intent.domain} · ${result.intent.id}${result.intent.needsClarification ? " · Needs confirmation" : ""}`,
     },
     extractedFacts: result.entities.map((entity) => ({
       label: entity.type.replaceAll("_", " "),
@@ -32,9 +32,9 @@ export function toPreview(result: NlpAnalysis): MockNlpResult {
         ? `${entity.text} → ${entity.normalizedValue}` : entity.text,
       source: "user",
     })),
-    missingInformation: result.missingSlots.map((slot) => slot.label),
-    readiness: result.readiness,
-    nextQuestion: result.missingSlots[0]?.question ??
+    missingInformation: result.intent.needsClarification ? ["Confirm the issue first"] : result.missingSlots.map((slot) => slot.label),
+    readiness: result.intent.needsClarification ? { found: 0, total: 1 } : result.readiness,
+    nextQuestion: result.intent.needsClarification ? "Confirm the issue before issue-specific questions." : result.missingSlots[0]?.question ??
       (result.unresolvedSlots.length ? "Some requirements need clarification." : "Review the extracted facts."),
     visibleSignals: [
       `Detected: ${result.language.detectedLanguage}`,

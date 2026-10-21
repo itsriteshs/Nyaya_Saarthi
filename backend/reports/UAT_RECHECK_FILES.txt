@@ -1,0 +1,60 @@
+ M backend/app/api/legal.py
+ M backend/app/api/models.py
+ M backend/app/main.py
+ M backend/app/services/conversation.py
+ M backend/app/services/legal/index.py
+ M backend/app/services/nlp/entity_extractor.py
+ M backend/app/services/nlp/normalizer.py
+ M backend/app/services/nlp/slot_detector.py
+ M backend/reports/ADAPTIVE_QUESTIONING_UAT.md
+ M backend/reports/FINAL_BUG_REGISTER.csv
+ M backend/reports/FINAL_UAT_REPORT.md
+ M backend/reports/FINAL_UI_UX_AUDIT.md
+ M backend/reports/HARDCODING_AND_MOCK_AUDIT.md
+ M backend/reports/LEGAL_RESPONSE_VALIDITY.md
+ M backend/tests/conftest.py
+ M backend/tests/test_conversation.py
+ M backend/tests/test_legal_phase4.py
+ M backend/tests/test_llm_phase5.py
+ M backend/tests/test_nlp.py
+ M backend/tests/test_remediation.py
+ M eslint.config.mjs
+ M src/components/guidance/GuidanceWorkspace.tsx
+ M src/components/home/HeroSection.tsx
+ M src/components/home/SituationInput.tsx
+ M src/components/summary/SummaryWorkspace.tsx
+ M src/components/understand/ClarificationQuestion.tsx
+ M src/components/understand/ContextPanel.tsx
+ M src/components/understand/ConversationPanel.tsx
+ M src/lib/api/nlp.ts
+?? backend/app/services/nlp/jurisdiction_aliases.py
+?? backend/experiments/metrics/remediation_nlp_uat_recheck_final.json
+?? backend/experiments/metrics/remediation_nlp_uat_recheck_scoped_final.json
+?? backend/experiments/predictions/remediation_nlp_uat_recheck_final.jsonl
+?? backend/experiments/predictions/remediation_nlp_uat_recheck_scoped_final.jsonl
+?? backend/reports/UAT_RECHECK_FILES.txt
+?? backend/reports/UAT_RECHECK_REPORT.md
+?? backend/reports/UAT_RECHECK_SCENARIOS.csv
+?? backend/reports/qa_screenshots/recheck-guidance-mobile.jpg
+?? backend/reports/qa_screenshots/recheck-home-mobile.jpg
+?? backend/reports/qa_screenshots/recheck-summary-desktop.jpg
+?? backend/reports/qa_screenshots/recheck-summary-final.jpg
+?? backend/reports/qa_screenshots/recheck-summary-mobile.jpg
+?? backend/reports/qa_screenshots/recheck-understand-mobile.jpg
+?? backend/reports/qa_screenshots/recheck-verify-mobile.jpg
+?? backend/reports/uat_intent_dev_candidates.json
+?? backend/reports/uat_recheck_after_http.json
+?? backend/reports/uat_recheck_before.json
+?? backend/reports/uat_recheck_browser.json
+?? backend/reports/uat_recheck_browser_fixtures.json
+?? backend/reports/uat_recheck_copy.json
+?? backend/reports/uat_recheck_dev_changes.json
+?? backend/reports/uat_recheck_mobile_journey.json
+?? backend/reports/uat_recheck_mobile_layout.json
+?? backend/reports/uat_recheck_model_fallbacks.json
+?? backend/reports/uat_recheck_round1_http.json
+?? backend/scripts/uat_intent_dev_candidates.py
+?? backend/scripts/uat_recheck.py
+?? backend/tests/test_issue_confirmation.py
+?? backend/tests/workflow_helpers.py
+?? tests/e2e/uat-recheck.mjs

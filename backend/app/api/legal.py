@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 from app.db.database import get_session
+from app.schemas.matter import MatterResponse
 from app.api.matters import valid_id
 from app.services import matter_service
 from app.services.legal.guidance import generate, readiness
@@ -46,7 +47,7 @@ def search(payload:RetrievalRequest,session:Session=Depends(get_session)):
     try:return retrieve(query,event_date,jurisdiction,payload.limit,domains)
     except (FileNotFoundError,ValueError,RuntimeError) as exc:raise HTTPException(503,str(exc)) from exc
 
-@router.post('/matters/{matter_id}/guidance')
+@router.post('/matters/{matter_id}/guidance',response_model=MatterResponse,response_model_exclude_none=True)
 def guidance(matter_id:str,payload:RevisionRequest,session:Session=Depends(get_session)):
     matter=verified_matter(session,matter_id,payload.revision)
     try:current_version=load_manifest()[0]['indexVersion']
@@ -61,7 +62,7 @@ def guidance(matter_id:str,payload:RevisionRequest,session:Session=Depends(get_s
     try:return matter_service.save_computed_context(session,matter.id,payload.revision,data)
     except matter_service.StaleRevision:raise HTTPException(409,'Matter revision is stale') from None
 
-@router.post('/matters/{matter_id}/complete')
+@router.post('/matters/{matter_id}/complete',response_model=MatterResponse,response_model_exclude_none=True)
 def complete(matter_id:str,payload:RevisionRequest,session:Session=Depends(get_session)):
     matter=verified_matter(session,matter_id,payload.revision)
     if matter.stage!='GUIDANCE_GENERATED' or not matter.guidance:raise HTTPException(409,'Generate guidance before completing the matter')

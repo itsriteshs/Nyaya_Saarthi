@@ -5,6 +5,7 @@ import csv
 from functools import lru_cache
 from datetime import datetime,timedelta
 from app.services.nlp.ontology import ontology
+from app.services.nlp.jurisdiction_aliases import STATE_ALIASES
 from app.config import DATASET_DIR, BACKEND_DIR
 from app.services.dataset_loader import load_dataset
 
@@ -51,7 +52,32 @@ def extract(text: str, reference_datetime: datetime | None=None, status_values=N
         entities.append({'type':kind,'text':match.group(0),'value':value or match.group(0),
                          'start':match.start(),'end':match.end(),'method':method,'confidence':None})
     for m in SPEED.finditer(text): add('OBSERVED_SPEED',m,m.group('value'))
+    # Explicit noun/status pairs are clause-scoped; unrelated documents cannot lend a status.
+    document_names={
+        'INSURANCE_STATUS':r'insurance|policy|बीमा',
+        'LICENCE_STATUS':r'(?:driving\s+)?licen[cs]e|(?:ड्राइविंग\s+)?लाइसेंस',
+        'PUC_STATUS':r'(?:pollution|PUC)\s*(?:certificate)?|प्रदूषण प्रमाणपत्र',
+        'PERMIT_STATUS':r'permit|परमिट', 'FITNESS_STATUS':r'fitness certificate|फिटनेस प्रमाणपत्र',
+    }
+    status_words={'expired':r'expired|lapsed|over|एक्सपायर|समाप्त|खत्म',
+                  'valid':r'valid|वैध', 'active':r'active', 'suspended':r'suspended|निलंबित', 'seized':r'seized|जब्त'}
+    for kind,nouns in document_names.items():
+        for status,words in status_words.items():
+            pattern=r'(?<!\w)(?:'+nouns+r')(?!\w)[^,;.!?।\n]{0,35}?(?P<status>(?<!\w)(?:'+words+r')(?!\w))'
+            for m in re.finditer(pattern,text,re.I):
+                # Preserve explicit negation as unresolved rather than reversing its meaning.
+                prefix=text[m.start():m.start('status')]
+                if re.search(r'\b(?:claim|application|request|appeal)\b',prefix,re.I):continue
+                negated=bool(re.search(r"\b(?:not|no|never)\b|नहीं",prefix,re.I))
+                entities.append({'type':kind,'text':m.group(0),'value':status,'start':m.start(),'end':m.end(),
+                                 'method':'negated_document_status' if negated else 'explicit_document_status','confidence':None})
+
     for m in VEHICLES.finditer(text): add('VEHICLE_CLASS',m)
+    vehicle_names={r[key] for r in ontology()['vehicles'].values() for key in ('vehicle_class_id','legal_vehicle_code','common_name') if r.get(key)}
+    pattern=r'(?<!\w)(?:'+'|'.join(re.escape(n) for n in sorted(vehicle_names,key=len,reverse=True))+r')(?!\w)'
+    for m in re.finditer(pattern,text,re.I):
+        entities[:]=[e for e in entities if not (e['type']=='VEHICLE_CLASS' and e['start']>=m.start() and e['end']<=m.end())]
+        add('VEHICLE_CLASS',m,method='ontology_vehicle_name')
     for m in ROAD.finditer(text): add('ROAD_TYPE',m)
     for m in DATE_ISO.finditer(text): add('EVENT_DATE',m)
     for m in DATE_WORD.finditer(text): add('EVENT_DATE',m)
@@ -81,9 +107,18 @@ def extract(text: str, reference_datetime: datetime | None=None, status_values=N
                 if any(e['type']==kind and e['start']<=m.start()<e['end'] for e in entities):continue
                 entities.append({'type':kind,'text':m.group(0),'value':m.group(0),
                                  'start':m.start(),'end':m.end(),'method':'annotation_vocabulary','confidence':None})
+    for m in re.finditer(r'\b(?:nobody|no one)\s+(?:was|is|got)\s+injured\b|\bno\s+injuries\b',text,re.I):
+        entities.append({'type':'INJURY_PRESENT','text':m.group(0),'value':'no','start':m.start(),'end':m.end(),
+                         'method':'explicit_schema_label','confidence':None})
+    for m in re.finditer(r'\b(?:is|are|was|were|am|got)\s+(?:(?:seriously|badly|slightly)\s+)?(?:injured|bleeding|hurt|unconscious)\b',text,re.I):
+        prefix=re.split(r'[.!?;।,]',text[:m.start()])[-1]
+        if re.search(r"\b(?:not|no|nobody|no one|if|unless|whether)\b",prefix,re.I):continue
+        entities.append({'type':'INJURY_PRESENT','text':m.group(0),'value':'yes','start':m.start(),'end':m.end(),
+                         'method':'explicit_schema_label','confidence':None})
     # Match only dataset jurisdiction names and a few documented, unambiguous spellings.
     names={r['state_ut_name'].casefold():r['state_ut_name'] for r in ontology()['jurisdictions'].values() if r['jurisdiction_level']!='CENTRAL'}
     names['tamilnadu']='Tamil Nadu'
+    names.update(STATE_ALIASES)
     for name in sorted(names,key=len,reverse=True):
         for m in re.finditer(r'(?<!\w)'+re.escape(name)+r'(?!\w)',text,re.I):
             if not any(e['type']=='STATE' and e['start']<=m.start()<e['end'] for e in entities):
@@ -91,6 +126,7 @@ def extract(text: str, reference_datetime: datetime | None=None, status_values=N
     # Explicit labelled facts use the schema vocabulary, never evaluation examples.
     # Labels scope shared values such as "valid" or "yes" to their own slot.
     labels={
+        'LICENCE_CLASS':['license class','लाइसेंस वर्ग','लाइसेंस श्रेणी'],
         'USER_ROLE':['your role','आपकी भूमिका'], 'EVENT_DATE':['date','तारीख'],
         'CHALLAN_DATE':['challan date','चालान की तारीख'], 'RC_STATUS':['RC status','आरसी की स्थिति'],
         'INJURY_PRESENT':['injury status','चोट की स्थिति'], 'DEATH_PRESENT':['death status','मृत्यु की स्थिति'],
@@ -128,5 +164,21 @@ def extract(text: str, reference_datetime: datetime | None=None, status_values=N
     for m in re.finditer(r'\bI\s+am\s+(?:the\s+|a\s+)?(?P<role>registered owner|driver|owner|buyer|seller|passenger|victim|witness|operator|applicant)\b',text,re.I):
         entities.append({'type':'USER_ROLE','text':m.group('role'),'value':m.group('role'),
                          'start':m.start('role'),'end':m.end('role'),'method':'explicit_role','confidence':None})
+    # A licence entitlement code is not evidence of the incident vehicle class.
+    licence_spans=[e for e in entities if e['type']=='LICENCE_CLASS']
+    entities=[e for e in entities if not (e['type']=='VEHICLE_CLASS' and any(
+        x['start']<=e['start'] and e['end']<=x['end'] for x in licence_spans))]
+    # A negated vehicle mention is not a candidate replacement in a correction.
+    entities=[e for e in entities if not (e['type']=='VEHICLE_CLASS' and re.search(
+        r'\bnot\s+(?:(?:a|the|my)\s+)?$',text[max(0,e['start']-18):e['start']],re.I))]
+    for m in re.finditer(r'\bI\s+(?:was\s+driving|am\s+driving|drive|drove)\b',text,re.I):
+        entities.append({'type':'USER_ROLE','text':m.group(0),'value':'driver','start':m.start(),'end':m.end(),
+                         'method':'explicit_role','confidence':None})
+    explicit=[e for e in entities if e['method'] in {'explicit_document_status','negated_document_status'}]
+    entities=[e for e in entities if e in explicit or not any(
+        e['type']==x['type'] and x['start']<=e['start'] and e['end']<=x['end'] for x in explicit)]
+    for m in re.finditer(r'\bI\s+(?:saw|witnessed)\b',text,re.I):
+        entities.append({'type':'USER_ROLE','text':m.group(0),'value':'witness','start':m.start(),'end':m.end(),
+                         'method':'explicit_role','confidence':None})
     entities.sort(key=lambda e:(e['start'],e['end'],e['type']))
     return entities

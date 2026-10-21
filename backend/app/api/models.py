@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from app.db.database import get_session
 from app.api.legal import verified_matter
 from app.schemas.llm import GenerateRequest
+from app.schemas.matter import MatterResponse
 from app.services import matter_service
 from app.services.llm.explanation_service import generate_explanation
 from app.services.llm.local_runtime import OllamaProvider
@@ -36,7 +37,7 @@ def model_health():
     return state
 
 
-@router.post("/matters/{matter_id}/generate")
+@router.post("/matters/{matter_id}/generate",response_model=MatterResponse,response_model_exclude_none=True)
 def generate(matter_id: str, payload: GenerateRequest, session: Session = Depends(get_session)):
     matter = verified_matter(session, matter_id, payload.expectedRevision)
     if matter.guidance and not payload.regenerate:

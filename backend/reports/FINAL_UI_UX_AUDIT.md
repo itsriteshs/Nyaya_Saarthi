@@ -1,3 +1,9 @@
+# Current recheck — 21 October 2026
+
+All five pages now have targeted current-code mobile checks at actual 320x800 CSS pixels, scroll width305; Hindi S03 completes end-to-end. Native copy content verified. Saved PDF remains blocked; full accessibility audit remains incomplete. See [UAT_RECHECK_REPORT.md](UAT_RECHECK_REPORT.md) and [UAT_RECHECK_SCENARIOS.csv](UAT_RECHECK_SCENARIOS.csv) for evidence and limitations. The earlier audit below is retained as historical evidence.
+
+---
+
 # UI/UX audit — partial
 
 All five pages rendered and were inspected. Home/Understand exercised all20 initial inputs. Verify confirmation gate disabled until facts confirmed; individual confirmation and refresh persisted. Guidance showed hybrid provenance, model unavailable labels, conservative uncertainty and recovered through Retry loading after a timeout. Summary preserved five facts, source ID/URL, uncertainties and deterministic provenance. Copy showed Copied but clipboard-content verification failed; no copy-success acceptance claimed. Print invoked a browser interaction but no fresh saved PDF was obtained.

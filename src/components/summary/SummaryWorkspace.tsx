@@ -28,6 +28,8 @@ export function SummaryWorkspace() {
   const router = useRouter();
   const { matter, restored, setMatter } = useMatter();
   const [copied, setCopied] = useState(false);
+  const [copyBusy, setCopyBusy] = useState(false);
+  const [manualCopyText, setManualCopyText] = useState("");
   const [confirmNew, setConfirmNew] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [loadError, setLoadError] = useState("");
@@ -113,14 +115,24 @@ export function SummaryWorkspace() {
       return;
     }
 
+    if (copyBusy) return;
     const text = buildPlainTextSummary(matter, guidance, verifiedFacts);
-
+    setCopyBusy(true);
+    setManualCopyText("");
+    let timeout: number | undefined;
     try {
-      await navigator.clipboard.writeText(text);
+      await Promise.race([
+        navigator.clipboard.writeText(text),
+        new Promise<never>((_, reject) => { timeout = window.setTimeout(() => reject(new Error("Clipboard did not complete")), 2000); }),
+      ]);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1800);
     } catch {
       setCopied(false);
+      setManualCopyText(text);
+    } finally {
+      if (timeout !== undefined) window.clearTimeout(timeout);
+      setCopyBusy(false);
     }
   }
 
@@ -185,15 +197,21 @@ export function SummaryWorkspace() {
                     <Printer size={16} aria-hidden="true" />
                     Print / Save as PDF
                   </Button>
-                  <Button variant="secondary" className="border-white/20 bg-white/10 text-white hover:border-[#C49A55] hover:text-white" onClick={handleCopySummary}>
+                  <Button variant="secondary" className="border-white/20 bg-white/10 text-white hover:border-[#C49A55] hover:text-white" onClick={handleCopySummary} disabled={copyBusy}>
                     <Clipboard size={16} aria-hidden="true" />
-                    {copied ? "Copied" : "Copy Summary"}
+                    {copyBusy ? "Copying…" : copied ? "Copied" : "Copy Summary"}
                   </Button>
                 </div>
               </div>
             </section>
 
             <div className="mt-5 space-y-5">
+              {manualCopyText ? <section className="mb-5 rounded-lg border border-[#C49A55] bg-[#FFFDF8] p-4 print:hidden">
+                <p role="alert" className="text-sm font-bold leading-6 text-[#18150F]">Clipboard access did not complete. Select and copy the summary text below.</p>
+                <label className="mt-3 block text-sm font-bold text-[#18150F]" htmlFor="manual-summary-copy">Summary text for manual copying</label>
+                <textarea id="manual-summary-copy" readOnly value={manualCopyText} onFocus={(event) => event.currentTarget.select()} rows={8}
+                  className="mt-2 w-full rounded-md border border-[#DED7CA] bg-white p-3 text-sm leading-6" />
+              </section> : null}
               <SummarySection number="01" title="Matter Overview">
                 <div className="grid gap-4 md:grid-cols-2">
                   <MetaBlock label="Matter Type" value={matter.intent.label} />
@@ -215,11 +233,22 @@ export function SummaryWorkspace() {
                     <FactLine key={fact.id} fact={fact} />
                   ))}
                 </div>
+                {matter.messages.some((message) => message.speaker === "user" && message.text !== matter.originalText) ? (
+                  <div className="mt-5 border-t border-[#DED7CA] pt-4">
+                    <h3 className="text-sm font-extrabold text-[#18150F]">Clarification answers — as provided</h3>
+                    <p className="mt-1 text-sm leading-6 text-[#6B665D]">This conversation record preserves details and corrections. These statements are not independent legal evidence.</p>
+                    <ul className="mt-3 space-y-2 text-sm leading-6 text-[#4F4A42]">
+                      {matter.messages.filter((message) => message.speaker === "user" && message.text !== matter.originalText).map((message) => (
+                        <li key={message.id} className="break-words">{message.text}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
               </SummarySection>
 
               <SummarySection number="03" title="What NyayaSaarthi Identified">
                 <div className="grid gap-4 md:grid-cols-3">
-                  <MetaBlock label="Potential Issue" value={matter.intent.label} />
+                  <MetaBlock label="Primary Issue" value={matter.intent.label} />
                   <MetaBlock label="Relevant Context" value={buildRelevantContext(verifiedFacts)} />
                   <MetaBlock label="Legal Area" value={matter.intent.descriptor} />
                 </div>
@@ -322,9 +351,9 @@ export function SummaryWorkspace() {
                     <Printer size={16} aria-hidden="true" />
                     Print / Save as PDF
                   </Button>
-                  <Button variant="secondary" onClick={handleCopySummary}>
+                  <Button variant="secondary" onClick={handleCopySummary} disabled={copyBusy}>
                     <Clipboard size={16} aria-hidden="true" />
-                    {copied ? "Copied" : "Copy Summary"}
+                    {copyBusy ? "Copying…" : copied ? "Copied" : "Copy Summary"}
                   </Button>
                   <Button variant="secondary" onClick={() => router.push("/guidance")}>
                     <ArrowLeft size={16} aria-hidden="true" />
@@ -597,7 +626,11 @@ function buildPlainTextSummary(
     "Verified Situation:",
     ...facts.map((fact) => `${fact.label}: ${fact.value}`),
     "",
+    "Clarification answers (as provided, not independent legal evidence):",
+    ...matter.messages.filter((message) => message.speaker === "user" && message.text !== matter.originalText).map((message) => message.text),
+    "",
     "Guidance:",
+    "Scope: this guidance covers the primary issue; other concerns may need separate review.",
     provenance(guidance) + " Legal source records come from the NyayaSaarthi knowledge base.",
     generationProvenance(guidance),
     guidance.directAnswer,

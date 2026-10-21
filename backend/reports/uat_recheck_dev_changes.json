@@ -1,0 +1,2822 @@
+[
+  {
+    "id": "U00615",
+    "before": {
+      "id": "U00615",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "PUC_STATUS",
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "PUC_STATUS",
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Karnataka",
+          "value": "Karnataka",
+          "start": 0,
+          "end": 9,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Karnataka",
+          "normalizedId": "JX_IN_KA",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U00615",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Karnataka",
+          "value": "Karnataka",
+          "start": 0,
+          "end": 9,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Karnataka",
+          "normalizedId": "JX_IN_KA",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "PUC_STATUS",
+          "text": "PUC status expired",
+          "value": "expired",
+          "start": 37,
+          "end": 55,
+          "method": "explicit_document_status",
+          "confidence": null,
+          "normalizedValue": "expired",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit clause-scoped document status",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "Karnataka mein meri goods vehicle ka PUC status expired hai. Kya check karna chahiye?"
+  },
+  {
+    "id": "U00974",
+    "before": {
+      "id": "U00974",
+      "intent": "INT009",
+      "predictedIntent": "INT009",
+      "gold": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "endToEnd": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "oracleIntent": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "oracleEntitiesAndIntent": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Kerala",
+          "value": "Kerala",
+          "start": 48,
+          "end": 54,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Kerala",
+          "normalizedId": "JX_IN_KL",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U00974",
+      "intent": "INT009",
+      "predictedIntent": "INT009",
+      "gold": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "endToEnd": [
+        "EVENT_DATE"
+      ],
+      "oracleIntent": [
+        "EVENT_DATE"
+      ],
+      "oracleEntitiesAndIntent": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "entities": [
+        {
+          "type": "USER_ROLE",
+          "text": "I drove",
+          "value": "driver",
+          "start": 0,
+          "end": 7,
+          "method": "explicit_role",
+          "confidence": null,
+          "normalizedValue": "driver",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "STATE",
+          "text": "Kerala",
+          "value": "Kerala",
+          "start": 48,
+          "end": 54,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Kerala",
+          "normalizedId": "JX_IN_KL",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "I drove against the permitted direction on a in Kerala. What are the legal implications What applies here?"
+  },
+  {
+    "id": "U01079",
+    "before": {
+      "id": "U01079",
+      "intent": "INT017",
+      "predictedIntent": "INT017",
+      "gold": [],
+      "endToEnd": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "scooter",
+          "value": "scooter",
+          "start": 53,
+          "end": 60,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MCWG",
+            "VC_MCWOG"
+          ]
+        },
+        {
+          "type": "STATE",
+          "text": "Maharashtra",
+          "value": "Maharashtra",
+          "start": 64,
+          "end": 75,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Maharashtra",
+          "normalizedId": "JX_IN_MH",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "witness",
+          "value": "witness",
+          "start": 98,
+          "end": 105,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "witness",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "LICENCE_CLASS",
+          "text": "LMV",
+          "value": "LMV",
+          "start": 122,
+          "end": 125,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "LMV",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U01079",
+      "intent": "INT017",
+      "predictedIntent": "INT017",
+      "gold": [],
+      "endToEnd": [],
+      "oracleIntent": [],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "scooter",
+          "value": "scooter",
+          "start": 53,
+          "end": 60,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MCWG",
+            "VC_MCWOG"
+          ]
+        },
+        {
+          "type": "STATE",
+          "text": "Maharashtra",
+          "value": "Maharashtra",
+          "start": 64,
+          "end": 75,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Maharashtra",
+          "normalizedId": "JX_IN_MH",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "witness",
+          "value": "witness",
+          "start": 98,
+          "end": 105,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "witness",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "LICENCE_CLASS",
+          "text": "LMV",
+          "value": "LMV",
+          "start": 122,
+          "end": 125,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "LMV",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "LMV",
+          "value": "LMV",
+          "start": 122,
+          "end": 125,
+          "method": "ontology_vehicle_name",
+          "confidence": null,
+          "normalizedValue": "Light Motor Vehicle",
+          "normalizedId": "VC_LMV",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_LMV"
+          ]
+        }
+      ]
+    },
+    "text": "How do I apply for a permanent driving licence for a scooter in Maharashtra. Context — your role: witness, licence class: LMV."
+  },
+  {
+    "id": "U01694",
+    "before": {
+      "id": "U01694",
+      "intent": "INT004",
+      "predictedIntent": "INT004",
+      "gold": [],
+      "endToEnd": [],
+      "oracleIntent": [],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Rajasthan",
+          "value": "Rajasthan",
+          "start": 17,
+          "end": 26,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Rajasthan",
+          "normalizedId": "JX_IN_RJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "12 August 2026",
+          "value": "12 August 2026",
+          "start": 112,
+          "end": 126,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "2026-08-12",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": []
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "witness",
+          "value": "witness",
+          "start": 139,
+          "end": 146,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "witness",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "scooter",
+          "value": "scooter",
+          "start": 157,
+          "end": 164,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MCWG",
+            "VC_MCWOG"
+          ]
+        }
+      ]
+    },
+    "after": {
+      "id": "U01694",
+      "intent": "INT004",
+      "predictedIntent": "INT004",
+      "gold": [],
+      "endToEnd": [
+        "USER_ROLE"
+      ],
+      "oracleIntent": [
+        "USER_ROLE"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "USER_ROLE",
+          "text": "I was driving",
+          "value": "driver",
+          "start": 0,
+          "end": 13,
+          "method": "explicit_role",
+          "confidence": null,
+          "normalizedValue": "driver",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "STATE",
+          "text": "Rajasthan",
+          "value": "Rajasthan",
+          "start": 17,
+          "end": 26,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Rajasthan",
+          "normalizedId": "JX_IN_RJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "12 August 2026",
+          "value": "12 August 2026",
+          "start": 112,
+          "end": 126,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "2026-08-12",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": []
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "witness",
+          "value": "witness",
+          "start": 139,
+          "end": 146,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "witness",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "scooter",
+          "value": "scooter",
+          "start": 157,
+          "end": 164,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MCWG",
+            "VC_MCWOG"
+          ]
+        }
+      ]
+    },
+    "text": "I was driving in Rajasthan after drinking alcohol. What should I know about the legal position. Context — date: 12 August 2026, your role: witness, vehicle: scooter."
+  },
+  {
+    "id": "U01982",
+    "before": {
+      "id": "U01982",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "PUC_STATUS"
+      ],
+      "oracleIntent": [
+        "PUC_STATUS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Kerala",
+          "value": "Kerala",
+          "start": 0,
+          "end": 6,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Kerala",
+          "normalizedId": "JX_IN_KL",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "auto-rickshaw",
+          "value": "auto-rickshaw",
+          "start": 17,
+          "end": 30,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Three-Wheeler (Transport / Auto-Rickshaw)",
+          "normalizedId": "VC_THREE_WHEELER_TRANSPORT",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_THREE_WHEELER_TRANSPORT"
+          ]
+        }
+      ]
+    },
+    "after": {
+      "id": "U01982",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [],
+      "oracleIntent": [],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Kerala",
+          "value": "Kerala",
+          "start": 0,
+          "end": 6,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Kerala",
+          "normalizedId": "JX_IN_KL",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "auto-rickshaw",
+          "value": "auto-rickshaw",
+          "start": 17,
+          "end": 30,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Three-Wheeler (Transport / Auto-Rickshaw)",
+          "normalizedId": "VC_THREE_WHEELER_TRANSPORT",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_THREE_WHEELER_TRANSPORT"
+          ]
+        },
+        {
+          "type": "PUC_STATUS",
+          "text": "PUC status expired",
+          "value": "expired",
+          "start": 34,
+          "end": 52,
+          "method": "explicit_document_status",
+          "confidence": null,
+          "normalizedValue": "expired",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit clause-scoped document status",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "Kerala mein meri auto-rickshaw ka PUC status expired hai. Kya check karna chahiye?"
+  },
+  {
+    "id": "U02512",
+    "before": {
+      "id": "U02512",
+      "intent": "INT017",
+      "predictedIntent": "INT017",
+      "gold": [],
+      "endToEnd": [],
+      "oracleIntent": [],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Rajasthan",
+          "value": "Rajasthan",
+          "start": 0,
+          "end": 9,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Rajasthan",
+          "normalizedId": "JX_IN_RJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "auto-rickshaw",
+          "value": "auto-rickshaw",
+          "start": 14,
+          "end": 27,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Three-Wheeler (Transport / Auto-Rickshaw)",
+          "normalizedId": "VC_THREE_WHEELER_TRANSPORT",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_THREE_WHEELER_TRANSPORT"
+          ]
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "victim",
+          "value": "victim",
+          "start": 106,
+          "end": 112,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "victim",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U02512",
+      "intent": "INT017",
+      "predictedIntent": "INT017",
+      "gold": [],
+      "endToEnd": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Rajasthan",
+          "value": "Rajasthan",
+          "start": 0,
+          "end": 9,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Rajasthan",
+          "normalizedId": "JX_IN_RJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "auto-rickshaw",
+          "value": "auto-rickshaw",
+          "start": 14,
+          "end": 27,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Three-Wheeler (Transport / Auto-Rickshaw)",
+          "normalizedId": "VC_THREE_WHEELER_TRANSPORT",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_THREE_WHEELER_TRANSPORT"
+          ]
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "victim",
+          "value": "victim",
+          "start": 106,
+          "end": 112,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "victim",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "LMV",
+          "value": "LMV",
+          "start": 128,
+          "end": 131,
+          "method": "ontology_vehicle_name",
+          "confidence": null,
+          "normalizedValue": "Light Motor Vehicle",
+          "normalizedId": "VC_LMV",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_LMV"
+          ]
+        }
+      ]
+    },
+    "text": "Rajasthan में auto-rickshaw के लिए स्थायी ड्राइविंग लाइसेंस के लिए कैसे आवेदन करूं। संदर्भ — आपकी भूमिका: victim, लाइसेंस वर्ग: LMV।"
+  },
+  {
+    "id": "U02595",
+    "before": {
+      "id": "U02595",
+      "intent": "INT009",
+      "predictedIntent": "INT009",
+      "gold": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "endToEnd": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "oracleIntent": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "oracleEntitiesAndIntent": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Maharashtra",
+          "value": "Maharashtra",
+          "start": 48,
+          "end": 59,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Maharashtra",
+          "normalizedId": "JX_IN_MH",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U02595",
+      "intent": "INT009",
+      "predictedIntent": "INT009",
+      "gold": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "endToEnd": [
+        "EVENT_DATE"
+      ],
+      "oracleIntent": [
+        "EVENT_DATE"
+      ],
+      "oracleEntitiesAndIntent": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "entities": [
+        {
+          "type": "USER_ROLE",
+          "text": "I drove",
+          "value": "driver",
+          "start": 0,
+          "end": 7,
+          "method": "explicit_role",
+          "confidence": null,
+          "normalizedValue": "driver",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "STATE",
+          "text": "Maharashtra",
+          "value": "Maharashtra",
+          "start": 48,
+          "end": 59,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Maharashtra",
+          "normalizedId": "JX_IN_MH",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "I drove against the permitted direction on a in Maharashtra. What are the legal implications?"
+  },
+  {
+    "id": "U02942",
+    "before": {
+      "id": "U02942",
+      "intent": "INT009",
+      "predictedIntent": "INT009",
+      "gold": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "endToEnd": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "oracleIntent": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "oracleEntitiesAndIntent": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Karnataka",
+          "value": "Karnataka",
+          "start": 48,
+          "end": 57,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Karnataka",
+          "normalizedId": "JX_IN_KA",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U02942",
+      "intent": "INT009",
+      "predictedIntent": "INT009",
+      "gold": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "endToEnd": [
+        "EVENT_DATE"
+      ],
+      "oracleIntent": [
+        "EVENT_DATE"
+      ],
+      "oracleEntitiesAndIntent": [
+        "EVENT_DATE",
+        "USER_ROLE"
+      ],
+      "entities": [
+        {
+          "type": "USER_ROLE",
+          "text": "I drove",
+          "value": "driver",
+          "start": 0,
+          "end": 7,
+          "method": "explicit_role",
+          "confidence": null,
+          "normalizedValue": "driver",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "STATE",
+          "text": "Karnataka",
+          "value": "Karnataka",
+          "start": 48,
+          "end": 57,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Karnataka",
+          "normalizedId": "JX_IN_KA",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "I drove against the permitted direction on a in Karnataka. What are the legal implications Is this okay legally?"
+  },
+  {
+    "id": "U03787",
+    "before": {
+      "id": "U03787",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "PUC_STATUS",
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "PUC_STATUS",
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Gujarat",
+          "value": "Gujarat",
+          "start": 47,
+          "end": 54,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Gujarat",
+          "normalizedId": "JX_IN_GJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "1 September 2026",
+          "value": "1 September 2026",
+          "start": 93,
+          "end": 109,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "2026-09-01",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U03787",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "PUC_STATUS",
+          "text": "PUC status is valid",
+          "value": "valid",
+          "start": 3,
+          "end": 22,
+          "method": "explicit_document_status",
+          "confidence": null,
+          "normalizedValue": "valid",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit clause-scoped document status",
+          "alternatives": []
+        },
+        {
+          "type": "STATE",
+          "text": "Gujarat",
+          "value": "Gujarat",
+          "start": 47,
+          "end": 54,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Gujarat",
+          "normalizedId": "JX_IN_GJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "1 September 2026",
+          "value": "1 September 2026",
+          "start": 93,
+          "end": 109,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "2026-09-01",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "My PUC status is valid for my goods vehicle in Gujarat. What should I check. Context — date: 1 September 2026."
+  },
+  {
+    "id": "U04019",
+    "before": {
+      "id": "U04019",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "PUC_STATUS",
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "PUC_STATUS",
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Delhi",
+          "value": "Delhi",
+          "start": 18,
+          "end": 23,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Delhi",
+          "normalizedId": "JX_IN_DL",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U04019",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Delhi",
+          "value": "Delhi",
+          "start": 18,
+          "end": 23,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Delhi",
+          "normalizedId": "JX_IN_DL",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "PUC_STATUS",
+          "text": "PUC status valid",
+          "value": "valid",
+          "start": 51,
+          "end": 67,
+          "method": "explicit_document_status",
+          "confidence": null,
+          "normalizedValue": "valid",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit clause-scoped document status",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "Mera ek doubt hai—Delhi mein meri goods vehicle ka PUC status valid hai. Kya check karna chahiye?"
+  },
+  {
+    "id": "U04501",
+    "before": {
+      "id": "U04501",
+      "intent": "INT017",
+      "predictedIntent": "INT017",
+      "gold": [],
+      "endToEnd": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "scooter",
+          "value": "scooter",
+          "start": 53,
+          "end": 60,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MCWG",
+            "VC_MCWOG"
+          ]
+        },
+        {
+          "type": "STATE",
+          "text": "Karnataka",
+          "value": "Karnataka",
+          "start": 64,
+          "end": 73,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Karnataka",
+          "normalizedId": "JX_IN_KA",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "witness",
+          "value": "witness",
+          "start": 96,
+          "end": 103,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "witness",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "LICENCE_CLASS",
+          "text": "LMV",
+          "value": "LMV",
+          "start": 120,
+          "end": 123,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "LMV",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U04501",
+      "intent": "INT017",
+      "predictedIntent": "INT017",
+      "gold": [],
+      "endToEnd": [],
+      "oracleIntent": [],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "scooter",
+          "value": "scooter",
+          "start": 53,
+          "end": 60,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MCWG",
+            "VC_MCWOG"
+          ]
+        },
+        {
+          "type": "STATE",
+          "text": "Karnataka",
+          "value": "Karnataka",
+          "start": 64,
+          "end": 73,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Karnataka",
+          "normalizedId": "JX_IN_KA",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "witness",
+          "value": "witness",
+          "start": 96,
+          "end": 103,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "witness",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "LICENCE_CLASS",
+          "text": "LMV",
+          "value": "LMV",
+          "start": 120,
+          "end": 123,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "LMV",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "LMV",
+          "value": "LMV",
+          "start": 120,
+          "end": 123,
+          "method": "ontology_vehicle_name",
+          "confidence": null,
+          "normalizedValue": "Light Motor Vehicle",
+          "normalizedId": "VC_LMV",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_LMV"
+          ]
+        }
+      ]
+    },
+    "text": "How do I apply for a permanent driving licence for a scooter in Karnataka. Context — your role: witness, licence class: LMV."
+  },
+  {
+    "id": "U04701",
+    "before": {
+      "id": "U04701",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "PUC_STATUS",
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "PUC_STATUS",
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Gujarat",
+          "value": "Gujarat",
+          "start": 0,
+          "end": 7,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Gujarat",
+          "normalizedId": "JX_IN_GJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "bus",
+          "value": "bus",
+          "start": 18,
+          "end": 21,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_OMNIBUS",
+            "VC_MPV",
+            "VC_HPMV"
+          ]
+        }
+      ]
+    },
+    "after": {
+      "id": "U04701",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Gujarat",
+          "value": "Gujarat",
+          "start": 0,
+          "end": 7,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Gujarat",
+          "normalizedId": "JX_IN_GJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "bus",
+          "value": "bus",
+          "start": 18,
+          "end": 21,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_OMNIBUS",
+            "VC_MPV",
+            "VC_HPMV"
+          ]
+        },
+        {
+          "type": "PUC_STATUS",
+          "text": "PUC status valid",
+          "value": "valid",
+          "start": 25,
+          "end": 41,
+          "method": "explicit_document_status",
+          "confidence": null,
+          "normalizedValue": "valid",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit clause-scoped document status",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "Gujarat mein meri bus ka PUC status valid hai. Kya check karna chahiye?"
+  },
+  {
+    "id": "U04925",
+    "before": {
+      "id": "U04925",
+      "intent": "INT009",
+      "predictedIntent": "INT009",
+      "gold": [],
+      "endToEnd": [],
+      "oracleIntent": [],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "ROAD_TYPE",
+          "text": "residential road",
+          "value": "residential road",
+          "start": 45,
+          "end": 61,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "residential road",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "road-type phrase rules",
+          "alternatives": []
+        },
+        {
+          "type": "STATE",
+          "text": "Delhi",
+          "value": "Delhi",
+          "start": 65,
+          "end": 70,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Delhi",
+          "normalizedId": "JX_IN_DL",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "29 August 2026",
+          "value": "29 August 2026",
+          "start": 121,
+          "end": 135,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "2026-08-29",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": []
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "vehicle buyer",
+          "value": "vehicle buyer",
+          "start": 148,
+          "end": 161,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "buyer",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U04925",
+      "intent": "INT009",
+      "predictedIntent": "INT009",
+      "gold": [],
+      "endToEnd": [
+        "USER_ROLE"
+      ],
+      "oracleIntent": [
+        "USER_ROLE"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "USER_ROLE",
+          "text": "I drove",
+          "value": "driver",
+          "start": 0,
+          "end": 7,
+          "method": "explicit_role",
+          "confidence": null,
+          "normalizedValue": "driver",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "ROAD_TYPE",
+          "text": "residential road",
+          "value": "residential road",
+          "start": 45,
+          "end": 61,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "residential road",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "road-type phrase rules",
+          "alternatives": []
+        },
+        {
+          "type": "STATE",
+          "text": "Delhi",
+          "value": "Delhi",
+          "start": 65,
+          "end": 70,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Delhi",
+          "normalizedId": "JX_IN_DL",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "29 August 2026",
+          "value": "29 August 2026",
+          "start": 121,
+          "end": 135,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "2026-08-29",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": []
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "vehicle buyer",
+          "value": "vehicle buyer",
+          "start": 148,
+          "end": 161,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "buyer",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "I drove against the permitted direction on a residential road in Delhi. What are the legal implications. Context — date: 29 August 2026, your role: vehicle buyer."
+  },
+  {
+    "id": "U05592",
+    "before": {
+      "id": "U05592",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "PUC_STATUS"
+      ],
+      "oracleIntent": [
+        "PUC_STATUS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "auto-rickshaw",
+          "value": "auto-rickshaw",
+          "start": 30,
+          "end": 43,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Three-Wheeler (Transport / Auto-Rickshaw)",
+          "normalizedId": "VC_THREE_WHEELER_TRANSPORT",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_THREE_WHEELER_TRANSPORT"
+          ]
+        },
+        {
+          "type": "STATE",
+          "text": "West Bengal",
+          "value": "West Bengal",
+          "start": 47,
+          "end": 58,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "West Bengal",
+          "normalizedId": "JX_IN_WB",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U05592",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [],
+      "oracleIntent": [],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "PUC_STATUS",
+          "text": "PUC status is valid",
+          "value": "valid",
+          "start": 3,
+          "end": 22,
+          "method": "explicit_document_status",
+          "confidence": null,
+          "normalizedValue": "valid",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit clause-scoped document status",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "auto-rickshaw",
+          "value": "auto-rickshaw",
+          "start": 30,
+          "end": 43,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Three-Wheeler (Transport / Auto-Rickshaw)",
+          "normalizedId": "VC_THREE_WHEELER_TRANSPORT",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_THREE_WHEELER_TRANSPORT"
+          ]
+        },
+        {
+          "type": "STATE",
+          "text": "West Bengal",
+          "value": "West Bengal",
+          "start": 47,
+          "end": 58,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "West Bengal",
+          "normalizedId": "JX_IN_WB",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "My PUC status is valid for my auto-rickshaw in West Bengal. What should I check? I'm not sure what applies."
+  },
+  {
+    "id": "U05643",
+    "before": {
+      "id": "U05643",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "PUC_STATUS",
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "PUC_STATUS",
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "motorcycle",
+          "value": "motorcycle",
+          "start": 30,
+          "end": 40,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MCWG",
+            "VC_MCWOG"
+          ]
+        },
+        {
+          "type": "STATE",
+          "text": "Maharashtra",
+          "value": "Maharashtra",
+          "start": 44,
+          "end": 55,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Maharashtra",
+          "normalizedId": "JX_IN_MH",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "29 August 2026",
+          "value": "29 August 2026",
+          "start": 94,
+          "end": 108,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "2026-08-29",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": []
+        },
+        {
+          "type": "CITY",
+          "text": "Ahmedabad",
+          "value": "Ahmedabad",
+          "start": 116,
+          "end": 125,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "Ahmedabad",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U05643",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "PUC_STATUS",
+          "text": "PUC status is valid",
+          "value": "valid",
+          "start": 3,
+          "end": 22,
+          "method": "explicit_document_status",
+          "confidence": null,
+          "normalizedValue": "valid",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit clause-scoped document status",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "motorcycle",
+          "value": "motorcycle",
+          "start": 30,
+          "end": 40,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MCWG",
+            "VC_MCWOG"
+          ]
+        },
+        {
+          "type": "STATE",
+          "text": "Maharashtra",
+          "value": "Maharashtra",
+          "start": 44,
+          "end": 55,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Maharashtra",
+          "normalizedId": "JX_IN_MH",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "29 August 2026",
+          "value": "29 August 2026",
+          "start": 94,
+          "end": 108,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "2026-08-29",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": []
+        },
+        {
+          "type": "CITY",
+          "text": "Ahmedabad",
+          "value": "Ahmedabad",
+          "start": 116,
+          "end": 125,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "Ahmedabad",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "My PUC status is valid for my motorcycle in Maharashtra. What should I check. Context — date: 29 August 2026, city: Ahmedabad."
+  },
+  {
+    "id": "U05722",
+    "before": {
+      "id": "U05722",
+      "intent": "INT017",
+      "predictedIntent": "INT017",
+      "gold": [],
+      "endToEnd": [],
+      "oracleIntent": [],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Rajasthan",
+          "value": "Rajasthan",
+          "start": 19,
+          "end": 28,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Rajasthan",
+          "normalizedId": "JX_IN_RJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "car",
+          "value": "car",
+          "start": 34,
+          "end": 37,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Motor Car",
+          "normalizedId": "VC_MOTORCAR",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MOTORCAR"
+          ]
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "vehicle owner",
+          "value": "vehicle owner",
+          "start": 112,
+          "end": 125,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "owner",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "LICENCE_CLASS",
+          "text": "LMV",
+          "value": "LMV",
+          "start": 142,
+          "end": 145,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "LMV",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U05722",
+      "intent": "INT017",
+      "predictedIntent": "INT017",
+      "gold": [],
+      "endToEnd": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Rajasthan",
+          "value": "Rajasthan",
+          "start": 19,
+          "end": 28,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Rajasthan",
+          "normalizedId": "JX_IN_RJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "car",
+          "value": "car",
+          "start": 34,
+          "end": 37,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Motor Car",
+          "normalizedId": "VC_MOTORCAR",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MOTORCAR"
+          ]
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "vehicle owner",
+          "value": "vehicle owner",
+          "start": 112,
+          "end": 125,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "owner",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "LICENCE_CLASS",
+          "text": "LMV",
+          "value": "LMV",
+          "start": 142,
+          "end": 145,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "LMV",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "LMV",
+          "value": "LMV",
+          "start": 142,
+          "end": 145,
+          "method": "ontology_vehicle_name",
+          "confidence": null,
+          "normalizedValue": "Light Motor Vehicle",
+          "normalizedId": "VC_LMV",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_LMV"
+          ]
+        }
+      ]
+    },
+    "text": "Thodi help chahiye—Rajasthan mein car ke liye permanent driving licence kaise apply karun. Context — your role: vehicle owner, licence class: LMV."
+  },
+  {
+    "id": "U05775",
+    "before": {
+      "id": "U05775",
+      "intent": "INT009",
+      "predictedIntent": "INT009",
+      "gold": [],
+      "endToEnd": [],
+      "oracleIntent": [],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "ROAD_TYPE",
+          "text": "service road",
+          "value": "service road",
+          "start": 45,
+          "end": 57,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "service road",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "road-type phrase rules",
+          "alternatives": []
+        },
+        {
+          "type": "STATE",
+          "text": "Gujarat",
+          "value": "Gujarat",
+          "start": 61,
+          "end": 68,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Gujarat",
+          "normalizedId": "JX_IN_GJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "29 August 2026",
+          "value": "29 August 2026",
+          "start": 119,
+          "end": 133,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "2026-08-29",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": []
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "victim",
+          "value": "victim",
+          "start": 146,
+          "end": 152,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "victim",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U05775",
+      "intent": "INT009",
+      "predictedIntent": "INT009",
+      "gold": [],
+      "endToEnd": [
+        "USER_ROLE"
+      ],
+      "oracleIntent": [
+        "USER_ROLE"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "USER_ROLE",
+          "text": "I drove",
+          "value": "driver",
+          "start": 0,
+          "end": 7,
+          "method": "explicit_role",
+          "confidence": null,
+          "normalizedValue": "driver",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "ROAD_TYPE",
+          "text": "service road",
+          "value": "service road",
+          "start": 45,
+          "end": 57,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "service road",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "road-type phrase rules",
+          "alternatives": []
+        },
+        {
+          "type": "STATE",
+          "text": "Gujarat",
+          "value": "Gujarat",
+          "start": 61,
+          "end": 68,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Gujarat",
+          "normalizedId": "JX_IN_GJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "29 August 2026",
+          "value": "29 August 2026",
+          "start": 119,
+          "end": 133,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "2026-08-29",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": []
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "victim",
+          "value": "victim",
+          "start": 146,
+          "end": 152,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "victim",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "I drove against the permitted direction on a service road in Gujarat. What are the legal implications. Context — date: 29 August 2026, your role: victim."
+  },
+  {
+    "id": "U06028",
+    "before": {
+      "id": "U06028",
+      "intent": "INT017",
+      "predictedIntent": "INT017",
+      "gold": [],
+      "endToEnd": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Delhi",
+          "value": "Delhi",
+          "start": 0,
+          "end": 5,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Delhi",
+          "normalizedId": "JX_IN_DL",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "bus",
+          "value": "bus",
+          "start": 11,
+          "end": 14,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_OMNIBUS",
+            "VC_MPV",
+            "VC_HPMV"
+          ]
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "passenger",
+          "value": "passenger",
+          "start": 89,
+          "end": 98,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "passenger",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "LICENCE_CLASS",
+          "text": "LMV",
+          "value": "LMV",
+          "start": 115,
+          "end": 118,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "LMV",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        },
+        {
+          "type": "CITY",
+          "text": "Kochi",
+          "value": "Kochi",
+          "start": 126,
+          "end": 131,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "Kochi",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U06028",
+      "intent": "INT017",
+      "predictedIntent": "INT017",
+      "gold": [],
+      "endToEnd": [],
+      "oracleIntent": [],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Delhi",
+          "value": "Delhi",
+          "start": 0,
+          "end": 5,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Delhi",
+          "normalizedId": "JX_IN_DL",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "bus",
+          "value": "bus",
+          "start": 11,
+          "end": 14,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_OMNIBUS",
+            "VC_MPV",
+            "VC_HPMV"
+          ]
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "passenger",
+          "value": "passenger",
+          "start": 89,
+          "end": 98,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "passenger",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "LICENCE_CLASS",
+          "text": "LMV",
+          "value": "LMV",
+          "start": 115,
+          "end": 118,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "LMV",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "LMV",
+          "value": "LMV",
+          "start": 115,
+          "end": 118,
+          "method": "ontology_vehicle_name",
+          "confidence": null,
+          "normalizedValue": "Light Motor Vehicle",
+          "normalizedId": "VC_LMV",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_LMV"
+          ]
+        },
+        {
+          "type": "CITY",
+          "text": "Kochi",
+          "value": "Kochi",
+          "start": 126,
+          "end": 131,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "Kochi",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "Delhi mein bus ke liye permanent driving licence kaise apply karun. Context — your role: passenger, licence class: LMV, city: Kochi."
+  },
+  {
+    "id": "U06351",
+    "before": {
+      "id": "U06351",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "PUC_STATUS"
+      ],
+      "oracleIntent": [
+        "PUC_STATUS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Rajasthan",
+          "value": "Rajasthan",
+          "start": 11,
+          "end": 20,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Rajasthan",
+          "normalizedId": "JX_IN_RJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "car",
+          "value": "car",
+          "start": 30,
+          "end": 33,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Motor Car",
+          "normalizedId": "VC_MOTORCAR",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MOTORCAR"
+          ]
+        }
+      ]
+    },
+    "after": {
+      "id": "U06351",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [],
+      "oracleIntent": [],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Rajasthan",
+          "value": "Rajasthan",
+          "start": 11,
+          "end": 20,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Rajasthan",
+          "normalizedId": "JX_IN_RJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "car",
+          "value": "car",
+          "start": 30,
+          "end": 33,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Motor Car",
+          "normalizedId": "VC_MOTORCAR",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MOTORCAR"
+          ]
+        },
+        {
+          "type": "PUC_STATUS",
+          "text": "PUC स्टेटस expired",
+          "value": "expired",
+          "start": 37,
+          "end": 55,
+          "method": "explicit_document_status",
+          "confidence": null,
+          "normalizedValue": "expired",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit clause-scoped document status",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "एक सवाल है—Rajasthan में मेरी car का PUC स्टेटस expired है। मुझे क्या जांचना चाहिए?"
+  },
+  {
+    "id": "U07311",
+    "before": {
+      "id": "U07311",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [
+        "PUC_STATUS"
+      ],
+      "oracleIntent": [
+        "PUC_STATUS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "West Bengal",
+          "value": "West Bengal",
+          "start": 0,
+          "end": 11,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "West Bengal",
+          "normalizedId": "JX_IN_WB",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "auto-rickshaw",
+          "value": "auto-rickshaw",
+          "start": 21,
+          "end": 34,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Three-Wheeler (Transport / Auto-Rickshaw)",
+          "normalizedId": "VC_THREE_WHEELER_TRANSPORT",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_THREE_WHEELER_TRANSPORT"
+          ]
+        }
+      ]
+    },
+    "after": {
+      "id": "U07311",
+      "intent": "INT036",
+      "predictedIntent": "INT036",
+      "gold": [],
+      "endToEnd": [],
+      "oracleIntent": [],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "West Bengal",
+          "value": "West Bengal",
+          "start": 0,
+          "end": 11,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "West Bengal",
+          "normalizedId": "JX_IN_WB",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "auto-rickshaw",
+          "value": "auto-rickshaw",
+          "start": 21,
+          "end": 34,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Three-Wheeler (Transport / Auto-Rickshaw)",
+          "normalizedId": "VC_THREE_WHEELER_TRANSPORT",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_THREE_WHEELER_TRANSPORT"
+          ]
+        },
+        {
+          "type": "PUC_STATUS",
+          "text": "PUC स्टेटस valid",
+          "value": "valid",
+          "start": 38,
+          "end": 54,
+          "method": "explicit_document_status",
+          "confidence": null,
+          "normalizedValue": "valid",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit clause-scoped document status",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "West Bengal में मेरी auto-rickshaw का PUC स्टेटस valid है। मुझे क्या जांचना चाहिए?"
+  },
+  {
+    "id": "U07612",
+    "before": {
+      "id": "U07612",
+      "intent": "INT009",
+      "predictedIntent": "INT009",
+      "gold": [],
+      "endToEnd": [],
+      "oracleIntent": [],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "ROAD_TYPE",
+          "text": "city road",
+          "value": "city road",
+          "start": 45,
+          "end": 54,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "city road",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "road-type phrase rules",
+          "alternatives": []
+        },
+        {
+          "type": "STATE",
+          "text": "Rajasthan",
+          "value": "Rajasthan",
+          "start": 58,
+          "end": 67,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Rajasthan",
+          "normalizedId": "JX_IN_RJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "12 August 2026",
+          "value": "12 August 2026",
+          "start": 118,
+          "end": 132,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "2026-08-12",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": []
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "vehicle buyer",
+          "value": "vehicle buyer",
+          "start": 145,
+          "end": 158,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "buyer",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U07612",
+      "intent": "INT009",
+      "predictedIntent": "INT009",
+      "gold": [],
+      "endToEnd": [
+        "USER_ROLE"
+      ],
+      "oracleIntent": [
+        "USER_ROLE"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "USER_ROLE",
+          "text": "I drove",
+          "value": "driver",
+          "start": 0,
+          "end": 7,
+          "method": "explicit_role",
+          "confidence": null,
+          "normalizedValue": "driver",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        },
+        {
+          "type": "ROAD_TYPE",
+          "text": "city road",
+          "value": "city road",
+          "start": 45,
+          "end": 54,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "city road",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "road-type phrase rules",
+          "alternatives": []
+        },
+        {
+          "type": "STATE",
+          "text": "Rajasthan",
+          "value": "Rajasthan",
+          "start": 58,
+          "end": 67,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Rajasthan",
+          "normalizedId": "JX_IN_RJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "EVENT_DATE",
+          "text": "12 August 2026",
+          "value": "12 August 2026",
+          "start": 118,
+          "end": 132,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "2026-08-12",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit/relative date parser",
+          "alternatives": []
+        },
+        {
+          "type": "USER_ROLE",
+          "text": "vehicle buyer",
+          "value": "vehicle buyer",
+          "start": 145,
+          "end": 158,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "buyer",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "slot_schema.csv explicit value",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "I drove against the permitted direction on a city road in Rajasthan. What are the legal implications. Context — date: 12 August 2026, your role: vehicle buyer."
+  },
+  {
+    "id": "U08250",
+    "before": {
+      "id": "U08250",
+      "intent": "INT016",
+      "predictedIntent": "INT016",
+      "gold": [],
+      "endToEnd": [
+        "USER_ROLE",
+        "VEHICLE_CLASS"
+      ],
+      "oracleIntent": [
+        "USER_ROLE",
+        "VEHICLE_CLASS"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Gujarat",
+          "value": "Gujarat",
+          "start": 0,
+          "end": 7,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Gujarat",
+          "normalizedId": "JX_IN_GJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "motorcycle",
+          "value": "motorcycle",
+          "start": 13,
+          "end": 23,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MCWG",
+            "VC_MCWOG"
+          ]
+        },
+        {
+          "type": "LICENCE_CLASS",
+          "text": "MCWG. Thoda clarify kar sakte ho",
+          "value": "MCWG. Thoda clarify kar sakte ho",
+          "start": 136,
+          "end": 168,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "MCWG. Thoda clarify kar sakte ho",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        }
+      ]
+    },
+    "after": {
+      "id": "U08250",
+      "intent": "INT016",
+      "predictedIntent": "INT016",
+      "gold": [],
+      "endToEnd": [
+        "USER_ROLE"
+      ],
+      "oracleIntent": [
+        "USER_ROLE"
+      ],
+      "oracleEntitiesAndIntent": [],
+      "entities": [
+        {
+          "type": "STATE",
+          "text": "Gujarat",
+          "value": "Gujarat",
+          "start": 0,
+          "end": 7,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Gujarat",
+          "normalizedId": "JX_IN_GJ",
+          "status": "resolved",
+          "vocabularySource": "jurisdictions.csv",
+          "alternatives": []
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "motorcycle",
+          "value": "motorcycle",
+          "start": 13,
+          "end": 23,
+          "method": "rule",
+          "confidence": null,
+          "normalizedValue": "Vehicle class needs clarification",
+          "normalizedId": null,
+          "status": "ambiguous",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MCWG",
+            "VC_MCWOG"
+          ]
+        },
+        {
+          "type": "VEHICLE_CLASS",
+          "text": "MCWG",
+          "value": "MCWG",
+          "start": 136,
+          "end": 140,
+          "method": "ontology_vehicle_name",
+          "confidence": null,
+          "normalizedValue": "Motor Cycle With Gear",
+          "normalizedId": "VC_MCWG",
+          "status": "resolved",
+          "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+          "alternatives": [
+            "VC_MCWG"
+          ]
+        },
+        {
+          "type": "LICENCE_CLASS",
+          "text": "MCWG. Thoda clarify kar sakte ho",
+          "value": "MCWG. Thoda clarify kar sakte ho",
+          "start": 136,
+          "end": 168,
+          "method": "explicit_schema_label",
+          "confidence": null,
+          "normalizedValue": "MCWG. Thoda clarify kar sakte ho",
+          "normalizedId": null,
+          "status": "resolved",
+          "vocabularySource": "explicit labelled text; not inferred",
+          "alternatives": []
+        }
+      ]
+    },
+    "text": "Gujarat mein motorcycle ke liye vehicle buyer ke taur par learner licence lene se pehle kya pata hona chahiye. Context — licence class: MCWG. Thoda clarify kar sakte ho?"
+  }
+]

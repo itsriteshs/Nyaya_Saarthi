@@ -4,9 +4,10 @@ import type { ClarificationQuestion as ClarificationQuestionType } from "@/types
 interface ClarificationQuestionProps {
   question: ClarificationQuestionType;
   onAnswer: (answer: string) => Promise<boolean> | void;
+  busy?: boolean;
 }
 
-export function ClarificationQuestion({ question, onAnswer }: ClarificationQuestionProps) {
+export function ClarificationQuestion({ question, onAnswer, busy = false }: ClarificationQuestionProps) {
   return (
     <section className="rounded-lg border border-[#DED7CA] bg-[#FFFDF8] p-5">
       <p className="text-xs font-extrabold uppercase text-[#A8752B]">We need one more detail</p>
@@ -18,6 +19,7 @@ export function ClarificationQuestion({ question, onAnswer }: ClarificationQuest
             <button
               key={option.value}
               type="button"
+              disabled={busy}
               className="min-h-11 rounded-md border border-[#DED7CA] bg-[#F7F3EA] px-4 text-sm font-extrabold text-[#18150F] transition-colors hover:border-[#A8752B] hover:bg-[#F4E8D3]"
               onClick={() => onAnswer(option.value)}
             >

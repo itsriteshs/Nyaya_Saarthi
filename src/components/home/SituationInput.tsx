@@ -22,6 +22,7 @@ interface SituationInputProps {
   onReset: () => void;
   onSubmit: () => void;
   submitting?: boolean;
+  ready?: boolean;
 }
 
 export function SituationInput({
@@ -34,6 +35,7 @@ export function SituationInput({
   onReset,
   onSubmit,
   submitting = false,
+  ready = true,
 }: SituationInputProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -43,8 +45,10 @@ export function SituationInput({
   return (
     <form
       onSubmit={handleSubmit}
+      aria-busy={submitting}
       className="mt-8 rounded-lg border border-[#DED7CA] bg-[#FBF8F1] p-4 shadow-[0_18px_70px_rgba(7,27,58,0.08)] sm:p-5"
     >
+      <fieldset disabled={!ready || submitting} className="min-w-0">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <label htmlFor="situation" className="text-sm font-extrabold uppercase text-[#18150F]">
           Explain your situation
@@ -109,6 +113,7 @@ export function SituationInput({
           ))}
         </div>
       </div>
+      </fieldset>
     </form>
   );
 }

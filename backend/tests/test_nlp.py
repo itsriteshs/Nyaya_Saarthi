@@ -115,7 +115,12 @@ def test_matter_analysis_create_retrieve_and_conflict(client):
     assert matter["originalText"] == text
     assert matter["nlpAnalysis"]["entities"]
     assert any(fact["requiresConfirmation"] and not fact["confirmed"] for fact in matter["facts"])
-    assert set(matter["missingSlots"]) == {item["slot"] for item in matter["nlpAnalysis"]["missingSlots"]}
+    if matter['nlpAnalysis']['intent']['needsClarification']:
+        assert matter['missingSlots']==['INTENT']
+        assert matter['currentQuestion']['slot']=='INTENT'
+        assert {item['slot'] for item in matter['nlpAnalysis']['missingSlots']}=={'ROAD_TYPE'}
+    else:
+        assert set(matter['missingSlots']) == {item['slot'] for item in matter['nlpAnalysis']['missingSlots']}
     assert client.get(url).json()["nlpAnalysis"] == matter["nlpAnalysis"]
     assert client.post(url + "/analyze", json={"revision": 1}).status_code == 409
     assert client.post(url + "/analyze", json={"revision": 2}).status_code == 409

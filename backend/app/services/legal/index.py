@@ -6,6 +6,7 @@ from math import log
 from pathlib import Path
 import json
 import re
+from threading import Lock
 import numpy as np
 from app.config import BACKEND_DIR
 from app.services.legal.knowledge import load_knowledge, fingerprint
@@ -83,8 +84,11 @@ def build(semantic=True):
     load_index.cache_clear()
     return manifest
 
+_INDEX_LOAD_LOCK = Lock()
+
+
 @lru_cache(maxsize=1)
-def load_index():
+def _cached_index():
     manifest,docs=load_manifest()
     vectors=None;model=None
     if manifest['retrievalMode']=='hybrid':
@@ -94,8 +98,20 @@ def load_index():
             from sentence_transformers import SentenceTransformer
         except ImportError as exc:
             raise RuntimeError('Install semantic requirements to use this hybrid index') from exc
+        import torch
+        # Bound CPU oversubscription and respect a smaller runtime thread budget.
+        torch.set_num_threads(min(4, torch.get_num_threads()))
         model=SentenceTransformer(str(INDEX_DIR/'embedding_model'),local_files_only=True)
     return manifest,docs,vectors,model
+
+def load_index():
+    # lru_cache alone permits simultaneous cache misses to load multiple models.
+    with _INDEX_LOAD_LOCK:
+        return _cached_index()
+
+
+load_index.cache_clear = _cached_index.cache_clear
+
 
 def load_manifest():
     manifest_path=INDEX_DIR/'manifest.json'

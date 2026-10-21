@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { NLPPreview } from "@/components/home/NLPPreview";
 import { QuickTopics } from "@/components/home/QuickTopics";
 import { SituationInput } from "@/components/home/SituationInput";
@@ -23,7 +23,10 @@ const emptyPreview: MockNlpResult = {
   nextQuestion: "Enter a description to begin.", visibleSignals: [],
 };
 
+const subscribeToHydration = () => () => {};
+
 export function HeroSection() {
+  const interactive = useSyncExternalStore(subscribeToHydration, () => true, () => false);
   const router = useRouter();
   const { setMatter, intakeLanguage: language, setIntakeLanguage: setLanguage } = useMatter();
   const [situation, setSituation] = useState("");
@@ -137,6 +140,7 @@ export function HeroSection() {
           </p>
 
           <SituationInput
+            ready={interactive}
             value={situation}
             language={language}
             placeholder={activeTopicData.placeholder}

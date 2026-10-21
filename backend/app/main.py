@@ -1,4 +1,8 @@
 from contextlib import asynccontextmanager
+import asyncio
+import logging
+import os
+from app.services.legal.index import INDEX_DIR, load_index
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -9,6 +13,12 @@ from app.api import health, datasets, matters, nlp, conversations, legal, models
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_database()
+    if os.getenv('NYAYA_WARM_LEGAL_INDEX','true').lower()=='true' and (INDEX_DIR/'manifest.json').is_file():
+        logging.getLogger(__name__).info('Loading the local legal index before accepting requests')
+        try:
+            await asyncio.to_thread(load_index)
+        except (FileNotFoundError, ValueError, RuntimeError) as exc:
+            logging.getLogger(__name__).warning('Legal index unavailable; legal endpoints remain fail-closed: %s',exc)
     yield
 
 app = FastAPI(title="NyayaSaarthi Backend", version="0.1.0", lifespan=lifespan)

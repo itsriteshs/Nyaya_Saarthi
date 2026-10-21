@@ -2,6 +2,7 @@
 from datetime import date,datetime
 import re
 from app.services.nlp.ontology import ontology
+from app.services.nlp.jurisdiction_aliases import STATE_ALIASES
 
 VEHICLE_ALIASES={
     'car':['VC_MOTORCAR'],'motor car':['VC_MOTORCAR'],'कार':['VC_MOTORCAR'],
@@ -22,6 +23,9 @@ def normalize(entity):
     elif kind=='VEHICLE_CLASS':
         key=raw.casefold().strip()
         options=VEHICLE_ALIASES.get(key,[])
+        canonical=[r['vehicle_class_id'] for r in ontology()['vehicles'].values() if key in {
+            str(r.get(name,'')).casefold() for name in ('vehicle_class_id','legal_vehicle_code','common_name')}]
+        if canonical:options=canonical
         if key in {'mcwg','mcwog'}:
             options=['VC_'+key.upper()]
         elif re.fullmatch(r'(?:geared|gearless) (?:motorcycle|bike|scooter)|(?:motorcycle|bike|scooter) (?:with(?:out)? gears?|gearless)',key):
@@ -33,7 +37,7 @@ def normalize(entity):
         e['vocabularySource']='vehicle_classes.csv + documented informal aliases'
     elif kind in {'STATE','DESTINATION_STATE'}:
         lookup={r['state_ut_name'].casefold():r for r in ontology()['jurisdictions'].values() if r['jurisdiction_level']!='CENTRAL'}
-        key=raw.casefold().replace('tamilnadu','tamil nadu')
+        key=STATE_ALIASES.get(raw,raw).casefold().replace('tamilnadu','tamil nadu')
         if key in lookup:e.update(normalizedValue=lookup[key]['state_ut_name'],normalizedId=lookup[key]['jurisdiction_id'],status='resolved')
         e['vocabularySource']='jurisdictions.csv'
     elif kind.endswith('_DATE'):
@@ -50,6 +54,10 @@ def normalize(entity):
     elif kind=='ROAD_TYPE':
         e.update(normalizedValue=raw.casefold(),status='resolved',vocabularySource='road-type phrase rules')
     elif kind in {'INSURANCE_STATUS','CHALLAN_STATUS','LICENCE_STATUS','RC_STATUS','PUC_STATUS','FITNESS_STATUS','PERMIT_STATUS'}:
+        if e.get('method') in {'explicit_document_status','negated_document_status'}:
+            if e['method']=='explicit_document_status':
+                e.update(normalizedValue=value,status='resolved',vocabularySource='explicit clause-scoped document status')
+            return e
         lower=raw.casefold()
         negative=bool(re.search(r"\b(?:no|without|not|invalid|didn't|don't)\b|नहीं",lower))
         if 'unknown' in lower:

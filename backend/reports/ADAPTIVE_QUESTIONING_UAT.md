@@ -1,3 +1,9 @@
+# Current recheck — 21 October 2026
+
+Uncertain issue selection precedes topic questions. All 20 scenarios were repeated through their appropriate end state; multi-fact replies, explicit unknowns, contradiction resolution and vehicle correction were exercised. Exact vehicle subclass ambiguity and low missing-slot development F1 remain. See [UAT_RECHECK_REPORT.md](UAT_RECHECK_REPORT.md) and [UAT_RECHECK_SCENARIOS.csv](UAT_RECHECK_SCENARIOS.csv) for evidence and limitations. The earlier audit below is retained as historical evidence.
+
+---
+
 # Adaptive questioning UAT
 
 Sparse scenario1 started at0/3, wrongly on illegal-parking workflow. It asked event date. Answer2026-10-19 recovered date (1/3), then asked State. One reply "A car on an expressway in Tamil Nadu" recovered all three explicit entities; relevant wrong-workflow required coverage became2/3. It then asked specific location. Useful recovery exists, but cannot compensate for wrong intent.

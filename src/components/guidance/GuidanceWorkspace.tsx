@@ -59,7 +59,7 @@ export function GuidanceWorkspace() {
           setModelChoice(preferred.id); setOutputLanguage(language);
           return generateExplanation(stored.id, stored.revision, preferred.id, language);
         }
-        return generateGuidance(stored.id, stored.revision);
+        return generateExplanation(stored.id, stored.revision, "deterministic", preferredLanguage(stored));
       }
       if (stored.guidance) {
         const selected = stored.guidance.metadata?.requestedModel;
@@ -174,7 +174,7 @@ export function GuidanceWorkspace() {
               </h1>
               <p className="mt-3 max-w-4xl text-sm font-semibold leading-6 text-[#6B665D] sm:text-base">
                 Based on your confirmed facts, this page shows eligible dataset records and any
-                limits on their applicability. Linked government pages have not been independently authenticated.
+                limits on their applicability. Linked government pages have not been independently authenticated. Guidance covers the primary issue shown here; other concerns may need separate review.
               </p>
             </div>
 
@@ -202,6 +202,9 @@ export function GuidanceWorkspace() {
               </section>
             ) : null}
 
+            {guidance && guidance.metadata?.generationMethod !== "LOCAL_LLM" && (guidance.metadata?.outputLanguage ?? "english") === "english" ? (
+              <p className="mb-5 text-sm font-semibold leading-6 text-[#6B665D]">This deterministic explanation is in English. Hindi and Hinglish explanations require an available local model.</p>
+            ) : null}
             {error ? <section role="alert" className="mb-5 rounded-lg border border-red-300 bg-white p-5 text-red-800">{error}<Button className="ml-3" onClick={() => window.location.reload()}>Retry loading</Button></section> : null}
             {!guidance || busy && matter.nlpAnalysis && matter.stage === "USER_VERIFIED" ? (
               <RetrievalLoading />

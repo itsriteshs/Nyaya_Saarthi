@@ -1,3 +1,4 @@
+from workflow_helpers import establish_issue
 from uuid import uuid4
 import pytest
 from app.services.legal.knowledge import load_knowledge
@@ -62,11 +63,11 @@ def test_rule_engine_uses_confirmed_facts_and_abstains_on_speed_lookup():
 
 
 def test_verified_guidance_persists_and_fact_edit_invalidates(client,lexical_index):
-    created=client.post('/api/v1/matters',json={'originalText':'I drove my car at 120 km/h on an expressway','language':'english'}).json()
+    created=client.post('/api/v1/matters',json={'originalText':'I drove my car at 120 km/h on an expressway in Kerala on 2026-10-19','language':'english'}).json()
     url=f"/api/v1/matters/{created['id']}"
     assert client.post(url+'/guidance',json={'revision':created['revision']}).status_code==409
     analyzed=client.post(url+'/analyze',json={'revision':created['revision']}).json()
-    matter=analyzed
+    matter=establish_issue(client,url,analyzed)
     for fact in list(matter['facts']):
         reply=client.post(url+'/facts/'+fact['id']+'/confirm',json={'revision':matter['revision']})
         assert reply.status_code==200,reply.text

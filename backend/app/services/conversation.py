@@ -31,13 +31,21 @@ def _language(context):
 
 def _rows(context):
     intent=context.get('nlpAnalysis',{}).get('intent',{}).get('id')
-    return sorted(ontology()['slots'].get(intent,[]),key=lambda r:(int(r['ask_priority'] or 999),r['slot_id']))
+    rows=list(ontology()['slots'].get(intent,[]))
+    # Admissible retrieval always needs a jurisdiction and applicability date.
+    # This operational gate is separate from evaluation-label schema requirements.
+    present={r['slot_name'] for r in rows}
+    for row in ontology()['slots'].get('INT001',[]):
+        if row['slot_name'] in {'STATE','EVENT_DATE'} and row['slot_name'] not in present:
+            rows.append(dict(row))
+    return sorted(rows,key=lambda r:(int(r['ask_priority'] or 999),r['slot_id']))
 
 def _label(context, slot):
     return next((r['slot_display_name'] for r in _rows(context) if r['slot_name']==slot),slot.replace('_',' ').title())
 
 def _question(context, slot, reason='missing'):
     row=next((r for r in _rows(context) if r['slot_name']==slot),None)
+    if row is None:row=next((r for group in ontology()['slots'].values() for r in group if r['slot_name']==slot),None)
     lang=state(context)['displayLanguage']
     column={'hindi':'question_template_hi','hinglish':'question_template_hinglish'}.get(lang,'question_template_en')
     template=(row or {}).get(column) or (row or {}).get('question_template_en') or f'Please clarify {_label(context,slot)}.'
@@ -50,6 +58,10 @@ def _question(context, slot, reason='missing'):
             'hindi':'आपकी मोटरसाइकिल या स्कूटर गियर वाला है या बिना गियर का? MCWG या MCWOG भी लिख सकते हैं।',
             'hinglish':'Aapki motorcycle ya scooter geared hai ya gearless? MCWG ya MCWOG bhi likh sakte hain.',
         }.get(lang,'Is your motorcycle or scooter geared or gearless? You can answer MCWG or MCWOG.')
+    if slot=='VEHICLE_CLASS' and len({f.get('value','').casefold() for f in context.get('facts',[]) if f['key']==slot})>1:
+        template={'hindi':'एक से अधिक वाहन बताए गए हैं। आपका प्रश्न किस वाहन के बारे में है?',
+                  'hinglish':'Ek se zyada vehicles bataye gaye hain. Aapka sawal kis vehicle ke baare mein hai?'}.get(lang,
+                  'More than one vehicle was mentioned. Which vehicle is your question about?')
     if reason=='contradiction':
         template=f"Two answers about {_label(context,slot)} differ. Which describes the event? {template}"
     return {'id':f"q-{slot}-{len(state(context)['askedSlots'])+1}", 'slot':slot,'question':template,
@@ -58,22 +70,98 @@ def _question(context, slot, reason='missing'):
 def _has_value(fact):
     return fact.get('state') != 'unknown' and fact.get('resolutionStatus','resolved') == 'resolved' and bool(fact.get('normalizedValue') or fact.get('value'))
 
+def _intent_question(context):
+    conv=state(context)
+    language=conv['displayLanguage']
+    stage=conv.get('intentQuestionStage','candidate')
+    intents=ontology()['intents']
+    if stage=='domain':
+        options=[{'label':domain,'value':'DOMAIN:'+domain} for domain in sorted({r['domain'] for r in intents.values()})]
+        prompt='Which motor-vehicle law area best describes your question?'
+        slot='INTENT_DOMAIN'
+    elif stage=='detail':
+        options=[{'label':r['intent_name'].replace('_',' ').title(),'value':r['intent_id']}
+                 for r in intents.values() if r['domain']==conv.get('intentDomain')]
+        prompt='Which issue would you like help with first?'
+        slot='INTENT_DETAIL'
+    else:
+        prediction=context['nlpAnalysis']['intent']
+        ids=[prediction['id']]+[a['id'] for a in prediction.get('alternatives',[])]
+        options=[{'label':intents[i]['intent_name'].replace('_',' ').title(),'value':i} for i in dict.fromkeys(ids) if i in intents]
+        prompt={'hindi':'मुद्दा स्पष्ट नहीं है। पहले किस विषय में मदद चाहिए?',
+                'hinglish':'Issue clear nahi hai. Pehle kis mudde par madad chahiye?'}.get(language,
+                'The issue is uncertain. Which issue would you like help with first?')
+        slot='INTENT'
+    options += [{'label':'Another motor-vehicle issue','value':'OTHER'},
+                {'label':'Outside motor-vehicle law / none of these','value':'OUT_OF_SCOPE'}]
+    return {'id':'q-intent-'+str(len(conv['askedSlots'])+1),'slot':slot,'type':'options',
+            'question':prompt,'options':options,
+            'why':'Confirm the topic before asking issue-specific questions. A model prediction is not a confirmed fact.'}
+
+
+def _resolve_intent(context,answer):
+    conv=state(context);clean=answer.strip();intents=ontology()['intents']
+    if clean=='OTHER':conv['intentQuestionStage']='domain'
+    elif clean.startswith('DOMAIN:') and clean[7:] in {r['domain'] for r in intents.values()}:
+        conv['intentDomain']=clean[7:];conv['intentQuestionStage']='detail'
+    elif clean=='OUT_OF_SCOPE' or UNKNOWN.fullmatch(clean):
+        conv['intentUnsupported']=True
+        context['messages'].append({'id':str(uuid4()),'speaker':'assistant','text':
+            'The issue has not been established as a supported motor-vehicle-law question. No legal guidance will be generated. You can start a new situation with a supported question.'})
+    else:
+        selected=next((r for r in intents.values() if clean.casefold() in {
+            r['intent_id'].casefold(),r['intent_name'].casefold(),r['intent_name'].replace('_',' ').casefold()}),None)
+        if not selected:
+            context['messages'].append({'id':str(uuid4()),'speaker':'assistant','text':'Please select a listed issue, another motor-vehicle issue, or outside scope.'})
+            return
+        previous=dict(context['nlpAnalysis']['intent'])
+        conv.setdefault('originalIntentPrediction',previous)
+        conv['intentConfirmed']=True;conv['selectedIntentId']=selected['intent_id']
+        context['nlpAnalysis']['intent'].update(id=selected['intent_id'],name=selected['intent_name'],domain=selected['domain'],
+            score=0,scoreType='User-selected workflow, not a model prediction',marginGap=0,needsClarification=False,alternatives=[])
+        context['intent']={'label':selected['intent_name'].replace('_',' ').title(),'descriptor':selected['domain']+' · Selected by you'}
+        original_slots={k:context['nlpAnalysis'].get(k) for k in ('missingSlots','unresolvedSlots','readiness')}
+        conv.setdefault('originalSlotAnalysis',original_slots)
+        context['nlpAnalysis'].update(detect_slots(selected['intent_id'],context['nlpAnalysis']['entities']))
+        conv['factHistory'].append({'action':'select_intent','previous':previous,'selectedIntentId':selected['intent_id'],'at':now()})
+        context['nlpAnalysis']['warnings']=[w for w in context['nlpAnalysis'].get('warnings',[]) if not w.startswith('Intent classifier is uncertain')]
+        context['nlpAnalysis']['warnings'].append('Workflow explicitly selected by the user; this is not an improved classifier prediction.')
+        context.pop('guidance',None);context.pop('verifiedAt',None)
+
+
 def recompute(context):
     """Only required/intent-context schema rows block completeness; unsupported conditions stay visible."""
     conv=state(context)
+    if context.get('nlpAnalysis',{}).get('intent',{}).get('needsClarification') and not conv.get('intentConfirmed'):
+        conv['reviewEligible']=False;conv['verificationEligible']=False
+        context['stage']='NEEDS_CLARIFICATION'
+        context['missingSlots']=['INTENT']
+        context['contextReadiness']={'found':0,'total':1}
+        context['intent']={'label':'Outside supported scope' if conv.get('intentUnsupported') else 'Issue needs confirmation',
+                           'descriptor':'No legal guidance will be generated.' if conv.get('intentUnsupported') else 'The model prediction has not been confirmed.'}
+        if conv.get('intentUnsupported'):
+            context['currentQuestion']=None
+        else:
+            active=context.get('currentQuestion')
+            if not active or active['slot'] not in {'INTENT','INTENT_DOMAIN','INTENT_DETAIL'}:
+                context['currentQuestion']=_intent_question(context)
+                conv['askedSlots'].append(context['currentQuestion']['slot'])
+                context['messages'].append({'id':context['currentQuestion']['id'],'speaker':'assistant','text':context['currentQuestion']['question']})
+        return context
     facts={f['key']:f for f in context.get('facts',[]) if _has_value(f)}
     conflicted={c['slot'] for c in conv['contradictions'] if not c.get('resolved')}
-    configured={r['slot_name'] for r in _rows(context)}
-    ambiguous={f['key'] for f in context.get('facts',[]) if f.get('resolutionStatus') in {'ambiguous','unresolved'} and f['key'] in configured}
+    ambiguous={f['key'] for f in context.get('facts',[]) if f.get('resolutionStatus') in {'ambiguous','unresolved'}}
     conv['ambiguousSlots']=sorted(ambiguous)
     entities=[{'type':f['key'],'normalizedValue':f.get('normalizedValue') or f['value'],
                'status':'unresolved' if f['key'] in conflicted else f.get('resolutionStatus','resolved')}
               for f in context.get('facts',[]) if f.get('state')!='unknown']
-    detected=detect_slots(context.get('nlpAnalysis',{}).get('intent',{}).get('id'),entities)
+    detected=detect_slots(context.get('nlpAnalysis',{}).get('intent',{}).get('id'),entities,
+                          required_slots={'STATE','EVENT_DATE'}, configured_rows=_rows(context))
     missing=[item['slot'] for item in detected['missingSlots']]
     unresolved=detected['unresolvedSlots']
     found=detected['readiness']['found'];total=detected['readiness']['total']
     conv['unresolvedRequirements']=unresolved
+    context['nlpAnalysis']['unresolvedSlots']=unresolved
     context['missingSlots']=missing
     context['contextReadiness']={'found':found,'total':total}
     candidates=[s for s in set(missing)|ambiguous if s not in conv['unknownSlots']]
@@ -130,7 +218,8 @@ def initialize(context):
 
 def _target_entity(slot, answer, entities):
     matches=[e for e in entities if e['type']==slot]
-    if slot=='CHALLAN_DATE': matches=[e for e in entities if e['type']=='EVENT_DATE']
+    if slot.endswith('_DATE'): matches=[e for e in entities if e['type']=='EVENT_DATE']
+    if slot=='DESTINATION_STATE': matches=[e for e in entities if e['type']=='STATE']
     if matches:return matches[0]
     clean=answer.strip()
     if slot=='VEHICLE_CLASS':
@@ -140,6 +229,10 @@ def _target_entity(slot, answer, entities):
         if value:
             return normalize({'type':slot,'text':value,'value':value,'method':'question_context'})
     row=next((r for group in ontology()['slots'].values() for r in group if r['slot_name']==slot),None)
+    if slot=='VEHICLE_CLASS':
+        entity=normalize({'type':slot,'text':clean.replace('_',' '),'value':clean,'method':'question_context'})
+        if entity['status'] in {'resolved','ambiguous'}:return entity
+        return None
     if row and row.get('data_type')=='categorical':
         allowed={value.casefold().replace('_',' '):value.casefold() for value in row.get('allowed_values','').split('|')}
         matched=allowed.get(clean.casefold().replace('_',' '))
@@ -153,14 +246,14 @@ def _target_entity(slot, answer, entities):
     if slot in BOOL_SLOTS and (POSITIVE.fullmatch(clean) or NEGATIVE.fullmatch(clean)):
         return {'type':slot,'text':clean,'value':clean,'normalizedValue':'yes' if POSITIVE.fullmatch(clean) else 'no',
                 'normalizedId':None,'status':'resolved','method':'question_context','alternatives':[]}
-    if slot in DATE_SLOTS:
+    if slot in DATE_SLOTS or (row and row.get('data_type')=='date'):
         from datetime import date
         try:
             value=date.fromisoformat(clean).isoformat()
             return {'type':slot,'text':clean,'value':clean,'normalizedValue':value,'normalizedId':None,
                     'status':'resolved','method':'question_context','alternatives':[]}
         except ValueError:pass
-    if slot in TEXT_SLOTS and len(clean)>1:
+    if (slot in TEXT_SLOTS or (row and row.get('data_type')=='string' and row.get('allowed_values') in {'free_text','controlled_or_free_text'})) and len(clean)>1:
         return {'type':slot,'text':clean,'value':clean,'normalizedValue':clean,'normalizedId':None,
                 'status':'resolved','method':'question_context','alternatives':[]}
     return None
@@ -183,6 +276,14 @@ def apply_answer(context, answer, question_id, message_id, reference_datetime=No
     if context['language']=='auto' and detected in {'english','hindi','hinglish'}:
         conv['displayLanguage']=detected
     context.pop('currentQuestion',None)
+    if target in {'INTENT','INTENT_DOMAIN','INTENT_DETAIL'}:
+        _resolve_intent(context,clean)
+        label=next((o['label'] for o in question.get('options',[]) if o['value']==clean),None)
+        if label is None and clean in ontology()['intents']:
+            label=ontology()['intents'][clean]['intent_name'].replace('_',' ').title()
+        conv.setdefault('intentAnswers',[]).append({'messageId':message_id,'value':clean})
+        next(m for m in context['messages'] if m['id']==message_id)['text']=label or clean
+        return recompute(context)
     if UNKNOWN.fullmatch(clean):
         if target not in conv['unknownSlots']:conv['unknownSlots'].append(target)
         context['answers'][target]=clean
@@ -191,7 +292,10 @@ def apply_answer(context, answer, question_id, message_id, reference_datetime=No
                 'text':'Two statements conflict. Please clarify or correct one before verification.'})
             context['currentQuestion']=question
         return recompute(context)
+    existing_conflicts={c['id'] for c in conv['contradictions'] if not c.get('resolved')}
     entities=[normalize(e) for e in extract(clean,reference_datetime)]
+    if target=='LICENCE_CLASS':
+        entities=[e for e in entities if not (e['type']=='VEHICLE_CLASS' and e['text'].casefold()==clean.casefold())]
     chosen=_target_entity(target,clean,entities)
     if chosen and chosen.get('status')!='resolved':
         context['messages'].append({'id':f'clarify-{message_id}','speaker':'assistant',
@@ -206,7 +310,6 @@ def apply_answer(context, answer, question_id, message_id, reference_datetime=No
         return recompute(context)
     for entity in entities:
         slot=target if entity is chosen else entity['type']
-        if slot not in {r['slot_name'] for r in _rows(context)} and slot!=target:continue
         if entity.get('status')!='resolved':continue
         incoming=_fact(slot,entity,message_id,context)
         prior=next((f for f in context['facts'] if f['key']==slot and _has_value(f)),None)
@@ -217,12 +320,15 @@ def apply_answer(context, answer, question_id, message_id, reference_datetime=No
                 'candidate':incoming,'kind':'possible_timeline' if TIMELINE.search(clean) else 'different_values',
                 'resolved':False,'createdAt':now()})
             continue
+        prior_mentions=[f for f in context['facts'] if f['key']==slot]
+        if len(prior_mentions)>1:
+            conv['factHistory'].append({'action':'resolve_multiple_mentions','previous':prior_mentions,'selected':incoming,'at':now()})
         context['facts']=[f for f in context['facts'] if f['key']!=slot]+[incoming]
         if slot in conv['unknownSlots']:conv['unknownSlots'].remove(slot)
         context['answers'][slot]=entity['text']
-    # A response to a contradiction question explicitly selects a replacement.
+    # Only a question about an already-open contradiction selects a replacement.
     for conflict in conv['contradictions']:
-        if conflict['slot']==target and not conflict.get('resolved') and chosen.get('status')=='resolved':
+        if conflict['id'] in existing_conflicts and conflict['slot']==target and not conflict.get('resolved') and chosen.get('status')=='resolved':
             replacement=_fact(target,chosen,message_id,context)
             conv['factHistory'].append({'action':'resolve_contradiction','previous':conflict['previous'],
                                         'candidate':conflict['candidate'],'selected':replacement,'at':now()})
@@ -258,6 +364,8 @@ def confirm_fact(context, fact_id):
 def verify(context, acknowledge_unknowns=False):
     conv=state(context)
     blockers=[]
+    if conv.get('intentUnsupported') or (context.get('nlpAnalysis',{}).get('intent',{}).get('needsClarification') and not conv.get('intentConfirmed')):
+        blockers.append('A supported issue must be established before verification')
     if context.get('currentQuestion'):blockers.append('Follow-up question is still open')
     if any(not c.get('resolved') for c in conv['contradictions']):blockers.append('Contradictions remain')
     if set(conv.get('ambiguousSlots',[]))-set(conv['unknownSlots']):blockers.append('Ambiguous facts remain')

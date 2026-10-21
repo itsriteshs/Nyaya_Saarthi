@@ -1,3 +1,4 @@
+from workflow_helpers import establish_issue
 import json
 from app.services.llm.model_registry import MODELS, settings
 from app.services.llm.prompt_builder import messages
@@ -101,9 +102,10 @@ def test_generation_endpoint_persists_fallback_and_rejects_stale(client, tmp_pat
     monkeypatch.setattr(index, "INDEX_DIR", tmp_path / "index")
     index.load_index.cache_clear()
     index.build(semantic=False)
-    created = client.post("/api/v1/matters", json={"originalText": "I drove my car at 120 km/h on an expressway", "language": "english"}).json()
+    created = client.post("/api/v1/matters", json={"originalText": "I drove my car at 120 km/h on an expressway in Kerala on 2026-10-19", "language": "english"}).json()
     url = f"/api/v1/matters/{created['id']}"
     matter = client.post(url + "/analyze", json={"revision": created["revision"]}).json()
+    matter = establish_issue(client,url,matter)
     for fact in list(matter["facts"]):
         response = client.post(url + "/facts/" + fact["id"] + "/confirm", json={"revision": matter["revision"]})
         assert response.status_code == 200, response.text

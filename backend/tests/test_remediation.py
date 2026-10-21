@@ -103,4 +103,5 @@ def test_explicit_age_and_hindi_speed_variations():
 def test_status_phrases_do_not_cross_clause_boundaries():
     from app.services.nlp.entity_extractor import extract
     entities=extract('My licence expired, my insurance is over.',status_values={'INSURANCE_STATUS':['expired']})
-    assert not any(e['type']=='INSURANCE_STATUS' for e in entities)
+    assert not any(e['type']=='INSURANCE_STATUS' and 'expired' in e['text'] for e in entities)
+    assert any(e['type']=='INSURANCE_STATUS' and e['value']=='expired' and 'over' in e['text'] for e in entities)

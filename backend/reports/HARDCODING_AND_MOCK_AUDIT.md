@@ -1,3 +1,9 @@
+# Current recheck — 21 October 2026
+
+New issue selection is catalog-driven and user-labelled, retains original model output and does not hardcode evaluation queries. Synthetic scenario-to-issue choices exist only in test scripts as test-user replies. No classifier weights, gold labels, legal review flags or grounding validators were weakened. See [UAT_RECHECK_REPORT.md](UAT_RECHECK_REPORT.md) and [UAT_RECHECK_SCENARIOS.csv](UAT_RECHECK_SCENARIOS.csv) for evidence and limitations. The earlier audit below is retained as historical evidence.
+
+---
+
 # Hardcoding and mock audit
 
 Confirmed user-visible prototype leakage: HeroSection initialized analysisInput with defaultSituation although the textarea was empty; empty submission also substituted the active topic example. Both now use empty input in real mode and require user text or an explicitly chosen example. Stale preview facts clear during new input analysis. This was real backend inference on an undisclosed sample, not a mocked model response; it still misrepresented whose facts were analyzed.
