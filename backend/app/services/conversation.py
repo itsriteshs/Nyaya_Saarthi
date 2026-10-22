@@ -49,6 +49,11 @@ def _question(context, slot, reason='missing'):
     lang=state(context)['displayLanguage']
     column={'hindi':'question_template_hi','hinglish':'question_template_hinglish'}.get(lang,'question_template_en')
     template=(row or {}).get(column) or (row or {}).get('question_template_en') or f'Please clarify {_label(context,slot)}.'
+    if slot=='OBSERVED_SPEED':
+        template={
+            'hindi':'आप कितनी गति से गाड़ी चला रहे थे? कृपया इकाई भी लिखें, जैसे 150 km/h।',
+            'hinglish':'Aap kitni speed se gaadi chala rahe the? Unit bhi likhein, jaise 150 km/h.',
+        }.get(lang,'What speed were you driving at? Include the unit, for example 150 km/h.')
     if slot=='VEHICLE_CLASS' and any(
         f['key']==slot and f.get('resolutionStatus')=='ambiguous'
         and re.search(r'motorcycle|bike|scooter|मोटरसाइकिल|स्कूटर',f.get('value',''),re.I)
@@ -88,15 +93,15 @@ def _intent_question(context):
         prediction=context['nlpAnalysis']['intent']
         ids=[prediction['id']]+[a['id'] for a in prediction.get('alternatives',[])]
         options=[{'label':intents[i]['intent_name'].replace('_',' ').title(),'value':i} for i in dict.fromkeys(ids) if i in intents]
-        prompt={'hindi':'मुद्दा स्पष्ट नहीं है। पहले किस विषय में मदद चाहिए?',
-                'hinglish':'Issue clear nahi hai. Pehle kis mudde par madad chahiye?'}.get(language,
-                'The issue is uncertain. Which issue would you like help with first?')
+        prompt={'hindi':'आप किस विषय में मदद चाहते हैं? सुझाया गया विषय चुनें या दूसरा विषय चुनें।',
+                'hinglish':'Aap kis issue mein madad chahte hain? Suggested issue ya koi doosra issue chunein.'}.get(language,
+                'Which issue do you want help with? Choose a suggestion or another issue.')
         slot='INTENT'
     options += [{'label':'Another motor-vehicle issue','value':'OTHER'},
                 {'label':'Outside motor-vehicle law / none of these','value':'OUT_OF_SCOPE'}]
     return {'id':'q-intent-'+str(len(conv['askedSlots'])+1),'slot':slot,'type':'options',
             'question':prompt,'options':options,
-            'why':'Confirm the topic before asking issue-specific questions. A model prediction is not a confirmed fact.'}
+            'why':'The prediction can be wrong. Your choice sets the issue before we ask issue-specific questions.'}
 
 
 def _resolve_intent(context,answer):
@@ -132,7 +137,7 @@ def _resolve_intent(context,answer):
 def recompute(context):
     """Only required/intent-context schema rows block completeness; unsupported conditions stay visible."""
     conv=state(context)
-    if context.get('nlpAnalysis',{}).get('intent',{}).get('needsClarification') and not conv.get('intentConfirmed'):
+    if context.get('nlpAnalysis') and not conv.get('intentConfirmed'):
         conv['reviewEligible']=False;conv['verificationEligible']=False
         context['stage']='NEEDS_CLARIFICATION'
         context['missingSlots']=['INTENT']
@@ -240,7 +245,7 @@ def _target_entity(slot, answer, entities):
             return {'type':slot,'text':clean,'value':clean,'normalizedValue':matched,'normalizedId':None,
                     'status':'resolved','method':'question_context_allowed_value','alternatives':[]}
     if slot=='OBSERVED_SPEED':
-        match=re.fullmatch(r'(?:about|around|maybe|लगभग)?\s*(\d{1,3})(?:\s*(?:km/h|kmph|kph))?',clean,re.I)
+        match=re.fullmatch(r'(?:about|around|maybe|लगभग)?\s*(\d{1,3})\s*(?:km/h|kmph|kph)',clean,re.I)
         if match:return {'type':slot,'text':clean,'value':match.group(1),'normalizedValue':match.group(1),
                          'normalizedId':None,'status':'resolved','method':'question_context','alternatives':[]}
     if slot in BOOL_SLOTS and (POSITIVE.fullmatch(clean) or NEGATIVE.fullmatch(clean)):
@@ -364,7 +369,7 @@ def confirm_fact(context, fact_id):
 def verify(context, acknowledge_unknowns=False):
     conv=state(context)
     blockers=[]
-    if conv.get('intentUnsupported') or (context.get('nlpAnalysis',{}).get('intent',{}).get('needsClarification') and not conv.get('intentConfirmed')):
+    if conv.get('intentUnsupported') or (context.get('nlpAnalysis') and not conv.get('intentConfirmed')):
         blockers.append('A supported issue must be established before verification')
     if context.get('currentQuestion'):blockers.append('Follow-up question is still open')
     if any(not c.get('resolved') for c in conv['contradictions']):blockers.append('Contradictions remain')

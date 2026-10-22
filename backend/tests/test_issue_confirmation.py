@@ -1,5 +1,17 @@
 from uuid import uuid4
 
+def test_even_a_confident_model_prediction_requires_user_selection(client, monkeypatch):
+    from app.services.nlp import pipeline
+    original = pipeline.classify
+    monkeypatch.setattr(pipeline, 'classify', lambda text: {**original(text), 'needsClarification': False})
+    url, matter = analyzed(client, 'My insurance expired')
+    assert matter['nlpAnalysis']['intent']['needsClarification'] is False
+    assert matter['currentQuestion']['slot'] == 'INTENT'
+    assert client.post(url+'/verify', json={'revision': matter['revision']}).status_code == 409
+    selected = answer(client, url, matter, 'INT032')
+    assert selected['conversation']['intentConfirmed']
+    assert selected['currentQuestion']['slot'] != 'INTENT'
+
 def analyzed(client,text):
     m=client.post('/api/v1/matters',json={'originalText':text,'language':'english'}).json()
     url='/api/v1/matters/'+m['id']

@@ -26,7 +26,7 @@ def persist_analysis(session:Session,matter:MatterResponse,result:AnalyzeRespons
                               'descriptor':f"{result.intent.domain} · {result.intent.id}"},
                     'facts':facts,'missingSlots':[x.slot for x in result.missingSlots],
                     'contextReadiness':{'found':result.readiness.found,'total':result.readiness.total},
-                    'stage':'NEEDS_CLARIFICATION' if result.missingSlots or result.unresolvedSlots or result.intent.needsClarification else 'READY_FOR_REVIEW',
+                    'stage':'NEEDS_CLARIFICATION',
                     'nlpAnalysis':result.model_dump(mode='json',exclude_none=True),
                     'messages':[{'id':'user-initial','speaker':'user','text':matter.originalText},
                                 {'id':'assistant-analysis','speaker':'assistant','text':'I identified possible facts and missing context. Please review the extracted details.'}]})

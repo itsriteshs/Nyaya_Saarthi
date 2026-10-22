@@ -18,6 +18,9 @@ def normalize(entity):
     e=dict(entity);kind=e['type'];raw=e['text'];value=str(e['value'])
     e.update({'normalizedValue':None,'normalizedId':None,'status':'unresolved','vocabularySource':None,'alternatives':[]})
     if kind=='OBSERVED_SPEED':
+        if e['method']=='unitless_speed_cue':
+            e.update(status='ambiguous',vocabularySource='driving-speed phrase; unit unconfirmed')
+            return e
         e.update(normalizedValue=str(int(value)),unit='km/h',status='resolved',vocabularySource='unit pattern')
         e['approximate']=any(x in raw.lower() for x in ('about','around','maybe','लगभग'))
     elif kind=='VEHICLE_CLASS':
