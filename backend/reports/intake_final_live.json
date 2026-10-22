@@ -1,0 +1,59 @@
+[
+  {
+    "text": "Main road",
+    "entities": [
+      {
+        "type": "ROAD_TYPE",
+        "text": "Main road",
+        "value": "Main road",
+        "start": 0,
+        "end": 9,
+        "method": "local_slm_extractive",
+        "confidence": null,
+        "normalizedValue": "other",
+        "normalizedId": null,
+        "status": "resolved",
+        "vocabularySource": "unclassified road context",
+        "alternatives": [],
+        "approximate": false,
+        "uncertainty": "road_category_unspecified"
+      }
+    ],
+    "metadata": {
+      "method": "local_slm",
+      "fallbackUsed": false,
+      "promptVersion": "intake-extractive-v2",
+      "modelCalled": true,
+      "requestedModel": "llama3.2-3b",
+      "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+      "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+      "generationParameters": {
+        "temperature": 0,
+        "maxTokens": 1600,
+        "timeoutSeconds": 20.0
+      },
+      "latencyMs": 6625,
+      "installedDigest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+      "entityCount": 1
+    }
+  },
+  {
+    "text": "I was doing 120. Can I be fined?",
+    "entities": [],
+    "metadata": {
+      "method": "deterministic_fallback",
+      "fallbackUsed": true,
+      "promptVersion": "intake-extractive-v2",
+      "modelCalled": true,
+      "requestedModel": "llama3.2-3b",
+      "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+      "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+      "generationParameters": {
+        "temperature": 0,
+        "maxTokens": 1600,
+        "timeoutSeconds": 20.0
+      },
+      "failureReason": "UNGROUNDED_MENTION"
+    }
+  }
+]

@@ -1,4 +1,5 @@
 "use client";
+import { GroundedReportDetails } from "@/components/guidance/GroundedReportDetails";
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -259,6 +260,7 @@ export function SummaryWorkspace() {
                   <p className="text-sm font-semibold text-[#6B665D]">{provenance(guidance)} Legal source records come from the NyayaSaarthi knowledge base.</p>
                   <LabeledParagraph label="Generation provenance" text={generationProvenance(guidance)} muted />
                   <LabeledParagraph label="NyayaSaarthi Explanation" text={guidance.directAnswer} />
+                  <GroundedReportDetails guidance={guidance} />
                   <LabeledParagraph label="Qualification" text={guidance.qualification} muted />
                 </div>
               </SummarySection>

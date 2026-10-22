@@ -1,0 +1,54 @@
+{
+  "entities": [
+    {
+      "type": "OBSERVED_SPEED",
+      "text": "120",
+      "value": "120",
+      "start": 12,
+      "end": 15,
+      "method": "local_slm_extractive",
+      "confidence": null,
+      "normalizedValue": "120",
+      "normalizedId": null,
+      "status": "unresolved",
+      "vocabularySource": "unit pattern",
+      "alternatives": [],
+      "unit": "unknown",
+      "approximate": false,
+      "uncertainty": "speed_unit_missing"
+    },
+    {
+      "type": "ROAD_TYPE",
+      "text": "Can I be fined",
+      "value": "Can I be fined",
+      "start": 17,
+      "end": 31,
+      "method": "local_slm_extractive",
+      "confidence": null,
+      "normalizedValue": "other",
+      "normalizedId": null,
+      "status": "unresolved",
+      "vocabularySource": "unclassified road context",
+      "alternatives": [],
+      "approximate": false,
+      "uncertainty": "uncertain"
+    }
+  ],
+  "metadata": {
+    "method": "local_slm",
+    "fallbackUsed": false,
+    "promptVersion": "intake-extractive-v2",
+    "modelCalled": true,
+    "requestedModel": "llama3.2-3b",
+    "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+    "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+    "generationParameters": {
+      "temperature": 0,
+      "maxTokens": 1600,
+      "timeoutSeconds": 60.0
+    },
+    "latencyMs": 8875,
+    "installedDigest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+    "entityCount": 2
+  }
+}

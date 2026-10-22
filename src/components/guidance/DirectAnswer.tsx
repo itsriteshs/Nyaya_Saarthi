@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GroundedReportDetails } from "./GroundedReportDetails";
 import { ArrowLeft } from "lucide-react";
 import type { GuidanceResult } from "@/types/matter";
 
@@ -27,6 +28,7 @@ export function DirectAnswer({ guidance }: DirectAnswerProps) {
       <p className="mt-5 max-w-4xl whitespace-pre-line text-lg font-bold leading-8 text-[#18150F]">
         {guidance.directAnswer}
       </p>
+      <GroundedReportDetails guidance={guidance} />
       <p className="mt-3 max-w-4xl border-l-2 border-[#A8752B] pl-4 text-sm font-semibold leading-6 text-[#6B665D]">
         {guidance.qualification}
       </p>

@@ -89,6 +89,7 @@ export interface GuidanceResult {
     outputLanguage?: string;
     fallbackUsed?: boolean;
     failureReason?: string;
+    structuredOutput?: { answer: string; explanation: string; legalClaims: Array<{text: string; evidenceIds: string[]}> };
     evidencePackageId?: string;
     modelCheckpoint?: string;
     installedDigest?: string;

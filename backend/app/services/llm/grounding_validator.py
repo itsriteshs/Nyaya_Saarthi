@@ -9,6 +9,17 @@ SECTION = re.compile(r"\b(?:section|sec\.?|धारा|rule)\s*\d+[A-Za-z]*(?:\
 OUTCOME = re.compile(r"\b(?:you (?:will|must) (?:be fined|pay|be convicted)|definitely (?:illegal|guilty|liable)|fine is|penalty is|you violated)\b|(?:निश्चित रूप से|पक्का)\s*(?:दोषी|अवैध|जुर्माना)", re.I)
 
 
+
+def reported_speed_sentences(package):
+    sentences=[]
+    for fact in package.get('facts',[]):
+        if fact['key']!='OBSERVED_SPEED' or not str(fact['value']).isdigit():continue
+        unit=fact.get('unit')
+        if unit!='km/h' and not (unit is None and SPEED.search(str(fact.get('sourceText','')))):continue
+        value=fact['value']
+        sentences.extend([f"You reported a speed of {value} km/h.", f"आपने अपनी गति {value} km/h बताई।", f"Aapne apni speed {value} km/h batayi."])
+    return sentences
+
 def validate(output, package):
     reasons = []
     ids = {e["evidenceId"] for e in package["evidence"]}
@@ -23,7 +34,12 @@ def validate(output, package):
     # No numeric penalty, deadline, or speed threshold is eligible in the current dataset.
     if MONEY.search(full): reasons.append("UNSUPPORTED_PENALTY")
     if DEADLINE.search(full): reasons.append("UNSUPPORTED_DEADLINE")
-    if SPEED.search(full): reasons.append("UNSUPPORTED_SPEED_FIGURE")
+    speed_text = " ".join([output.answer, output.explanation])
+    attributed = set(reported_speed_sentences(package))
+    speed_text = ' '.join(part for part in re.split(r'(?<=[.!?।])\s+|\n+', speed_text) if part not in attributed)
+    # Claims, actions and uncertainty never receive the reported-fact exemption.
+    speed_text += " ".join([c.text for c in output.legalClaims] + output.uncertainties + output.recommendedActions)
+    if SPEED.search(speed_text): reasons.append("UNSUPPORTED_SPEED_FIGURE")
     allowed_sections = {s.lower() for e in package["evidence"] for s in SECTION.findall(e["provision"] + " " + e["passage"])}
     if any(section.lower() not in allowed_sections for section in SECTION.findall(full)):
         reasons.append("UNKNOWN_SECTION")

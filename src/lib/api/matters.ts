@@ -32,5 +32,5 @@ export function deleteMatter(id: string) {
 export function analyzeMatter(id: string, revision: number, referenceDatetime?: string) {
   return apiRequest<StoredMatter>(`/api/v1/matters/${encodeURIComponent(id)}/analyze`, {
     method: "POST", body: JSON.stringify({ revision, referenceDatetime }),
-  }, 40000);
+  }, 100000);
 }

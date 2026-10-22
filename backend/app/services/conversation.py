@@ -63,6 +63,8 @@ def _question(context, slot, reason='missing'):
         template={'hindi':'एक से अधिक वाहन बताए गए हैं। आपका प्रश्न किस वाहन के बारे में है?',
                   'hinglish':'Ek se zyada vehicles bataye gaye hain. Aapka sawal kis vehicle ke baare mein hai?'}.get(lang,
                   'More than one vehicle was mentioned. Which vehicle is your question about?')
+    if slot=='OBSERVED_SPEED' and any(f['key']==slot and f.get('unit')=='unknown' for f in context.get('facts',[])):
+        template='What unit was your reported speed in? For example, km/h. The numeric value is already recorded.'
     if reason=='contradiction':
         template=f"Two answers about {_label(context,slot)} differ. Which describes the event? {template}"
     return {'id':f"q-{slot}-{len(state(context)['askedSlots'])+1}", 'slot':slot,'question':template,
@@ -203,10 +205,10 @@ def initialize(context):
         fact.update(normalizedValue=entity.get('normalizedValue'),normalizedId=entity.get('normalizedId'),
                     sourceMessageId='user-initial',extractionMethod=entity.get('method'),
                     resolutionStatus=entity['status'],sourceText=entity['text'],
-                    approximate=entity.get('approximate'),uncertainty=entity.get('uncertainty'),updatedAt=now())
+                    unit=entity.get('unit'),approximate=entity.get('approximate'),uncertainty=entity.get('uncertainty'),updatedAt=now())
     first_by_slot={}
     for fact in context['facts']:
-        if not _has_value(fact):continue
+        if not _has_value(fact) and not (fact['key']=='OBSERVED_SPEED' and fact.get('normalizedValue')):continue
         prior=first_by_slot.get(fact['key'])
         if prior and str(prior.get('normalizedValue') or prior['value'])!=str(fact.get('normalizedValue') or fact['value']):
             conv['contradictions'].append({'id':str(uuid4()),'slot':fact['key'],'previous':prior.copy(),
@@ -265,7 +267,7 @@ def _fact(slot, entity, message_id, context):
             'normalizedValue':entity.get('normalizedValue'),'normalizedId':entity.get('normalizedId'),
             'state':'provided','provenance':'USER_PROVIDED','confirmed':False,'requiresConfirmation':True,
             'sourceMessageId':message_id,'extractionMethod':entity.get('method'),
-            'sourceText':entity['text'],'approximate':entity.get('approximate'),'uncertainty':entity.get('uncertainty'),
+            'sourceText':entity['text'],'unit':entity.get('unit'),'approximate':entity.get('approximate'),'uncertainty':entity.get('uncertainty'),
             'resolutionStatus':entity.get('status','unresolved'),'updatedAt':now()}
 
 def apply_answer(context, answer, question_id, message_id, reference_datetime=None):
@@ -301,11 +303,17 @@ def apply_answer(context, answer, question_id, message_id, reference_datetime=No
     if target=='LICENCE_CLASS':
         entities=[e for e in entities if not (e['type']=='VEHICLE_CLASS' and e['text'].casefold()==clean.casefold())]
     chosen=_target_entity(target,clean,entities)
+    candidate=next((f for f in context['facts'] if f['key']=='OBSERVED_SPEED' and f.get('unit')=='unknown'),None)
+    if target=='OBSERVED_SPEED' and candidate and clean.casefold() in {'km/h','kmph','kph'}:
+        chosen={'type':target,'text':candidate['value']+'; unit: '+clean,'value':candidate['normalizedValue'],
+                'normalizedValue':candidate['normalizedValue'],'unit':'km/h','status':'resolved','method':'user_unit_confirmation',
+                'normalizedId':None,'approximate':candidate.get('approximate'),'alternatives':[]}
+        conv['factHistory'].append({'action':'confirm_speed_unit','previous':candidate.copy(),'at':now()})
     if chosen and chosen not in entities:entities.append(chosen)
     for entity in entities:
         slot=target if entity is chosen else entity['type']
         incoming=_fact(slot,entity,message_id,context)
-        prior=next((f for f in context['facts'] if f['key']==slot and _has_value(f)),None)
+        prior=next((f for f in context['facts'] if f['key']==slot and (_has_value(f) or slot=='OBSERVED_SPEED' and f.get('normalizedValue'))),None)
         if prior and str(prior.get('normalizedValue') or prior['value']).casefold()!=str(incoming.get('normalizedValue') or incoming['value']).casefold():
             existing=next((c for c in conv['contradictions'] if c['slot']==slot and not c.get('resolved')),None)
             if existing:existing['candidate']=incoming
@@ -338,7 +346,7 @@ def revise_fact(context, fact_id, value):
     fact.update(value=value.strip(),normalizedValue=entity.get('normalizedValue'),normalizedId=entity.get('normalizedId'),
                 state='provided',provenance='USER_PROVIDED',confirmed=False,requiresConfirmation=True,
                 resolutionStatus='resolved',extractionMethod='user_correction',sourceText=value.strip(),
-                approximate=entity.get('approximate'),uncertainty=None,updatedAt=now())
+                unit=entity.get('unit'),approximate=entity.get('approximate'),uncertainty=None,updatedAt=now())
     for conflict in state(context)['contradictions']:
         if conflict['slot']==fact['key'] and not conflict.get('resolved'):conflict['resolved']=True
     context.pop('guidance',None);context.pop('verifiedAt',None)
