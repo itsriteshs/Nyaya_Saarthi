@@ -23,6 +23,10 @@ export function ContextPanel({ context, readiness }: ContextPanelProps) {
         <p className="mt-2 text-sm font-semibold text-[#6B665D]">{context.nlpAnalysis ? "Updated from your description and answers." : "Updated as you answer."}</p>
       </div>
 
+      {context.nlpAnalysis?.extractionMetadata?.fallbackUsed ? <p role="status" className="mt-3 rounded-md border border-[#C49A55]/60 bg-[#F4E8D3] p-3 text-sm font-semibold leading-6 text-[#7A521F]">
+        The local language model was unavailable or could not read the full message. NyayaSaarthi used limited pattern-based extraction{context.nlpAnalysis.extractionMetadata.failureReason ? ` (${context.nlpAnalysis.extractionMetadata.failureReason})` : ""}. Please review the facts carefully.
+      </p> : null}
+
       <section className="mt-5 rounded-md border border-[#DED7CA] bg-[#FFFDF8] p-4">
         <div className="flex items-start gap-3">
           {context.currentQuestion?.slot.startsWith("INTENT") ? <CircleHelp className="mt-1 text-[#A8752B]" size={18} aria-hidden="true" /> : <CheckCircle2 className="mt-1 text-[#647567]" size={18} aria-hidden="true" />}

@@ -65,6 +65,24 @@ def _question(context, slot, reason='missing'):
                   'More than one vehicle was mentioned. Which vehicle is your question about?')
     if slot=='OBSERVED_SPEED' and any(f['key']==slot and f.get('unit')=='unknown' for f in context.get('facts',[])):
         template='What unit was your reported speed in? For example, km/h. The numeric value is already recorded.'
+    unresolved_fact=next((f for f in context.get('facts',[]) if f['key']==slot and
+                          f.get('resolutionStatus') in {'ambiguous','unresolved'}),None)
+    if slot in {'STATE','DESTINATION_STATE'} and unresolved_fact:
+        value=unresolved_fact.get('value','that answer')
+        template={
+            'hindi':f'मैं “{value}” को राज्य या केंद्र शासित प्रदेश के रूप में पुष्टि नहीं कर पाया। कृपया उसका पूरा नाम लिखें।',
+            'hinglish':f'Main “{value}” ko State ya Union Territory ke roop mein confirm nahi kar paya. Kripya uska poora naam likhein.',
+        }.get(lang,f'I could not confirm “{value}” as a State or Union Territory. Please enter its full name.')
+    if slot=='VEHICLE_CLASS' and unresolved_fact and not any(
+        f['key']==slot and f.get('resolutionStatus')=='ambiguous'
+        and re.search(r'motorcycle|bike|scooter|मोटरसाइकिल|स्कूटर',f.get('value',''),re.I)
+        for f in context.get('facts',[])
+    ):
+        value=unresolved_fact.get('value','that answer')
+        template={
+            'hindi':f'मैं “{value}” को वाहन के प्रकार के रूप में पहचान नहीं पाया। कृपया कार, मोटरसाइकिल या स्कूटर जैसा वाहन बताएं।',
+            'hinglish':f'Main “{value}” ko vehicle type ke roop mein pehchan nahi paya. Kripya car, motorcycle ya scooter jaisa vehicle batayein.',
+        }.get(lang,f'I could not identify “{value}” as a vehicle type. Please name the vehicle (for example, car, motorcycle, or scooter).')
     if reason=='contradiction':
         template=f"Two answers about {_label(context,slot)} differ. Which describes the event? {template}"
     return {'id':f"q-{slot}-{len(state(context)['askedSlots'])+1}", 'slot':slot,'question':template,
@@ -220,29 +238,56 @@ def initialize(context):
             'text':'If someone is injured or in immediate danger, seek urgent medical help and contact local emergency services. In India, 112 is the emergency response number. Legal questions can wait until people are safe.'})
     return recompute(context)
 
-def _target_entity(slot, answer, entities):
-    matches=[e for e in entities if e['type']==slot]
-    if slot.endswith('_DATE') and not matches: matches=[e for e in entities if e['type']=='EVENT_DATE']
-    if slot=='DESTINATION_STATE' and not matches: matches=[e for e in entities if e['type']=='STATE']
-    if matches:return matches[0]
+def _target_entity(slot, answer, entities, reference_datetime=None):
     clean=answer.strip()
+    # A clear answer to a slot-specific question is authoritative user input.
+    # Do not let an SLM certainty label override an exact ontology/schema value.
+    if slot in {'STATE','DESTINATION_STATE'}:
+        state=normalize({'type':'STATE','text':clean,'value':clean,'method':'question_context'})
+        if state.get('status')=='resolved':
+            state['type']=slot
+            return state
     if slot=='VEHICLE_CLASS':
         subtype={'geared':'MCWG','with gear':'MCWG','with gears':'MCWG',
                  'gearless':'MCWOG','without gear':'MCWOG','without gears':'MCWOG'}
         value=subtype.get(clean.casefold())
-        if value:
-            return normalize({'type':slot,'text':value,'value':value,'method':'question_context'})
+        vehicle=normalize({'type':slot,'text':value or clean,'value':value or clean,'method':'question_context'})
+        if vehicle.get('status')=='resolved' or (vehicle.get('status')=='ambiguous' and vehicle.get('alternatives')):
+            return vehicle
     row=next((r for group in ontology()['slots'].values() for r in group if r['slot_name']==slot),None)
-    if slot=='VEHICLE_CLASS':
-        entity=normalize({'type':slot,'text':clean.replace('_',' '),'value':clean,'method':'question_context'})
-        if entity['status'] in {'resolved','ambiguous'}:return entity
-        return None
     if row and row.get('data_type')=='categorical':
         allowed={value.casefold().replace('_',' '):value.casefold() for value in row.get('allowed_values','').split('|')}
         matched=allowed.get(clean.casefold().replace('_',' '))
         if matched and matched!='unknown':
             return {'type':slot,'text':clean,'value':clean,'normalizedValue':matched,'normalizedId':None,
                     'status':'resolved','method':'question_context_allowed_value','alternatives':[]}
+        if slot=='ROAD_TYPE' and len(clean)>1:
+            return {'type':slot,'text':clean,'value':clean,'normalizedValue':'other','normalizedId':None,
+                    'status':'resolved','method':'question_context_other','vocabularySource':'unclassified road context','alternatives':[]}
+    if slot.endswith('_DATE') or (row and row.get('data_type')=='date'):
+        dated=[normalize(e) for e in extract(clean,reference_datetime) if e['type'] in {'EVENT_DATE','CHALLAN_DATE'}]
+        resolved=next((e for e in dated if e.get('status')=='resolved'),None)
+        if resolved:
+            resolved['type']=slot
+            return resolved
+    matches=[e for e in entities if e['type']==slot]
+    if slot.endswith('_DATE') and not matches: matches=[e for e in entities if e['type']=='EVENT_DATE']
+    if slot=='DESTINATION_STATE' and not matches: matches=[e for e in entities if e['type']=='STATE']
+    # Prefer a resolved SLM candidate; if it is uncertain, fall through to the
+    # slot-specific conservative normalization below rather than looping.
+    resolved=next((e for e in matches if e.get('status')=='resolved'),None)
+    if resolved:return resolved
+    if slot=='VEHICLE_CLASS':
+        subtype={'geared':'MCWG','with gear':'MCWG','with gears':'MCWG',
+                 'gearless':'MCWOG','without gear':'MCWOG','without gears':'MCWOG'}
+        value=subtype.get(clean.casefold())
+        if value:
+            return normalize({'type':slot,'text':value,'value':value,'method':'question_context'})
+    if slot=='VEHICLE_CLASS':
+        entity=normalize({'type':slot,'text':clean.replace('_',' '),'value':clean,'method':'question_context'})
+        if entity['status'] in {'resolved','ambiguous'}:return entity
+        return None
+    if matches:return matches[0]
     if slot=='OBSERVED_SPEED':
         match=re.fullmatch(r'(?:about|around|maybe|लगभग)?\s*(\d{1,3})(?:\s*(?:km/h|kmph|kph))?',clean,re.I)
         if match:return {'type':slot,'text':clean,'value':match.group(1),'normalizedValue':match.group(1),
@@ -302,13 +347,18 @@ def apply_answer(context, answer, question_id, message_id, reference_datetime=No
     conv.setdefault('extractionHistory',[]).append({'messageId':message_id,**extraction_metadata})
     if target=='LICENCE_CLASS':
         entities=[e for e in entities if not (e['type']=='VEHICLE_CLASS' and e['text'].casefold()==clean.casefold())]
-    chosen=_target_entity(target,clean,entities)
+    chosen=_target_entity(target,clean,entities,reference_datetime)
     candidate=next((f for f in context['facts'] if f['key']=='OBSERVED_SPEED' and f.get('unit')=='unknown'),None)
     if target=='OBSERVED_SPEED' and candidate and clean.casefold() in {'km/h','kmph','kph'}:
         chosen={'type':target,'text':candidate['value']+'; unit: '+clean,'value':candidate['normalizedValue'],
                 'normalizedValue':candidate['normalizedValue'],'unit':'km/h','status':'resolved','method':'user_unit_confirmation',
                 'normalizedId':None,'approximate':candidate.get('approximate'),'alternatives':[]}
         conv['factHistory'].append({'action':'confirm_speed_unit','previous':candidate.copy(),'at':now()})
+    if target=='ROAD_TYPE' and chosen and chosen.get('normalizedValue')=='other' and chosen.get('method')!='question_context_allowed_value':
+        if not any(e.get('type')=='LOCATION' and e.get('value','').casefold()==clean.casefold() for e in entities):
+            entities.append({'type':'LOCATION','text':clean,'value':clean,'normalizedValue':clean,
+                             'normalizedId':None,'status':'resolved','method':'preserved_road_context',
+                             'alternatives':[]})
     if chosen and chosen not in entities:entities.append(chosen)
     for entity in entities:
         slot=target if entity is chosen else entity['type']

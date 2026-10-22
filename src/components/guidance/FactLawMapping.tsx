@@ -15,7 +15,9 @@ export function FactLawMapping({ guidance }: FactLawMappingProps) {
         Fact, official law, explanation
       </h2>
 
-      {!primary ? <p className="mt-4 text-sm font-semibold text-[#6B665D]">No rule could be safely linked to confirmed facts. See the uncertainties below.</p> : <div className="mt-5 grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
+      {!primary ? <p className="mt-4 text-sm font-semibold leading-6 text-[#6B665D]">{guidance.sources.length
+        ? "A reviewed provision was found, but no structured rule could be linked to all the confirmed facts. The provision may still be relevant; the uncertainties below explain what remains unresolved."
+        : "No eligible reviewed source was available to connect to this situation. This is a gap in the app’s evidence, not a finding that no rule applies."}</p> : <div className="mt-5 grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
         <MappingPanel
           eyebrow="Your Fact"
           tone="fact"

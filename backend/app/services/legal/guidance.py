@@ -124,8 +124,10 @@ def generate(matter):
     uncertainties=[]
     if not jurisdiction:uncertainties.append('The jurisdiction is unresolved, so source applicability cannot be established.')
     if not event_date:uncertainties.append('The event date is unresolved, so the relevant law version cannot be established.')
-    if not sources:uncertainties.append('No eligible legal provision was retrieved for the confirmed context.')
-    if not matched:uncertainties.append('No structured rule was established as applicable to the confirmed facts.')
+    if not sources:
+        uncertainties.append('No eligible legal provision was retrieved for the confirmed context. This is a gap in the local reviewed evidence, not a finding that no rule applies.')
+    elif not matched:
+        uncertainties.append('No structured rule was established as applicable to the confirmed facts.')
     if any(r['status']=='INSUFFICIENT_CONTEXT' for r in rule_results):
         uncertainties.append('Some candidate rules need more confirmed facts or reviewed lookup data.')
     if any(r['status']=='UNSUPPORTED_CONDITION' for r in rule_results):
@@ -145,7 +147,14 @@ def generate(matter):
     if sources:
         direct=f"The dataset identifies {sources[0]['title']} as potentially relevant to your confirmed situation. {sources[0]['relevantPoint']}"
     else:
-        direct='The confirmed information is not enough to provide source-grounded legal guidance for this situation.'
+        intent_name=(matter.get('nlpAnalysis',{}).get('intent',{}).get('name') or intent).replace('_',' ').title()
+        jurisdiction_name=knowledge['tables']['jurisdictions'].get(jurisdiction,{}).get('state_ut_name') if jurisdiction else None
+        scope=[]
+        if jurisdiction_name:scope.append(jurisdiction_name)
+        if event_date:scope.append(event_date)
+        scope_text=f" for {', '.join(scope)}" if scope else ''
+        direct=(f"Your verified issue is {intent_name}{scope_text}. The local reviewed legal sources do not contain an eligible record that supports an answer for this situation. "
+                "That is a limitation of the evidence available to NyayaSaarthi; it does not mean that no rule applies. The app cannot reliably determine whether a fine applies or state an amount from the evidence it has.")
     qualification=('This is legal information, not an offence finding. Source and provision review statuses come from the local dataset; '
                    'the application has not independently authenticated the linked government pages. '
                    'No numeric penalty, deadline, or procedural requirement is stated without an eligible supporting record.')

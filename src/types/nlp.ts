@@ -43,6 +43,14 @@ export interface MockNlpResult {
 }
 
 export interface NlpAnalysis {
+  extractionMetadata?: {
+    method?: string;
+    fallbackUsed?: boolean;
+    modelCalled?: boolean;
+    requestedModel?: string;
+    failureReason?: string;
+    rejectedMentions?: Array<{ slot: string; reason: string }>;
+  };
   inputText: string;
   normalizedText: string;
   language: {

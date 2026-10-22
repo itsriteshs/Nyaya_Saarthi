@@ -14,6 +14,8 @@ const reasons: Record<string, string> = {
   UNSUPPORTED_DEADLINE: "The response included an unsupported deadline.",
   DEFINITE_OUTCOME: "The response asserted a legal outcome the evidence cannot establish.",
   OUTPUT_LANGUAGE_MISMATCH: "The response did not match the requested language.",
+  OUTPUT_LANGUAGE_CODE_MISMATCH: "The model returned a different language code from the one requested.",
+  OUTPUT_LANGUAGE_TEXT_MISMATCH: "The model's answer text used the wrong language or script.",
   OUTPUT_SCHEMA_INVALID: "The model response did not match the required structure.",
   OUTPUT_TRUNCATED: "The model response was cut off.",
 };
@@ -32,6 +34,6 @@ export function GroundedReportDetails({ guidance }: { guidance: GuidanceResult }
       })}
     </div>)}</div> : null}
     <div><h3 className="font-bold">What cannot yet be concluded</h3>{guidance.uncertainties.map((text, i) => <p key={i}>{text}</p>)}</div>
-    <div><h3 className="font-bold">Supported next steps</h3>{guidance.nextSteps.length ? guidance.nextSteps.map(step => <p key={step.id}>{step.title}: {step.description}</p>) : <p>No affirmative procedure is supported by the eligible evidence. The source limitations above remain unresolved.</p>}</div>
+    <div><h3 className="font-bold">Practical next steps</h3>{guidance.nextSteps.length ? guidance.nextSteps.map(step => <p key={step.id}>{step.title}: {step.description}</p>) : <p>No source-backed procedure is available for this situation in the reviewed records. Keep any official notice and its cited provision for a source check or qualified review; this app cannot verify a fine amount or response deadline here.</p>}</div>
   </div>;
 }
