@@ -26,6 +26,9 @@ class Fact(StrictModel):
     normalizedId: str | None = None
     sourceMessageId: str | None = None
     extractionMethod: str | None = None
+    sourceText: str | None = None
+    approximate: bool | None = None
+    uncertainty: str | None = None
     resolutionStatus: Literal["resolved", "ambiguous", "unresolved"] | None = None
     updatedAt: datetime | None = None
 

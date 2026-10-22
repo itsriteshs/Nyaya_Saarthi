@@ -1,0 +1,147 @@
+{
+  "runtime": {
+    "runtime": "unreachable",
+    "models": {
+      "llama3.2-3b": {
+        "status": "runtime_unreachable",
+        "available": false
+      },
+      "mistral-7b": {
+        "status": "runtime_unreachable",
+        "available": false
+      }
+    }
+  },
+  "analysis": {
+    "extractionMetadata": {
+      "method": "deterministic_fallback",
+      "fallbackUsed": true,
+      "promptVersion": "intake-extractive-v1",
+      "modelCalled": false,
+      "requestedModel": "llama3.2-3b",
+      "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+      "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+      "failureReason": "RUNTIME_UNREACHABLE"
+    },
+    "inputText": "I was driving in a car at around 130 km/h in a school zone, and was caught by the police. What charges will I face?",
+    "normalizedText": "i was driving in a car at around 130 km/h in a school zone, and was caught by the police. what charges will i face?",
+    "language": {
+      "requestedLanguage": "auto",
+      "detectedLanguage": "english",
+      "confidenceCategory": "medium",
+      "evidence": "Character TF-IDF language classifier; decision gap 2.587 (not probability)",
+      "candidateLanguage": null
+    },
+    "intent": {
+      "id": "INT002",
+      "name": "TRAFFIC_SPEEDING",
+      "domain": "Traffic",
+      "score": -0.3429,
+      "scoreType": "SVM decision margin gap, not probability",
+      "marginGap": 0.2204,
+      "alternatives": [
+        {
+          "id": "INT050",
+          "name": "ACCIDENT_POLICE_REPORTING",
+          "score": -0.5634
+        },
+        {
+          "id": "INT004",
+          "name": "DRUNK_DRIVING",
+          "score": -0.8127
+        },
+        {
+          "id": "INT046",
+          "name": "CHALLAN_COMPOUNDING",
+          "score": -0.8548
+        }
+      ],
+      "needsClarification": true,
+      "modelVersion": "tfidf-intent-grouped-v1"
+    },
+    "entities": [
+      {
+        "type": "USER_ROLE",
+        "text": "I was driving",
+        "value": "driver",
+        "normalizedValue": "driver",
+        "normalizedId": null,
+        "status": "resolved",
+        "vocabularySource": "slot_schema.csv explicit value",
+        "alternatives": [],
+        "unit": null,
+        "approximate": null,
+        "start": 0,
+        "end": 13,
+        "method": "explicit_role",
+        "confidence": null,
+        "uncertainty": null
+      },
+      {
+        "type": "VEHICLE_CLASS",
+        "text": "car",
+        "value": "car",
+        "normalizedValue": "Motor Car",
+        "normalizedId": "VC_MOTORCAR",
+        "status": "resolved",
+        "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+        "alternatives": [
+          "VC_MOTORCAR"
+        ],
+        "unit": null,
+        "approximate": null,
+        "start": 19,
+        "end": 22,
+        "method": "rule",
+        "confidence": null,
+        "uncertainty": null
+      },
+      {
+        "type": "OBSERVED_SPEED",
+        "text": "around 130 km/h",
+        "value": "130",
+        "normalizedValue": "130",
+        "normalizedId": null,
+        "status": "resolved",
+        "vocabularySource": "unit pattern",
+        "alternatives": [],
+        "unit": "km/h",
+        "approximate": true,
+        "start": 26,
+        "end": 41,
+        "method": "rule",
+        "confidence": null,
+        "uncertainty": null
+      }
+    ],
+    "missingSlots": [
+      {
+        "slot": "ROAD_TYPE",
+        "label": "Road type",
+        "priority": 3,
+        "question": "What kind of road or area was this?",
+        "reason": "missing"
+      }
+    ],
+    "unresolvedSlots": [
+      {
+        "slot": "LOCATION",
+        "reason": "condition_not_implemented",
+        "condition": "only_when_relevant_to_rule_or_situation",
+        "present": false
+      }
+    ],
+    "readiness": {
+      "found": 2,
+      "total": 3,
+      "percentage": 67,
+      "status": "needs_context"
+    },
+    "warnings": [
+      "Local SLM extraction unavailable or invalid; deterministic extraction was used.",
+      "Intent classifier is uncertain; review alternatives before relying on the selected intent.",
+      "Some conditional slot requirements could not be resolved in Phase 2."
+    ],
+    "modelVersion": "tfidf-intent-grouped-v1"
+  }
+}

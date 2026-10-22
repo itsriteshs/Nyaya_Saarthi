@@ -58,6 +58,7 @@ class EntityResult(Strict):
     end: int
     method: str
     confidence: float | None=None
+    uncertainty: str | None=None
 
 class MissingSlot(Strict):
     slot: str
@@ -79,6 +80,7 @@ class ReadinessResult(Strict):
     status: str
 
 class AnalyzeResponse(Strict):
+    extractionMetadata: dict = Field(default_factory=dict)
     inputText: str
     normalizedText: str
     language: LanguageResult

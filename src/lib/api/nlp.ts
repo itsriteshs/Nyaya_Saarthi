@@ -16,7 +16,7 @@ export function analyzeText(text: string, language: LanguageOption, signal?: Abo
     method: "POST",
     body: JSON.stringify({ text, language, referenceDatetime: localReferenceDatetime() }),
     signal,
-  });
+  }, 40000);
 }
 
 export function toPreview(result: NlpAnalysis): MockNlpResult {

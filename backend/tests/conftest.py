@@ -5,6 +5,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 os.environ["NYAYA_DATABASE_URL"] = "sqlite://"
 # Unit/API fixtures use disposable indexes; production startup warming is tested separately.
 os.environ["NYAYA_WARM_LEGAL_INDEX"] = "false"
+# Ordinary regression tests never depend on a developer's installed model.
+os.environ['NYAYA_INTAKE_SLM_ENABLED'] = 'false'
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine

@@ -5,7 +5,7 @@ import { localReferenceDatetime } from "./nlp";
 export function submitAnswer(id: string, revision: number, questionId: string, answer: string, messageId: string) {
   return apiRequest<StoredMatter>(`/api/v1/matters/${encodeURIComponent(id)}/answers`, {
     method: "POST", body: JSON.stringify({ revision, questionId, answer, messageId, referenceDatetime: localReferenceDatetime() }),
-  });
+  }, 40000);
 }
 export function editMatterFact(id: string, factId: string, revision: number, value: string) {
   return apiRequest<StoredMatter>(`/api/v1/matters/${encodeURIComponent(id)}/facts/${encodeURIComponent(factId)}`, {

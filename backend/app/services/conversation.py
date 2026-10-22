@@ -1,4 +1,4 @@
-"""Deterministic, dataset-driven conversation state on the existing matter record."""
+"""Dataset-driven planner with validated SLM-first fact answers on the existing matter record."""
 from datetime import datetime, timezone
 import json
 import re
@@ -6,6 +6,7 @@ from uuid import uuid4
 from app.services.nlp.ontology import ontology
 from app.services.nlp.entity_extractor import extract
 from app.services.nlp.normalizer import normalize
+from app.services.nlp.slm_extractor import interpret
 from app.services.nlp.language import analyze_language
 from app.services.nlp.slot_detector import detect_slots
 
@@ -201,7 +202,8 @@ def initialize(context):
         entity=context['nlpAnalysis']['entities'][index]
         fact.update(normalizedValue=entity.get('normalizedValue'),normalizedId=entity.get('normalizedId'),
                     sourceMessageId='user-initial',extractionMethod=entity.get('method'),
-                    resolutionStatus=entity['status'],updatedAt=now())
+                    resolutionStatus=entity['status'],sourceText=entity['text'],
+                    approximate=entity.get('approximate'),uncertainty=entity.get('uncertainty'),updatedAt=now())
     first_by_slot={}
     for fact in context['facts']:
         if not _has_value(fact):continue
@@ -218,8 +220,8 @@ def initialize(context):
 
 def _target_entity(slot, answer, entities):
     matches=[e for e in entities if e['type']==slot]
-    if slot.endswith('_DATE'): matches=[e for e in entities if e['type']=='EVENT_DATE']
-    if slot=='DESTINATION_STATE': matches=[e for e in entities if e['type']=='STATE']
+    if slot.endswith('_DATE') and not matches: matches=[e for e in entities if e['type']=='EVENT_DATE']
+    if slot=='DESTINATION_STATE' and not matches: matches=[e for e in entities if e['type']=='STATE']
     if matches:return matches[0]
     clean=answer.strip()
     if slot=='VEHICLE_CLASS':
@@ -263,6 +265,7 @@ def _fact(slot, entity, message_id, context):
             'normalizedValue':entity.get('normalizedValue'),'normalizedId':entity.get('normalizedId'),
             'state':'provided','provenance':'USER_PROVIDED','confirmed':False,'requiresConfirmation':True,
             'sourceMessageId':message_id,'extractionMethod':entity.get('method'),
+            'sourceText':entity['text'],'approximate':entity.get('approximate'),'uncertainty':entity.get('uncertainty'),
             'resolutionStatus':entity.get('status','unresolved'),'updatedAt':now()}
 
 def apply_answer(context, answer, question_id, message_id, reference_datetime=None):
@@ -293,24 +296,14 @@ def apply_answer(context, answer, question_id, message_id, reference_datetime=No
             context['currentQuestion']=question
         return recompute(context)
     existing_conflicts={c['id'] for c in conv['contradictions'] if not c.get('resolved')}
-    entities=[normalize(e) for e in extract(clean,reference_datetime)]
+    entities, extraction_metadata=interpret(clean,reference_datetime,target_slot=target)
+    conv.setdefault('extractionHistory',[]).append({'messageId':message_id,**extraction_metadata})
     if target=='LICENCE_CLASS':
         entities=[e for e in entities if not (e['type']=='VEHICLE_CLASS' and e['text'].casefold()==clean.casefold())]
     chosen=_target_entity(target,clean,entities)
-    if chosen and chosen.get('status')!='resolved':
-        context['messages'].append({'id':f'clarify-{message_id}','speaker':'assistant',
-            'text':f'{_label(context,target)} is ambiguous. Please provide a more specific answer.'})
-        context['currentQuestion']=question
-        return recompute(context)
     if chosen and chosen not in entities:entities.append(chosen)
-    if not chosen:
-        context['messages'].append({'id':f'help-{message_id}','speaker':'assistant',
-                                    'text':f'I could not identify {_label(context,target)} in that answer. Please try a clearer value or say you do not know.'})
-        context['currentQuestion']=question
-        return recompute(context)
     for entity in entities:
         slot=target if entity is chosen else entity['type']
-        if entity.get('status')!='resolved':continue
         incoming=_fact(slot,entity,message_id,context)
         prior=next((f for f in context['facts'] if f['key']==slot and _has_value(f)),None)
         if prior and str(prior.get('normalizedValue') or prior['value']).casefold()!=str(incoming.get('normalizedValue') or incoming['value']).casefold():
@@ -328,7 +321,7 @@ def apply_answer(context, answer, question_id, message_id, reference_datetime=No
         context['answers'][slot]=entity['text']
     # Only a question about an already-open contradiction selects a replacement.
     for conflict in conv['contradictions']:
-        if conflict['id'] in existing_conflicts and conflict['slot']==target and not conflict.get('resolved') and chosen.get('status')=='resolved':
+        if conflict['id'] in existing_conflicts and conflict['slot']==target and not conflict.get('resolved') and chosen and chosen.get('status')=='resolved':
             replacement=_fact(target,chosen,message_id,context)
             conv['factHistory'].append({'action':'resolve_contradiction','previous':conflict['previous'],
                                         'candidate':conflict['candidate'],'selected':replacement,'at':now()})
@@ -344,7 +337,8 @@ def revise_fact(context, fact_id, value):
     state(context)['factHistory'].append({'action':'edit','previous':fact.copy(),'at':now()})
     fact.update(value=value.strip(),normalizedValue=entity.get('normalizedValue'),normalizedId=entity.get('normalizedId'),
                 state='provided',provenance='USER_PROVIDED',confirmed=False,requiresConfirmation=True,
-                resolutionStatus='resolved',extractionMethod='user_correction',updatedAt=now())
+                resolutionStatus='resolved',extractionMethod='user_correction',sourceText=value.strip(),
+                approximate=entity.get('approximate'),uncertainty=None,updatedAt=now())
     for conflict in state(context)['contradictions']:
         if conflict['slot']==fact['key'] and not conflict.get('resolved'):conflict['resolved']=True
     context.pop('guidance',None);context.pop('verifiedAt',None)
