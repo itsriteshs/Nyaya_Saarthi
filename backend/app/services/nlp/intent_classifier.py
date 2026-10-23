@@ -32,4 +32,9 @@ def classify(text: str):
             'score':round(float(scores[top]),4),'scoreType':meta['score_type'],
             'marginGap':round(gap,4),'alternatives':alternatives,
             'needsClarification':gap<meta['uncertainty_gap_threshold'],
-            'modelVersion':meta['model_version']}
+            'modelVersion':meta['model_version'], 'attribution': _attribution(model, text)}
+
+
+def _attribution(model, text):
+    from app.services.research.attribution import capture
+    return capture(model, text)

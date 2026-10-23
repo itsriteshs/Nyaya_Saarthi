@@ -1,5 +1,6 @@
 "use client";
 
+import { FactInterpretation } from "@/components/ui/FactInterpretation";
 import { Check, Pencil } from "lucide-react";
 import { useState } from "react";
 import { ProvenanceBadge } from "@/components/verify/ProvenanceBadge";
@@ -35,6 +36,7 @@ export function FactReviewRow({ fact, onConfirm, onChange }: FactReviewRowProps)
             <p className="mt-1 text-sm font-extrabold text-[#18150F]">{fact.value}</p>
           )}
         </div>
+        <FactInterpretation fact={fact} />
         <ProvenanceBadge provenance={fact.provenance} />
       </div>
 

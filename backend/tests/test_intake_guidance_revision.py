@@ -16,6 +16,7 @@ def test_context_survives(text, slot, normalized):
 
 
 def test_missing_unit_and_conflicting_speed(client,monkeypatch):
+    monkeypatch.setenv('NYAYA_ASSUME_INDIAN_SPEED_KMPH','false')
     monkeypatch.setenv('NYAYA_INTAKE_SLM_ENABLED','true')
     provider=Provider([mention('OBSERVED_SPEED','doing 120','120')])
     monkeypatch.setattr(intake,'OllamaProvider',lambda url:provider)
@@ -77,9 +78,9 @@ def test_short_answer_schema_prevents_canonical_invention(monkeypatch):
     monkeypatch.setenv('NYAYA_INTAKE_SLM_ENABLED','true')
     p=Provider([mention('ROAD_TYPE','Main road')])
     intake.interpret('Main road',provider=p,target_slot='ROAD_TYPE')
-    props=p.calls[0][2]['output_schema']['$defs']['Mention']['properties']
-    assert props['value']['const']=='Main road'
-    assert 'OTHER' not in props['value']['enum']
+    props=p.calls[0][2]['output_schema']['properties']['facts']['properties']
+    assert props['road_type']['items']['type']=='string'
+    assert 'value' not in props
 
 
 def test_no_evidence_never_calls_model(monkeypatch):

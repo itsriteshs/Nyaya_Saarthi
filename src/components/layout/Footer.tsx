@@ -13,6 +13,7 @@ export function Footer() {
           </p>
         </div>
         <nav className="flex flex-wrap items-center gap-4 font-bold text-[#18150F]" aria-label="Footer">
+          <a href="/research" className="hover:text-[#A8752B]">Explainability & Research</a>
           <a href="#safety" className="hover:text-[#A8752B]">
             Safety
           </a>

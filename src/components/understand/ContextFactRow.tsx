@@ -1,3 +1,4 @@
+import { FactInterpretation } from "@/components/ui/FactInterpretation";
 import { cn } from "@/lib/utils";
 import type { MatterFact } from "@/types/matter";
 
@@ -18,6 +19,7 @@ export function ContextFactRow({ fact }: ContextFactRowProps) {
       <div>
         <p className="text-sm font-bold text-[#6B665D]">{fact.label}</p>
         <p className="mt-1 text-sm font-extrabold text-[#18150F]">{fact.value}</p>
+        <FactInterpretation fact={fact} />
       </div>
       <span
         className={cn(

@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "runId": "generation-dev-20261023-v1",
+  "timestamp": "2026-10-23T05:03:05.017182+00:00",
+  "split": "historical synthetic evidence reused for development only",
+  "reviewStatus": "PENDING",
+  "generation": {
+    "deterministic": {
+      "n": 3,
+      "evaluatedN": 3,
+      "reasonCodes": {},
+      "schemaPass": {
+        "rate": 1.0,
+        "denominator": 3
+      },
+      "groundingPass": {
+        "rate": null,
+        "denominator": 0
+      },
+      "languagePass": {
+        "rate": 1.0,
+        "denominator": 3
+      },
+      "citationValidityProxy": {
+        "rate": 1.0,
+        "denominator": 3
+      },
+      "acceptanceRate": null,
+      "fallbackRate": 0.0,
+      "meanLatencyMs": null
+    },
+    "llama3.2-3b": {
+      "n": 3,
+      "evaluatedN": 3,
+      "reasonCodes": {
+        "OUTPUT_TRUNCATED": 2
+      },
+      "schemaPass": {
+        "rate": 1.0,
+        "denominator": 1
+      },
+      "groundingPass": {
+        "rate": 1.0,
+        "denominator": 1
+      },
+      "languagePass": {
+        "rate": 1.0,
+        "denominator": 1
+      },
+      "citationValidityProxy": {
+        "rate": 1.0,
+        "denominator": 1
+      },
+      "acceptanceRate": 0.3333333333333333,
+      "fallbackRate": 0.6666666666666666,
+      "meanLatencyMs": 80459.33333333333
+    },
+    "mistral-7b": {
+      "n": 3,
+      "evaluatedN": 3,
+      "reasonCodes": {
+        "INFERENCE_TIMEOUT": 3
+      },
+      "schemaPass": {
+        "rate": null,
+        "denominator": 0
+      },
+      "groundingPass": {
+        "rate": null,
+        "denominator": 0
+      },
+      "languagePass": {
+        "rate": null,
+        "denominator": 0
+      },
+      "citationValidityProxy": {
+        "rate": null,
+        "denominator": 0
+      },
+      "acceptanceRate": 0.0,
+      "fallbackRate": 1.0,
+      "meanLatencyMs": 90026.0
+    }
+  },
+  "models": {
+    "llama3.2-3b": {
+      "id": "llama3.2-3b",
+      "name": "Llama 3.2 3B Instruct",
+      "runtime_name": "llama3.2:3b-instruct-q4_K_M",
+      "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+      "license": "Meta Llama 3.2 Community License"
+    },
+    "mistral-7b": {
+      "id": "mistral-7b",
+      "name": "Mistral 7B Instruct v0.3",
+      "runtime_name": "mistral:7b-instruct-v0.3-q4_K_M",
+      "checkpoint": "mistralai/Mistral-7B-Instruct-v0.3",
+      "license": "Apache-2.0"
+    }
+  },
+  "availability": {
+    "runtime": "available",
+    "models": {
+      "llama3.2-3b": {
+        "status": "available",
+        "available": true,
+        "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+        "sizeBytes": 2019393189
+      },
+      "mistral-7b": {
+        "status": "available",
+        "available": true,
+        "digest": "6577803aa9a036369e481d648a2baebb381ebc6e897f2bb9a766a2aa7bfbc1cf",
+        "sizeBytes": 4372824384
+      }
+    }
+  },
+  "frozenEvidenceSHA256": "0664014e964b86683b9aa7412f1e1711c6ea86fc7b420cff131a016c2f3fdbf3",
+  "promptVersion": "grounded-report-v4",
+  "settings": {
+    "provider": "ollama",
+    "default": "llama3.2-3b",
+    "url": "http://127.0.0.1:11434",
+    "timeout": 90.0,
+    "temperature": 0,
+    "maxTokens": 700,
+    "contextChars": 12000
+  },
+  "seed": 471,
+  "contextTokens": 8192,
+  "temperature": 0,
+  "command": {
+    "run_id": "generation-dev-20261023-v1",
+    "languages": [
+      "english"
+    ]
+  },
+  "limitations": [
+    "No new held-out evaluation; same evidence per case-language for both models.",
+    "Deterministic baseline is the recorded English Guidance output, with a different schema. LLM grounding acceptance is not applicable; baseline latency unrecorded.",
+    "Citation validity is structural only. No semantic support or blinded human ratings.",
+    "Latency includes cold starts and serial model loading; one trial per cell."
+  ]
+}

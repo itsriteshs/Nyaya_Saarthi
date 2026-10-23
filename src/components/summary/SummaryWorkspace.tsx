@@ -1,4 +1,5 @@
 "use client";
+import { FactInterpretation } from "@/components/ui/FactInterpretation";
 import { GroundedReportDetails } from "@/components/guidance/GroundedReportDetails";
 
 import { useEffect, useMemo, useState } from "react";
@@ -448,6 +449,7 @@ function FactLine({ fact }: { fact: MatterFact }) {
         </span>
       </div>
       <p className="mt-1 text-base font-extrabold leading-6 text-[#18150F]">{fact.value}</p>
+      <FactInterpretation fact={fact} />
     </div>
   );
 }
@@ -626,7 +628,7 @@ function buildPlainTextSummary(
     matter.originalText,
     "",
     "Verified Situation:",
-    ...facts.map((fact) => `${fact.label}: ${fact.value}`),
+    ...facts.map((fact) => `${fact.label}: ${fact.value}${fact.normalizedValue ? " → " + fact.normalizedValue : ""}${fact.unit ? " " + fact.unit : ""}${fact.interpretationNotes?.length ? " [" + fact.interpretationNotes.join("; ") + "]" : ""}`),
     "",
     "Clarification answers (as provided, not independent legal evidence):",
     ...matter.messages.filter((message) => message.speaker === "user" && message.text !== matter.originalText).map((message) => message.text),

@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { NLPPreview } from "@/components/home/NLPPreview";
 import { QuickTopics } from "@/components/home/QuickTopics";
 import { SituationInput } from "@/components/home/SituationInput";
@@ -11,14 +11,14 @@ import { defaultSituation } from "@/data/examples";
 import { motorLawTopics } from "@/data/motor-law-topics";
 import { createMatterContext } from "@/lib/mock-context-engine";
 import { analyzeSituation } from "@/lib/mock-nlp";
-import { analyzeText, localReferenceDatetime, toPreview } from "@/lib/api/nlp";
+import { localReferenceDatetime } from "@/lib/api/nlp";
 import { analyzeMatter, createMatter } from "@/lib/api/matters";
 import { useMatter } from "@/providers/MatterProvider";
 import type { MockNlpResult, TopicId } from "@/types/nlp";
 
 const demoMode = process.env.NEXT_PUBLIC_NYAYA_DEMO_MODE === "true";
 const emptyPreview: MockNlpResult = {
-  inputText: "", detectedIssue: { label: "Awaiting analysis", description: "Describe your situation to see the model's findings." },
+  inputText: "", detectedIssue: { label: "Awaiting analysis", description: "Submit your situation to analyse it with the local model." },
   extractedFacts: [], missingInformation: [], readiness: { found: 0, total: 0 },
   nextQuestion: "Enter a description to begin.", visibleSignals: [],
 };
@@ -32,9 +32,9 @@ export function HeroSection() {
   const [situation, setSituation] = useState("");
   const [analysisInput, setAnalysisInput] = useState(demoMode ? defaultSituation : "");
   const [activeTopic, setActiveTopic] = useState<TopicId>("traffic");
-  const [realPreview, setRealPreview] = useState<MockNlpResult>(emptyPreview);
-  const [previewLoading, setPreviewLoading] = useState(false);
+  const realPreview = emptyPreview;
   const [submitting, setSubmitting] = useState(false);
+  const previewLoading = submitting;
   const [error, setError] = useState("");
 
   const activeTopicData =
@@ -43,35 +43,13 @@ export function HeroSection() {
   const demoPreview = useMemo(() => demoMode ? analyzeSituation(analysisInput) : emptyPreview, [analysisInput]);
   const preview = demoMode ? demoPreview : (!analysisInput.trim() || previewLoading ? emptyPreview : realPreview);
 
-  useEffect(() => {
-    if (demoMode) return;
-    if (!analysisInput.trim()) return;
-    const controller = new AbortController();
-    const timer = window.setTimeout(async () => {
-      try {
-        const result = await analyzeText(analysisInput, language, controller.signal);
-        if (!controller.signal.aborted) setRealPreview(toPreview(result));
-      } catch (cause) {
-        if (!controller.signal.aborted) {
-          setRealPreview(emptyPreview);
-          setError(cause instanceof Error ? cause.message : "Analysis is unavailable.");
-        }
-      } finally {
-        if (!controller.signal.aborted) setPreviewLoading(false);
-      }
-    }, 350);
-    return () => { window.clearTimeout(timer); controller.abort(); };
-  }, [analysisInput, language]);
-
   function handleSituationChange(value: string) {
-    setPreviewLoading(!!value.trim());
     setError("");
     setSituation(value);
     setAnalysisInput(value);
   }
 
   function handleExampleSelect(example: string) {
-    setPreviewLoading(true);
     setError("");
     setSituation(example);
     setAnalysisInput(example);
@@ -82,7 +60,6 @@ export function HeroSection() {
     setActiveTopic(topic);
 
     if (demoMode && !situation.trim() && selected) {
-      setPreviewLoading(true);
       setAnalysisInput(selected.example);
     }
   }
@@ -116,7 +93,6 @@ export function HeroSection() {
   }
 
   function handleReset() {
-    setPreviewLoading(demoMode);
     setError("");
     setSituation("");
     setLanguage("auto");
@@ -143,9 +119,9 @@ export function HeroSection() {
             ready={interactive}
             value={situation}
             language={language}
+            onLanguageChange={(nextLanguage) => { setError(""); setLanguage(nextLanguage); }}
             placeholder={activeTopicData.placeholder}
             onChange={handleSituationChange}
-            onLanguageChange={(nextLanguage) => { setPreviewLoading(true); setError(""); setLanguage(nextLanguage); }}
             onExampleSelect={handleExampleSelect}
             onReset={handleReset}
             onSubmit={handleSubmit}

@@ -99,6 +99,9 @@ def test_models_and_revision_gate(client):
 
 
 def test_generation_endpoint_persists_fallback_and_rejects_stale(client, tmp_path, monkeypatch):
+    # This tests fallback persistence, regardless of locally installed models.
+    monkeypatch.setattr("app.services.llm.local_runtime.OllamaProvider.availability",
+        lambda self: {"models": {key: {"available": False, "status": "runtime_unreachable"} for key in MODELS}})
     monkeypatch.setattr(index, "INDEX_DIR", tmp_path / "index")
     index.load_index.cache_clear()
     index.build(semantic=False)

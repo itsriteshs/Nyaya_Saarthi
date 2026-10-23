@@ -7,7 +7,7 @@ def build_package(matter: dict, baseline: dict, max_chars: int) -> dict:
     sources = [{"evidenceId": s["evidenceId"], "provisionId": s["id"],
                 "provision": s["provision"], "passage": s["relevantPoint"],
                 "title": s["title"]} for s in baseline["sources"] if s.get("admissibility") == "eligible"]
-    facts = [{"key": f["key"], "value": f.get("normalizedValue") or f["value"], "unit": f.get("unit"), "sourceText": f.get("sourceText") or f["value"]}
+    facts = [{"key": f["key"], "value": f.get("normalizedValue") or f["value"], "unit": f.get("unit"), "unitSource": f.get("unitSource"), "interpretationNotes": f.get("interpretationNotes",[]), "sourceText": f.get("sourceText") or f["value"]}
              for f in matter["facts"] if f.get("confirmed") and f.get("provenance") == "USER_CONFIRMED"
              and f.get("resolutionStatus", "resolved") == "resolved"]
     rules = baseline["metadata"].get("ruleEvaluations", [])

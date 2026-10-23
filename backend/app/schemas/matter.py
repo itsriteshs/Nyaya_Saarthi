@@ -27,6 +27,8 @@ class Fact(StrictModel):
     sourceMessageId: str | None = None
     extractionMethod: str | None = None
     sourceText: str | None = None
+    interpretationNotes: list[str] = Field(default_factory=list)
+    unitSource: str | None = None
     unit: str | None = None
     approximate: bool | None = None
     uncertainty: str | None = None

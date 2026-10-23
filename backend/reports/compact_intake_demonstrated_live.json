@@ -1,0 +1,83 @@
+{
+  "entities": [
+    {
+      "type": "VEHICLE_CLASS",
+      "text": "150 in highway",
+      "value": "150 in highway",
+      "start": 7,
+      "end": 21,
+      "method": "local_slm_extractive",
+      "confidence": null,
+      "normalizedValue": null,
+      "normalizedId": null,
+      "status": "unresolved",
+      "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+      "alternatives": [],
+      "interpretationNotes": [],
+      "approximate": false,
+      "uncertainty": "clear"
+    },
+    {
+      "type": "STATE",
+      "text": "andhra pradesh",
+      "value": "andhra pradesh",
+      "start": 35,
+      "end": 49,
+      "method": "local_slm_extractive",
+      "confidence": null,
+      "normalizedValue": "Andhra Pradesh",
+      "normalizedId": "JX_IN_AP",
+      "status": "resolved",
+      "vocabularySource": "jurisdictions.csv",
+      "alternatives": [],
+      "interpretationNotes": [],
+      "approximate": false,
+      "uncertainty": "clear"
+    },
+    {
+      "type": "EVENT_DATE",
+      "text": "yesturday",
+      "value": "yesturday",
+      "start": 22,
+      "end": 31,
+      "method": "local_slm_extractive",
+      "confidence": null,
+      "normalizedValue": "2026-10-22",
+      "normalizedId": null,
+      "status": "resolved",
+      "vocabularySource": null,
+      "alternatives": [],
+      "interpretationNotes": [],
+      "approximate": false,
+      "uncertainty": "clear"
+    }
+  ],
+  "metadata": {
+    "method": "local_slm",
+    "fallbackUsed": false,
+    "promptVersion": "intake-compact-v4",
+    "modelCalled": true,
+    "referenceDatetime": "2026-10-23T09:54:13.089358+05:30",
+    "requestedModel": "llama3.2-3b",
+    "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+    "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+    "generationParameters": {
+      "temperature": 0,
+      "maxTokens": 640,
+      "timeoutSeconds": 60.0
+    },
+    "rejectedMentions": [
+      {
+        "slot": "OBSERVED_SPEED_UNIT",
+        "quote": "in",
+        "reason": "UNSUPPORTED_SPEED_UNIT"
+      }
+    ],
+    "unassignedMentions": [],
+    "latencyMs": 4875,
+    "installedDigest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+    "entityCount": 3,
+    "promptTokens": 511,
+    "outputTokens": 52
+  }
+}

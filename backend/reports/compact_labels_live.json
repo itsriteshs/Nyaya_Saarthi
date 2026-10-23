@@ -1,0 +1,87 @@
+{
+  "entities": [
+    {
+      "type": "OBSERVED_SPEED",
+      "text": "150",
+      "value": "150",
+      "start": 7,
+      "end": 10,
+      "method": "local_slm_extractive",
+      "confidence": null,
+      "normalizedValue": "150",
+      "normalizedId": null,
+      "status": "resolved",
+      "vocabularySource": "unit pattern",
+      "alternatives": [],
+      "unit": "km/h",
+      "approximate": false,
+      "interpretationNotes": [
+        "Unit assumed: km/h for this India-focused app. You did not specify a unit; confirm or correct it during review."
+      ],
+      "uncertainty": "unit_assumed_for_india",
+      "unitSource": "context_default"
+    },
+    {
+      "type": "STATE",
+      "text": "andhra pradesh",
+      "value": "andhra pradesh",
+      "start": 35,
+      "end": 49,
+      "method": "local_slm_extractive",
+      "confidence": null,
+      "normalizedValue": "Andhra Pradesh",
+      "normalizedId": "JX_IN_AP",
+      "status": "resolved",
+      "vocabularySource": "jurisdictions.csv",
+      "alternatives": [],
+      "interpretationNotes": [],
+      "approximate": false,
+      "uncertainty": "clear"
+    },
+    {
+      "type": "VEHICLE_CLASS",
+      "text": "highway",
+      "value": "highway",
+      "start": 14,
+      "end": 21,
+      "method": "local_slm_extractive",
+      "confidence": null,
+      "normalizedValue": null,
+      "normalizedId": null,
+      "status": "unresolved",
+      "vocabularySource": "vehicle_classes.csv + documented informal aliases",
+      "alternatives": [],
+      "interpretationNotes": [],
+      "approximate": false,
+      "uncertainty": "clear"
+    }
+  ],
+  "metadata": {
+    "method": "local_slm",
+    "fallbackUsed": false,
+    "promptVersion": "intake-compact-v4",
+    "modelCalled": true,
+    "referenceDatetime": "2026-10-23T09:56:04.967627+05:30",
+    "requestedModel": "llama3.2-3b",
+    "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+    "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+    "generationParameters": {
+      "temperature": 0,
+      "maxTokens": 640,
+      "timeoutSeconds": 60.0
+    },
+    "rejectedMentions": [
+      {
+        "slot": "VEHICLE_CLASS",
+        "quote": "I am on",
+        "reason": "UNGROUNDED_MENTION"
+      }
+    ],
+    "unassignedMentions": [],
+    "latencyMs": 5187,
+    "installedDigest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+    "entityCount": 3,
+    "promptTokens": 440,
+    "outputTokens": 24
+  }
+}

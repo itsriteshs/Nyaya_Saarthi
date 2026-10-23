@@ -58,6 +58,7 @@ export function UnderstandHeader({ language, currentStep }: UnderstandHeaderProp
         </div>
 
         <div className="ml-auto flex items-center gap-3">
+          <Link href="/research" className="hidden min-h-11 items-center px-2 text-sm font-bold underline lg:inline-flex">Research</Link>
           <span className="hidden items-center gap-2 rounded-md border border-[#DED7CA] px-3 py-2 text-xs font-extrabold text-[#4F4A42] sm:inline-flex">
             <CircleCheck size={14} aria-hidden="true" />
             Confirm before guidance
@@ -71,6 +72,7 @@ export function UnderstandHeader({ language, currentStep }: UnderstandHeaderProp
         </div>
       </div>
       {navigationOpen ? <nav id="matter-mobile-navigation" aria-label="Matter navigation" className="grid gap-1 border-t border-[#DED7CA] p-3 lg:hidden">
+        <Link className="rounded p-3 font-bold" href="/research" onClick={() => setNavigationOpen(false)}>Explainability & Research</Link>
         <Link className="rounded p-3 font-bold" href="/" onClick={() => setNavigationOpen(false)}>Home</Link>
         {progressItems.map((item) => <Link key={item} className="rounded p-3 font-bold" href={`/${item.toLowerCase()}`} onClick={() => setNavigationOpen(false)}>{item}</Link>)}
       </nav> : null}

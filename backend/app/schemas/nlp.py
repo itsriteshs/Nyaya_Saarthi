@@ -33,6 +33,7 @@ class IntentAlternative(Strict):
     score: float
 
 class IntentResult(Strict):
+    attribution: dict | None = None
     id: str
     name: str
     domain: str
@@ -52,6 +53,8 @@ class EntityResult(Strict):
     status: Literal['resolved','ambiguous','unresolved']
     vocabularySource: str | None=None
     alternatives: list[str]=[]
+    interpretationNotes: list[str] = Field(default_factory=list)
+    unitSource: str | None = None
     unit: str | None=None
     approximate: bool | None=None
     start: int

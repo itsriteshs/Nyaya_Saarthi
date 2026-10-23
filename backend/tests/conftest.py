@@ -28,3 +28,18 @@ def client(tmp_path):
         yield value
     app.dependency_overrides.clear()
     engine.dispose()
+
+
+@pytest.fixture(autouse=True)
+def legacy_planner_input(request, monkeypatch):
+    """Legacy planner/API regressions supply deterministic test data only.
+    Production intake never uses this adapter. SLM integration tests opt out.
+    """
+    if request.module.__name__ in {'test_slm_intake','test_intake_guidance_revision','test_slm_required','test_flexible_intake','test_compact_intake'}:
+        return
+    from app.services.nlp.entity_extractor import extract
+    from app.services.nlp.normalizer import normalize
+    def fixture_entities(text, reference=None, **kwargs):
+        return [normalize(e) for e in extract(text,reference)], {'method':'test_fixture','fallbackUsed':False}
+    monkeypatch.setattr('app.services.nlp.pipeline.interpret',fixture_entities)
+    monkeypatch.setattr('app.services.conversation.interpret',fixture_entities)

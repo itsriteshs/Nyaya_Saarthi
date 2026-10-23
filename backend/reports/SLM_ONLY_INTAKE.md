@@ -1,0 +1,17 @@
+# SLM-only fact interpretation — 22 October 2026
+
+Intake and free-text fact corrections now require local SLM extraction. Removed the production deterministic extractor fallback. Unavailable, busy, disabled, timed-out, malformed or ungrounded model output raises IntakeFailure; APIs return503 with a specific retry message. Failed analysis/answers do not save partial context. A schema-valid empty facts array is a legitimate zero-mentions result, not permission to run rules. Normalization, assertion checks, exact-source grounding, conflicts, issue-choice controls and user verification remain deterministic safety mechanisms. Guidance legal-evidence gates and conservative fallback are unchanged.
+
+Removed Home's automatic per-keystroke model preview requests, which could occupy the intake slot before submission. The model runs when the user submits. Model failure is visible; no extracted rule-based facts silently replace its response. The legacy rule extractor file remains for independent component/evaluation tests, not production intake or free-text edits.
+
+Actual live recheck of the screenshot sentence: modelCalled=true, method=local_slm, fallbackUsed=false, Llama3.2:3b-instruct-q4_K_M,24,453ms. It extracted150 with unknown unit, car and highway context. The State spelling andrapradesh remained unresolved against the jurisdiction vocabulary; yesterday remained unresolved in this direct smoke call without a reference date. These limitations are preserved rather than guessed. Evidence:slm_only_live.json. This is one development smoke check, not independent model accuracy evaluation.
+
+Updated failure tests now require explicit errors instead of deterministic fallback. New tests cover unavailable/busy/timeout behavior without invoking legacy rules and an unchanged DRAFT after failed analysis. Older planner/API regressions use an explicitly test-only deterministic input adapter; this adapter is not callable from production. New SLM integration tests opt out of that adapter. Tests do not establish independent legal correctness or universal SLM accuracy.
+
+Changed:slm_extractor.py,pipeline.py,conversation.py; NLP/conversation APIs; HeroSection.tsx;backend/.env.example;test_slm_intake.py,conftest.py,new test_slm_required.py; this report and live smoke evidence. Existing trained issue/language classifiers still suggest the topic/language; the change concerns natural-language fact extraction. No legal dataset changes. Local Ollama and one of the two configured models must be available; default intake model is Llama. Existing saved matters are not automatically reanalysed: restart the backend/frontend and create a new matter to test the new flow.
+
+Verification results follow below. Fresh browser/mobile checks were not performed in this turn.
+
+Final full backend suite:111 passed in12.44s. Prior run exposed an existing runtime-dependent fallback-persistence test; it was changed to explicitly simulate unavailability rather than relying on this computer's runtime state. Focused SLM suites:49 passed. Full frontend lint initially had one unused-setter warning; the setter was removed and targeted lint/typecheck rerun. Production build outcome follows.
+
+Production build passed. Targeted final frontend lint and TypeScript passed without output/errors. git diff --check passed. Restart both development processes and use a new matter: existing saved analyses are intentionally not rewritten.

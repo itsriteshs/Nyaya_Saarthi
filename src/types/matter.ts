@@ -34,6 +34,9 @@ export interface MatterFact {
   normalizedId?: string;
   sourceMessageId?: string;
   extractionMethod?: string;
+  unit?: string;
+  unitSource?: string;
+  interpretationNotes?: string[];
   resolutionStatus?: "resolved" | "ambiguous" | "unresolved";
   updatedAt?: string;
 }

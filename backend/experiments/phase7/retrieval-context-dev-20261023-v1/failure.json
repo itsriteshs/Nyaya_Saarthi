@@ -1,0 +1,1 @@
+{"status": "failed", "reason": "OSError [Errno 22] Invalid argument reading transformers/models/parakeet/configuration_parakeet.py during sentence_transformers import", "metricsProduced": false}

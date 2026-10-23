@@ -1,3 +1,4 @@
+from app.services.nlp.slm_extractor import IntakeFailure
 import json
 from fastapi import APIRouter,Depends,HTTPException
 from sqlalchemy.orm import Session
@@ -45,6 +46,7 @@ def answer(matter_id:str,payload:AnswerRequest,session:Session=Depends(get_sessi
     if record.revision!=payload.revision:raise HTTPException(409,'Matter revision is stale')
     if any(m['id']==payload.messageId for m in context['messages']):raise HTTPException(409,'Duplicate answer')
     try:conversation.apply_answer(context,payload.answer,payload.questionId,payload.messageId,payload.referenceDatetime)
+    except IntakeFailure as exc:raise HTTPException(503,str(exc)) from None
     except ValueError as exc:raise HTTPException(409,str(exc)) from None
     except FileNotFoundError:raise HTTPException(503,'NLP model is not trained. Run the backend training commands.') from None
     return _save(session,record,payload.revision,context)
@@ -55,6 +57,7 @@ def edit_fact(matter_id:str,fact_id:str,payload:FactEditRequest,session:Session=
     if record.revision!=payload.revision:raise HTTPException(409,'Matter revision is stale')
     try:conversation.revise_fact(context,fact_id,payload.value)
     except KeyError:raise HTTPException(404,'Fact not found') from None
+    except IntakeFailure as exc:raise HTTPException(503,str(exc)) from None
     except ValueError as exc:raise HTTPException(422,str(exc)) from None
     return _save(session,record,payload.revision,context)
 
@@ -65,6 +68,7 @@ def confirm_fact(matter_id:str,fact_id:str,payload:RevisionRequest,session:Sessi
     if record.revision!=payload.revision:raise HTTPException(409,'Matter revision is stale')
     try:conversation.confirm_fact(context,fact_id)
     except KeyError:raise HTTPException(404,'Fact not found') from None
+    except IntakeFailure as exc:raise HTTPException(503,str(exc)) from None
     except ValueError as exc:raise HTTPException(409,str(exc)) from None
     return _save(session,record,payload.revision,context)
 

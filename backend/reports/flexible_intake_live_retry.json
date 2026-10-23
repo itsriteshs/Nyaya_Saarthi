@@ -1,0 +1,127 @@
+[
+  {
+    "text": "150 andrapradesh today",
+    "entities": [
+      {
+        "type": "STATE",
+        "text": "andrapradesh",
+        "value": "andrapradesh",
+        "start": 4,
+        "end": 16,
+        "method": "local_slm_extractive",
+        "confidence": null,
+        "normalizedValue": "Andhra Pradesh",
+        "normalizedId": "JX_IN_AP",
+        "status": "resolved",
+        "vocabularySource": "jurisdiction catalog spelling normalization",
+        "alternatives": [],
+        "interpretationNotes": [
+          "Read 'andrapradesh' as Andhra Pradesh; please verify."
+        ],
+        "approximate": false,
+        "uncertainty": "uncertain"
+      },
+      {
+        "type": "OBSERVED_SPEED",
+        "text": "150",
+        "value": "150",
+        "start": 0,
+        "end": 3,
+        "method": "local_slm_extractive",
+        "confidence": null,
+        "normalizedValue": "150",
+        "normalizedId": null,
+        "status": "unresolved",
+        "vocabularySource": "unit pattern",
+        "alternatives": [],
+        "unit": "km/h",
+        "approximate": false,
+        "interpretationNotes": [
+          "Unit assumed: km/h for this India-focused app. You did not specify a unit; confirm or correct it during review."
+        ],
+        "uncertainty": "unit_assumed_for_india",
+        "unitSource": "context_default"
+      },
+      {
+        "type": "EVENT_DATE",
+        "text": "today",
+        "value": "today",
+        "start": 17,
+        "end": 22,
+        "method": "local_slm_extractive",
+        "confidence": null,
+        "normalizedValue": "2026-10-22",
+        "normalizedId": null,
+        "status": "resolved",
+        "vocabularySource": null,
+        "alternatives": [],
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "uncertain"
+      }
+    ],
+    "metadata": {
+      "method": "local_slm",
+      "fallbackUsed": false,
+      "promptVersion": "intake-flexible-v3",
+      "modelCalled": true,
+      "referenceDatetime": "2026-10-22T20:01:05.011028+05:30",
+      "requestedModel": "llama3.2-3b",
+      "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+      "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+      "generationParameters": {
+        "temperature": 0,
+        "maxTokens": 1600,
+        "timeoutSeconds": 60.0
+      },
+      "rejectedMentions": [],
+      "unassignedMentions": [],
+      "latencyMs": 9703,
+      "installedDigest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+      "entityCount": 3
+    }
+  },
+  {
+    "text": "km/h",
+    "entities": [],
+    "metadata": {
+      "method": "local_slm",
+      "fallbackUsed": false,
+      "promptVersion": "intake-flexible-v3",
+      "modelCalled": true,
+      "referenceDatetime": "2026-10-22T20:01:14.880256+05:30",
+      "requestedModel": "llama3.2-3b",
+      "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+      "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+      "generationParameters": {
+        "temperature": 0,
+        "maxTokens": 1600,
+        "timeoutSeconds": 60.0
+      },
+      "rejectedMentions": [],
+      "unassignedMentions": [
+        {
+          "type": "OBSERVED_SPEED_UNIT",
+          "text": "km/h",
+          "value": "km/h",
+          "start": 0,
+          "end": 4,
+          "method": "local_slm_extractive",
+          "confidence": null,
+          "normalizedValue": "km/h",
+          "normalizedId": null,
+          "status": "unresolved",
+          "vocabularySource": null,
+          "alternatives": [],
+          "interpretationNotes": [],
+          "unit": "km/h",
+          "approximate": false,
+          "uncertainty": "uncertain"
+        }
+      ],
+      "latencyMs": 5078,
+      "installedDigest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+      "entityCount": 0
+    }
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "error": "SLM interpretation could not complete (NO_GROUNDED_FACTS: UNGROUNDED_MENTION). Please retry; no rule-based extraction was used.",
+  "metadata": {
+    "method": "local_slm_failed",
+    "fallbackUsed": false,
+    "promptVersion": "intake-compact-v4",
+    "modelCalled": true,
+    "referenceDatetime": "2026-10-23T09:56:21.443300+05:30",
+    "requestedModel": "mistral-7b",
+    "runtimeModel": "mistral:7b-instruct-v0.3-q4_K_M",
+    "checkpoint": "mistralai/Mistral-7B-Instruct-v0.3",
+    "generationParameters": {
+      "temperature": 0,
+      "maxTokens": 640,
+      "timeoutSeconds": 60.0
+    },
+    "rejectedMentions": [
+      {
+        "slot": "VEHICLE_CLASS",
+        "quote": "scooter",
+        "reason": "UNGROUNDED_MENTION"
+      }
+    ],
+    "failureReason": "NO_GROUNDED_FACTS: UNGROUNDED_MENTION"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checks": [
+    "saved matter trace",
+    "invalid matter",
+    "historical artifacts",
+    "development selection",
+    "per-type table",
+    "360px studies no overflow",
+    "360px trace no overflow",
+    "empty artifacts",
+    "unavailable service",
+    "no page errors"
+  ],
+  "note": "Empty/error responses are test fixtures, not metrics."
+}

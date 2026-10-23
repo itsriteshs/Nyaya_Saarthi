@@ -8,6 +8,7 @@ import { useMatter } from "@/providers/MatterProvider";
 import type { LanguageOption } from "@/types/nlp";
 
 const navItems = [
+  { label: "Research", href: "/research" },
   { label: "Home", href: "#home" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Safety", href: "#safety" },

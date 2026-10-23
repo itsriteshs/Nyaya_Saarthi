@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "runId": "retrieval-context-dev-20261023-v2",
+  "timestamp": "2026-10-23T05:05:32.137552+00:00",
+  "split": "development only",
+  "reviewStatus": "PENDING",
+  "retrieval": {
+    "bm25": {
+      "n": 211,
+      "answerable": 113,
+      "recall@1": 0.6460176991150443,
+      "hit@1": 0.6460176991150443,
+      "recall@3": 0.831858407079646,
+      "hit@3": 0.831858407079646,
+      "recall@5": 0.831858407079646,
+      "hit@5": 0.831858407079646,
+      "mrr": 0.7345132743362832,
+      "nonemptyRankingRate": 0.7914691943127962
+    },
+    "semantic": {
+      "n": 211,
+      "answerable": 113,
+      "recall@1": 0.6814159292035398,
+      "hit@1": 0.6814159292035398,
+      "recall@3": 1.0,
+      "hit@3": 1.0,
+      "recall@5": 1.0,
+      "hit@5": 1.0,
+      "mrr": 0.827433628318584,
+      "nonemptyRankingRate": 1.0
+    },
+    "hybrid": {
+      "n": 211,
+      "answerable": 113,
+      "recall@1": 0.8672566371681416,
+      "hit@1": 0.8672566371681416,
+      "recall@3": 1.0,
+      "hit@3": 1.0,
+      "recall@5": 1.0,
+      "hit@5": 1.0,
+      "mrr": 0.9262536873156343,
+      "nonemptyRankingRate": 1.0
+    }
+  },
+  "retrievalUnavailableReason": null,
+  "recall1DeltaFromHybrid": {
+    "bm25": {
+      "absolute": -0.22123893805309736,
+      "pairedBootstrap95": [
+        -0.3185840707964602,
+        -0.1415929203539823
+      ],
+      "resamples": 1000,
+      "seed": 471,
+      "unit": "case; template dependence may narrow intervals"
+    },
+    "semantic": {
+      "absolute": -0.18584070796460178,
+      "pairedBootstrap95": [
+        -0.26548672566371684,
+        -0.11504424778761062
+      ],
+      "resamples": 1000,
+      "seed": 471,
+      "unit": "case; template dependence may narrow intervals"
+    }
+  },
+  "adaptiveRecordedProxy": {
+    "n": 0,
+    "requiredSlotObservations": 0,
+    "initialCoverage": null,
+    "finalCoverage": null,
+    "redundantQuestionRate": null,
+    "meanQuestions": null,
+    "completionRate": null
+  },
+  "index": {
+    "indexVersion": "15930382a608885b",
+    "sourceFingerprint": "90f62bfb87ba4215d287af4cac7348f82ac69f69cc965db9c7643040e3c56309",
+    "documentCount": 4,
+    "excludedProvisionCount": 7,
+    "excludedProvisions": [
+      {
+        "id": "PROV_MVA_S129",
+        "kind": "provision",
+        "reasons": [
+          "COMMENCEMENT_NOT_ESTABLISHED",
+          "OFFICIAL_URL_UNAVAILABLE",
+          "SOURCE_NOT_VERIFIED",
+          "SOURCE_REVIEW_DATE_MISSING"
+        ]
+      },
+      {
+        "id": "PROV_MVA_S177",
+        "kind": "provision",
+        "reasons": [
+          "COMMENCEMENT_NOT_ESTABLISHED",
+          "OFFICIAL_URL_UNAVAILABLE",
+          "SOURCE_NOT_VERIFIED",
+          "SOURCE_REVIEW_DATE_MISSING"
+        ]
+      },
+      {
+        "id": "PROV_MVA_S184",
+        "kind": "provision",
+        "reasons": [
+          "COMMENCEMENT_NOT_ESTABLISHED",
+          "LEGAL_REVIEW_PENDING",
+          "OFFICIAL_URL_UNAVAILABLE",
+          "SOURCE_NOT_VERIFIED",
+          "SOURCE_REVIEW_DATE_MISSING"
+        ]
+      },
+      {
+        "id": "PROV_MVA_S185",
+        "kind": "provision",
+        "reasons": [
+          "COMMENCEMENT_NOT_ESTABLISHED",
+          "LEGAL_REVIEW_PENDING",
+          "OFFICIAL_URL_UNAVAILABLE",
+          "SOURCE_NOT_VERIFIED",
+          "SOURCE_REVIEW_DATE_MISSING"
+        ]
+      },
+      {
+        "id": "PROV_MVA_S194B",
+        "kind": "provision",
+        "reasons": [
+          "COMMENCEMENT_NOT_ESTABLISHED",
+          "OFFICIAL_URL_UNAVAILABLE",
+          "SOURCE_NOT_VERIFIED",
+          "SOURCE_REVIEW_DATE_MISSING"
+        ]
+      },
+      {
+        "id": "PROV_BNS_S106_1",
+        "kind": "provision",
+        "reasons": [
+          "COMMENCEMENT_NOT_ESTABLISHED",
+          "LEGAL_REVIEW_PENDING"
+        ]
+      },
+      {
+        "id": "PROV_BNS_S106_2",
+        "kind": "provision",
+        "reasons": [
+          "COMMENCEMENT_NOT_ESTABLISHED",
+          "LEGAL_REVIEW_PENDING",
+          "PROVISION_NOT_ACTIVE"
+        ]
+      }
+    ],
+    "malformedRecords": [],
+    "retrievalMode": "hybrid",
+    "embeddingModel": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "embeddingModelRevision": "local-sha256:7f4f89d628f87ade0e0b",
+    "embeddingModelLicense": "Apache-2.0",
+    "rankFusion": "RRF(k=60); lexical and semantic ranks equally weighted",
+    "documentSha256": "a945fe924840bd9e5aa6fe503bbc77f21c91a3ee68c4ff2b6431f1fa46c90c17"
+  },
+  "manifestSHA256": "8563a1d4d1e9682bd9acbe2bf80a2adce650ed65167d1aee3b644a5d9b312614",
+  "datasetHashes": {
+    "query_provision_relevance.csv": "1374788b474d74c95986906c659c0f9b566dc67a50d65ffb8047cb2461b5fd67",
+    "adaptive_conversations.jsonl": "b7ff80819b1a8929d33d941ab1afde6c8b1339a9d6c02030a01eb2cca0bc1e62"
+  },
+  "command": {
+    "run_id": "retrieval-context-dev-20261023-v2"
+  },
+  "definitions": {
+    "recallAtK": "mean fraction of admitted gold IDs in top k over answerable queries",
+    "MRR": "mean reciprocal first relevant rank over answerable queries",
+    "coverage": "recorded required slots captured / required-slot observations",
+    "completion": "all unconditional required slots present / conversations with requirements"
+  },
+  "limitations": [
+    "Development relevance labels are pending review and queries were exposed historically.",
+    "Global eligible corpus ranking only, not matter-specific applicability.",
+    "Recall@5 is weak with only four eligible documents; unjudged precision unavailable.",
+    "Adaptive comparison uses recorded slot updates, not current generated conversations.",
+    "Conditional requirements and legal conclusions not scored; no overall score."
+  ]
+}

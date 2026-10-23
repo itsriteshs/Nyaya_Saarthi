@@ -7,10 +7,14 @@ from app.schemas.matter import MatterResponse
 from app.services.nlp.pipeline import analyze
 from app.services.nlp.matter_adapter import persist_analysis, AnalysisConflict, AnalysisStale
 
+from app.services.nlp.slm_extractor import IntakeFailure
+
 router=APIRouter(tags=['nlp'])
 
 def _run(text,language,reference_datetime):
     try:return analyze(text,language,reference_datetime)
+    except IntakeFailure as exc:
+        raise HTTPException(status_code=503,detail=str(exc)) from None
     except FileNotFoundError:
         raise HTTPException(status_code=503,detail='NLP model is not trained. Run the backend training commands.') from None
 

@@ -36,3 +36,6 @@ app.include_router(nlp.router, prefix="/api/v1")
 app.include_router(conversations.router, prefix="/api/v1")
 app.include_router(legal.router, prefix="/api/v1")
 app.include_router(models.router, prefix="/api/v1")
+
+from app.api import research
+app.include_router(research.router, prefix="/api/v1")

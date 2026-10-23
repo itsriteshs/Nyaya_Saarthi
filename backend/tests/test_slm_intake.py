@@ -46,7 +46,7 @@ def test_primary_model_call_and_schema(enabled):
     entities, meta = intake.interpret(EXAMPLE, provider=provider)
     assert not meta['fallbackUsed'] and meta['modelCalled']
     assert provider.calls[0][0] == 'llama3.2:3b-instruct-q4_K_M'
-    assert EXAMPLE in provider.calls[0][1][1]['content']
+    assert EXAMPLE in provider.calls[0][1][-1]['content']
     assert provider.calls[0][2]['output_schema']['additionalProperties'] is False
     assert {e['type'] for e in entities} == {f['slot'] for f in FACTS}
     speed = next(e for e in entities if e['type'] == 'OBSERVED_SPEED')
@@ -72,10 +72,11 @@ def test_paraphrases_without_phrase_rules(enabled, text, facts):
     ('yesterday', '2026-10-22T12:00:00+05:30', '2026-10-21'),
     ('आज', '2026-10-22T12:00:00+05:30', '2026-10-22'),
     ('beeta kal', '2026-10-22T12:00:00+05:30', '2026-10-21'),
-    ('kal', '2026-10-22T12:00:00+05:30', None), ('yesterday', None, None),
-    ('yesterday', '2026-10-22T12:00:00', None),
+    ('kal', '2026-10-22T12:00:00+05:30', None), ('yesterday', None, '2026-10-21'),
+    ('yesterday', '2026-10-22T12:00:00', '2026-10-21'),
 ])
-def test_dates(enabled, value, reference, expected):
+def test_dates(enabled, value, reference, expected, monkeypatch):
+    monkeypatch.setattr(intake,"current_reference",lambda:datetime.fromisoformat("2026-10-22T12:00:00+05:30"))
     reference = datetime.fromisoformat(reference) if reference else None
     entities, _ = intake.interpret(value, reference, provider=Provider([mention('EVENT_DATE', value)]))
     assert entities[0]['normalizedValue'] == expected
@@ -87,24 +88,27 @@ def test_dates(enabled, value, reference, expected):
     json.dumps({'facts': [mention('VEHICLE_CLASS', 'truck')]}),
     json.dumps({'facts': [mention('OBSERVED_SPEED', 'car', '150')]}),
     json.dumps({'facts': [{**mention('VEHICLE_CLASS', 'car'), 'confirmed': True}]}),
-    '{"facts":[]}'])
+    ])
 def test_invalid_output_falls_back(enabled, raw):
-    entities, meta = intake.interpret('my car at 150kmph', provider=Provider(raw=raw))
-    assert meta['fallbackUsed'] and meta['failureReason']
-    assert any(e['type'] == 'OBSERVED_SPEED' and e['normalizedValue'] == '150' for e in entities)
+    with pytest.raises(intake.IntakeFailure) as caught:
+        intake.interpret('my car at 150kmph', provider=Provider(raw=raw))
+    assert not caught.value.metadata['fallbackUsed']
+
 
 
 @pytest.mark.parametrize('error', ['INFERENCE_TIMEOUT', 'RUNTIME_UNREACHABLE', 'OUTPUT_TRUNCATED'])
 def test_runtime_errors(enabled, error):
-    entities, meta = intake.interpret('my car', provider=Provider(error=error))
-    assert entities and meta['failureReason'] == error and meta['fallbackUsed']
+    with pytest.raises(intake.IntakeFailure) as caught:
+        intake.interpret('my car', provider=Provider(error=error))
+    assert caught.value.reason==error and not caught.value.metadata['fallbackUsed']
 
 
 def test_unavailable_does_not_invoke_generation(enabled):
     p = Provider()
     p.availability = lambda: {'models': {'llama3.2-3b': {'available': False, 'status': 'not_installed'}}}
-    _, meta = intake.interpret('car', provider=p)
-    assert not p.calls and not meta['modelCalled'] and meta['failureReason'] == 'NOT_INSTALLED'
+    with pytest.raises(intake.IntakeFailure) as caught:
+        intake.interpret('car', provider=p)
+    assert not p.calls and not caught.value.metadata['modelCalled'] and caught.value.reason=='NOT_INSTALLED'
 
 
 def test_ambiguity_negation_and_conflicts(enabled):
@@ -177,7 +181,7 @@ def test_ollama_adapter_receives_intake_schema(enabled, monkeypatch, model_id):
     assert not meta['fallbackUsed']
     path, payload = requests[-1]
     assert path == '/api/chat' and payload['model'] == intake.MODELS[model_id].runtime_name
-    assert 'POLICE_INVOLVEMENT' in payload['format']['$defs']['Mention']['properties']['slot']['enum']
+    assert 'police_involvement' in payload['format']['properties']['facts']['properties']
     assert payload['options']['temperature'] == 0
 
 

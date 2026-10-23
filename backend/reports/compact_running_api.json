@@ -1,0 +1,539 @@
+{
+  "events": [
+    {
+      "path": "/matters/8dfd157d-f8c6-40c2-bb3a-7a4c950e18c6",
+      "status": 200,
+      "seconds": 0.234
+    },
+    {
+      "path": "/matters/8dfd157d-f8c6-40c2-bb3a-7a4c950e18c6/analyze",
+      "status": 200,
+      "seconds": 5.547
+    },
+    {
+      "path": "/matters",
+      "status": 201,
+      "seconds": 0.031
+    },
+    {
+      "path": "/matters/a32e11d6-1f0a-4c46-a655-ae5bd3d4d3af/analyze",
+      "status": 200,
+      "seconds": 3.719
+    },
+    {
+      "path": "/matters/a32e11d6-1f0a-4c46-a655-ae5bd3d4d3af/answers",
+      "status": 200,
+      "seconds": 0.078
+    }
+  ],
+  "originalMatter": {
+    "id": "8dfd157d-f8c6-40c2-bb3a-7a4c950e18c6",
+    "stage": "NEEDS_CLARIFICATION",
+    "metadata": {
+      "method": "local_slm",
+      "fallbackUsed": false,
+      "promptVersion": "intake-compact-v4",
+      "modelCalled": true,
+      "referenceDatetime": "2026-10-23T10:01:03.123603+05:30",
+      "requestedModel": "llama3.2-3b",
+      "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+      "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+      "generationParameters": {
+        "temperature": 0,
+        "maxTokens": 640,
+        "timeoutSeconds": 60.0
+      },
+      "rejectedMentions": [
+        {
+          "slot": "VEHICLE_CLASS",
+          "quote": "I am",
+          "reason": "UNGROUNDED_MENTION"
+        },
+        {
+          "slot": "LOCATION",
+          "quote": "on the highway",
+          "reason": "UNGROUNDED_MENTION"
+        },
+        {
+          "slot": "OBSERVED_SPEED_UNIT",
+          "quote": "in",
+          "reason": "UNSUPPORTED_SPEED_UNIT"
+        }
+      ],
+      "unassignedMentions": [],
+      "latencyMs": 3984,
+      "installedDigest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+      "entityCount": 5,
+      "promptTokens": 267,
+      "outputTokens": 56
+    },
+    "facts": [
+      {
+        "id": "event_date_0",
+        "key": "EVENT_DATE",
+        "label": "Event Date",
+        "value": "yesturday",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "2026-10-22",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "yesturday",
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "clear",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:08.606655Z"
+      },
+      {
+        "id": "observed_speed_1",
+        "key": "OBSERVED_SPEED",
+        "label": "Observed Speed",
+        "value": "150",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "150",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "150",
+        "interpretationNotes": [
+          "Unit assumed: km/h for this India-focused app. You did not specify a unit; confirm or correct it during review."
+        ],
+        "unitSource": "context_default",
+        "unit": "km/h",
+        "approximate": false,
+        "uncertainty": "unit_assumed_for_india",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:08.606655Z"
+      },
+      {
+        "id": "road_type_2",
+        "key": "ROAD_TYPE",
+        "label": "Road Type",
+        "value": "highway",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "other",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "highway",
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "clear",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:08.606655Z"
+      },
+      {
+        "id": "state_3",
+        "key": "STATE",
+        "label": "State",
+        "value": "andhra pradesh",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "Andhra Pradesh",
+        "normalizedId": "JX_IN_AP",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "andhra pradesh",
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "clear",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:08.606655Z"
+      },
+      {
+        "id": "location_4",
+        "key": "LOCATION",
+        "label": "Location",
+        "value": "highway",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "highway",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "highway",
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "clear",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:08.606655Z"
+      }
+    ],
+    "question": {
+      "id": "q-intent-1",
+      "slot": "INTENT",
+      "question": "The issue is uncertain. Which issue would you like help with first?",
+      "type": "options",
+      "options": [
+        {
+          "label": "Illegal Overtaking",
+          "value": "INT011"
+        },
+        {
+          "label": "Licence Class Requirement",
+          "value": "INT022"
+        },
+        {
+          "label": "Wrong Way Driving",
+          "value": "INT009"
+        },
+        {
+          "label": "Traffic Speeding",
+          "value": "INT002"
+        },
+        {
+          "label": "Another motor-vehicle issue",
+          "value": "OTHER"
+        },
+        {
+          "label": "Outside motor-vehicle law / none of these",
+          "value": "OUT_OF_SCOPE"
+        }
+      ],
+      "why": "Confirm the topic before asking issue-specific questions. A model prediction is not a confirmed fact."
+    }
+  },
+  "qaMatter": {
+    "id": "a32e11d6-1f0a-4c46-a655-ae5bd3d4d3af",
+    "metadata": {
+      "method": "local_slm",
+      "fallbackUsed": false,
+      "promptVersion": "intake-compact-v4",
+      "modelCalled": true,
+      "referenceDatetime": "2026-10-23T10:01:08.689988+05:30",
+      "requestedModel": "llama3.2-3b",
+      "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+      "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+      "generationParameters": {
+        "temperature": 0,
+        "maxTokens": 640,
+        "timeoutSeconds": 60.0
+      },
+      "rejectedMentions": [
+        {
+          "slot": "VEHICLE_CLASS",
+          "quote": "I am",
+          "reason": "UNGROUNDED_MENTION"
+        },
+        {
+          "slot": "LOCATION",
+          "quote": "on the highway",
+          "reason": "UNGROUNDED_MENTION"
+        },
+        {
+          "slot": "OBSERVED_SPEED_UNIT",
+          "quote": "in",
+          "reason": "UNSUPPORTED_SPEED_UNIT"
+        }
+      ],
+      "unassignedMentions": [],
+      "latencyMs": 3625,
+      "installedDigest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+      "entityCount": 5,
+      "promptTokens": 267,
+      "outputTokens": 56
+    },
+    "facts": [
+      {
+        "id": "event_date_0",
+        "key": "EVENT_DATE",
+        "label": "Event Date",
+        "value": "yesturday",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "2026-10-22",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "yesturday",
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "clear",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:12.385706Z"
+      },
+      {
+        "id": "observed_speed_1",
+        "key": "OBSERVED_SPEED",
+        "label": "Observed Speed",
+        "value": "150",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "150",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "150",
+        "interpretationNotes": [
+          "Unit assumed: km/h for this India-focused app. You did not specify a unit; confirm or correct it during review."
+        ],
+        "unitSource": "context_default",
+        "unit": "km/h",
+        "approximate": false,
+        "uncertainty": "unit_assumed_for_india",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:12.385706Z"
+      },
+      {
+        "id": "road_type_2",
+        "key": "ROAD_TYPE",
+        "label": "Road Type",
+        "value": "highway",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "other",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "highway",
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "clear",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:12.385706Z"
+      },
+      {
+        "id": "state_3",
+        "key": "STATE",
+        "label": "State",
+        "value": "andhra pradesh",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "Andhra Pradesh",
+        "normalizedId": "JX_IN_AP",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "andhra pradesh",
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "clear",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:12.385706Z"
+      },
+      {
+        "id": "location_4",
+        "key": "LOCATION",
+        "label": "Location",
+        "value": "highway",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "highway",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "highway",
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "clear",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:12.385706Z"
+      }
+    ],
+    "question": {
+      "id": "q-VEHICLE_CLASS-2",
+      "slot": "VEHICLE_CLASS",
+      "question": "What type of vehicle was involved?",
+      "type": "text",
+      "why": "Vehicle type can affect which rule applies."
+    }
+  },
+  "carFollowup": {
+    "seconds": 6.281,
+    "question": null,
+    "stage": "READY_FOR_REVIEW",
+    "facts": [
+      {
+        "id": "event_date_0",
+        "key": "EVENT_DATE",
+        "label": "Event Date",
+        "value": "yesturday",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "2026-10-22",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "yesturday",
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "clear",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:12.385706Z"
+      },
+      {
+        "id": "observed_speed_1",
+        "key": "OBSERVED_SPEED",
+        "label": "Observed Speed",
+        "value": "150",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "150",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "150",
+        "interpretationNotes": [
+          "Unit assumed: km/h for this India-focused app. You did not specify a unit; confirm or correct it during review."
+        ],
+        "unitSource": "context_default",
+        "unit": "km/h",
+        "approximate": false,
+        "uncertainty": "unit_assumed_for_india",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:12.385706Z"
+      },
+      {
+        "id": "road_type_2",
+        "key": "ROAD_TYPE",
+        "label": "Road Type",
+        "value": "highway",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "other",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "highway",
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "clear",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:12.385706Z"
+      },
+      {
+        "id": "state_3",
+        "key": "STATE",
+        "label": "State",
+        "value": "andhra pradesh",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "Andhra Pradesh",
+        "normalizedId": "JX_IN_AP",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "andhra pradesh",
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "clear",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:12.385706Z"
+      },
+      {
+        "id": "location_4",
+        "key": "LOCATION",
+        "label": "Location",
+        "value": "highway",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "highway",
+        "sourceMessageId": "user-initial",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "highway",
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "clear",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:31:12.385706Z"
+      },
+      {
+        "id": "164d800a-6afb-421b-a6d6-652fdc628e0b",
+        "key": "VEHICLE_CLASS",
+        "label": "Vehicle type",
+        "value": "car",
+        "state": "provided",
+        "provenance": "USER_PROVIDED",
+        "confirmed": false,
+        "requiresConfirmation": true,
+        "normalizedValue": "Motor Car",
+        "normalizedId": "VC_MOTORCAR",
+        "sourceMessageId": "5787f2db-9b55-4061-a661-28fe7b5243f1",
+        "extractionMethod": "local_slm_extractive",
+        "sourceText": "car",
+        "interpretationNotes": [],
+        "approximate": false,
+        "uncertainty": "clear",
+        "resolutionStatus": "resolved",
+        "updatedAt": "2026-10-23T04:32:38.068009Z"
+      }
+    ],
+    "extractionHistory": [
+      {
+        "messageId": "5787f2db-9b55-4061-a661-28fe7b5243f1",
+        "method": "local_slm",
+        "fallbackUsed": false,
+        "promptVersion": "intake-compact-v4",
+        "modelCalled": true,
+        "referenceDatetime": "2026-10-23T10:02:32.773083+05:30",
+        "requestedModel": "llama3.2-3b",
+        "runtimeModel": "llama3.2:3b-instruct-q4_K_M",
+        "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+        "generationParameters": {
+          "temperature": 0,
+          "maxTokens": 640,
+          "timeoutSeconds": 60.0
+        },
+        "rejectedMentions": [
+          {
+            "slot": "EVENT_DATE",
+            "quote": "2026-10-22",
+            "reason": "UNGROUNDED_MENTION"
+          },
+          {
+            "slot": "OBSERVED_SPEED",
+            "quote": "150",
+            "reason": "UNGROUNDED_MENTION"
+          },
+          {
+            "slot": "OBSERVED_SPEED",
+            "quote": "km/h",
+            "reason": "UNGROUNDED_MENTION"
+          },
+          {
+            "slot": "ROAD_TYPE",
+            "quote": "other",
+            "reason": "UNGROUNDED_MENTION"
+          },
+          {
+            "slot": "STATE",
+            "quote": "Andhra Pradesh",
+            "reason": "UNGROUNDED_MENTION"
+          },
+          {
+            "slot": "LOCATION",
+            "quote": "highway",
+            "reason": "UNGROUNDED_MENTION"
+          }
+        ],
+        "unassignedMentions": [],
+        "latencyMs": 5234,
+        "installedDigest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+        "entityCount": 1,
+        "promptTokens": 375,
+        "outputTokens": 65
+      }
+    ]
+  }
+}

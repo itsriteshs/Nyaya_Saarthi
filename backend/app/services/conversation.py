@@ -4,7 +4,6 @@ import json
 import re
 from uuid import uuid4
 from app.services.nlp.ontology import ontology
-from app.services.nlp.entity_extractor import extract
 from app.services.nlp.normalizer import normalize
 from app.services.nlp.slm_extractor import interpret
 from app.services.nlp.language import analyze_language
@@ -15,6 +14,7 @@ TIMELINE = re.compile(r"\b(?:yesterday|today|last\s+month|renewed|before|after|p
 POSITIVE = re.compile(r"^(?:yes|haan|ha|हाँ|जी\s+हाँ)$", re.I)
 NEGATIVE = re.compile(r"^(?:no|nahi|नहीं)$", re.I)
 BOOL_SLOTS = {'INJURY_PRESENT','DEATH_PRESENT','OTHER_VEHICLE_IDENTIFIED','EVIDENCE_AVAILABLE','POLICE_REPORTED'}
+ADDITIVE_SLOTS = {'LOCATION','ROAD_NAME','POLICE_INVOLVEMENT'}
 TEXT_SLOTS = {'CITY','LOCATION','ROAD_NAME','USER_ROLE','LICENCE_CLASS','REGISTRATION_NUMBER'}
 DATE_SLOTS = {'EVENT_DATE','CHALLAN_DATE'}
 
@@ -158,6 +158,10 @@ def recompute(context):
     entities=[{'type':f['key'],'normalizedValue':f.get('normalizedValue') or f['value'],
                'status':'unresolved' if f['key'] in conflicted else f.get('resolutionStatus','resolved')}
               for f in context.get('facts',[]) if f.get('state')!='unknown']
+    for slot in ADDITIVE_SLOTS:
+        grouped=[e for e in entities if e['type']==slot]
+        if len(grouped)>1 and all(e['status']=='resolved' for e in grouped):
+            entities=[e for e in entities if e['type']!=slot]+[{'type':slot,'status':'resolved','normalizedValue':'; '.join(str(e['normalizedValue']) for e in grouped)}]
     detected=detect_slots(context.get('nlpAnalysis',{}).get('intent',{}).get('id'),entities,
                           required_slots={'STATE','EVENT_DATE'}, configured_rows=_rows(context))
     missing=[item['slot'] for item in detected['missingSlots']]
@@ -205,10 +209,11 @@ def initialize(context):
         fact.update(normalizedValue=entity.get('normalizedValue'),normalizedId=entity.get('normalizedId'),
                     sourceMessageId='user-initial',extractionMethod=entity.get('method'),
                     resolutionStatus=entity['status'],sourceText=entity['text'],
-                    unit=entity.get('unit'),approximate=entity.get('approximate'),uncertainty=entity.get('uncertainty'),updatedAt=now())
+                    interpretationNotes=entity.get('interpretationNotes',[]),unitSource=entity.get('unitSource'),unit=entity.get('unit'),approximate=entity.get('approximate'),uncertainty=entity.get('uncertainty'),updatedAt=now())
     first_by_slot={}
     for fact in context['facts']:
         if not _has_value(fact) and not (fact['key']=='OBSERVED_SPEED' and fact.get('normalizedValue')):continue
+        if fact['key'] in ADDITIVE_SLOTS:continue
         prior=first_by_slot.get(fact['key'])
         if prior and str(prior.get('normalizedValue') or prior['value'])!=str(fact.get('normalizedValue') or fact['value']):
             conv['contradictions'].append({'id':str(uuid4()),'slot':fact['key'],'previous':prior.copy(),
@@ -267,7 +272,7 @@ def _fact(slot, entity, message_id, context):
             'normalizedValue':entity.get('normalizedValue'),'normalizedId':entity.get('normalizedId'),
             'state':'provided','provenance':'USER_PROVIDED','confirmed':False,'requiresConfirmation':True,
             'sourceMessageId':message_id,'extractionMethod':entity.get('method'),
-            'sourceText':entity['text'],'unit':entity.get('unit'),'approximate':entity.get('approximate'),'uncertainty':entity.get('uncertainty'),
+            'sourceText':entity['text'],'interpretationNotes':entity.get('interpretationNotes',[]),'unitSource':entity.get('unitSource'),'unit':entity.get('unit'),'approximate':entity.get('approximate'),'uncertainty':entity.get('uncertainty'),
             'resolutionStatus':entity.get('status','unresolved'),'updatedAt':now()}
 
 def apply_answer(context, answer, question_id, message_id, reference_datetime=None):
@@ -298,21 +303,26 @@ def apply_answer(context, answer, question_id, message_id, reference_datetime=No
             context['currentQuestion']=question
         return recompute(context)
     existing_conflicts={c['id'] for c in conv['contradictions'] if not c.get('resolved')}
-    entities, extraction_metadata=interpret(clean,reference_datetime,target_slot=target)
+    entities, extraction_metadata=interpret(clean,reference_datetime,target_slot=target,context={'question':question,'facts':context['facts']})
     conv.setdefault('extractionHistory',[]).append({'messageId':message_id,**extraction_metadata})
     if target=='LICENCE_CLASS':
         entities=[e for e in entities if not (e['type']=='VEHICLE_CLASS' and e['text'].casefold()==clean.casefold())]
     chosen=_target_entity(target,clean,entities)
-    candidate=next((f for f in context['facts'] if f['key']=='OBSERVED_SPEED' and f.get('unit')=='unknown'),None)
-    if target=='OBSERVED_SPEED' and candidate and clean.casefold() in {'km/h','kmph','kph'}:
+    unit_mention=next((e for e in entities if e['type']=='OBSERVED_SPEED_UNIT' and e.get('status')=='resolved'),None)
+    candidate=next((f for f in context['facts'] if f['key']=='OBSERVED_SPEED'),None)
+    if target=='OBSERVED_SPEED' and candidate and not chosen and (unit_mention or clean.casefold() in {'km/h','kmph','kph'}):
         chosen={'type':target,'text':candidate['value']+'; unit: '+clean,'value':candidate['normalizedValue'],
-                'normalizedValue':candidate['normalizedValue'],'unit':'km/h','status':'resolved','method':'user_unit_confirmation',
+                'normalizedValue':candidate['normalizedValue'],'unit':unit_mention['unit'] if unit_mention else 'km/h','unitSource':'user_provided','interpretationNotes':[],'status':'resolved' if not unit_mention or unit_mention['unit']=='km/h' else 'unresolved','method':'user_unit_confirmation',
                 'normalizedId':None,'approximate':candidate.get('approximate'),'alternatives':[]}
         conv['factHistory'].append({'action':'confirm_speed_unit','previous':candidate.copy(),'at':now()})
+    entities=[e for e in entities if e['type']!='OBSERVED_SPEED_UNIT']
     if chosen and chosen not in entities:entities.append(chosen)
     for entity in entities:
         slot=target if entity is chosen else entity['type']
         incoming=_fact(slot,entity,message_id,context)
+        if slot in ADDITIVE_SLOTS:
+            if not any(f['key']==slot and f['value']==incoming['value'] for f in context['facts']):context['facts'].append(incoming)
+            continue
         prior=next((f for f in context['facts'] if f['key']==slot and (_has_value(f) or slot=='OBSERVED_SPEED' and f.get('normalizedValue'))),None)
         if prior and str(prior.get('normalizedValue') or prior['value']).casefold()!=str(incoming.get('normalizedValue') or incoming['value']).casefold():
             existing=next((c for c in conv['contradictions'] if c['slot']==slot and not c.get('resolved')),None)
@@ -340,13 +350,15 @@ def apply_answer(context, answer, question_id, message_id, reference_datetime=No
 def revise_fact(context, fact_id, value):
     fact=next((f for f in context['facts'] if f['id']==fact_id),None)
     if not fact:raise KeyError(fact_id)
-    entity=_target_entity(fact['key'],value,[normalize(e) for e in extract(value)])
+    entities, metadata=interpret(value,target_slot=fact['key'])
+    state(context).setdefault('extractionHistory',[]).append({'action':'edit_fact',**metadata})
+    entity=_target_entity(fact['key'],value,entities)
     if entity is None or entity.get('status')!='resolved':raise ValueError('Could not normalize the corrected value')
     state(context)['factHistory'].append({'action':'edit','previous':fact.copy(),'at':now()})
     fact.update(value=value.strip(),normalizedValue=entity.get('normalizedValue'),normalizedId=entity.get('normalizedId'),
                 state='provided',provenance='USER_PROVIDED',confirmed=False,requiresConfirmation=True,
                 resolutionStatus='resolved',extractionMethod='user_correction',sourceText=value.strip(),
-                unit=entity.get('unit'),approximate=entity.get('approximate'),uncertainty=None,updatedAt=now())
+                interpretationNotes=entity.get('interpretationNotes',[]),unitSource=entity.get('unitSource'),unit=entity.get('unit'),approximate=entity.get('approximate'),uncertainty=None,updatedAt=now())
     for conflict in state(context)['contradictions']:
         if conflict['slot']==fact['key'] and not conflict.get('resolved'):conflict['resolved']=True
     context.pop('guidance',None);context.pop('verifiedAt',None)
