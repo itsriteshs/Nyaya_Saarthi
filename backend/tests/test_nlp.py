@@ -58,6 +58,35 @@ def test_entities_and_grounded_normalization():
     assert normalize(next(e for e in extract("bike") if e["type"] == "VEHICLE_CLASS"))["status"] == "ambiguous"
 
 
+def test_colloquial_unitless_speed_routes_to_speeding_without_assuming_a_unit():
+    result = analyze("i was doing over 150 can i be fined?")
+    assert result.intent.id == "INT002"
+    assert result.intent.needsClarification
+    speed = next(e for e in result.entities if e.type == "OBSERVED_SPEED")
+    assert speed.value == "150" and speed.status == "ambiguous"
+    assert speed.normalizedValue is None and speed.unit is None
+    assert any(slot.slot == "OBSERVED_SPEED" for slot in result.missingSlots)
+    assert not [e for e in extract("I was doing over 150 pushups") if e['type']=='OBSERVED_SPEED']
+
+
+def test_colloquial_speed_matter_asks_for_context_instead_of_wrong_issue(client):
+    created = client.post('/api/v1/matters', json={
+        'originalText': 'i was doing over 150 can i be fined?', 'language': 'auto'}).json()
+    analyzed = client.post(f"/api/v1/matters/{created['id']}/analyze", json={
+        'revision': created['revision']})
+    assert analyzed.status_code == 200, analyzed.text
+    matter = analyzed.json()
+    assert matter['nlpAnalysis']['intent']['id'] == 'INT002'
+    assert matter['currentQuestion']['slot'] == 'INTENT'
+    assert any(option['value']=='INT002' for option in matter['currentQuestion']['options'])
+    from app.services.conversation import _question, _target_entity
+    assert 'unit' in _question(matter, 'OBSERVED_SPEED')['question'].lower()
+    assert _target_entity('OBSERVED_SPEED', '150', []) is None
+    assert _target_entity('OBSERVED_SPEED', '150 km/h', [])['normalizedValue'] == '150'
+    speed = next(f for f in matter['facts'] if f['key'] == 'OBSERVED_SPEED')
+    assert speed['resolutionStatus'] == 'ambiguous'
+
+
 def test_status_negation_and_age_gap():
     yes = [normalize(e) for e in extract("I received a challan")]
     no = [normalize(e) for e in extract("I did not receive a challan")]

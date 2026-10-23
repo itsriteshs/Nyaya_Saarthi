@@ -10,6 +10,14 @@ from app.config import DATASET_DIR, BACKEND_DIR
 from app.services.dataset_loader import load_dataset
 
 SPEED=re.compile(r'(?<!\w)(?:(?:about|around|maybe|लगभग)\s+)?(?P<value>\d{2,3})\s*(?P<unit>km\s*/\s*h|kmph|kph|किमी\s*/\s*घंटा|किलोमीटर\s+प्रति\s+घंटा)(?!\w)',re.I)
+UNITLESS_SPEED_CUE=re.compile(
+    r'(?<!\w)(?:(?P<doing>doing)\s+(?:over|above|more\s+than)|'
+    r'(?:going|driving|drove|travell?ing)\s+(?:at|over|above|more\s+than))'
+    r'\s+(?P<value>\d{2,3})(?!\d|\s*(?:km\s*/\s*h|kmph|kph))',re.I)
+
+def unitless_speed_matches(text):
+    traffic_context=re.search(r'\b(?:fin(?:e|ed)|speed(?:ing)?|road|traffic|car|bike|vehicle|challan|driv\w*)\b',text,re.I)
+    return [m for m in UNITLESS_SPEED_CUE.finditer(text) if not m.group('doing') or traffic_context]
 DATE_ISO=re.compile(r'\b\d{4}-\d{2}-\d{2}\b')
 DATE_WORD=re.compile(r'\b\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\b',re.I)
 ROAD=re.compile(r'\b(?:expressway|national highway|state highway|service road|parking area|city road|highway|motorway|village road|residential road|urban road)\b|एक्सप्रेसवे|हाईवे|राजमार्ग',re.I)
@@ -52,6 +60,9 @@ def extract(text: str, reference_datetime: datetime | None=None, status_values=N
         entities.append({'type':kind,'text':match.group(0),'value':value or match.group(0),
                          'start':match.start(),'end':match.end(),'method':method,'confidence':None})
     for m in SPEED.finditer(text): add('OBSERVED_SPEED',m,m.group('value'))
+    for m in unitless_speed_matches(text):
+        if not any(e['type']=='OBSERVED_SPEED' and e['start']<m.end() and m.start()<e['end'] for e in entities):
+            add('OBSERVED_SPEED',m,m.group('value'),'unitless_speed_cue')
     # Explicit noun/status pairs are clause-scoped; unrelated documents cannot lend a status.
     document_names={
         'INSURANCE_STATUS':r'insurance|policy|बीमा',
