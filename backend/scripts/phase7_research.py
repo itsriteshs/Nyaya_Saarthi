@@ -4,6 +4,9 @@ import csv
 import hashlib
 import json
 import platform
+import time
+import io
+import joblib
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
@@ -13,6 +16,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import MultinomialNB
 from app.config import BACKEND_DIR, DATASET_DIR
 from app.services.research.metrics import classification, paired_delta, ratio, prf, wilson
 
@@ -33,11 +37,21 @@ def nlp(out):
     x=[normalize_text(r["text"]) for r in train]; y=[r["primary_intent_id"] for r in train]
     xd=[normalize_text(r["text"]) for r in dev]; gold=[r["primary_intent_id"] for r in dev]
     predictions={}; scores={}
-    for name,estimator in [("linear_svc",LinearSVC(random_state=471)),("logistic_regression",LogisticRegression(max_iter=1000,random_state=471))]:
+    for name,estimator in [("linear_svc",LinearSVC(random_state=471)),("logistic_regression",LogisticRegression(max_iter=1000,random_state=471)),("multinomial_nb",MultinomialNB(alpha=1.0))]:
         model=Pipeline([("tfidf",TfidfVectorizer(analyzer="char_wb",ngram_range=(3,5),min_df=2,max_features=100000)),("classifier",estimator)])
-        model.fit(x,y)
-        predictions[name]=model.predict(xd).tolist()
+        started=time.perf_counter();model.fit(x,y);train_ms=(time.perf_counter()-started)*1000
+        latencies=[];pred=[]
+        for item in xd:
+            started=time.perf_counter();pred.append(str(model.predict([item])[0]));latencies.append((time.perf_counter()-started)*1000)
+        predictions[name]=pred
         scores[name]=classification(gold,predictions[name])
+        buffer=io.BytesIO();joblib.dump(model,buffer,compress=3)
+        scores[name].update({"trainingMs":train_ms,"meanInferenceMs":float(np.mean(latencies)),
+            "medianInferenceMs":float(np.median(latencies)),"p95InferenceMs":float(np.quantile(latencies,.95)),
+            "artifactBytes":len(buffer.getvalue()),"predictionsPerSecond":1000/float(np.mean(latencies)),
+            "incorrectN":sum(a!=b for a,b in zip(gold,pred)),"abstentionRate":None,
+            "scoreType":"uncalibrated decision margin" if name=="linear_svc" else "model class score; no calibration study"})
+        (out/(name+".joblib")).write_bytes(buffer.getvalue())
     from app.services.nlp.intent_classifier import load_intent_model
     runtime,meta=load_intent_model()
     predictions["production_svc"]=runtime.predict(xd).tolist()
@@ -55,7 +69,8 @@ def nlp(out):
         languages[name]={**classification(lang_gold,pred),"coverage":ratio(len(answered),len(dev)),
                          "accuracyOnAnswered":ratio(sum(pred[i]==lang_gold[i] for i in answered),len(answered))}
     vocab=build_status_vocabulary({r["utterance_id"] for r in train})
-    totals={"span":[0,0,0],"slot":[0,0,0]}; records=[]
+    totals={"span":[0,0,0],"slot":[0,0,0],"missing":[0,0,0]}; records=[]; multilingual={}; missing_exact=0
+    from app.services.nlp.slot_detector import detect_slots
     for i,r in enumerate(dev):
         found=[normalize(e) for e in extract(r["text"],status_values=vocab)]
         annotated=json.loads(r["entity_annotations_json"] or "[]")
@@ -63,6 +78,14 @@ def nlp(out):
         ps={(e["type"],e["start"],e["end"]) for e in found}
         for key,a,b in [("span",gs,ps),("slot",{e[0] for e in gs},{e[0] for e in ps})]:
             for j,value in enumerate((len(a&b),len(b-a),len(a-b))): totals[key][j]+=value
+        mg=set(filter(None,r["missing_slots"].split("|")))
+        mp={v["slot"] for v in detect_slots(predictions["production_svc"][i],found)["missingSlots"]}
+        for j,v in enumerate((len(mg&mp),len(mp-mg),len(mg-mp))):totals["missing"][j]+=v
+        missing_exact+=mg==mp
+        language=lang_gold[i];entry=multilingual.setdefault(language,{"n":0,"correctIntent":0,"span":[0,0,0],"missing":[0,0,0]})
+        entry["n"]+=1;entry["correctIntent"]+=gold[i]==predictions["production_svc"][i]
+        for key,a,b in (("span",gs,ps),("missing",mg,mp)):
+            for j,v in enumerate((len(a&b),len(b-a),len(a-b))):entry[key][j]+=v
         records.append({"id":r["utterance_id"],"goldIntent":gold[i],"intent":{k:v[i] for k,v in predictions.items()},
                         "goldLanguage":lang_gold[i],"rawLanguage":lang_raw[i],"policyLanguage":lang_policy[i],
                         "entities":found,"goldEntities":annotated})
@@ -70,7 +93,9 @@ def nlp(out):
     return {"n":len(dev),"trainN":len(train),"testEvaluated":0,"manifestSHA256":sha(manifest),"datasetSHA256":sha(dataset),
             "intent":scores,"intentDelta":paired_delta([a==b for a,b in zip(gold,predictions["linear_svc"])],
                                                        [a==b for a,b in zip(gold,predictions["logistic_regression"])]),
-            "language":languages,"deterministicEntities":{k:prf(*v) for k,v in totals.items()},
+            "language":languages,"deterministicEntities":{k:prf(*v) for k,v in totals.items() if k!="missing"},
+            "missingSlots":{**prf(*totals["missing"]),"exactSetAccuracy":missing_exact/len(dev)},
+            "byLanguage":{k:{"n":v["n"],"intentAccuracy":v["correctIntent"]/v["n"],"span":prf(*v["span"]),"missingSlots":prf(*v["missing"])} for k,v in multilingual.items()},
             "limitations":["Development labels pending human review; not independent performance.",
                            "Paired SVC/LR fit identical train rows and character features; production model separately includes ontology examples.",
                            "Language models and thresholds already selected using development data.",

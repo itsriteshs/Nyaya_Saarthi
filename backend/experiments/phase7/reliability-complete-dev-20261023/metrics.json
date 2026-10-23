@@ -1,0 +1,906 @@
+{
+  "schemaVersion": 1,
+  "runId": "reliability-complete-dev-20261023",
+  "timestamp": "2026-10-23T13:57:36.104301+00:00",
+  "split": "automated component/API fixture tests; not human or model QA evaluation",
+  "reviewStatus": "executable assertions",
+  "testing": {
+    "n": 148,
+    "passed": 148,
+    "failed": 0,
+    "cases": [
+      {
+        "name": "test_health_and_docs",
+        "module": "backend.tests.test_api",
+        "seconds": 0.047,
+        "status": "passed"
+      },
+      {
+        "name": "test_dataset_endpoints",
+        "module": "backend.tests.test_api",
+        "seconds": 0.212,
+        "status": "passed"
+      },
+      {
+        "name": "test_matter_lifecycle",
+        "module": "backend.tests.test_api",
+        "seconds": 0.045,
+        "status": "passed"
+      },
+      {
+        "name": "test_invalid_requests",
+        "module": "backend.tests.test_api",
+        "seconds": 0.018,
+        "status": "passed"
+      },
+      {
+        "name": "test_cors_and_size_limit",
+        "module": "backend.tests.test_api",
+        "seconds": 0.012,
+        "status": "passed"
+      },
+      {
+        "name": "test_realistic_context_round_trip",
+        "module": "backend.tests.test_api",
+        "seconds": 0.04,
+        "status": "passed"
+      },
+      {
+        "name": "test_nested_matter_contract_validation",
+        "module": "backend.tests.test_api",
+        "seconds": 0.022,
+        "status": "passed"
+      },
+      {
+        "name": "test_wire_budget_and_core_absence_are_explicit",
+        "module": "backend.tests.test_compact_intake",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "test_compact_retains_conflicting_numbers_and_context",
+        "module": "backend.tests.test_compact_intake",
+        "seconds": 0.0,
+        "status": "passed"
+      },
+      {
+        "name": "test_compact_invalid_structure_fails[{\"facts\":{\"speed\":\"150\"}}]",
+        "module": "backend.tests.test_compact_intake",
+        "seconds": 0.0,
+        "status": "passed"
+      },
+      {
+        "name": "test_compact_invalid_structure_fails[{\"facts\":{\"speed\":[150]}}]",
+        "module": "backend.tests.test_compact_intake",
+        "seconds": 0.0,
+        "status": "passed"
+      },
+      {
+        "name": "test_compact_invalid_structure_fails[{\"facts\":{},\"charges\":\"guilty\"}]",
+        "module": "backend.tests.test_compact_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_invented_quote_does_not_become_a_fact",
+        "module": "backend.tests.test_compact_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_question_answer_persistence_and_revision",
+        "module": "backend.tests.test_conversation",
+        "seconds": 0.248,
+        "status": "passed"
+      },
+      {
+        "name": "test_multifact_answer_and_verification_gate",
+        "module": "backend.tests.test_conversation",
+        "seconds": 0.051,
+        "status": "passed"
+      },
+      {
+        "name": "test_fact_edit_confirmation_and_history",
+        "module": "backend.tests.test_conversation",
+        "seconds": 0.049,
+        "status": "passed"
+      },
+      {
+        "name": "test_conflicting_claims_are_preserved_and_block_verification",
+        "module": "backend.tests.test_conversation",
+        "seconds": 0.046,
+        "status": "passed"
+      },
+      {
+        "name": "test_explicit_verification_and_protected_patch",
+        "module": "backend.tests.test_conversation",
+        "seconds": 0.092,
+        "status": "passed"
+      },
+      {
+        "name": "test_multilingual_templates_and_relative_date",
+        "module": "backend.tests.test_conversation",
+        "seconds": 0.083,
+        "status": "passed"
+      },
+      {
+        "name": "test_unknowns_require_acknowledgement_without_faking_completeness",
+        "module": "backend.tests.test_conversation",
+        "seconds": 0.133,
+        "status": "passed"
+      },
+      {
+        "name": "test_urgent_accident_notice_precedes_ordinary_question",
+        "module": "backend.tests.test_conversation",
+        "seconds": 0.037,
+        "status": "passed"
+      },
+      {
+        "name": "test_motorcycle_subtype_clarification",
+        "module": "backend.tests.test_conversation",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "test_urgent_assistance_respects_negation_and_independent_injuries",
+        "module": "backend.tests.test_conversation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_loader_csv_jsonl_and_bom",
+        "module": "backend.tests.test_dataset_validation",
+        "seconds": 0.033,
+        "status": "passed"
+      },
+      {
+        "name": "test_reference_formats",
+        "module": "backend.tests.test_dataset_validation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_complete_audit",
+        "module": "backend.tests.test_dataset_validation",
+        "seconds": 0.855,
+        "status": "passed"
+      },
+      {
+        "name": "test_missing_placeholder_and_duplicate_ids",
+        "module": "backend.tests.test_dataset_validation",
+        "seconds": 0.021,
+        "status": "passed"
+      },
+      {
+        "name": "test_synthetic_query_and_form_namespace",
+        "module": "backend.tests.test_dataset_validation",
+        "seconds": 0.031,
+        "status": "passed"
+      },
+      {
+        "name": "test_review_dimensions_and_malformed_record_value",
+        "module": "backend.tests.test_dataset_validation",
+        "seconds": 0.006,
+        "status": "passed"
+      },
+      {
+        "name": "test_general_state_normalization[andrapradesh]",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_general_state_normalization[AndhraPradesh]",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_general_state_normalization[Andhra Prdesh]",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_general_state_normalization[tamilnadu]",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_ambiguous_or_unknown_state_not_guessed[Pradesh]",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_ambiguous_or_unknown_state_not_guessed[India]",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_ambiguous_or_unknown_state_not_guessed[somewhere]",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_ambiguous_or_unknown_state_not_guessed[Atlantis]",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_assumptions_and_relative_date_are_visible",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_context_spans_not_false_conflicts_and_verification_required",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.042,
+        "status": "passed"
+      },
+      {
+        "name": "test_unit_reply_is_slm_interpreted_with_context",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.028,
+        "status": "passed"
+      },
+      {
+        "name": "test_one_bad_mention_does_not_erase_valid_facts",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_stated_mph_never_defaults_to_kmph",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_model_unit_uncertainty_does_not_reject_literal_unit",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_assumed_unit_skips_repeat_but_hypothetical_stays_open",
+        "module": "backend.tests.test_flexible_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_context_survives[Main road-ROAD_TYPE-other]",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_context_survives[In a school zone-LOCATION-school zone]",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_missing_unit_and_conflicting_speed",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.038,
+        "status": "passed"
+      },
+      {
+        "name": "test_attributed_speed_is_not_a_legal_threshold",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_grounding_gates_retained[changes0-UNLINKED_CLAIM]",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_grounding_gates_retained[changes1-UNKNOWN_EVIDENCE_ID]",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_grounding_gates_retained[changes2-UNKNOWN_SECTION]",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_grounding_gates_retained[changes3-DEFINITE_OUTCOME]",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.0,
+        "status": "passed"
+      },
+      {
+        "name": "test_grounding_gates_retained[changes4-UNSUPPORTED_PENALTY]",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_grounding_gates_retained[changes5-UNSUPPORTED_DEADLINE]",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.0,
+        "status": "passed"
+      },
+      {
+        "name": "test_grounding_gates_retained[changes6-OMITTED_UNCERTAINTY]",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_road_context_answer_completes_without_rejection",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_short_answer_schema_prevents_canonical_invention",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_no_evidence_never_calls_model",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_other_road_keeps_separate_context",
+        "module": "backend.tests.test_intake_guidance_revision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_uncertain_prediction_does_not_choose_workflow_without_user",
+        "module": "backend.tests.test_issue_confirmation",
+        "seconds": 0.044,
+        "status": "passed"
+      },
+      {
+        "name": "test_outside_scope_cannot_verify_even_with_unknown_acknowledgement",
+        "module": "backend.tests.test_issue_confirmation",
+        "seconds": 0.039,
+        "status": "passed"
+      },
+      {
+        "name": "test_another_domain_exposes_all_ontology_choices",
+        "module": "backend.tests.test_issue_confirmation",
+        "seconds": 0.054,
+        "status": "passed"
+      },
+      {
+        "name": "test_scoped_status_witness_and_hindi_state_variants",
+        "module": "backend.tests.test_issue_confirmation",
+        "seconds": 0.006,
+        "status": "passed"
+      },
+      {
+        "name": "test_canonical_vehicle_codes_are_accepted_without_guessing_weights",
+        "module": "backend.tests.test_issue_confirmation",
+        "seconds": 0.007,
+        "status": "passed"
+      },
+      {
+        "name": "test_negated_vehicle_does_not_replace_the_corrected_vehicle",
+        "module": "backend.tests.test_issue_confirmation",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "test_schema_date_destination_and_vehicle_answers_normalize",
+        "module": "backend.tests.test_issue_confirmation",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "test_startup_warms_local_index_before_serving",
+        "module": "backend.tests.test_issue_confirmation",
+        "seconds": 0.006,
+        "status": "passed"
+      },
+      {
+        "name": "test_missing_date_and_state_prevent_operational_review",
+        "module": "backend.tests.test_issue_confirmation",
+        "seconds": 0.041,
+        "status": "passed"
+      },
+      {
+        "name": "test_optional_ambiguous_mentions_cannot_deadlock_verify",
+        "module": "backend.tests.test_issue_confirmation",
+        "seconds": 0.047,
+        "status": "passed"
+      },
+      {
+        "name": "test_explicit_injuries_are_not_asked_again_and_hypotheticals_are_not_asserted",
+        "module": "backend.tests.test_issue_confirmation",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "test_licence_entitlement_is_not_an_incident_vehicle_fact",
+        "module": "backend.tests.test_issue_confirmation",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "test_source_policy_and_dataset_gaps",
+        "module": "backend.tests.test_legal_phase4",
+        "seconds": 0.005,
+        "status": "passed"
+      },
+      {
+        "name": "test_retrieval_requires_date_and_jurisdiction",
+        "module": "backend.tests.test_legal_phase4",
+        "seconds": 0.009,
+        "status": "passed"
+      },
+      {
+        "name": "test_rule_engine_uses_confirmed_facts_and_abstains_on_speed_lookup",
+        "module": "backend.tests.test_legal_phase4",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_verified_guidance_persists_and_fact_edit_invalidates",
+        "module": "backend.tests.test_legal_phase4",
+        "seconds": 0.142,
+        "status": "passed"
+      },
+      {
+        "name": "test_registry_prompt_parser_and_grounding",
+        "module": "backend.tests.test_llm_phase5",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "test_phase6_parser_alias_and_unsupported_actions_are_safe",
+        "module": "backend.tests.test_llm_phase5",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_fake_provider_and_fallback",
+        "module": "backend.tests.test_llm_phase5",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "test_models_and_revision_gate",
+        "module": "backend.tests.test_llm_phase5",
+        "seconds": 0.125,
+        "status": "passed"
+      },
+      {
+        "name": "test_generation_endpoint_persists_fallback_and_rejects_stale",
+        "module": "backend.tests.test_llm_phase5",
+        "seconds": 0.107,
+        "status": "passed"
+      },
+      {
+        "name": "test_preprocessing_preserves_meaning_and_original_spans",
+        "module": "backend.tests.test_nlp",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_language_script_and_uncertainty",
+        "module": "backend.tests.test_nlp",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "test_intent_baseline_returns_ontology_ids_and_alternatives",
+        "module": "backend.tests.test_nlp",
+        "seconds": 0.035,
+        "status": "passed"
+      },
+      {
+        "name": "test_entities_and_grounded_normalization",
+        "module": "backend.tests.test_nlp",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "test_status_negation_and_age_gap",
+        "module": "backend.tests.test_nlp",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "test_status_phrase_vocabulary_uses_only_allowed_training_rows",
+        "module": "backend.tests.test_nlp",
+        "seconds": 0.0,
+        "status": "passed"
+      },
+      {
+        "name": "test_slot_requirements_are_intent_specific",
+        "module": "backend.tests.test_nlp",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_nlp_endpoint_validation_and_real_artifact",
+        "module": "backend.tests.test_nlp",
+        "seconds": 0.029,
+        "status": "passed"
+      },
+      {
+        "name": "test_matter_analysis_create_retrieve_and_conflict",
+        "module": "backend.tests.test_nlp",
+        "seconds": 0.093,
+        "status": "passed"
+      },
+      {
+        "name": "test_lime_repeatable_and_reports_real_holdout",
+        "module": "backend.tests.test_phase7_advanced",
+        "seconds": 0.008,
+        "status": "passed"
+      },
+      {
+        "name": "test_examples_are_sanitized_and_exports_bounded",
+        "module": "backend.tests.test_phase7_advanced",
+        "seconds": 0.054,
+        "status": "passed"
+      },
+      {
+        "name": "test_rag_treatments_are_controlled_and_do_not_mutate_original",
+        "module": "backend.tests.test_phase7_advanced",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "test_publication_export_uses_values_and_refuses_overwrite",
+        "module": "backend.tests.test_phase7_advanced",
+        "seconds": 0.914,
+        "status": "passed"
+      },
+      {
+        "name": "test_fusion_sensitivity_changes_only_ranking",
+        "module": "backend.tests.test_phase7_advanced",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "test_relaxed_spans_cannot_double_count",
+        "module": "backend.tests.test_phase7_advanced",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_explicit_facts_are_scoped_and_do_not_reask",
+        "module": "backend.tests.test_remediation",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "test_schema_conditions_are_explicit_not_assumed",
+        "module": "backend.tests.test_remediation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_status_negation_and_date_label_do_not_make_false_facts",
+        "module": "backend.tests.test_remediation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_explicit_destination_and_specialized_dates_keep_their_slots",
+        "module": "backend.tests.test_remediation",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "test_structured_adapter_and_truncation",
+        "module": "backend.tests.test_remediation",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "test_schema_and_language_fail_closed",
+        "module": "backend.tests.test_remediation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_known_server_uncertainty_does_not_assert_an_outcome",
+        "module": "backend.tests.test_remediation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_explicit_age_and_hindi_speed_variations",
+        "module": "backend.tests.test_remediation",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "test_status_phrases_do_not_cross_clause_boundaries",
+        "module": "backend.tests.test_remediation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_contributions_reconstruct_real_margin",
+        "module": "backend.tests.test_research",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "test_binary_attribution",
+        "module": "backend.tests.test_research",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "test_empty_trace_no_fabrication",
+        "module": "backend.tests.test_research",
+        "seconds": 0.0,
+        "status": "passed"
+      },
+      {
+        "name": "test_trace_preserves_conflict_and_claim",
+        "module": "backend.tests.test_research",
+        "seconds": 0.0,
+        "status": "passed"
+      },
+      {
+        "name": "test_denominators_and_uncertainty",
+        "module": "backend.tests.test_research",
+        "seconds": 0.007,
+        "status": "passed"
+      },
+      {
+        "name": "test_probe_includes_clean_and_all_attack_types",
+        "module": "backend.tests.test_research",
+        "seconds": 0.022,
+        "status": "passed"
+      },
+      {
+        "name": "test_reviewed_data_gate",
+        "module": "backend.tests.test_research",
+        "seconds": 0.019,
+        "status": "passed"
+      },
+      {
+        "name": "test_research_contract_and_missing_matter",
+        "module": "backend.tests.test_research",
+        "seconds": 0.084,
+        "status": "passed"
+      },
+      {
+        "name": "test_artifact_absence_and_corruption",
+        "module": "backend.tests.test_research",
+        "seconds": 0.014,
+        "status": "passed"
+      },
+      {
+        "name": "test_selected_workflow_keeps_original_prediction",
+        "module": "backend.tests.test_research",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_primary_model_call_and_schema",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_paraphrases_without_phrase_rules[Police stopped my car beside a school; I clocked 135 km/h.-facts0]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_paraphrases_without_phrase_rules[\\u092e\\u0947\\u0930\\u0940 \\u0915\\u093e\\u0930 \\u0938\\u094d\\u0915\\u0942\\u0932 \\u0915\\u0947 \\u092a\\u093e\\u0938 \\u0932\\u0917\\u092d\\u0917 130 \\u0915\\u093f\\u0932\\u094b\\u092e\\u0940\\u091f\\u0930 \\u092a\\u094d\\u0930\\u0924\\u093f \\u0918\\u0902\\u091f\\u093e \\u091a\\u0932 \\u0930\\u0939\\u0940 \\u0925\\u0940\\u0964-facts1]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_paraphrases_without_phrase_rules[Meri car school ke paas 125kmph thi, police ne roka.-facts2]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_dates[2026-10-21-None-2026-10-21]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_dates[21/10/2026-None-2026-10-21]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_dates[21 October 2026-None-2026-10-21]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_dates[03/04/2026-None-None]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_dates[yesterday-2026-10-22T12:00:00+05:30-2026-10-21]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_dates[\\u0906\\u091c-2026-10-22T12:00:00+05:30-2026-10-22]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_dates[beeta kal-2026-10-22T12:00:00+05:30-2026-10-21]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_dates[kal-2026-10-22T12:00:00+05:30-None]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_dates[yesterday-None-2026-10-21]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_dates[yesterday-2026-10-22T12:00:00-2026-10-21]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_invalid_output_falls_back[not json]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_invalid_output_falls_back[{\"facts\":[],\"charges\":\"speeding\"}]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_invalid_output_falls_back[{\"facts\": [{\"slot\": \"FINE\", \"quote\": \"car\", \"value\": \"car\", \"certainty\": \"clear\", \"approximate\": false}]}]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_invalid_output_falls_back[{\"facts\": [{\"slot\": \"VEHICLE_CLASS\", \"quote\": \"truck\", \"value\": \"truck\", \"certainty\": \"clear\", \"approximate\": false}]}]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_invalid_output_falls_back[{\"facts\": [{\"slot\": \"OBSERVED_SPEED\", \"quote\": \"car\", \"value\": \"150\", \"certainty\": \"clear\", \"approximate\": false}]}]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_invalid_output_falls_back[{\"facts\": [{\"slot\": \"VEHICLE_CLASS\", \"quote\": \"car\", \"value\": \"car\", \"certainty\": \"clear\", \"approximate\": false, \"confirmed\": true}]}]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_runtime_errors[INFERENCE_TIMEOUT]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_runtime_errors[RUNTIME_UNREACHABLE]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_runtime_errors[OUTPUT_TRUNCATED]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_unavailable_does_not_invoke_generation",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_ambiguity_negation_and_conflicts",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_persist_before_question_and_keep_on_issue_confirmation",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.055,
+        "status": "passed"
+      },
+      {
+        "name": "test_initial_conflicts_survive_persistence",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.027,
+        "status": "passed"
+      },
+      {
+        "name": "test_short_quote_cannot_remove_negation",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_ollama_adapter_receives_intake_schema[llama3.2-3b]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_ollama_adapter_receives_intake_schema[mistral-7b]",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_followup_preserves_extras_when_target_missing",
+        "module": "backend.tests.test_slm_intake",
+        "seconds": 0.055,
+        "status": "passed"
+      },
+      {
+        "name": "test_failure_never_calls_legacy_extractor",
+        "module": "backend.tests.test_slm_required",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_busy_is_retryable_without_extraction",
+        "module": "backend.tests.test_slm_required",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "test_failed_initial_analysis_leaves_draft_unchanged",
+        "module": "backend.tests.test_slm_required",
+        "seconds": 0.028,
+        "status": "passed"
+      }
+    ]
+  },
+  "limitations": [
+    "Unit/API assertions are not end-to-end real-user acceptance or legal correctness.",
+    "No model judge runs in this suite; model integration is separately documented."
+  ]
+}

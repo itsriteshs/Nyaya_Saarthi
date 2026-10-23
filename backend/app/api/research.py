@@ -44,3 +44,34 @@ def matter_trace(matter_id: str, session: Session = Depends(get_session)):
     if matter is None:
         raise HTTPException(404, "Matter not found")
     return trace(matter.model_dump(mode="json"))
+
+
+@router.get("/runs/{run_id}/examples")
+def examples(run_id: str):
+    if not re.fullmatch(r"[A-Za-z0-9_-]{1,80}",run_id):raise HTTPException(422,"Invalid run ID")
+    path=ROOT/"phase7"/run_id
+    summary=read(path/"metrics.json")
+    if summary is None:raise HTTPException(404,"Run unavailable")
+    # Only controlled synthetic studies can expose narrative-bearing rows.
+    if "lime" in summary:return {"cases":summary["lime"].get("cases",[])}
+    if "rag" in summary:return {"cases":summary["rag"].get("records",[])}
+    if "nlp" in summary:
+        try:rows=json.loads((path/"nlp_predictions.json").read_text(encoding="utf-8"))
+        except (OSError,ValueError):raise HTTPException(404,"Predictions unavailable")
+        return {"cases":[{k:r.get(k) for k in ("id","goldIntent","intent","goldLanguage","rawLanguage","policyLanguage")} for r in rows]}
+    return {"cases":[],"reason":"No public sanitized examples for this run"}
+
+
+@router.get("/runs/{run_id}/exports")
+def exports(run_id: str):
+    if not re.fullmatch(r"[A-Za-z0-9_-]{1,80}",run_id):raise HTTPException(422,"Invalid run ID")
+    folder=ROOT/"phase7"/run_id/"publication"
+    return {"files":[p.name for p in sorted(folder.glob("*")) if p.suffix in {".png",".svg",".pdf",".csv",".md"}]}
+
+@router.get("/runs/{run_id}/exports/{filename}")
+def download(run_id: str,filename: str):
+    from fastapi.responses import FileResponse
+    if not re.fullmatch(r"[A-Za-z0-9_-]{1,80}",run_id) or not re.fullmatch(r"[A-Za-z0-9_.-]{1,100}",filename):raise HTTPException(422,"Invalid artifact")
+    path=ROOT/"phase7"/run_id/"publication"/filename
+    if path.suffix not in {".png",".svg",".pdf",".csv",".md"} or not path.is_file():raise HTTPException(404,"Export unavailable")
+    return FileResponse(path,filename=filename)

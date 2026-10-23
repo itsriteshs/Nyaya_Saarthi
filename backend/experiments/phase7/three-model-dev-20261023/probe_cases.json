@@ -1,0 +1,386 @@
+[
+  {
+    "id": "development:negation_reversal:False",
+    "split": "development",
+    "type": "negation_reversal",
+    "corrupt": false,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:negation_reversal:True",
+    "split": "development",
+    "type": "negation_reversal",
+    "corrupt": true,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is not open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:number_swap:False",
+    "split": "development",
+    "type": "number_swap",
+    "corrupt": false,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:number_swap:True",
+    "split": "development",
+    "type": "number_swap",
+    "corrupt": true,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is open under card 99 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:jurisdiction_swap:False",
+    "split": "development",
+    "type": "jurisdiction_swap",
+    "corrupt": false,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:jurisdiction_swap:True",
+    "split": "development",
+    "type": "jurisdiction_swap",
+    "corrupt": true,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Telangana is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:date_version_swap:False",
+    "split": "development",
+    "type": "date_version_swap",
+    "corrupt": false,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:date_version_swap:True",
+    "split": "development",
+    "type": "date_version_swap",
+    "corrupt": true,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2025 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:condition_removal:False",
+    "split": "development",
+    "type": "condition_removal",
+    "corrupt": false,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:condition_removal:True",
+    "split": "development",
+    "type": "condition_removal",
+    "corrupt": true,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:outcome_flip:False",
+    "split": "development",
+    "type": "outcome_flip",
+    "corrupt": false,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:outcome_flip:True",
+    "split": "development",
+    "type": "outcome_flip",
+    "corrupt": true,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is closed under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:cross_document_mismatch:False",
+    "split": "development",
+    "type": "cross_document_mismatch",
+    "corrupt": false,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:cross_document_mismatch:True",
+    "split": "development",
+    "type": "cross_document_mismatch",
+    "corrupt": true,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "The unrelated blue card describes a library.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:unsupported_citation:False",
+    "split": "development",
+    "type": "unsupported_citation",
+    "corrupt": false,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "development:unsupported_citation:True",
+    "split": "development",
+    "type": "unsupported_citation",
+    "corrupt": true,
+    "source": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Amber desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:missing"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:negation_reversal:False",
+    "split": "reserved_probe",
+    "type": "negation_reversal",
+    "corrupt": false,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:negation_reversal:True",
+    "split": "reserved_probe",
+    "type": "negation_reversal",
+    "corrupt": true,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is not open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:number_swap:False",
+    "split": "reserved_probe",
+    "type": "number_swap",
+    "corrupt": false,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:number_swap:True",
+    "split": "reserved_probe",
+    "type": "number_swap",
+    "corrupt": true,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is open under card 99 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:jurisdiction_swap:False",
+    "split": "reserved_probe",
+    "type": "jurisdiction_swap",
+    "corrupt": false,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:jurisdiction_swap:True",
+    "split": "reserved_probe",
+    "type": "jurisdiction_swap",
+    "corrupt": true,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Telangana is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:date_version_swap:False",
+    "split": "reserved_probe",
+    "type": "date_version_swap",
+    "corrupt": false,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:date_version_swap:True",
+    "split": "reserved_probe",
+    "type": "date_version_swap",
+    "corrupt": true,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2025 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:condition_removal:False",
+    "split": "reserved_probe",
+    "type": "condition_removal",
+    "corrupt": false,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:condition_removal:True",
+    "split": "reserved_probe",
+    "type": "condition_removal",
+    "corrupt": true,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:outcome_flip:False",
+    "split": "reserved_probe",
+    "type": "outcome_flip",
+    "corrupt": false,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:outcome_flip:True",
+    "split": "reserved_probe",
+    "type": "outcome_flip",
+    "corrupt": true,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is closed under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:cross_document_mismatch:False",
+    "split": "reserved_probe",
+    "type": "cross_document_mismatch",
+    "corrupt": false,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:cross_document_mismatch:True",
+    "split": "reserved_probe",
+    "type": "cross_document_mismatch",
+    "corrupt": true,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "The unrelated blue card describes a library.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:unsupported_citation:False",
+    "split": "reserved_probe",
+    "type": "unsupported_citation",
+    "corrupt": false,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:card"
+    ],
+    "humanReview": "PENDING"
+  },
+  {
+    "id": "reserved_probe:unsupported_citation:True",
+    "split": "reserved_probe",
+    "type": "unsupported_citation",
+    "corrupt": true,
+    "source": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "hypothesis": "Fictional Cobalt desk in Andhra Pradesh is open under card 12 version 2024 if the desk is staffed.",
+    "evidenceIds": [
+      "EVID:missing"
+    ],
+    "humanReview": "PENDING"
+  }
+]

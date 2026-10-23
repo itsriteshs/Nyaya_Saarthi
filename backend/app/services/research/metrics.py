@@ -23,6 +23,9 @@ def classification(gold,pred):
     return {"n":len(gold),"accuracy":float(accuracy_score(gold,pred)),
             "accuracy95Wilson":wilson(correct,len(gold)),
             "macroF1":float(f1_score(gold,pred,average="macro",zero_division=0)),
+            "macroPrecision":classification_report(gold,pred,output_dict=True,zero_division=0)["macro avg"]["precision"],
+            "macroRecall":classification_report(gold,pred,output_dict=True,zero_division=0)["macro avg"]["recall"],
+            "weightedF1":float(f1_score(gold,pred,average="weighted",zero_division=0)),
             "perClass":classification_report(gold,pred,output_dict=True,zero_division=0),
             "labels":labels,"confusionMatrix":confusion_matrix(gold,pred,labels=labels).tolist()}
 

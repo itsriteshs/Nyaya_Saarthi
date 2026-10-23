@@ -30,3 +30,5 @@ Phase 6 left the original 23 datasets unchanged. The subsequent [quality remedia
 Open **Research** from Home or any workflow header. `/research` displays stored matter traces, signed SVM feature contributions for new analyses, source/claim links, missing trace states, and versioned offline comparisons. It does not run evaluations on page load. Historical results remain explicitly exploratory.
 
 [Phase 7 protocol and commands](backend/reports/PHASE7_RESEARCH_PROTOCOL.md) documents development splits, metric definitions, reproducible runners, local model requirements, and review limitations. New results live under `backend/experiments/phase7/`; no historical outputs or legal datasets are overwritten. NLI, reviewed SLM comparison and blinded human usefulness scores remain unavailable until their prerequisites exist.
+
+Expanded Phase 7 research console, measured development experiments, publication exports, and remaining gaps: [implementation and evidence report](backend/reports/PHASE7_IMPLEMENTATION_REPORT.md). Reproduction commands and exact figure inventory are included.

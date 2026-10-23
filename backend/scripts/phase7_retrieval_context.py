@@ -10,6 +10,12 @@ from scripts.phase7_research import sha,write
 from scripts.phase6_retrieval_eval import ranked,metrics
 from app.services.research.metrics import ratio,paired_delta
 
+def weighted_fusion(lexical,semantic,lexical_weight):
+    values=Counter()
+    for ranking,weight in ((lexical,lexical_weight),(semantic,1-lexical_weight)):
+        for rank,item in enumerate(ranking,1):values[item]+=weight/(60+rank)
+    return sorted(values,key=lambda item:(-values[item],item))
+
 def run(args):
     if not re.fullmatch(r"[A-Za-z0-9_-]{1,80}",args.run_id): raise ValueError("Invalid run ID")
     out=BACKEND_DIR/"experiments/phase7"/args.run_id;out.mkdir(parents=True,exist_ok=False)
@@ -43,10 +49,10 @@ def run(args):
         for ranking in (lex,sem):
             for rank,item in enumerate(ranking,1):fusion[item]+=1/(60+rank)
         hybrid=sorted(fusion,key=lambda item:(-fusion[item],item))
-        for variant,ranking in [("bm25",lex),("semantic",sem),("hybrid",hybrid)]:
+        for variant,ranking in [("bm25",lex),("semantic",sem),("hybrid",hybrid),("hybrid_lexical25",weighted_fusion(lex,sem,.25)),("hybrid_lexical75",weighted_fusion(lex,sem,.75))]:
             rows.append({"queryId":qid,"variant":variant,"gold":sorted(q["gold"]),
                          "excludedGold":sorted(q["excludedGold"]),"ranking":ranking})
-    results={v:metrics([r for r in rows if r["variant"]==v]) for v in ("bm25","semantic","hybrid")}
+    results={v:metrics([r for r in rows if r["variant"]==v]) for v in ("bm25","semantic","hybrid","hybrid_lexical25","hybrid_lexical75")}
     base=[bool(set(r["ranking"][:1])&set(r["gold"])) for r in rows if r["variant"]=="hybrid" and r["gold"]]
     deltas={v:paired_delta(base,[bool(set(r["ranking"][:1])&set(r["gold"])) for r in rows if r["variant"]==v and r["gold"]]) for v in ("bm25","semantic")}
     conv_path=DATASET_DIR/"adaptive_conversations.jsonl"

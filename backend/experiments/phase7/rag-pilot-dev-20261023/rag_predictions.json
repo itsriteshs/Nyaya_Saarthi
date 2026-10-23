@@ -1,0 +1,348 @@
+[
+  {
+    "caseId": "SYN_SPEED_01",
+    "model": "deterministic",
+    "condition": "R3",
+    "output": {
+      "generatedAt": "2026-10-20T00:56:15.983115+00:00",
+      "directAnswer": "The dataset identifies Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 112(1) as potentially relevant to your confirmed situation. Drivers must stay within the maximum and minimum speed limits set for their vehicle class; the enabling section itself does not set the numeric limits, which come from separate central/state notifications (see legal_sources: SRC_SPEEDLIMIT_SO1522E_2018).",
+      "qualification": "This is legal information, not an offence finding. Source and provision review statuses come from the local dataset; the application has not independently authenticated the linked government pages. No numeric penalty, deadline, or procedural requirement is stated without an eligible supporting record.",
+      "sources": [
+        {
+          "id": "PROV_MVA_S112",
+          "title": "Motor Vehicles Act, 1988 (Act No. 59 of 1988) · Section 112(1)",
+          "authority": "Ministry of Law and Justice (Parliament of India)",
+          "provision": "Section 112(1)",
+          "relevantPoint": "Drivers must stay within the maximum and minimum speed limits set for their vehicle class; the enabling section itself does not set the numeric limits, which come from separate central/state notifications (see legal_sources: SRC_SPEEDLIMIT_SO1522E_2018).",
+          "sourceType": "Act",
+          "sourceUrl": "https://www.indiacode.nic.in/handle/123456789/1798",
+          "evidenceId": "EVID:PROV_MVA_S112",
+          "reviewStatus": "VERIFIED",
+          "admissibility": "eligible"
+        }
+      ],
+      "mappings": [],
+      "uncertainties": [
+        "No structured rule was established as applicable to the confirmed facts.",
+        "Some candidate rules need more confirmed facts or reviewed lookup data.",
+        "Numeric speed-limit records lack legal-source review; no speed threshold or penalty is asserted."
+      ],
+      "nextSteps": [],
+      "suggestedQuestions": [],
+      "metadata": {
+        "indexVersion": "a6183dd22a43ad0b",
+        "sourceFingerprint": "b0521a641e94c970ab3b12b41f66357705feae5acbcf0d3d84cc9dc21ed2cb2c",
+        "retrievalMode": "hybrid",
+        "eventDate": "2026-01-01",
+        "jurisdictionId": "JX_IN_TN",
+        "ruleEvaluations": [
+          {
+            "ruleId": "RULE_SPEED_TN_JUDICIAL_OVERRIDE",
+            "status": "EXCLUDED_UNVERIFIED",
+            "provisionId": "PROV_MVA_S112",
+            "sourceId": "SRC_MVA_1988",
+            "matchedFactIds": [
+              "SYN_SPEED_01:STATE"
+            ],
+            "missingSlots": [],
+            "conditions": [
+              {
+                "predicate": "state",
+                "expected": "Tamil Nadu",
+                "result": "true",
+                "factId": "SYN_SPEED_01:STATE"
+              },
+              {
+                "predicate": "numeric_limit_source",
+                "expected": "SRC_SPEEDLIMIT_SO1522E_2018",
+                "result": "unsupported",
+                "factId": null
+              }
+            ],
+            "exception": {
+              "basis": "CASE_TN_SPEEDLIMIT_MHC_2021 quashed S.O. 1522(E) as applied in Tamil Nadu"
+            },
+            "conclusionType": "ESCALATE_TO_STATE_NOTIFICATION",
+            "conclusionData": {
+              "note": "system must not assert the central 120 km/h figure for Tamil Nadu highways; defer to fresh state notification or mark NOT_VERIFIED"
+            },
+            "reasons": [
+              "EXCEPTION_NOT_EVALUATED",
+              "RULE_NOT_VERIFIED",
+              "UNSUPPORTED_CONDITION"
+            ],
+            "reviewStatus": "UNDER_REVIEW",
+            "file": "rule_logic.csv",
+            "row": 12
+          },
+          {
+            "ruleId": "RULE_SPEED_HGV_LIMIT_CHECK",
+            "status": "INSUFFICIENT_CONTEXT",
+            "provisionId": "PROV_MVA_S112",
+            "sourceId": "SRC_MVA_1988",
+            "matchedFactIds": [],
+            "missingSlots": [
+              "OBSERVED_SPEED"
+            ],
+            "conditions": [
+              {
+                "predicate": "observed_speed_gt",
+                "expected": "lookup:speed_limits.max_speed_kmph",
+                "result": "unknown",
+                "factId": null
+              }
+            ],
+            "exception": {},
+            "conclusionType": "PENALTY_APPLIES",
+            "conclusionData": {
+              "offence_ref": "OFF_SPEEDING_HGV",
+              "numeric_limit_source": "SRC_SPEEDLIMIT_SO1522E_2018"
+            },
+            "reasons": [
+              "REQUIRED_FACT_MISSING",
+              "SPEED_LIMIT_REVIEW_MISSING",
+              "VEHICLE_CLASS_SCOPE_UNPROVEN"
+            ],
+            "reviewStatus": "VERIFIED",
+            "file": "rule_logic.csv",
+            "row": 11
+          },
+          {
+            "ruleId": "RULE_SPEED_LMV_LIMIT_CHECK",
+            "status": "INSUFFICIENT_CONTEXT",
+            "provisionId": "PROV_MVA_S112",
+            "sourceId": "SRC_MVA_1988",
+            "matchedFactIds": [],
+            "missingSlots": [
+              "OBSERVED_SPEED"
+            ],
+            "conditions": [
+              {
+                "predicate": "observed_speed_gt",
+                "expected": "lookup:speed_limits.max_speed_kmph",
+                "result": "unknown",
+                "factId": null
+              }
+            ],
+            "exception": {},
+            "conclusionType": "PENALTY_APPLIES",
+            "conclusionData": {
+              "offence_ref": "OFF_SPEEDING_LMV",
+              "numeric_limit_source": "SRC_SPEEDLIMIT_SO1522E_2018"
+            },
+            "reasons": [
+              "REQUIRED_FACT_MISSING",
+              "SPEED_LIMIT_REVIEW_MISSING",
+              "VEHICLE_CLASS_SCOPE_UNPROVEN"
+            ],
+            "reviewStatus": "VERIFIED",
+            "file": "rule_logic.csv",
+            "row": 9
+          },
+          {
+            "ruleId": "RULE_SPEED_MCWG_LIMIT_CHECK",
+            "status": "INSUFFICIENT_CONTEXT",
+            "provisionId": "PROV_MVA_S112",
+            "sourceId": "SRC_MVA_1988",
+            "matchedFactIds": [],
+            "missingSlots": [
+              "OBSERVED_SPEED"
+            ],
+            "conditions": [
+              {
+                "predicate": "observed_speed_gt",
+                "expected": "lookup:speed_limits.max_speed_kmph",
+                "result": "unknown",
+                "factId": null
+              }
+            ],
+            "exception": {},
+            "conclusionType": "PENALTY_APPLIES",
+            "conclusionData": {
+              "offence_ref": "OFF_SPEEDING_MCWG",
+              "numeric_limit_source": "SRC_SPEEDLIMIT_SO1522E_2018"
+            },
+            "reasons": [
+              "REQUIRED_FACT_MISSING",
+              "SPEED_LIMIT_REVIEW_MISSING",
+              "VEHICLE_CLASS_SCOPE_UNPROVEN"
+            ],
+            "reviewStatus": "VERIFIED",
+            "file": "rule_logic.csv",
+            "row": 10
+          }
+        ],
+        "retrievedEvidence": [
+          {
+            "evidenceId": "EVID:PROV_MVA_S112",
+            "documentId": "provision:PROV_MVA_S112",
+            "rank": 1,
+            "lexicalScore": 0.0,
+            "semanticScore": 0.45024
+          }
+        ],
+        "evidenceIds": [
+          "EVID:PROV_MVA_S112"
+        ],
+        "generationMethod": "DETERMINISTIC_TEMPLATE_V1",
+        "retrievalExclusions": [
+          {
+            "id": "PROV_MVA_S3",
+            "status": "excluded",
+            "reasons": [
+              "DOMAIN_MISMATCH"
+            ]
+          },
+          {
+            "id": "PROV_MVA_S39",
+            "status": "excluded",
+            "reasons": [
+              "DOMAIN_MISMATCH"
+            ]
+          },
+          {
+            "id": "PROV_MVA_S146",
+            "status": "excluded",
+            "reasons": [
+              "DOMAIN_MISMATCH"
+            ]
+          }
+        ],
+        "procedureExclusions": [],
+        "procedureEvidence": [],
+        "penaltyPolicy": "WITHHELD_UNVERIFIED_RELATIONSHIPS"
+      }
+    },
+    "provenance": "frozen baseline",
+    "latencyMs": null
+  },
+  {
+    "caseId": "SYN_SPEED_01",
+    "model": "llama3.2-3b",
+    "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+    "condition": "R0",
+    "schemaPass": false,
+    "output": null,
+    "gateAccepted": null,
+    "languagePass": null,
+    "failure": "OUTPUT_TRUNCATED",
+    "fallback": false,
+    "productionEligible": false,
+    "latencyMs": 83382
+  },
+  {
+    "caseId": "SYN_SPEED_01",
+    "model": "llama3.2-3b",
+    "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+    "condition": "R1",
+    "schemaPass": true,
+    "output": {
+      "answer": "Tamil Nadu में एक वाहन की गति सीमा को नियंत्रित करने के लिए कोई विशिष्ट कानूनी प्रावधान नहीं है। गति सीमा के लिए स separate central/state notifications होते हैं, जो कि स्वयं कानूनी स्रोतों से समायोजित होते हैं।",
+      "explanation": "Section 112(1) में उल्लिखित प्रावधान के अनुसार, ड्राइवरों को अपने वाहन के प्रकार के अनुसार निर्धारित गति सीमाओं के भीतर रहना होता है। हालांकि, गति सीमा के लिए स separate central/state notifications होते हैं, जो कि स्वयं कानूनी स्रोतों से समायोजित होते हैं।",
+      "legalClaims": [
+        {
+          "text": "No structured rule was established as applicable to the confirmed facts.",
+          "evidenceIds": [
+            "EVID:PROV_MVA_S112"
+          ]
+        },
+        {
+          "text": "Some candidate rules need more confirmed facts or reviewed lookup data.",
+          "evidenceIds": [
+            "EVID:PROV_MVA_S112"
+          ]
+        },
+        {
+          "text": "Numeric speed-limit records lack legal-source review; no speed threshold or penalty is asserted.",
+          "evidenceIds": [
+            "EVID:PROV_MVA_S112"
+          ]
+        }
+      ],
+      "uncertainties": [
+        "No structured rule was established as applicable to the confirmed facts.",
+        "Some candidate rules need more confirmed facts or reviewed lookup data.",
+        "Numeric speed-limit records lack legal-source review; no speed threshold or penalty is asserted."
+      ],
+      "recommendedActions": [],
+      "language": "english",
+      "requiresHumanHelp": true
+    },
+    "gateAccepted": false,
+    "languagePass": true,
+    "failure": null,
+    "fallback": false,
+    "productionEligible": false,
+    "rawOutput": "{\"answer\": \"Tamil Nadu में एक वाहन की गति सीमा को नियंत्रित करने के लिए कोई विशिष्ट कानूनी प्रावधान नहीं है। गति सीमा के लिए स separate central/state notifications होते हैं, जो कि स्वयं कानूनी स्रोतों से समायोजित होते हैं।\", \"explanation\": \"Section 112(1) में उल्लिखित प्रावधान के अनुसार, ड्राइवरों को अपने वाहन के प्रकार के अनुसार निर्धारित गति सीमाओं के भीतर रहना होता है। हालांकि, गति सीमा के लिए स separate central/state notifications होते हैं, जो कि स्वयं कानूनी स्रोतों से समायोजित होते हैं।\", \"legalClaims\": [{\"text\": \"No structured rule was established as applicable to the confirmed facts.\", \"evidenceIds\": [\"EVID:PROV_MVA_S112\"]}, {\"text\": \"Some candidate rules need more confirmed facts or reviewed lookup data.\", \"evidenceIds\": [\"EVID:PROV_MVA_S112\"]}, {\"text\": \"Numeric speed-limit records lack legal-source review; no speed threshold or penalty is asserted.\", \"evidenceIds\": [\"EVID:PROV_MVA_S112\"]}], \"uncertainties\": [\"No structured rule was established as applicable to the confirmed facts.\", \"Some candidate rules need more confirmed facts or reviewed lookup data.\", \"Numeric speed-limit records lack legal-source review; no speed threshold or penalty is asserted.\"], \"recommendedActions\": [], \"language\": \"english\", \"requiresHumanHelp\": true}",
+    "promptTokens": 1548,
+    "outputTokens": 396,
+    "validation": {
+      "accepted": false,
+      "reasonCodes": [
+        "DEFINITE_OUTCOME",
+        "UNLINKED_CLAIM"
+      ],
+      "warningCodes": [],
+      "omittedActions": [],
+      "unsupportedCitations": [],
+      "fallbackRequired": true
+    },
+    "latencyMs": 42498
+  },
+  {
+    "caseId": "SYN_SPEED_01",
+    "model": "llama3.2-3b",
+    "checkpoint": "meta-llama/Llama-3.2-3B-Instruct",
+    "condition": "R2",
+    "schemaPass": false,
+    "output": null,
+    "gateAccepted": null,
+    "languagePass": null,
+    "failure": "OUTPUT_TRUNCATED",
+    "fallback": true,
+    "productionEligible": false,
+    "latencyMs": 66836
+  },
+  {
+    "caseId": "SYN_SPEED_01",
+    "model": "mistral-7b",
+    "checkpoint": "mistralai/Mistral-7B-Instruct-v0.3",
+    "condition": "R0",
+    "schemaPass": false,
+    "output": null,
+    "gateAccepted": null,
+    "languagePass": null,
+    "failure": "INFERENCE_TIMEOUT",
+    "fallback": false,
+    "productionEligible": false,
+    "latencyMs": 90050
+  },
+  {
+    "caseId": "SYN_SPEED_01",
+    "model": "mistral-7b",
+    "checkpoint": "mistralai/Mistral-7B-Instruct-v0.3",
+    "condition": "R1",
+    "schemaPass": false,
+    "output": null,
+    "gateAccepted": null,
+    "languagePass": null,
+    "failure": "INFERENCE_TIMEOUT",
+    "fallback": false,
+    "productionEligible": false,
+    "latencyMs": 90090
+  },
+  {
+    "caseId": "SYN_SPEED_01",
+    "model": "mistral-7b",
+    "checkpoint": "mistralai/Mistral-7B-Instruct-v0.3",
+    "condition": "R2",
+    "schemaPass": false,
+    "output": null,
+    "gateAccepted": null,
+    "languagePass": null,
+    "failure": "INFERENCE_TIMEOUT",
+    "fallback": true,
+    "productionEligible": false,
+    "latencyMs": 90031
+  }
+]

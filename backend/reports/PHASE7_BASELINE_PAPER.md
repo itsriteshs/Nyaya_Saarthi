@@ -1,0 +1,7 @@
+# Team-selected baseline
+
+User-selected source: [AILQA: Evaluating AI-driven legal question answering systems for the indian legal system](https://link.springer.com/article/10.1007/s10506-026-09537-2), DOI 10.1007/s10506-026-09537-2. Authors: Shubham Kumar Nigam, Shubham Kumar Mishra, Noel Shallum, Kripabandhu Ghosh, Arnab Bhattacharya. Published 24 August 2026, Artificial Intelligence and Law.
+
+AILQA studies English criminal-law QA. Its corpus contains approximately 7,221 documents; QA evaluations use 50 and 100 questions, plus 1,158 AIBE questions. Retrieval uses 2,000-character chunks, 250-character overlap, cosine similarity and top-three chunks with Ada/Instructor-XL/Mxbai embeddings. Generators include Davinci, Llama2-70B, Flan-UL2, GPT-3.5 Turbo, Llama3-70B and Mixtral. Evaluations include ROUGE/BLEU, MPNET similarity, legal ratings and GPT-4 judging. Ratings were not blinded. Published Test Set 1 Llama2-70B MPNET averages are 0.611 without context and 0.594 with Ada context (Section 6.1.2); these are not NyayaSaarthi results.
+
+Our semantic-only retrieval and R0/R1 conditions are comparable configurations, not an AILQA reproduction. NyayaSaarthi additionally implements multilingual incident intake, adaptive fact collection, user confirmation, source eligibility, hybrid ranking and rule traces. Existing development diagnostics measure those components separately. The published QA datasets, models and metrics differ; no superiority claim or cross-dataset score comparison is justified. Independent legal evaluation remains necessary.

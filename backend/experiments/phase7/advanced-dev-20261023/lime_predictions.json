@@ -1,0 +1,4700 @@
+[
+  {
+    "id": "U00001",
+    "input": "How can I legally scrap or deregister my bus in Gujarat. Context — RC status: valid. Could you clarify this?",
+    "trueIntent": "INT030",
+    "language": "English",
+    "runs": [
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 471,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT030",
+        "tokens": [
+          {
+            "position": 6,
+            "token": "deregister",
+            "weight": 0.7826247999745506
+          },
+          {
+            "position": 4,
+            "token": "scrap",
+            "weight": 0.7460067834323305
+          },
+          {
+            "position": 3,
+            "token": "legally",
+            "weight": 0.19998209508606596
+          },
+          {
+            "position": 18,
+            "token": "clarify",
+            "weight": -0.12222562245653312
+          },
+          {
+            "position": 10,
+            "token": "gujarat.",
+            "weight": -0.11190994678678319
+          },
+          {
+            "position": 19,
+            "token": "this?",
+            "weight": -0.0684256873869028
+          },
+          {
+            "position": 16,
+            "token": "could",
+            "weight": -0.05282691491699932
+          },
+          {
+            "position": 0,
+            "token": "how",
+            "weight": 0.0397882547523698
+          },
+          {
+            "position": 1,
+            "token": "can",
+            "weight": 0.03576056024220417
+          },
+          {
+            "position": 17,
+            "token": "you",
+            "weight": -0.03484736215237857
+          },
+          {
+            "position": 15,
+            "token": "valid.",
+            "weight": -0.030770685975079915
+          },
+          {
+            "position": 8,
+            "token": "bus",
+            "weight": -0.02293140602991141
+          },
+          {
+            "position": 5,
+            "token": "or",
+            "weight": 0.01136354798527501
+          },
+          {
+            "position": 9,
+            "token": "in",
+            "weight": -0.010663635225554533
+          },
+          {
+            "position": 14,
+            "token": "status:",
+            "weight": 0.008178174693110666
+          },
+          {
+            "position": 11,
+            "token": "context",
+            "weight": -0.0036548547955995024
+          },
+          {
+            "position": 7,
+            "token": "my",
+            "weight": -0.0028558612514622546
+          },
+          {
+            "position": 2,
+            "token": "i",
+            "weight": -0.0027353314265882384
+          },
+          {
+            "position": 13,
+            "token": "rc",
+            "weight": 0.0023961950551357083
+          },
+          {
+            "position": 12,
+            "token": "—",
+            "weight": -0.000358235160194352
+          }
+        ],
+        "trainingR2": 0.9828659705557352,
+        "heldOutR2": 0.9807212034961227,
+        "heldOutAgreement": 0.97,
+        "originalMargin": 1.0310601599392841,
+        "surrogateOriginalMargin": 1.0931021449694778,
+        "latencyMs": 387,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 472,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT030",
+        "tokens": [
+          {
+            "position": 6,
+            "token": "deregister",
+            "weight": 0.7859443769337472
+          },
+          {
+            "position": 4,
+            "token": "scrap",
+            "weight": 0.7677915291624615
+          },
+          {
+            "position": 3,
+            "token": "legally",
+            "weight": 0.19159946628868607
+          },
+          {
+            "position": 10,
+            "token": "gujarat.",
+            "weight": -0.11991333787735828
+          },
+          {
+            "position": 18,
+            "token": "clarify",
+            "weight": -0.10495343715656993
+          },
+          {
+            "position": 19,
+            "token": "this?",
+            "weight": -0.06891054495793983
+          },
+          {
+            "position": 16,
+            "token": "could",
+            "weight": -0.040955783548531785
+          },
+          {
+            "position": 1,
+            "token": "can",
+            "weight": 0.03993833899654483
+          },
+          {
+            "position": 15,
+            "token": "valid.",
+            "weight": -0.03128612469345426
+          },
+          {
+            "position": 5,
+            "token": "or",
+            "weight": 0.027264423674366288
+          },
+          {
+            "position": 17,
+            "token": "you",
+            "weight": -0.02725755004631751
+          },
+          {
+            "position": 8,
+            "token": "bus",
+            "weight": -0.023758414235590237
+          },
+          {
+            "position": 12,
+            "token": "—",
+            "weight": -0.014452380301731228
+          },
+          {
+            "position": 9,
+            "token": "in",
+            "weight": -0.013183907990153891
+          },
+          {
+            "position": 14,
+            "token": "status:",
+            "weight": 0.010691227598526214
+          },
+          {
+            "position": 13,
+            "token": "rc",
+            "weight": -0.00942744395977631
+          },
+          {
+            "position": 2,
+            "token": "i",
+            "weight": -0.00934547422663
+          },
+          {
+            "position": 0,
+            "token": "how",
+            "weight": 0.008836981929175581
+          },
+          {
+            "position": 7,
+            "token": "my",
+            "weight": -0.006177876145552434
+          },
+          {
+            "position": 11,
+            "token": "context",
+            "weight": -0.0010498114905684109
+          }
+        ],
+        "trainingR2": 0.981980085691376,
+        "heldOutR2": 0.9791712829329161,
+        "heldOutAgreement": 0.91,
+        "originalMargin": 1.0310601599392841,
+        "surrogateOriginalMargin": 1.0934965864502642,
+        "latencyMs": 79,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 473,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT030",
+        "tokens": [
+          {
+            "position": 6,
+            "token": "deregister",
+            "weight": 0.7802884253694943
+          },
+          {
+            "position": 4,
+            "token": "scrap",
+            "weight": 0.7485593176587918
+          },
+          {
+            "position": 3,
+            "token": "legally",
+            "weight": 0.1821861482284848
+          },
+          {
+            "position": 10,
+            "token": "gujarat.",
+            "weight": -0.12967018273253483
+          },
+          {
+            "position": 18,
+            "token": "clarify",
+            "weight": -0.10679928243701306
+          },
+          {
+            "position": 19,
+            "token": "this?",
+            "weight": -0.08335408036636247
+          },
+          {
+            "position": 16,
+            "token": "could",
+            "weight": -0.06719302801348948
+          },
+          {
+            "position": 1,
+            "token": "can",
+            "weight": 0.04874831262641493
+          },
+          {
+            "position": 15,
+            "token": "valid.",
+            "weight": -0.03491016718283351
+          },
+          {
+            "position": 17,
+            "token": "you",
+            "weight": -0.03397074362243072
+          },
+          {
+            "position": 8,
+            "token": "bus",
+            "weight": -0.022875318664939612
+          },
+          {
+            "position": 5,
+            "token": "or",
+            "weight": 0.022354634327879007
+          },
+          {
+            "position": 14,
+            "token": "status:",
+            "weight": 0.015818865391769157
+          },
+          {
+            "position": 0,
+            "token": "how",
+            "weight": 0.012074023434072436
+          },
+          {
+            "position": 13,
+            "token": "rc",
+            "weight": 0.009991381774226865
+          },
+          {
+            "position": 7,
+            "token": "my",
+            "weight": 0.0055306123611339394
+          },
+          {
+            "position": 9,
+            "token": "in",
+            "weight": -0.005283615624966157
+          },
+          {
+            "position": 2,
+            "token": "i",
+            "weight": -0.0021602763409968874
+          },
+          {
+            "position": 12,
+            "token": "—",
+            "weight": -0.00014975956011255333
+          },
+          {
+            "position": 11,
+            "token": "context",
+            "weight": 8.4048635090572e-05
+          }
+        ],
+        "trainingR2": 0.9854028402379024,
+        "heldOutR2": 0.9845027728036352,
+        "heldOutAgreement": 0.98,
+        "originalMargin": 1.0310601599392841,
+        "surrogateOriginalMargin": 1.0832103060071665,
+        "latencyMs": 79,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 471,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT030",
+        "tokens": [
+          {
+            "position": 6,
+            "token": "deregister",
+            "weight": 0.8014668853765656
+          },
+          {
+            "position": 4,
+            "token": "scrap",
+            "weight": 0.7711934497700179
+          },
+          {
+            "position": 3,
+            "token": "legally",
+            "weight": 0.2005456200205324
+          },
+          {
+            "position": 10,
+            "token": "gujarat.",
+            "weight": -0.12301329689117373
+          },
+          {
+            "position": 18,
+            "token": "clarify",
+            "weight": -0.11390624816004467
+          },
+          {
+            "position": 19,
+            "token": "this?",
+            "weight": -0.06861662964293254
+          },
+          {
+            "position": 16,
+            "token": "could",
+            "weight": -0.05981608255970746
+          },
+          {
+            "position": 1,
+            "token": "can",
+            "weight": 0.04004164175345213
+          },
+          {
+            "position": 15,
+            "token": "valid.",
+            "weight": -0.037461136098716735
+          },
+          {
+            "position": 17,
+            "token": "you",
+            "weight": -0.03532597171821782
+          },
+          {
+            "position": 0,
+            "token": "how",
+            "weight": 0.033863004675342624
+          },
+          {
+            "position": 8,
+            "token": "bus",
+            "weight": -0.02207078386888798
+          },
+          {
+            "position": 5,
+            "token": "or",
+            "weight": 0.010058094760677604
+          },
+          {
+            "position": 7,
+            "token": "my",
+            "weight": -0.008470668252733755
+          },
+          {
+            "position": 9,
+            "token": "in",
+            "weight": -0.008239029485419946
+          },
+          {
+            "position": 12,
+            "token": "—",
+            "weight": 0.0030424759080948513
+          },
+          {
+            "position": 2,
+            "token": "i",
+            "weight": 0.0017197325896958812
+          },
+          {
+            "position": 13,
+            "token": "rc",
+            "weight": -0.0010987495845651116
+          },
+          {
+            "position": 14,
+            "token": "status:",
+            "weight": 0.0002709871966216072
+          },
+          {
+            "position": 11,
+            "token": "context",
+            "weight": 0.0002250749132332162
+          }
+        ],
+        "trainingR2": 0.9854437093602527,
+        "heldOutR2": 0.9830457192391433,
+        "heldOutAgreement": 0.92,
+        "originalMargin": 1.0310601599392841,
+        "surrogateOriginalMargin": 1.1021766279453908,
+        "latencyMs": 131,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 472,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT030",
+        "tokens": [
+          {
+            "position": 6,
+            "token": "deregister",
+            "weight": 0.7990094053445965
+          },
+          {
+            "position": 4,
+            "token": "scrap",
+            "weight": 0.7848216103802181
+          },
+          {
+            "position": 3,
+            "token": "legally",
+            "weight": 0.19872647745010855
+          },
+          {
+            "position": 10,
+            "token": "gujarat.",
+            "weight": -0.11904811199819267
+          },
+          {
+            "position": 18,
+            "token": "clarify",
+            "weight": -0.10565775025343818
+          },
+          {
+            "position": 19,
+            "token": "this?",
+            "weight": -0.07420686241813432
+          },
+          {
+            "position": 16,
+            "token": "could",
+            "weight": -0.05062069222920387
+          },
+          {
+            "position": 1,
+            "token": "can",
+            "weight": 0.037526200637211314
+          },
+          {
+            "position": 15,
+            "token": "valid.",
+            "weight": -0.03316860855107324
+          },
+          {
+            "position": 8,
+            "token": "bus",
+            "weight": -0.030498173092984006
+          },
+          {
+            "position": 17,
+            "token": "you",
+            "weight": -0.029402758149280853
+          },
+          {
+            "position": 5,
+            "token": "or",
+            "weight": 0.023693927754547636
+          },
+          {
+            "position": 0,
+            "token": "how",
+            "weight": 0.016260259000614553
+          },
+          {
+            "position": 9,
+            "token": "in",
+            "weight": -0.015213913493711415
+          },
+          {
+            "position": 12,
+            "token": "—",
+            "weight": -0.014615284511920412
+          },
+          {
+            "position": 2,
+            "token": "i",
+            "weight": -0.007924396849225607
+          },
+          {
+            "position": 7,
+            "token": "my",
+            "weight": -0.007275674758705436
+          },
+          {
+            "position": 11,
+            "token": "context",
+            "weight": -0.006208176517586354
+          },
+          {
+            "position": 13,
+            "token": "rc",
+            "weight": -0.003566022722241361
+          },
+          {
+            "position": 14,
+            "token": "status:",
+            "weight": 0.0031118973935350294
+          }
+        ],
+        "trainingR2": 0.983918831113277,
+        "heldOutR2": 0.9796765248947817,
+        "heldOutAgreement": 0.91,
+        "originalMargin": 1.0310601599392841,
+        "surrogateOriginalMargin": 1.0898952011776646,
+        "latencyMs": 134,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 473,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT030",
+        "tokens": [
+          {
+            "position": 6,
+            "token": "deregister",
+            "weight": 0.797663219626106
+          },
+          {
+            "position": 4,
+            "token": "scrap",
+            "weight": 0.7687935753188283
+          },
+          {
+            "position": 3,
+            "token": "legally",
+            "weight": 0.19878312256349895
+          },
+          {
+            "position": 10,
+            "token": "gujarat.",
+            "weight": -0.12828675784271243
+          },
+          {
+            "position": 18,
+            "token": "clarify",
+            "weight": -0.11701306165051134
+          },
+          {
+            "position": 19,
+            "token": "this?",
+            "weight": -0.07971167607030155
+          },
+          {
+            "position": 16,
+            "token": "could",
+            "weight": -0.06785077532284572
+          },
+          {
+            "position": 17,
+            "token": "you",
+            "weight": -0.04656409682967354
+          },
+          {
+            "position": 1,
+            "token": "can",
+            "weight": 0.044436702408108264
+          },
+          {
+            "position": 15,
+            "token": "valid.",
+            "weight": -0.03242421061980203
+          },
+          {
+            "position": 0,
+            "token": "how",
+            "weight": 0.022591267277282858
+          },
+          {
+            "position": 5,
+            "token": "or",
+            "weight": 0.021617546648987886
+          },
+          {
+            "position": 8,
+            "token": "bus",
+            "weight": -0.013755482384199744
+          },
+          {
+            "position": 9,
+            "token": "in",
+            "weight": -0.010685225346238758
+          },
+          {
+            "position": 14,
+            "token": "status:",
+            "weight": 0.008058893732162032
+          },
+          {
+            "position": 13,
+            "token": "rc",
+            "weight": 0.0055718415742162545
+          },
+          {
+            "position": 11,
+            "token": "context",
+            "weight": 0.0053913857195905445
+          },
+          {
+            "position": 7,
+            "token": "my",
+            "weight": 0.004014500953336191
+          },
+          {
+            "position": 2,
+            "token": "i",
+            "weight": 0.0029722748205791563
+          },
+          {
+            "position": 12,
+            "token": "—",
+            "weight": -0.001196328434931024
+          }
+        ],
+        "trainingR2": 0.986003058893537,
+        "heldOutR2": 0.9814134100800976,
+        "heldOutAgreement": 0.95,
+        "originalMargin": 1.0310601599392841,
+        "surrogateOriginalMargin": 1.1045800042566234,
+        "latencyMs": 127,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      }
+    ],
+    "top5Stability300": 1.0
+  },
+  {
+    "id": "U00061",
+    "input": "I have a vehicle-compliance question about my car in Karnataka. What should I check. Context — date: 12 August 2026.",
+    "trueIntent": "INT039",
+    "language": "English",
+    "runs": [
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 471,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT039",
+        "tokens": [
+          {
+            "position": 3,
+            "token": "vehicle-compliance",
+            "weight": 1.7625491993178233
+          },
+          {
+            "position": 9,
+            "token": "karnataka.",
+            "weight": -0.13742460280017002
+          },
+          {
+            "position": 5,
+            "token": "about",
+            "weight": 0.09679728815208119
+          },
+          {
+            "position": 13,
+            "token": "check.",
+            "weight": 0.09525496778486223
+          },
+          {
+            "position": 4,
+            "token": "question",
+            "weight": 0.09005254309715109
+          },
+          {
+            "position": 10,
+            "token": "what",
+            "weight": -0.03452636819098119
+          },
+          {
+            "position": 19,
+            "token": "2026.",
+            "weight": -0.029697523979004346
+          },
+          {
+            "position": 14,
+            "token": "context",
+            "weight": -0.029289336956837584
+          },
+          {
+            "position": 16,
+            "token": "date:",
+            "weight": 0.025751423203597166
+          },
+          {
+            "position": 15,
+            "token": "—",
+            "weight": -0.024882762816460666
+          },
+          {
+            "position": 6,
+            "token": "my",
+            "weight": 0.014477972291171311
+          },
+          {
+            "position": 1,
+            "token": "have",
+            "weight": 0.011729879847199115
+          },
+          {
+            "position": 18,
+            "token": "august",
+            "weight": -0.01125203294451557
+          },
+          {
+            "position": 17,
+            "token": "12",
+            "weight": -0.009868252158972876
+          },
+          {
+            "position": 7,
+            "token": "car",
+            "weight": -0.009178444738148913
+          },
+          {
+            "position": 2,
+            "token": "a",
+            "weight": 0.0070269025024663105
+          },
+          {
+            "position": 0,
+            "token": "i",
+            "weight": -0.006954743355785188
+          },
+          {
+            "position": 8,
+            "token": "in",
+            "weight": -0.006545809528934102
+          },
+          {
+            "position": 12,
+            "token": "i",
+            "weight": -0.002551340062418925
+          },
+          {
+            "position": 11,
+            "token": "should",
+            "weight": 0.0007495313860145908
+          }
+        ],
+        "trainingR2": 0.9919788880164112,
+        "heldOutR2": 0.9892805574509892,
+        "heldOutAgreement": 0.8,
+        "originalMargin": 1.1859267852011395,
+        "surrogateOriginalMargin": 1.248594521654633,
+        "latencyMs": 92,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 472,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT039",
+        "tokens": [
+          {
+            "position": 3,
+            "token": "vehicle-compliance",
+            "weight": 1.7732866726880694
+          },
+          {
+            "position": 9,
+            "token": "karnataka.",
+            "weight": -0.1408348523508975
+          },
+          {
+            "position": 5,
+            "token": "about",
+            "weight": 0.1219185183893133
+          },
+          {
+            "position": 13,
+            "token": "check.",
+            "weight": 0.08321556732887495
+          },
+          {
+            "position": 4,
+            "token": "question",
+            "weight": 0.08287218339261997
+          },
+          {
+            "position": 7,
+            "token": "car",
+            "weight": -0.04184715051689594
+          },
+          {
+            "position": 16,
+            "token": "date:",
+            "weight": 0.03691671773728825
+          },
+          {
+            "position": 14,
+            "token": "context",
+            "weight": -0.030642770546834005
+          },
+          {
+            "position": 11,
+            "token": "should",
+            "weight": -0.026843903653212136
+          },
+          {
+            "position": 19,
+            "token": "2026.",
+            "weight": -0.023051581679183173
+          },
+          {
+            "position": 0,
+            "token": "i",
+            "weight": -0.02029198259420485
+          },
+          {
+            "position": 10,
+            "token": "what",
+            "weight": -0.0201884720372741
+          },
+          {
+            "position": 6,
+            "token": "my",
+            "weight": 0.016589385475740327
+          },
+          {
+            "position": 17,
+            "token": "12",
+            "weight": -0.014716748985913528
+          },
+          {
+            "position": 12,
+            "token": "i",
+            "weight": -0.014002102194997135
+          },
+          {
+            "position": 8,
+            "token": "in",
+            "weight": -0.01249443965300858
+          },
+          {
+            "position": 2,
+            "token": "a",
+            "weight": -0.006417498785433144
+          },
+          {
+            "position": 1,
+            "token": "have",
+            "weight": 0.003966388268945016
+          },
+          {
+            "position": 18,
+            "token": "august",
+            "weight": -0.0026993080624846877
+          },
+          {
+            "position": 15,
+            "token": "—",
+            "weight": 0.002445158894408655
+          }
+        ],
+        "trainingR2": 0.9917500581464416,
+        "heldOutR2": 0.9898332737699064,
+        "heldOutAgreement": 0.88,
+        "originalMargin": 1.1859267852011395,
+        "surrogateOriginalMargin": 1.2283441925977903,
+        "latencyMs": 87,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 473,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT039",
+        "tokens": [
+          {
+            "position": 3,
+            "token": "vehicle-compliance",
+            "weight": 1.7718438482003687
+          },
+          {
+            "position": 9,
+            "token": "karnataka.",
+            "weight": -0.15119905937064806
+          },
+          {
+            "position": 5,
+            "token": "about",
+            "weight": 0.11541413129455462
+          },
+          {
+            "position": 13,
+            "token": "check.",
+            "weight": 0.08543082698832508
+          },
+          {
+            "position": 4,
+            "token": "question",
+            "weight": 0.07910967013992055
+          },
+          {
+            "position": 8,
+            "token": "in",
+            "weight": -0.028584234192294933
+          },
+          {
+            "position": 16,
+            "token": "date:",
+            "weight": 0.025427632012502026
+          },
+          {
+            "position": 17,
+            "token": "12",
+            "weight": -0.020159752645959674
+          },
+          {
+            "position": 14,
+            "token": "context",
+            "weight": -0.01962539225711364
+          },
+          {
+            "position": 19,
+            "token": "2026.",
+            "weight": -0.01910635965724828
+          },
+          {
+            "position": 15,
+            "token": "—",
+            "weight": -0.015839091238406693
+          },
+          {
+            "position": 6,
+            "token": "my",
+            "weight": 0.012936682073364968
+          },
+          {
+            "position": 7,
+            "token": "car",
+            "weight": -0.010373205991037113
+          },
+          {
+            "position": 11,
+            "token": "should",
+            "weight": -0.008462243589020493
+          },
+          {
+            "position": 0,
+            "token": "i",
+            "weight": -0.0075493458934961614
+          },
+          {
+            "position": 1,
+            "token": "have",
+            "weight": -0.005796550385204715
+          },
+          {
+            "position": 18,
+            "token": "august",
+            "weight": -0.003981823986219269
+          },
+          {
+            "position": 12,
+            "token": "i",
+            "weight": -0.0039027884570764647
+          },
+          {
+            "position": 2,
+            "token": "a",
+            "weight": -0.0035073328729893828
+          },
+          {
+            "position": 10,
+            "token": "what",
+            "weight": -0.0005947419389453023
+          }
+        ],
+        "trainingR2": 0.9912686194427498,
+        "heldOutR2": 0.9882778940120461,
+        "heldOutAgreement": 0.81,
+        "originalMargin": 1.1859267852011395,
+        "surrogateOriginalMargin": 1.2445294647461431,
+        "latencyMs": 84,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 471,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT039",
+        "tokens": [
+          {
+            "position": 3,
+            "token": "vehicle-compliance",
+            "weight": 1.8182003049841506
+          },
+          {
+            "position": 9,
+            "token": "karnataka.",
+            "weight": -0.1543422053534471
+          },
+          {
+            "position": 5,
+            "token": "about",
+            "weight": 0.1021093216469221
+          },
+          {
+            "position": 4,
+            "token": "question",
+            "weight": 0.09239895520212615
+          },
+          {
+            "position": 13,
+            "token": "check.",
+            "weight": 0.09010379282573318
+          },
+          {
+            "position": 14,
+            "token": "context",
+            "weight": -0.032523523633369744
+          },
+          {
+            "position": 19,
+            "token": "2026.",
+            "weight": -0.03221065165756827
+          },
+          {
+            "position": 16,
+            "token": "date:",
+            "weight": 0.0296874555139797
+          },
+          {
+            "position": 10,
+            "token": "what",
+            "weight": -0.023975052625526558
+          },
+          {
+            "position": 7,
+            "token": "car",
+            "weight": -0.01809925963339514
+          },
+          {
+            "position": 6,
+            "token": "my",
+            "weight": 0.012595017714250579
+          },
+          {
+            "position": 15,
+            "token": "—",
+            "weight": -0.010392961225708743
+          },
+          {
+            "position": 12,
+            "token": "i",
+            "weight": -0.009704885636657059
+          },
+          {
+            "position": 18,
+            "token": "august",
+            "weight": -0.008604814250758831
+          },
+          {
+            "position": 17,
+            "token": "12",
+            "weight": -0.0074755223280260205
+          },
+          {
+            "position": 8,
+            "token": "in",
+            "weight": -0.006529937997954999
+          },
+          {
+            "position": 1,
+            "token": "have",
+            "weight": 0.005827397126860761
+          },
+          {
+            "position": 2,
+            "token": "a",
+            "weight": -0.00421366674211888
+          },
+          {
+            "position": 0,
+            "token": "i",
+            "weight": -0.0025422952739721427
+          },
+          {
+            "position": 11,
+            "token": "should",
+            "weight": -0.0018088391845374628
+          }
+        ],
+        "trainingR2": 0.9932593379362594,
+        "heldOutR2": 0.9933471518732707,
+        "heldOutAgreement": 0.86,
+        "originalMargin": 1.1859267852011395,
+        "surrogateOriginalMargin": 1.2631262830070638,
+        "latencyMs": 143,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 472,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT039",
+        "tokens": [
+          {
+            "position": 3,
+            "token": "vehicle-compliance",
+            "weight": 1.814699153949846
+          },
+          {
+            "position": 9,
+            "token": "karnataka.",
+            "weight": -0.14992333962654564
+          },
+          {
+            "position": 5,
+            "token": "about",
+            "weight": 0.11003877501687108
+          },
+          {
+            "position": 4,
+            "token": "question",
+            "weight": 0.0888063593711071
+          },
+          {
+            "position": 13,
+            "token": "check.",
+            "weight": 0.08666602063685991
+          },
+          {
+            "position": 16,
+            "token": "date:",
+            "weight": 0.033780346686767715
+          },
+          {
+            "position": 14,
+            "token": "context",
+            "weight": -0.0309291040015476
+          },
+          {
+            "position": 7,
+            "token": "car",
+            "weight": -0.029489395249441053
+          },
+          {
+            "position": 19,
+            "token": "2026.",
+            "weight": -0.023920619845090866
+          },
+          {
+            "position": 10,
+            "token": "what",
+            "weight": -0.018577771671167625
+          },
+          {
+            "position": 11,
+            "token": "should",
+            "weight": -0.01658381763076645
+          },
+          {
+            "position": 17,
+            "token": "12",
+            "weight": -0.015193912608772031
+          },
+          {
+            "position": 8,
+            "token": "in",
+            "weight": -0.014379864312261651
+          },
+          {
+            "position": 6,
+            "token": "my",
+            "weight": 0.011883589328720103
+          },
+          {
+            "position": 15,
+            "token": "—",
+            "weight": -0.008111617678000258
+          },
+          {
+            "position": 0,
+            "token": "i",
+            "weight": -0.00759571186019367
+          },
+          {
+            "position": 18,
+            "token": "august",
+            "weight": -0.005700835788572585
+          },
+          {
+            "position": 12,
+            "token": "i",
+            "weight": -0.004227172083780239
+          },
+          {
+            "position": 2,
+            "token": "a",
+            "weight": -0.0036185356179977302
+          },
+          {
+            "position": 1,
+            "token": "have",
+            "weight": 0.0014750586156117363
+          }
+        ],
+        "trainingR2": 0.9931001620551021,
+        "heldOutR2": 0.9924965688761306,
+        "heldOutAgreement": 0.86,
+        "originalMargin": 1.1859267852011395,
+        "surrogateOriginalMargin": 1.2539443126001564,
+        "latencyMs": 140,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 473,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT039",
+        "tokens": [
+          {
+            "position": 3,
+            "token": "vehicle-compliance",
+            "weight": 1.8220161477863226
+          },
+          {
+            "position": 9,
+            "token": "karnataka.",
+            "weight": -0.1588297501300976
+          },
+          {
+            "position": 5,
+            "token": "about",
+            "weight": 0.10364390757338329
+          },
+          {
+            "position": 4,
+            "token": "question",
+            "weight": 0.08449134404133953
+          },
+          {
+            "position": 13,
+            "token": "check.",
+            "weight": 0.07950488751861307
+          },
+          {
+            "position": 17,
+            "token": "12",
+            "weight": -0.027876437308164515
+          },
+          {
+            "position": 16,
+            "token": "date:",
+            "weight": 0.023045141252811166
+          },
+          {
+            "position": 7,
+            "token": "car",
+            "weight": -0.021607546905491347
+          },
+          {
+            "position": 19,
+            "token": "2026.",
+            "weight": -0.019394720481646848
+          },
+          {
+            "position": 14,
+            "token": "context",
+            "weight": -0.015517859622385121
+          },
+          {
+            "position": 8,
+            "token": "in",
+            "weight": -0.013889242953368098
+          },
+          {
+            "position": 6,
+            "token": "my",
+            "weight": 0.01252490278319617
+          },
+          {
+            "position": 15,
+            "token": "—",
+            "weight": -0.011215214873201935
+          },
+          {
+            "position": 11,
+            "token": "should",
+            "weight": -0.010656791206195813
+          },
+          {
+            "position": 10,
+            "token": "what",
+            "weight": -0.010316949152484281
+          },
+          {
+            "position": 1,
+            "token": "have",
+            "weight": -0.008906639673663458
+          },
+          {
+            "position": 12,
+            "token": "i",
+            "weight": 0.008273143511264756
+          },
+          {
+            "position": 2,
+            "token": "a",
+            "weight": -0.005566238583623269
+          },
+          {
+            "position": 18,
+            "token": "august",
+            "weight": -0.0022617754824177283
+          },
+          {
+            "position": 0,
+            "token": "i",
+            "weight": -0.001311560405640512
+          }
+        ],
+        "trainingR2": 0.9926471997977903,
+        "heldOutR2": 0.9929135468041395,
+        "heldOutAgreement": 0.82,
+        "originalMargin": 1.1859267852011395,
+        "surrogateOriginalMargin": 1.259437775116644,
+        "latencyMs": 145,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      }
+    ],
+    "top5Stability300": 1.0
+  },
+  {
+    "id": "U00002",
+    "input": "मेरा लाइसेंस disqualified है। West Bengal में गाड़ी चलाने के लिए इसका क्या मतलब है। संदर्भ — तारीख: 1 September 2026, आपकी भूमिका: victim।",
+    "trueIntent": "INT021",
+    "language": "Hindi",
+    "runs": [
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 471,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT021",
+        "tokens": [
+          {
+            "position": 7,
+            "token": "गाड़ी",
+            "weight": 0.3229213011179833
+          },
+          {
+            "position": 13,
+            "token": "मतलब",
+            "weight": 0.2835439195756394
+          },
+          {
+            "position": 2,
+            "token": "disqualified",
+            "weight": 0.2820068556595083
+          },
+          {
+            "position": 8,
+            "token": "चलाने",
+            "weight": 0.2434882226310331
+          },
+          {
+            "position": 11,
+            "token": "इसका",
+            "weight": 0.20794434977872478
+          },
+          {
+            "position": 23,
+            "token": "victim।",
+            "weight": -0.17751186000919295
+          },
+          {
+            "position": 1,
+            "token": "लाइसेंस",
+            "weight": 0.17468462070853372
+          },
+          {
+            "position": 20,
+            "token": "2026,",
+            "weight": 0.10968420354169438
+          },
+          {
+            "position": 17,
+            "token": "तारीख:",
+            "weight": 0.09471492213729255
+          },
+          {
+            "position": 10,
+            "token": "लिए",
+            "weight": 0.07160362815093851
+          },
+          {
+            "position": 3,
+            "token": "है।",
+            "weight": 0.0648260032175245
+          },
+          {
+            "position": 5,
+            "token": "bengal",
+            "weight": -0.0581051363092621
+          },
+          {
+            "position": 0,
+            "token": "मेरा",
+            "weight": 0.05762359997438283
+          },
+          {
+            "position": 14,
+            "token": "है।",
+            "weight": 0.05050970046394486
+          },
+          {
+            "position": 15,
+            "token": "संदर्भ",
+            "weight": -0.046110192833884234
+          },
+          {
+            "position": 19,
+            "token": "september",
+            "weight": -0.0419157230433104
+          },
+          {
+            "position": 6,
+            "token": "में",
+            "weight": -0.036623786827165265
+          },
+          {
+            "position": 9,
+            "token": "के",
+            "weight": 0.02220844273927351
+          },
+          {
+            "position": 4,
+            "token": "west",
+            "weight": -0.019932307153086345
+          },
+          {
+            "position": 12,
+            "token": "क्या",
+            "weight": 0.01875595801649746
+          },
+          {
+            "position": 21,
+            "token": "आपकी",
+            "weight": -0.012014842459866792
+          },
+          {
+            "position": 22,
+            "token": "भूमिका:",
+            "weight": -0.007114904427829383
+          },
+          {
+            "position": 18,
+            "token": "1",
+            "weight": -0.002526654818997661
+          },
+          {
+            "position": 16,
+            "token": "—",
+            "weight": 0.002514645033994332
+          }
+        ],
+        "trainingR2": 0.9862618805477724,
+        "heldOutR2": 0.9736365257175278,
+        "heldOutAgreement": 0.96,
+        "originalMargin": 1.1119402026167935,
+        "surrogateOriginalMargin": 1.1748249717946941,
+        "latencyMs": 105,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 472,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT021",
+        "tokens": [
+          {
+            "position": 7,
+            "token": "गाड़ी",
+            "weight": 0.32375613693011057
+          },
+          {
+            "position": 13,
+            "token": "मतलब",
+            "weight": 0.28887857968009656
+          },
+          {
+            "position": 2,
+            "token": "disqualified",
+            "weight": 0.2804292948537414
+          },
+          {
+            "position": 8,
+            "token": "चलाने",
+            "weight": 0.25168016583644437
+          },
+          {
+            "position": 11,
+            "token": "इसका",
+            "weight": 0.21202257852963002
+          },
+          {
+            "position": 1,
+            "token": "लाइसेंस",
+            "weight": 0.1811523991272468
+          },
+          {
+            "position": 23,
+            "token": "victim।",
+            "weight": -0.17157199801757683
+          },
+          {
+            "position": 20,
+            "token": "2026,",
+            "weight": 0.11071767111392174
+          },
+          {
+            "position": 17,
+            "token": "तारीख:",
+            "weight": 0.10227321552163621
+          },
+          {
+            "position": 10,
+            "token": "लिए",
+            "weight": 0.06649975016889864
+          },
+          {
+            "position": 14,
+            "token": "है।",
+            "weight": 0.06503007257112722
+          },
+          {
+            "position": 3,
+            "token": "है।",
+            "weight": 0.06017450078290231
+          },
+          {
+            "position": 5,
+            "token": "bengal",
+            "weight": -0.052752884077420646
+          },
+          {
+            "position": 0,
+            "token": "मेरा",
+            "weight": 0.05020802067801878
+          },
+          {
+            "position": 19,
+            "token": "september",
+            "weight": -0.04722723871211884
+          },
+          {
+            "position": 6,
+            "token": "में",
+            "weight": -0.04654230693048146
+          },
+          {
+            "position": 15,
+            "token": "संदर्भ",
+            "weight": -0.04512655001033786
+          },
+          {
+            "position": 4,
+            "token": "west",
+            "weight": -0.0345317513744133
+          },
+          {
+            "position": 21,
+            "token": "आपकी",
+            "weight": -0.02583527423321191
+          },
+          {
+            "position": 9,
+            "token": "के",
+            "weight": 0.012367181918404838
+          },
+          {
+            "position": 18,
+            "token": "1",
+            "weight": 0.010015599793948563
+          },
+          {
+            "position": 22,
+            "token": "भूमिका:",
+            "weight": -0.006686000431225126
+          },
+          {
+            "position": 12,
+            "token": "क्या",
+            "weight": 0.006554810843774624
+          },
+          {
+            "position": 16,
+            "token": "—",
+            "weight": -0.0024495850505031488
+          }
+        ],
+        "trainingR2": 0.9863749821240378,
+        "heldOutR2": 0.980342642714019,
+        "heldOutAgreement": 0.98,
+        "originalMargin": 1.1119402026167935,
+        "surrogateOriginalMargin": 1.1670502397089948,
+        "latencyMs": 103,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 473,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT021",
+        "tokens": [
+          {
+            "position": 7,
+            "token": "गाड़ी",
+            "weight": 0.32728031865974133
+          },
+          {
+            "position": 2,
+            "token": "disqualified",
+            "weight": 0.28294698480806796
+          },
+          {
+            "position": 13,
+            "token": "मतलब",
+            "weight": 0.27880772294413614
+          },
+          {
+            "position": 8,
+            "token": "चलाने",
+            "weight": 0.2437631092047833
+          },
+          {
+            "position": 11,
+            "token": "इसका",
+            "weight": 0.2180184239645521
+          },
+          {
+            "position": 1,
+            "token": "लाइसेंस",
+            "weight": 0.18883456593031908
+          },
+          {
+            "position": 23,
+            "token": "victim।",
+            "weight": -0.17635377738780783
+          },
+          {
+            "position": 20,
+            "token": "2026,",
+            "weight": 0.12027952017745518
+          },
+          {
+            "position": 17,
+            "token": "तारीख:",
+            "weight": 0.10666952964785101
+          },
+          {
+            "position": 10,
+            "token": "लिए",
+            "weight": 0.07157048984772997
+          },
+          {
+            "position": 5,
+            "token": "bengal",
+            "weight": -0.0682266796765522
+          },
+          {
+            "position": 0,
+            "token": "मेरा",
+            "weight": 0.061245531308422516
+          },
+          {
+            "position": 19,
+            "token": "september",
+            "weight": -0.054488563107784736
+          },
+          {
+            "position": 3,
+            "token": "है।",
+            "weight": 0.05276391175549179
+          },
+          {
+            "position": 14,
+            "token": "है।",
+            "weight": 0.051558926222145376
+          },
+          {
+            "position": 15,
+            "token": "संदर्भ",
+            "weight": -0.04435284294471346
+          },
+          {
+            "position": 6,
+            "token": "में",
+            "weight": -0.032429373096567266
+          },
+          {
+            "position": 4,
+            "token": "west",
+            "weight": -0.025648438967378093
+          },
+          {
+            "position": 9,
+            "token": "के",
+            "weight": 0.01593127668136019
+          },
+          {
+            "position": 21,
+            "token": "आपकी",
+            "weight": -0.015129794208058291
+          },
+          {
+            "position": 12,
+            "token": "क्या",
+            "weight": 0.009067849181078223
+          },
+          {
+            "position": 16,
+            "token": "—",
+            "weight": 0.004782770768800268
+          },
+          {
+            "position": 22,
+            "token": "भूमिका:",
+            "weight": -0.001791690399474789
+          },
+          {
+            "position": 18,
+            "token": "1",
+            "weight": -0.0014339402791608206
+          }
+        ],
+        "trainingR2": 0.984615117726192,
+        "heldOutR2": 0.9767184382885289,
+        "heldOutAgreement": 0.97,
+        "originalMargin": 1.1119402026167935,
+        "surrogateOriginalMargin": 1.1797076361136059,
+        "latencyMs": 108,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 471,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT021",
+        "tokens": [
+          {
+            "position": 7,
+            "token": "गाड़ी",
+            "weight": 0.3337898634825548
+          },
+          {
+            "position": 13,
+            "token": "मतलब",
+            "weight": 0.2913867802283113
+          },
+          {
+            "position": 2,
+            "token": "disqualified",
+            "weight": 0.2877957050705644
+          },
+          {
+            "position": 8,
+            "token": "चलाने",
+            "weight": 0.2502099490909765
+          },
+          {
+            "position": 11,
+            "token": "इसका",
+            "weight": 0.21862862576010936
+          },
+          {
+            "position": 1,
+            "token": "लाइसेंस",
+            "weight": 0.18262354323677477
+          },
+          {
+            "position": 23,
+            "token": "victim।",
+            "weight": -0.17792409337695267
+          },
+          {
+            "position": 20,
+            "token": "2026,",
+            "weight": 0.1180413659157596
+          },
+          {
+            "position": 17,
+            "token": "तारीख:",
+            "weight": 0.1041078226755363
+          },
+          {
+            "position": 10,
+            "token": "लिए",
+            "weight": 0.07506694823124622
+          },
+          {
+            "position": 3,
+            "token": "है।",
+            "weight": 0.06362843170566405
+          },
+          {
+            "position": 0,
+            "token": "मेरा",
+            "weight": 0.0589970008049813
+          },
+          {
+            "position": 5,
+            "token": "bengal",
+            "weight": -0.05893634390002317
+          },
+          {
+            "position": 14,
+            "token": "है।",
+            "weight": 0.054056327277823384
+          },
+          {
+            "position": 19,
+            "token": "september",
+            "weight": -0.04705476211344274
+          },
+          {
+            "position": 15,
+            "token": "संदर्भ",
+            "weight": -0.04690067375032157
+          },
+          {
+            "position": 6,
+            "token": "में",
+            "weight": -0.03336366334730857
+          },
+          {
+            "position": 4,
+            "token": "west",
+            "weight": -0.027519335431850932
+          },
+          {
+            "position": 9,
+            "token": "के",
+            "weight": 0.019831128583942637
+          },
+          {
+            "position": 21,
+            "token": "आपकी",
+            "weight": -0.014848411007863787
+          },
+          {
+            "position": 12,
+            "token": "क्या",
+            "weight": 0.012387177398107291
+          },
+          {
+            "position": 22,
+            "token": "भूमिका:",
+            "weight": -0.008413431922355085
+          },
+          {
+            "position": 16,
+            "token": "—",
+            "weight": 0.002225983923343917
+          },
+          {
+            "position": 18,
+            "token": "1",
+            "weight": -0.0005976071797348396
+          }
+        ],
+        "trainingR2": 0.9859487219706791,
+        "heldOutR2": 0.9833274635104168,
+        "heldOutAgreement": 0.94,
+        "originalMargin": 1.1119402026167935,
+        "surrogateOriginalMargin": 1.199120376992649,
+        "latencyMs": 175,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 472,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT021",
+        "tokens": [
+          {
+            "position": 7,
+            "token": "गाड़ी",
+            "weight": 0.3322987995271319
+          },
+          {
+            "position": 2,
+            "token": "disqualified",
+            "weight": 0.29085396196663715
+          },
+          {
+            "position": 13,
+            "token": "मतलब",
+            "weight": 0.28805958750066507
+          },
+          {
+            "position": 8,
+            "token": "चलाने",
+            "weight": 0.25764531509293764
+          },
+          {
+            "position": 11,
+            "token": "इसका",
+            "weight": 0.21704606523036452
+          },
+          {
+            "position": 1,
+            "token": "लाइसेंस",
+            "weight": 0.18549646614687054
+          },
+          {
+            "position": 23,
+            "token": "victim।",
+            "weight": -0.1795369525804593
+          },
+          {
+            "position": 20,
+            "token": "2026,",
+            "weight": 0.1147459049163251
+          },
+          {
+            "position": 17,
+            "token": "तारीख:",
+            "weight": 0.10741880305611773
+          },
+          {
+            "position": 10,
+            "token": "लिए",
+            "weight": 0.07026945216234058
+          },
+          {
+            "position": 14,
+            "token": "है।",
+            "weight": 0.0648208253519422
+          },
+          {
+            "position": 5,
+            "token": "bengal",
+            "weight": -0.060267661433309624
+          },
+          {
+            "position": 3,
+            "token": "है।",
+            "weight": 0.05813744291034721
+          },
+          {
+            "position": 0,
+            "token": "मेरा",
+            "weight": 0.055992687615019826
+          },
+          {
+            "position": 19,
+            "token": "september",
+            "weight": -0.047845496422904435
+          },
+          {
+            "position": 15,
+            "token": "संदर्भ",
+            "weight": -0.044050014762178125
+          },
+          {
+            "position": 6,
+            "token": "में",
+            "weight": -0.04065896451849161
+          },
+          {
+            "position": 4,
+            "token": "west",
+            "weight": -0.034429722228892276
+          },
+          {
+            "position": 21,
+            "token": "आपकी",
+            "weight": -0.019888301022438278
+          },
+          {
+            "position": 9,
+            "token": "के",
+            "weight": 0.01803921589803807
+          },
+          {
+            "position": 12,
+            "token": "क्या",
+            "weight": 0.009367553654045712
+          },
+          {
+            "position": 18,
+            "token": "1",
+            "weight": 0.007820456058106136
+          },
+          {
+            "position": 22,
+            "token": "भूमिका:",
+            "weight": -0.005407796648488266
+          },
+          {
+            "position": 16,
+            "token": "—",
+            "weight": -0.0011223968069681706
+          }
+        ],
+        "trainingR2": 0.9862518117817518,
+        "heldOutR2": 0.9869247689310776,
+        "heldOutAgreement": 0.97,
+        "originalMargin": 1.1119402026167935,
+        "surrogateOriginalMargin": 1.1931971046554448,
+        "latencyMs": 171,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 473,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT021",
+        "tokens": [
+          {
+            "position": 7,
+            "token": "गाड़ी",
+            "weight": 0.3392890506032298
+          },
+          {
+            "position": 13,
+            "token": "मतलब",
+            "weight": 0.29455120820033776
+          },
+          {
+            "position": 2,
+            "token": "disqualified",
+            "weight": 0.29225941473476574
+          },
+          {
+            "position": 8,
+            "token": "चलाने",
+            "weight": 0.25370898832326555
+          },
+          {
+            "position": 11,
+            "token": "इसका",
+            "weight": 0.223695512685911
+          },
+          {
+            "position": 1,
+            "token": "लाइसेंस",
+            "weight": 0.19516745455289738
+          },
+          {
+            "position": 23,
+            "token": "victim।",
+            "weight": -0.17562535349421327
+          },
+          {
+            "position": 20,
+            "token": "2026,",
+            "weight": 0.12299485719789023
+          },
+          {
+            "position": 17,
+            "token": "तारीख:",
+            "weight": 0.11218644613086842
+          },
+          {
+            "position": 10,
+            "token": "लिए",
+            "weight": 0.07504353484920123
+          },
+          {
+            "position": 5,
+            "token": "bengal",
+            "weight": -0.06597513772670874
+          },
+          {
+            "position": 0,
+            "token": "मेरा",
+            "weight": 0.06201067763009971
+          },
+          {
+            "position": 3,
+            "token": "है।",
+            "weight": 0.06050551854575591
+          },
+          {
+            "position": 14,
+            "token": "है।",
+            "weight": 0.053412110365353115
+          },
+          {
+            "position": 19,
+            "token": "september",
+            "weight": -0.05282956368514081
+          },
+          {
+            "position": 15,
+            "token": "संदर्भ",
+            "weight": -0.04166115352755708
+          },
+          {
+            "position": 6,
+            "token": "में",
+            "weight": -0.03678005686373527
+          },
+          {
+            "position": 4,
+            "token": "west",
+            "weight": -0.03012074484055678
+          },
+          {
+            "position": 9,
+            "token": "के",
+            "weight": 0.020035966614732892
+          },
+          {
+            "position": 21,
+            "token": "आपकी",
+            "weight": -0.012205078696794694
+          },
+          {
+            "position": 12,
+            "token": "क्या",
+            "weight": 0.011375551123984853
+          },
+          {
+            "position": 18,
+            "token": "1",
+            "weight": -0.0035524646177305915
+          },
+          {
+            "position": 22,
+            "token": "भूमिका:",
+            "weight": -0.0032337400952214173
+          },
+          {
+            "position": 16,
+            "token": "—",
+            "weight": 0.0012862425813466893
+          }
+        ],
+        "trainingR2": 0.9858089115113399,
+        "heldOutR2": 0.9843504718192578,
+        "heldOutAgreement": 0.99,
+        "originalMargin": 1.1119402026167935,
+        "surrogateOriginalMargin": 1.2168088663235412,
+        "latencyMs": 163,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      }
+    ],
+    "top5Stability300": 1.0
+  },
+  {
+    "id": "U00075",
+    "input": "थोड़ी मदद चाहिए—12 August 2026 को Maharashtra में मेरा सड़क हादसा हुआ। अब मुझे क्या करना चाहिए। संदर्भ — चोट की स्थिति: yes।",
+    "trueIntent": "INT048",
+    "language": "Hindi",
+    "runs": [
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 471,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT048",
+        "tokens": [
+          {
+            "position": 10,
+            "token": "हादसा",
+            "weight": 0.5200744414845735
+          },
+          {
+            "position": 11,
+            "token": "हुआ।",
+            "weight": 0.24475600994207755
+          },
+          {
+            "position": 12,
+            "token": "अब",
+            "weight": 0.21479126626151146
+          },
+          {
+            "position": 2,
+            "token": "चाहिए—12",
+            "weight": -0.16773410378161943
+          },
+          {
+            "position": 9,
+            "token": "सड़क",
+            "weight": 0.12437515905135044
+          },
+          {
+            "position": 0,
+            "token": "थोड़ी",
+            "weight": -0.1076002680566537
+          },
+          {
+            "position": 15,
+            "token": "करना",
+            "weight": 0.09610585070372926
+          },
+          {
+            "position": 16,
+            "token": "चाहिए।",
+            "weight": 0.09423027377699246
+          },
+          {
+            "position": 8,
+            "token": "मेरा",
+            "weight": 0.09074794657556283
+          },
+          {
+            "position": 13,
+            "token": "मुझे",
+            "weight": 0.07487275710410783
+          },
+          {
+            "position": 1,
+            "token": "मदद",
+            "weight": -0.07063234480469291
+          },
+          {
+            "position": 6,
+            "token": "maharashtra",
+            "weight": -0.06659125309613799
+          },
+          {
+            "position": 21,
+            "token": "स्थिति:",
+            "weight": 0.05802569959432234
+          },
+          {
+            "position": 5,
+            "token": "को",
+            "weight": -0.04308327507403722
+          },
+          {
+            "position": 19,
+            "token": "चोट",
+            "weight": 0.036609465393988544
+          },
+          {
+            "position": 3,
+            "token": "august",
+            "weight": -0.031625597290250246
+          },
+          {
+            "position": 14,
+            "token": "क्या",
+            "weight": 0.027578736772411398
+          },
+          {
+            "position": 17,
+            "token": "संदर्भ",
+            "weight": -0.010837145595512215
+          },
+          {
+            "position": 7,
+            "token": "में",
+            "weight": -0.010394990966764469
+          },
+          {
+            "position": 18,
+            "token": "—",
+            "weight": -0.0070490011052105036
+          },
+          {
+            "position": 22,
+            "token": "yes।",
+            "weight": 0.006704368137072147
+          },
+          {
+            "position": 4,
+            "token": "2026",
+            "weight": -0.003266632532937355
+          },
+          {
+            "position": 20,
+            "token": "की",
+            "weight": 0.001194364847240741
+          }
+        ],
+        "trainingR2": 0.9864685896702732,
+        "heldOutR2": 0.9830878089955754,
+        "heldOutAgreement": 0.94,
+        "originalMargin": 0.6027605454041216,
+        "surrogateOriginalMargin": 0.6304087152367979,
+        "latencyMs": 94,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 472,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT048",
+        "tokens": [
+          {
+            "position": 10,
+            "token": "हादसा",
+            "weight": 0.5107253224270768
+          },
+          {
+            "position": 11,
+            "token": "हुआ।",
+            "weight": 0.23069451575054517
+          },
+          {
+            "position": 12,
+            "token": "अब",
+            "weight": 0.2037171129510611
+          },
+          {
+            "position": 2,
+            "token": "चाहिए—12",
+            "weight": -0.17624992115056376
+          },
+          {
+            "position": 9,
+            "token": "सड़क",
+            "weight": 0.11781619130092137
+          },
+          {
+            "position": 8,
+            "token": "मेरा",
+            "weight": 0.10134892892389369
+          },
+          {
+            "position": 0,
+            "token": "थोड़ी",
+            "weight": -0.09401889357489539
+          },
+          {
+            "position": 15,
+            "token": "करना",
+            "weight": 0.08896161386016027
+          },
+          {
+            "position": 16,
+            "token": "चाहिए।",
+            "weight": 0.08867585172607398
+          },
+          {
+            "position": 6,
+            "token": "maharashtra",
+            "weight": -0.07322923340774169
+          },
+          {
+            "position": 13,
+            "token": "मुझे",
+            "weight": 0.07264194817381692
+          },
+          {
+            "position": 1,
+            "token": "मदद",
+            "weight": -0.0634635871242785
+          },
+          {
+            "position": 21,
+            "token": "स्थिति:",
+            "weight": 0.049440185211355674
+          },
+          {
+            "position": 5,
+            "token": "को",
+            "weight": -0.03610448749021964
+          },
+          {
+            "position": 19,
+            "token": "चोट",
+            "weight": 0.03500112249030373
+          },
+          {
+            "position": 14,
+            "token": "क्या",
+            "weight": 0.028043316181757476
+          },
+          {
+            "position": 3,
+            "token": "august",
+            "weight": -0.020079575197820658
+          },
+          {
+            "position": 17,
+            "token": "संदर्भ",
+            "weight": -0.012667901043348584
+          },
+          {
+            "position": 7,
+            "token": "में",
+            "weight": -0.011175485443343635
+          },
+          {
+            "position": 22,
+            "token": "yes।",
+            "weight": 0.007022269469274658
+          },
+          {
+            "position": 18,
+            "token": "—",
+            "weight": -0.005565245568036658
+          },
+          {
+            "position": 20,
+            "token": "की",
+            "weight": 0.005496976839194709
+          },
+          {
+            "position": 4,
+            "token": "2026",
+            "weight": -0.003449565626507262
+          }
+        ],
+        "trainingR2": 0.9866291340754992,
+        "heldOutR2": 0.977981635406436,
+        "heldOutAgreement": 0.92,
+        "originalMargin": 0.6027605454041216,
+        "surrogateOriginalMargin": 0.6231093769270089,
+        "latencyMs": 94,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 473,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT048",
+        "tokens": [
+          {
+            "position": 10,
+            "token": "हादसा",
+            "weight": 0.5295757459173583
+          },
+          {
+            "position": 11,
+            "token": "हुआ।",
+            "weight": 0.23839591014146466
+          },
+          {
+            "position": 12,
+            "token": "अब",
+            "weight": 0.21038605849529887
+          },
+          {
+            "position": 2,
+            "token": "चाहिए—12",
+            "weight": -0.1621669818646562
+          },
+          {
+            "position": 9,
+            "token": "सड़क",
+            "weight": 0.13266088809205945
+          },
+          {
+            "position": 0,
+            "token": "थोड़ी",
+            "weight": -0.10735479729325512
+          },
+          {
+            "position": 15,
+            "token": "करना",
+            "weight": 0.09688553681977262
+          },
+          {
+            "position": 16,
+            "token": "चाहिए।",
+            "weight": 0.09217770098192433
+          },
+          {
+            "position": 8,
+            "token": "मेरा",
+            "weight": 0.09190356856682881
+          },
+          {
+            "position": 13,
+            "token": "मुझे",
+            "weight": 0.07009349757875707
+          },
+          {
+            "position": 6,
+            "token": "maharashtra",
+            "weight": -0.06912136807051016
+          },
+          {
+            "position": 1,
+            "token": "मदद",
+            "weight": -0.06590501479318803
+          },
+          {
+            "position": 21,
+            "token": "स्थिति:",
+            "weight": 0.05500324427530795
+          },
+          {
+            "position": 5,
+            "token": "को",
+            "weight": -0.04487886526681379
+          },
+          {
+            "position": 14,
+            "token": "क्या",
+            "weight": 0.027739624478428284
+          },
+          {
+            "position": 17,
+            "token": "संदर्भ",
+            "weight": -0.02418941269596988
+          },
+          {
+            "position": 19,
+            "token": "चोट",
+            "weight": 0.02349296041256559
+          },
+          {
+            "position": 3,
+            "token": "august",
+            "weight": -0.018791494917299915
+          },
+          {
+            "position": 20,
+            "token": "की",
+            "weight": 0.013335949843505075
+          },
+          {
+            "position": 7,
+            "token": "में",
+            "weight": -0.00697510437801616
+          },
+          {
+            "position": 4,
+            "token": "2026",
+            "weight": -0.006508046210509753
+          },
+          {
+            "position": 22,
+            "token": "yes।",
+            "weight": 0.0061645632498352
+          },
+          {
+            "position": 18,
+            "token": "—",
+            "weight": 0.0009325856328891059
+          }
+        ],
+        "trainingR2": 0.9832691526600217,
+        "heldOutR2": 0.9814901265680397,
+        "heldOutAgreement": 0.98,
+        "originalMargin": 0.6027605454041216,
+        "surrogateOriginalMargin": 0.6339473487132495,
+        "latencyMs": 88,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 471,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT048",
+        "tokens": [
+          {
+            "position": 10,
+            "token": "हादसा",
+            "weight": 0.5345976207286898
+          },
+          {
+            "position": 11,
+            "token": "हुआ।",
+            "weight": 0.24983437835925024
+          },
+          {
+            "position": 12,
+            "token": "अब",
+            "weight": 0.21960633631943807
+          },
+          {
+            "position": 2,
+            "token": "चाहिए—12",
+            "weight": -0.16935640905687377
+          },
+          {
+            "position": 9,
+            "token": "सड़क",
+            "weight": 0.12892538445155416
+          },
+          {
+            "position": 0,
+            "token": "थोड़ी",
+            "weight": -0.10262641715808542
+          },
+          {
+            "position": 16,
+            "token": "चाहिए।",
+            "weight": 0.10018072056637486
+          },
+          {
+            "position": 8,
+            "token": "मेरा",
+            "weight": 0.09509319424116229
+          },
+          {
+            "position": 15,
+            "token": "करना",
+            "weight": 0.09402279490367974
+          },
+          {
+            "position": 13,
+            "token": "मुझे",
+            "weight": 0.07469701290060696
+          },
+          {
+            "position": 1,
+            "token": "मदद",
+            "weight": -0.06944867915577149
+          },
+          {
+            "position": 6,
+            "token": "maharashtra",
+            "weight": -0.06419188063252973
+          },
+          {
+            "position": 21,
+            "token": "स्थिति:",
+            "weight": 0.06103367937920176
+          },
+          {
+            "position": 5,
+            "token": "को",
+            "weight": -0.04031563715168577
+          },
+          {
+            "position": 19,
+            "token": "चोट",
+            "weight": 0.03814058189244276
+          },
+          {
+            "position": 14,
+            "token": "क्या",
+            "weight": 0.02884252883929329
+          },
+          {
+            "position": 3,
+            "token": "august",
+            "weight": -0.026654148303784344
+          },
+          {
+            "position": 17,
+            "token": "संदर्भ",
+            "weight": -0.01224463573001407
+          },
+          {
+            "position": 22,
+            "token": "yes।",
+            "weight": 0.009459356783947125
+          },
+          {
+            "position": 7,
+            "token": "में",
+            "weight": -0.006211204279240304
+          },
+          {
+            "position": 20,
+            "token": "की",
+            "weight": 0.0028607813414777213
+          },
+          {
+            "position": 18,
+            "token": "—",
+            "weight": -0.000864800077190093
+          },
+          {
+            "position": 4,
+            "token": "2026",
+            "weight": -0.0006403668031728706
+          }
+        ],
+        "trainingR2": 0.9872588394811892,
+        "heldOutR2": 0.9869243287500825,
+        "heldOutAgreement": 0.95,
+        "originalMargin": 0.6027605454041216,
+        "surrogateOriginalMargin": 0.6642393655515177,
+        "latencyMs": 152,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 472,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT048",
+        "tokens": [
+          {
+            "position": 10,
+            "token": "हादसा",
+            "weight": 0.5286866158569076
+          },
+          {
+            "position": 11,
+            "token": "हुआ।",
+            "weight": 0.24313828963864917
+          },
+          {
+            "position": 12,
+            "token": "अब",
+            "weight": 0.2140902412352916
+          },
+          {
+            "position": 2,
+            "token": "चाहिए—12",
+            "weight": -0.16808805321138937
+          },
+          {
+            "position": 9,
+            "token": "सड़क",
+            "weight": 0.12407762859101983
+          },
+          {
+            "position": 0,
+            "token": "थोड़ी",
+            "weight": -0.10254554291314613
+          },
+          {
+            "position": 8,
+            "token": "मेरा",
+            "weight": 0.09667731581830799
+          },
+          {
+            "position": 16,
+            "token": "चाहिए।",
+            "weight": 0.09585034266670327
+          },
+          {
+            "position": 15,
+            "token": "करना",
+            "weight": 0.09248366667552439
+          },
+          {
+            "position": 13,
+            "token": "मुझे",
+            "weight": 0.07631456482079027
+          },
+          {
+            "position": 6,
+            "token": "maharashtra",
+            "weight": -0.06546761141568849
+          },
+          {
+            "position": 1,
+            "token": "मदद",
+            "weight": -0.06345024424880005
+          },
+          {
+            "position": 21,
+            "token": "स्थिति:",
+            "weight": 0.05342654401536231
+          },
+          {
+            "position": 5,
+            "token": "को",
+            "weight": -0.03735491576900391
+          },
+          {
+            "position": 14,
+            "token": "क्या",
+            "weight": 0.03550146295703179
+          },
+          {
+            "position": 19,
+            "token": "चोट",
+            "weight": 0.030952426755905635
+          },
+          {
+            "position": 3,
+            "token": "august",
+            "weight": -0.020559287441736337
+          },
+          {
+            "position": 17,
+            "token": "संदर्भ",
+            "weight": -0.012733778914736038
+          },
+          {
+            "position": 7,
+            "token": "में",
+            "weight": -0.011313330270506508
+          },
+          {
+            "position": 20,
+            "token": "की",
+            "weight": 0.004936857488419554
+          },
+          {
+            "position": 4,
+            "token": "2026",
+            "weight": -0.002495084907113296
+          },
+          {
+            "position": 22,
+            "token": "yes।",
+            "weight": 0.0010589985056017757
+          },
+          {
+            "position": 18,
+            "token": "—",
+            "weight": 5.533128833949996e-05
+          }
+        ],
+        "trainingR2": 0.9866992334747882,
+        "heldOutR2": 0.9877543298308324,
+        "heldOutAgreement": 0.96,
+        "originalMargin": 0.6027605454041216,
+        "surrogateOriginalMargin": 0.6523529528855473,
+        "latencyMs": 154,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 473,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT048",
+        "tokens": [
+          {
+            "position": 10,
+            "token": "हादसा",
+            "weight": 0.5416459581991412
+          },
+          {
+            "position": 11,
+            "token": "हुआ।",
+            "weight": 0.24634598291470702
+          },
+          {
+            "position": 12,
+            "token": "अब",
+            "weight": 0.2161168772107831
+          },
+          {
+            "position": 2,
+            "token": "चाहिए—12",
+            "weight": -0.16746424293262666
+          },
+          {
+            "position": 9,
+            "token": "सड़क",
+            "weight": 0.1328134779051609
+          },
+          {
+            "position": 0,
+            "token": "थोड़ी",
+            "weight": -0.10750744541274015
+          },
+          {
+            "position": 16,
+            "token": "चाहिए।",
+            "weight": 0.09973068744463386
+          },
+          {
+            "position": 8,
+            "token": "मेरा",
+            "weight": 0.0970322424302139
+          },
+          {
+            "position": 15,
+            "token": "करना",
+            "weight": 0.09414656253571804
+          },
+          {
+            "position": 13,
+            "token": "मुझे",
+            "weight": 0.07709649817396826
+          },
+          {
+            "position": 6,
+            "token": "maharashtra",
+            "weight": -0.07037802437725996
+          },
+          {
+            "position": 1,
+            "token": "मदद",
+            "weight": -0.06215989697758684
+          },
+          {
+            "position": 21,
+            "token": "स्थिति:",
+            "weight": 0.05829153204981323
+          },
+          {
+            "position": 5,
+            "token": "को",
+            "weight": -0.041042641675064294
+          },
+          {
+            "position": 14,
+            "token": "क्या",
+            "weight": 0.03198012494463701
+          },
+          {
+            "position": 19,
+            "token": "चोट",
+            "weight": 0.027181508237107892
+          },
+          {
+            "position": 17,
+            "token": "संदर्भ",
+            "weight": -0.01718757928182511
+          },
+          {
+            "position": 3,
+            "token": "august",
+            "weight": -0.014955882930798862
+          },
+          {
+            "position": 7,
+            "token": "में",
+            "weight": -0.010673946847043585
+          },
+          {
+            "position": 20,
+            "token": "की",
+            "weight": 0.008810806061280917
+          },
+          {
+            "position": 22,
+            "token": "yes।",
+            "weight": 0.008309290677382267
+          },
+          {
+            "position": 4,
+            "token": "2026",
+            "weight": -0.00653473025785711
+          },
+          {
+            "position": 18,
+            "token": "—",
+            "weight": -0.0035855867953539797
+          }
+        ],
+        "trainingR2": 0.9852850276218637,
+        "heldOutR2": 0.9864252658187086,
+        "heldOutAgreement": 0.98,
+        "originalMargin": 0.6027605454041216,
+        "surrogateOriginalMargin": 0.6608221204834508,
+        "latencyMs": 148,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      }
+    ],
+    "top5Stability300": 1.0
+  },
+  {
+    "id": "U00059",
+    "input": "West Bengal mein mere paid challan wala traffic offence compound ho sakta hai kya. Context — date: 29 August 2026.",
+    "trueIntent": "INT046",
+    "language": "Hinglish",
+    "runs": [
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 471,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT046",
+        "tokens": [
+          {
+            "position": 9,
+            "token": "compound",
+            "weight": 1.0658051684169305
+          },
+          {
+            "position": 8,
+            "token": "offence",
+            "weight": 0.4373418422603939
+          },
+          {
+            "position": 11,
+            "token": "sakta",
+            "weight": 0.11819139047789462
+          },
+          {
+            "position": 3,
+            "token": "mere",
+            "weight": 0.07141588608410468
+          },
+          {
+            "position": 6,
+            "token": "wala",
+            "weight": 0.05213097335366237
+          },
+          {
+            "position": 1,
+            "token": "bengal",
+            "weight": -0.051272567643352404
+          },
+          {
+            "position": 0,
+            "token": "west",
+            "weight": -0.05080964628840499
+          },
+          {
+            "position": 5,
+            "token": "challan",
+            "weight": -0.05032394946519662
+          },
+          {
+            "position": 13,
+            "token": "kya.",
+            "weight": 0.04535441089055878
+          },
+          {
+            "position": 19,
+            "token": "2026.",
+            "weight": -0.0437546391941479
+          },
+          {
+            "position": 14,
+            "token": "context",
+            "weight": -0.027759307560925435
+          },
+          {
+            "position": 12,
+            "token": "hai",
+            "weight": 0.020275280018315904
+          },
+          {
+            "position": 18,
+            "token": "august",
+            "weight": -0.01876697145175309
+          },
+          {
+            "position": 2,
+            "token": "mein",
+            "weight": -0.009038739096507934
+          },
+          {
+            "position": 17,
+            "token": "29",
+            "weight": -0.0064538521740503335
+          },
+          {
+            "position": 7,
+            "token": "traffic",
+            "weight": -0.0037431874499412915
+          },
+          {
+            "position": 4,
+            "token": "paid",
+            "weight": -0.002135874301113949
+          },
+          {
+            "position": 15,
+            "token": "—",
+            "weight": 0.001563272790944547
+          },
+          {
+            "position": 10,
+            "token": "ho",
+            "weight": -0.0015198354954589848
+          },
+          {
+            "position": 16,
+            "token": "date:",
+            "weight": 6.280272204899958e-05
+          }
+        ],
+        "trainingR2": 0.9869160167939587,
+        "heldOutR2": 0.9829697126791007,
+        "heldOutAgreement": 0.89,
+        "originalMargin": 1.1624818333311673,
+        "surrogateOriginalMargin": 1.2429541405881326,
+        "latencyMs": 83,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 472,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT046",
+        "tokens": [
+          {
+            "position": 9,
+            "token": "compound",
+            "weight": 1.0661038737554447
+          },
+          {
+            "position": 8,
+            "token": "offence",
+            "weight": 0.4377379227894211
+          },
+          {
+            "position": 11,
+            "token": "sakta",
+            "weight": 0.11879214577623669
+          },
+          {
+            "position": 3,
+            "token": "mere",
+            "weight": 0.06420393472901209
+          },
+          {
+            "position": 6,
+            "token": "wala",
+            "weight": 0.05397748701493325
+          },
+          {
+            "position": 5,
+            "token": "challan",
+            "weight": -0.046835781129128035
+          },
+          {
+            "position": 13,
+            "token": "kya.",
+            "weight": 0.041865769701317765
+          },
+          {
+            "position": 0,
+            "token": "west",
+            "weight": -0.040343389832977236
+          },
+          {
+            "position": 1,
+            "token": "bengal",
+            "weight": -0.038226552479309485
+          },
+          {
+            "position": 19,
+            "token": "2026.",
+            "weight": -0.037282346586571244
+          },
+          {
+            "position": 14,
+            "token": "context",
+            "weight": -0.02712123182463719
+          },
+          {
+            "position": 4,
+            "token": "paid",
+            "weight": -0.02183837975472615
+          },
+          {
+            "position": 17,
+            "token": "29",
+            "weight": -0.018398880833901714
+          },
+          {
+            "position": 2,
+            "token": "mein",
+            "weight": -0.015794213065028546
+          },
+          {
+            "position": 16,
+            "token": "date:",
+            "weight": -0.01361218970404202
+          },
+          {
+            "position": 7,
+            "token": "traffic",
+            "weight": -0.011614567814042322
+          },
+          {
+            "position": 12,
+            "token": "hai",
+            "weight": 0.0110994205253094
+          },
+          {
+            "position": 18,
+            "token": "august",
+            "weight": -0.009258092998531857
+          },
+          {
+            "position": 15,
+            "token": "—",
+            "weight": -0.007663151558021162
+          },
+          {
+            "position": 10,
+            "token": "ho",
+            "weight": 0.001908797561826958
+          }
+        ],
+        "trainingR2": 0.9891163124068706,
+        "heldOutR2": 0.9856606274277284,
+        "heldOutAgreement": 0.9,
+        "originalMargin": 1.1624818333311673,
+        "surrogateOriginalMargin": 1.218181781364268,
+        "latencyMs": 83,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 473,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT046",
+        "tokens": [
+          {
+            "position": 9,
+            "token": "compound",
+            "weight": 1.0634367866362435
+          },
+          {
+            "position": 8,
+            "token": "offence",
+            "weight": 0.43870083729452947
+          },
+          {
+            "position": 11,
+            "token": "sakta",
+            "weight": 0.12350040085295157
+          },
+          {
+            "position": 3,
+            "token": "mere",
+            "weight": 0.06541295849561851
+          },
+          {
+            "position": 5,
+            "token": "challan",
+            "weight": -0.05605832679258646
+          },
+          {
+            "position": 13,
+            "token": "kya.",
+            "weight": 0.05557278099194086
+          },
+          {
+            "position": 1,
+            "token": "bengal",
+            "weight": -0.05158807868415435
+          },
+          {
+            "position": 6,
+            "token": "wala",
+            "weight": 0.04972265108082698
+          },
+          {
+            "position": 0,
+            "token": "west",
+            "weight": -0.04228691743384473
+          },
+          {
+            "position": 19,
+            "token": "2026.",
+            "weight": -0.0340061273715825
+          },
+          {
+            "position": 18,
+            "token": "august",
+            "weight": -0.031224554577724377
+          },
+          {
+            "position": 14,
+            "token": "context",
+            "weight": -0.02606653202541499
+          },
+          {
+            "position": 16,
+            "token": "date:",
+            "weight": -0.025266135998912854
+          },
+          {
+            "position": 12,
+            "token": "hai",
+            "weight": 0.020005961235676634
+          },
+          {
+            "position": 4,
+            "token": "paid",
+            "weight": -0.01731320656991676
+          },
+          {
+            "position": 2,
+            "token": "mein",
+            "weight": -0.014680014116507066
+          },
+          {
+            "position": 17,
+            "token": "29",
+            "weight": -0.008526750089034628
+          },
+          {
+            "position": 10,
+            "token": "ho",
+            "weight": -0.006857693938685552
+          },
+          {
+            "position": 7,
+            "token": "traffic",
+            "weight": -0.004518325013528781
+          },
+          {
+            "position": 15,
+            "token": "—",
+            "weight": 0.0011749215304302984
+          }
+        ],
+        "trainingR2": 0.9861309625464306,
+        "heldOutR2": 0.988147214654951,
+        "heldOutAgreement": 0.93,
+        "originalMargin": 1.1624818333311673,
+        "surrogateOriginalMargin": 1.2175270686915942,
+        "latencyMs": 80,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 471,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT046",
+        "tokens": [
+          {
+            "position": 9,
+            "token": "compound",
+            "weight": 1.0965359656388491
+          },
+          {
+            "position": 8,
+            "token": "offence",
+            "weight": 0.4460762901025572
+          },
+          {
+            "position": 11,
+            "token": "sakta",
+            "weight": 0.12571363665046592
+          },
+          {
+            "position": 3,
+            "token": "mere",
+            "weight": 0.07374838078111347
+          },
+          {
+            "position": 6,
+            "token": "wala",
+            "weight": 0.049923280034313705
+          },
+          {
+            "position": 1,
+            "token": "bengal",
+            "weight": -0.048209018466765265
+          },
+          {
+            "position": 13,
+            "token": "kya.",
+            "weight": 0.048164814897658254
+          },
+          {
+            "position": 0,
+            "token": "west",
+            "weight": -0.04664591366866803
+          },
+          {
+            "position": 5,
+            "token": "challan",
+            "weight": -0.04486318414481298
+          },
+          {
+            "position": 19,
+            "token": "2026.",
+            "weight": -0.04026192529044767
+          },
+          {
+            "position": 14,
+            "token": "context",
+            "weight": -0.02674540892751398
+          },
+          {
+            "position": 18,
+            "token": "august",
+            "weight": -0.01787470033936287
+          },
+          {
+            "position": 12,
+            "token": "hai",
+            "weight": 0.01780286220776741
+          },
+          {
+            "position": 2,
+            "token": "mein",
+            "weight": -0.01644568004875599
+          },
+          {
+            "position": 4,
+            "token": "paid",
+            "weight": -0.008182379069878535
+          },
+          {
+            "position": 17,
+            "token": "29",
+            "weight": -0.00813771896371597
+          },
+          {
+            "position": 16,
+            "token": "date:",
+            "weight": -0.0056533478997273755
+          },
+          {
+            "position": 7,
+            "token": "traffic",
+            "weight": -0.003834481231566594
+          },
+          {
+            "position": 15,
+            "token": "—",
+            "weight": 0.0021507363657239146
+          },
+          {
+            "position": 10,
+            "token": "ho",
+            "weight": -0.0012647124987046063
+          }
+        ],
+        "trainingR2": 0.9884717311392766,
+        "heldOutR2": 0.9884326511037095,
+        "heldOutAgreement": 0.96,
+        "originalMargin": 1.1624818333311673,
+        "surrogateOriginalMargin": 1.2615775993950917,
+        "latencyMs": 147,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 472,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT046",
+        "tokens": [
+          {
+            "position": 9,
+            "token": "compound",
+            "weight": 1.0919309666990276
+          },
+          {
+            "position": 8,
+            "token": "offence",
+            "weight": 0.44544074134244704
+          },
+          {
+            "position": 11,
+            "token": "sakta",
+            "weight": 0.12456624524682187
+          },
+          {
+            "position": 3,
+            "token": "mere",
+            "weight": 0.06665968231576144
+          },
+          {
+            "position": 6,
+            "token": "wala",
+            "weight": 0.05512876324645999
+          },
+          {
+            "position": 0,
+            "token": "west",
+            "weight": -0.04866558051996722
+          },
+          {
+            "position": 19,
+            "token": "2026.",
+            "weight": -0.04519450492330171
+          },
+          {
+            "position": 13,
+            "token": "kya.",
+            "weight": 0.03939083271218322
+          },
+          {
+            "position": 5,
+            "token": "challan",
+            "weight": -0.03845207159413281
+          },
+          {
+            "position": 1,
+            "token": "bengal",
+            "weight": -0.037197540783625284
+          },
+          {
+            "position": 14,
+            "token": "context",
+            "weight": -0.0309225603040181
+          },
+          {
+            "position": 16,
+            "token": "date:",
+            "weight": -0.02192742970768793
+          },
+          {
+            "position": 17,
+            "token": "29",
+            "weight": -0.01931137875888069
+          },
+          {
+            "position": 4,
+            "token": "paid",
+            "weight": -0.014987226344508412
+          },
+          {
+            "position": 18,
+            "token": "august",
+            "weight": -0.013322495887550492
+          },
+          {
+            "position": 12,
+            "token": "hai",
+            "weight": 0.010450225436335347
+          },
+          {
+            "position": 10,
+            "token": "ho",
+            "weight": 0.008901343693755337
+          },
+          {
+            "position": 2,
+            "token": "mein",
+            "weight": -0.007556713577512237
+          },
+          {
+            "position": 15,
+            "token": "—",
+            "weight": -0.004849050931836032
+          },
+          {
+            "position": 7,
+            "token": "traffic",
+            "weight": -0.0020198278653164575
+          }
+        ],
+        "trainingR2": 0.9892033883120444,
+        "heldOutR2": 0.9879231153966627,
+        "heldOutAgreement": 0.93,
+        "originalMargin": 1.1624818333311673,
+        "surrogateOriginalMargin": 1.2418676327418323,
+        "latencyMs": 154,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 473,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT046",
+        "tokens": [
+          {
+            "position": 9,
+            "token": "compound",
+            "weight": 1.0899440323289444
+          },
+          {
+            "position": 8,
+            "token": "offence",
+            "weight": 0.44381163901574977
+          },
+          {
+            "position": 11,
+            "token": "sakta",
+            "weight": 0.11792268263569937
+          },
+          {
+            "position": 3,
+            "token": "mere",
+            "weight": 0.07231519716933077
+          },
+          {
+            "position": 5,
+            "token": "challan",
+            "weight": -0.05415460092424369
+          },
+          {
+            "position": 1,
+            "token": "bengal",
+            "weight": -0.050471355377540945
+          },
+          {
+            "position": 6,
+            "token": "wala",
+            "weight": 0.05005118971684011
+          },
+          {
+            "position": 0,
+            "token": "west",
+            "weight": -0.043827186172304265
+          },
+          {
+            "position": 13,
+            "token": "kya.",
+            "weight": 0.04173782154212212
+          },
+          {
+            "position": 19,
+            "token": "2026.",
+            "weight": -0.034030123573097724
+          },
+          {
+            "position": 18,
+            "token": "august",
+            "weight": -0.024392132502958182
+          },
+          {
+            "position": 14,
+            "token": "context",
+            "weight": -0.021809172390705185
+          },
+          {
+            "position": 12,
+            "token": "hai",
+            "weight": 0.021155094687362885
+          },
+          {
+            "position": 16,
+            "token": "date:",
+            "weight": -0.018745320722596066
+          },
+          {
+            "position": 2,
+            "token": "mein",
+            "weight": -0.011373369997732162
+          },
+          {
+            "position": 4,
+            "token": "paid",
+            "weight": -0.00986138076482143
+          },
+          {
+            "position": 7,
+            "token": "traffic",
+            "weight": -0.00912876889263709
+          },
+          {
+            "position": 17,
+            "token": "29",
+            "weight": -0.004442021623867615
+          },
+          {
+            "position": 10,
+            "token": "ho",
+            "weight": 0.003036027428280287
+          },
+          {
+            "position": 15,
+            "token": "—",
+            "weight": -2.153011319862924e-06
+          }
+        ],
+        "trainingR2": 0.9878037231879608,
+        "heldOutR2": 0.9879764026666228,
+        "heldOutAgreement": 0.91,
+        "originalMargin": 1.1624818333311673,
+        "surrogateOriginalMargin": 1.243947265763567,
+        "latencyMs": 141,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      }
+    ],
+    "top5Stability300": 0.7777777777777777
+  },
+  {
+    "id": "U00060",
+    "input": "Delhi mein meri goods vehicle ke registered owner ka address change karna hai. Kaise hoga. Context — your role: victim, RC status: transferred, city: Delhi.",
+    "trueIntent": "INT028",
+    "language": "Hinglish",
+    "runs": [
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 471,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT028",
+        "tokens": [
+          {
+            "position": 9,
+            "token": "address",
+            "weight": 0.6325149858850493
+          },
+          {
+            "position": 6,
+            "token": "registered",
+            "weight": 0.4875252104827205
+          },
+          {
+            "position": 10,
+            "token": "change",
+            "weight": 0.39828806130320166
+          },
+          {
+            "position": 14,
+            "token": "hoga.",
+            "weight": 0.13054593304782333
+          },
+          {
+            "position": 7,
+            "token": "owner",
+            "weight": 0.1104715323607172
+          },
+          {
+            "position": 24,
+            "token": "delhi.",
+            "weight": -0.09296814361605996
+          },
+          {
+            "position": 22,
+            "token": "transferred,",
+            "weight": -0.08370798519049132
+          },
+          {
+            "position": 0,
+            "token": "delhi",
+            "weight": -0.07818297850892772
+          },
+          {
+            "position": 4,
+            "token": "vehicle",
+            "weight": -0.06801185782507485
+          },
+          {
+            "position": 19,
+            "token": "victim,",
+            "weight": -0.061581616786566824
+          },
+          {
+            "position": 23,
+            "token": "city:",
+            "weight": -0.05250496908260496
+          },
+          {
+            "position": 13,
+            "token": "kaise",
+            "weight": 0.04531080137492079
+          },
+          {
+            "position": 11,
+            "token": "karna",
+            "weight": 0.025643368395408504
+          },
+          {
+            "position": 5,
+            "token": "ke",
+            "weight": 0.025610797927334582
+          },
+          {
+            "position": 15,
+            "token": "context",
+            "weight": -0.025495775279231397
+          },
+          {
+            "position": 1,
+            "token": "mein",
+            "weight": -0.024473369086439038
+          },
+          {
+            "position": 21,
+            "token": "status:",
+            "weight": -0.02323079956799339
+          },
+          {
+            "position": 12,
+            "token": "hai.",
+            "weight": -0.01554239770466439
+          },
+          {
+            "position": 20,
+            "token": "rc",
+            "weight": -0.014820942370993248
+          },
+          {
+            "position": 18,
+            "token": "role:",
+            "weight": -0.014633551929755902
+          },
+          {
+            "position": 16,
+            "token": "—",
+            "weight": -0.014444683828240166
+          },
+          {
+            "position": 2,
+            "token": "meri",
+            "weight": 0.014015899676769578
+          },
+          {
+            "position": 8,
+            "token": "ka",
+            "weight": 0.010011130890412988
+          },
+          {
+            "position": 3,
+            "token": "goods",
+            "weight": -0.0059774459217271265
+          },
+          {
+            "position": 17,
+            "token": "your",
+            "weight": -0.003823087462411283
+          }
+        ],
+        "trainingR2": 0.9831306686357288,
+        "heldOutR2": 0.984071135155329,
+        "heldOutAgreement": 0.98,
+        "originalMargin": 0.9852232131518341,
+        "surrogateOriginalMargin": 1.0468219922785664,
+        "latencyMs": 107,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 472,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT028",
+        "tokens": [
+          {
+            "position": 9,
+            "token": "address",
+            "weight": 0.6337017554941624
+          },
+          {
+            "position": 6,
+            "token": "registered",
+            "weight": 0.48232252743396825
+          },
+          {
+            "position": 10,
+            "token": "change",
+            "weight": 0.4009452927558466
+          },
+          {
+            "position": 14,
+            "token": "hoga.",
+            "weight": 0.12810568633427644
+          },
+          {
+            "position": 7,
+            "token": "owner",
+            "weight": 0.10376366347447957
+          },
+          {
+            "position": 24,
+            "token": "delhi.",
+            "weight": -0.09723386366905769
+          },
+          {
+            "position": 22,
+            "token": "transferred,",
+            "weight": -0.08631521780548512
+          },
+          {
+            "position": 0,
+            "token": "delhi",
+            "weight": -0.0812425489798697
+          },
+          {
+            "position": 4,
+            "token": "vehicle",
+            "weight": -0.07078388260098441
+          },
+          {
+            "position": 19,
+            "token": "victim,",
+            "weight": -0.06317257722044643
+          },
+          {
+            "position": 13,
+            "token": "kaise",
+            "weight": 0.0389937834785952
+          },
+          {
+            "position": 23,
+            "token": "city:",
+            "weight": -0.02875638858749097
+          },
+          {
+            "position": 3,
+            "token": "goods",
+            "weight": -0.027190679718730768
+          },
+          {
+            "position": 21,
+            "token": "status:",
+            "weight": -0.022911618260009526
+          },
+          {
+            "position": 2,
+            "token": "meri",
+            "weight": 0.021674703836678424
+          },
+          {
+            "position": 1,
+            "token": "mein",
+            "weight": -0.02036414529300464
+          },
+          {
+            "position": 12,
+            "token": "hai.",
+            "weight": -0.019504519958776823
+          },
+          {
+            "position": 17,
+            "token": "your",
+            "weight": -0.014621393172129269
+          },
+          {
+            "position": 18,
+            "token": "role:",
+            "weight": -0.010969887259667814
+          },
+          {
+            "position": 8,
+            "token": "ka",
+            "weight": 0.01017374846173887
+          },
+          {
+            "position": 20,
+            "token": "rc",
+            "weight": -0.010075110164842952
+          },
+          {
+            "position": 11,
+            "token": "karna",
+            "weight": 0.00747453131168555
+          },
+          {
+            "position": 5,
+            "token": "ke",
+            "weight": 0.00622483613795729
+          },
+          {
+            "position": 15,
+            "token": "context",
+            "weight": -0.005878311408225487
+          },
+          {
+            "position": 16,
+            "token": "—",
+            "weight": -0.005597585133036628
+          }
+        ],
+        "trainingR2": 0.9864098565151723,
+        "heldOutR2": 0.9817585191066333,
+        "heldOutAgreement": 0.95,
+        "originalMargin": 0.9852232131518341,
+        "surrogateOriginalMargin": 1.0330764582728436,
+        "latencyMs": 114,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 473,
+        "perturbations": 300,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT028",
+        "tokens": [
+          {
+            "position": 9,
+            "token": "address",
+            "weight": 0.6399838743564503
+          },
+          {
+            "position": 6,
+            "token": "registered",
+            "weight": 0.4811375759815086
+          },
+          {
+            "position": 10,
+            "token": "change",
+            "weight": 0.4050684343867286
+          },
+          {
+            "position": 14,
+            "token": "hoga.",
+            "weight": 0.13378413971723147
+          },
+          {
+            "position": 7,
+            "token": "owner",
+            "weight": 0.1214233996233004
+          },
+          {
+            "position": 24,
+            "token": "delhi.",
+            "weight": -0.09848943146762922
+          },
+          {
+            "position": 22,
+            "token": "transferred,",
+            "weight": -0.09172262311787852
+          },
+          {
+            "position": 0,
+            "token": "delhi",
+            "weight": -0.0824482318005034
+          },
+          {
+            "position": 19,
+            "token": "victim,",
+            "weight": -0.06353067752875545
+          },
+          {
+            "position": 4,
+            "token": "vehicle",
+            "weight": -0.062486036601883774
+          },
+          {
+            "position": 13,
+            "token": "kaise",
+            "weight": 0.04862060890519842
+          },
+          {
+            "position": 23,
+            "token": "city:",
+            "weight": -0.03644150960117979
+          },
+          {
+            "position": 21,
+            "token": "status:",
+            "weight": -0.032172141431407245
+          },
+          {
+            "position": 15,
+            "token": "context",
+            "weight": -0.027823208723808397
+          },
+          {
+            "position": 11,
+            "token": "karna",
+            "weight": 0.023881025131447464
+          },
+          {
+            "position": 2,
+            "token": "meri",
+            "weight": 0.022999588048775704
+          },
+          {
+            "position": 12,
+            "token": "hai.",
+            "weight": -0.02199266325256397
+          },
+          {
+            "position": 3,
+            "token": "goods",
+            "weight": -0.013634263083310188
+          },
+          {
+            "position": 1,
+            "token": "mein",
+            "weight": -0.0113796685278669
+          },
+          {
+            "position": 20,
+            "token": "rc",
+            "weight": -0.01133010878591442
+          },
+          {
+            "position": 18,
+            "token": "role:",
+            "weight": -0.008566300478597478
+          },
+          {
+            "position": 16,
+            "token": "—",
+            "weight": -0.008507078913771256
+          },
+          {
+            "position": 8,
+            "token": "ka",
+            "weight": 0.007750874227746606
+          },
+          {
+            "position": 17,
+            "token": "your",
+            "weight": -0.004579811853273357
+          },
+          {
+            "position": 5,
+            "token": "ke",
+            "weight": 5.2682333841217845e-06
+          }
+        ],
+        "trainingR2": 0.9857736137703115,
+        "heldOutR2": 0.9824437047103147,
+        "heldOutAgreement": 0.99,
+        "originalMargin": 0.9852232131518341,
+        "surrogateOriginalMargin": 1.0626106777146314,
+        "latencyMs": 112,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 471,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT028",
+        "tokens": [
+          {
+            "position": 9,
+            "token": "address",
+            "weight": 0.659682455594663
+          },
+          {
+            "position": 6,
+            "token": "registered",
+            "weight": 0.496979272385285
+          },
+          {
+            "position": 10,
+            "token": "change",
+            "weight": 0.4096982926661874
+          },
+          {
+            "position": 14,
+            "token": "hoga.",
+            "weight": 0.1308868369211516
+          },
+          {
+            "position": 7,
+            "token": "owner",
+            "weight": 0.11712846024511163
+          },
+          {
+            "position": 24,
+            "token": "delhi.",
+            "weight": -0.09189048907065932
+          },
+          {
+            "position": 0,
+            "token": "delhi",
+            "weight": -0.08516718986111618
+          },
+          {
+            "position": 22,
+            "token": "transferred,",
+            "weight": -0.08386958996034569
+          },
+          {
+            "position": 19,
+            "token": "victim,",
+            "weight": -0.07428797147392309
+          },
+          {
+            "position": 4,
+            "token": "vehicle",
+            "weight": -0.06895172232245877
+          },
+          {
+            "position": 13,
+            "token": "kaise",
+            "weight": 0.047898833014056105
+          },
+          {
+            "position": 23,
+            "token": "city:",
+            "weight": -0.041533085644233234
+          },
+          {
+            "position": 15,
+            "token": "context",
+            "weight": -0.0250244803972948
+          },
+          {
+            "position": 11,
+            "token": "karna",
+            "weight": 0.022839144656199392
+          },
+          {
+            "position": 1,
+            "token": "mein",
+            "weight": -0.021305588583525097
+          },
+          {
+            "position": 21,
+            "token": "status:",
+            "weight": -0.019300102524485642
+          },
+          {
+            "position": 8,
+            "token": "ka",
+            "weight": 0.018299540646752703
+          },
+          {
+            "position": 2,
+            "token": "meri",
+            "weight": 0.017908043772043095
+          },
+          {
+            "position": 12,
+            "token": "hai.",
+            "weight": -0.017775174706684868
+          },
+          {
+            "position": 18,
+            "token": "role:",
+            "weight": -0.017111209095227214
+          },
+          {
+            "position": 20,
+            "token": "rc",
+            "weight": -0.012514823242451319
+          },
+          {
+            "position": 3,
+            "token": "goods",
+            "weight": -0.012305854439735824
+          },
+          {
+            "position": 5,
+            "token": "ke",
+            "weight": 0.01086168756090626
+          },
+          {
+            "position": 16,
+            "token": "—",
+            "weight": -0.0065967488684173185
+          },
+          {
+            "position": 17,
+            "token": "your",
+            "weight": -0.0029959887024478193
+          }
+        ],
+        "trainingR2": 0.9863146455122138,
+        "heldOutR2": 0.9842279656905238,
+        "heldOutAgreement": 0.96,
+        "originalMargin": 0.9852232131518341,
+        "surrogateOriginalMargin": 1.076029103320633,
+        "latencyMs": 190,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 472,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT028",
+        "tokens": [
+          {
+            "position": 9,
+            "token": "address",
+            "weight": 0.6556561301701761
+          },
+          {
+            "position": 6,
+            "token": "registered",
+            "weight": 0.4894368722638177
+          },
+          {
+            "position": 10,
+            "token": "change",
+            "weight": 0.4113757862342012
+          },
+          {
+            "position": 14,
+            "token": "hoga.",
+            "weight": 0.13489608003670417
+          },
+          {
+            "position": 7,
+            "token": "owner",
+            "weight": 0.10946552208917845
+          },
+          {
+            "position": 24,
+            "token": "delhi.",
+            "weight": -0.09542799983911236
+          },
+          {
+            "position": 22,
+            "token": "transferred,",
+            "weight": -0.09283303592515496
+          },
+          {
+            "position": 0,
+            "token": "delhi",
+            "weight": -0.0886629088528238
+          },
+          {
+            "position": 4,
+            "token": "vehicle",
+            "weight": -0.06860808884466475
+          },
+          {
+            "position": 19,
+            "token": "victim,",
+            "weight": -0.06317564279312189
+          },
+          {
+            "position": 13,
+            "token": "kaise",
+            "weight": 0.04104788345544304
+          },
+          {
+            "position": 21,
+            "token": "status:",
+            "weight": -0.028343882574196788
+          },
+          {
+            "position": 23,
+            "token": "city:",
+            "weight": -0.028241236385087617
+          },
+          {
+            "position": 12,
+            "token": "hai.",
+            "weight": -0.02601770555293219
+          },
+          {
+            "position": 1,
+            "token": "mein",
+            "weight": -0.016652767194789964
+          },
+          {
+            "position": 3,
+            "token": "goods",
+            "weight": -0.016490997720896773
+          },
+          {
+            "position": 15,
+            "token": "context",
+            "weight": -0.014545505545618715
+          },
+          {
+            "position": 2,
+            "token": "meri",
+            "weight": 0.014457083987807803
+          },
+          {
+            "position": 11,
+            "token": "karna",
+            "weight": 0.014387054770067496
+          },
+          {
+            "position": 8,
+            "token": "ka",
+            "weight": 0.012759338818554445
+          },
+          {
+            "position": 20,
+            "token": "rc",
+            "weight": -0.009683885623389359
+          },
+          {
+            "position": 17,
+            "token": "your",
+            "weight": -0.009531310922033244
+          },
+          {
+            "position": 18,
+            "token": "role:",
+            "weight": -0.007931523818431591
+          },
+          {
+            "position": 16,
+            "token": "—",
+            "weight": -0.005475653897265492
+          },
+          {
+            "position": 5,
+            "token": "ke",
+            "weight": -0.0006758175886010541
+          }
+        ],
+        "trainingR2": 0.9868786298617065,
+        "heldOutR2": 0.9854103011254102,
+        "heldOutAgreement": 0.95,
+        "originalMargin": 0.9852232131518341,
+        "surrogateOriginalMargin": 1.0581836371349715,
+        "latencyMs": 188,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      },
+      {
+        "status": "measured",
+        "method": "LIME-style weighted Ridge token deletion; SVM decision margins",
+        "seed": 473,
+        "perturbations": 600,
+        "heldOutPerturbations": 100,
+        "kernelWidth": 0.25,
+        "ridgeAlpha": 1.0,
+        "predictedIntent": "INT028",
+        "tokens": [
+          {
+            "position": 9,
+            "token": "address",
+            "weight": 0.6566080380854569
+          },
+          {
+            "position": 6,
+            "token": "registered",
+            "weight": 0.49706388304741483
+          },
+          {
+            "position": 10,
+            "token": "change",
+            "weight": 0.4140618541419407
+          },
+          {
+            "position": 14,
+            "token": "hoga.",
+            "weight": 0.1418898795053031
+          },
+          {
+            "position": 7,
+            "token": "owner",
+            "weight": 0.12265727262928135
+          },
+          {
+            "position": 24,
+            "token": "delhi.",
+            "weight": -0.09957631947857569
+          },
+          {
+            "position": 22,
+            "token": "transferred,",
+            "weight": -0.08923455226502712
+          },
+          {
+            "position": 0,
+            "token": "delhi",
+            "weight": -0.08372431315040772
+          },
+          {
+            "position": 4,
+            "token": "vehicle",
+            "weight": -0.06516256979963897
+          },
+          {
+            "position": 19,
+            "token": "victim,",
+            "weight": -0.0631833885947684
+          },
+          {
+            "position": 13,
+            "token": "kaise",
+            "weight": 0.045460670350855326
+          },
+          {
+            "position": 23,
+            "token": "city:",
+            "weight": -0.035610324486114876
+          },
+          {
+            "position": 21,
+            "token": "status:",
+            "weight": -0.03202112911829353
+          },
+          {
+            "position": 15,
+            "token": "context",
+            "weight": -0.029699752555740744
+          },
+          {
+            "position": 12,
+            "token": "hai.",
+            "weight": -0.022207433598691147
+          },
+          {
+            "position": 2,
+            "token": "meri",
+            "weight": 0.020020972448660263
+          },
+          {
+            "position": 11,
+            "token": "karna",
+            "weight": 0.016608809264925625
+          },
+          {
+            "position": 1,
+            "token": "mein",
+            "weight": -0.01540250759323144
+          },
+          {
+            "position": 3,
+            "token": "goods",
+            "weight": -0.01531471954775112
+          },
+          {
+            "position": 8,
+            "token": "ka",
+            "weight": 0.012725145805709907
+          },
+          {
+            "position": 20,
+            "token": "rc",
+            "weight": -0.008542755410614219
+          },
+          {
+            "position": 18,
+            "token": "role:",
+            "weight": -0.005758400305198372
+          },
+          {
+            "position": 17,
+            "token": "your",
+            "weight": -0.004954377994138189
+          },
+          {
+            "position": 16,
+            "token": "—",
+            "weight": -0.002439077306657067
+          },
+          {
+            "position": 5,
+            "token": "ke",
+            "weight": 0.00225332235522879
+          }
+        ],
+        "trainingR2": 0.9867331524203585,
+        "heldOutR2": 0.9830009956629534,
+        "heldOutAgreement": 0.94,
+        "originalMargin": 0.9852232131518341,
+        "surrogateOriginalMargin": 1.085714230795155,
+        "latencyMs": 188,
+        "limitation": "Local model behavior under artificial deletions; not causal, legal evidence, or calibrated probability. Negative held-out R2 is possible."
+      }
+    ],
+    "top5Stability300": 1.0
+  }
+]

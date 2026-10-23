@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import {AdvancedConsole} from "./AdvancedConsole";
 import { useEffect, useState } from "react";
 import { apiRequest } from "@/lib/api/client";
 import { useMatter } from "@/providers/MatterProvider";
@@ -32,11 +33,21 @@ function Card({ title, value, note }: { title: string; value: string; note: stri
   return <div className="rounded-lg border border-[#DED7CA] bg-[#F5F0E7] p-4"><p className="text-sm font-bold">{title}</p><p className="my-2 text-2xl font-extrabold">{value}</p><p className="text-sm text-[#6B665D]">{note}</p></div>;
 }
 
+function SourceSpans({source,entities}:{source:string;entities:Value[]}) {
+  let cursor=0;const parts:React.ReactNode[]=[];
+  for(const [i,v] of entities.map(object).sort((a,b)=>Number(a.start)-Number(b.start)).entries()) {
+    const start=Number(v.start),end=Number(v.end);
+    if(!Number.isInteger(start)||!Number.isInteger(end)||start<cursor||end>source.length||source.slice(start,end)!==v.text)continue;
+    parts.push(source.slice(cursor,start));parts.push(<mark key={i} tabIndex={0} className="rounded bg-[#F3E2BF] px-1" title={`${text(v.type)}; offsets ${start}–${end}; normalized ${text(v.normalizedValue)}; method ${text(v.method)}; extraction is not confirmation`}>{source.slice(start,end)}</mark>);cursor=end;
+  }
+  parts.push(source.slice(cursor));return <p className="whitespace-pre-wrap leading-8">{parts}</p>;
+}
+
 function TraceView({ trace }: { trace: RecordValue }) {
   const intent=object(trace.intent), attribution=object(intent.attribution), generation=object(trace.generation);
   const sources=list(trace.sources);
   return <div className="space-y-5">
-    <Panel title="Recorded decision trace"><p className="mb-3">{text(trace.originalText)}</p><p className="text-sm">Matter {text(trace.matterId)} · revision {text(trace.revision)}. Stored observations, not hidden reasoning.</p><Details title="Trace limitations" value={trace.limitations}/></Panel>
+    <Panel title="Recorded decision trace"><div className="mb-3"><SourceSpans source={text(trace.originalText)} entities={list(trace.initialEntities)}/></div><p className="text-sm">Matter {text(trace.matterId)} · revision {text(trace.revision)}. Stored observations, not hidden reasoning.</p><Details title="Trace limitations" value={trace.limitations}/></Panel>
     <div className="grid gap-5 lg:grid-cols-2">
       <Panel title="1. Language"><RecordedData value={trace.language}/><p className="mt-3 text-sm">The recorded evidence identifies the script policy or classifier used. A margin is not a probability.</p></Panel>
       <Panel title="2. Original intent prediction"><RecordedData value={Object.fromEntries(Object.entries(intent).filter(([k])=>k!=="attribution"))}/><Details title="User-selected workflow (separate from prediction)" value={trace.selectedWorkflow}/></Panel>
@@ -94,7 +105,7 @@ function RunView({ data }: { data: RecordValue }) {
 export function ResearchDashboard() {
   const {matter}=useMatter();
   const [catalog,setCatalog]=useState<RecordValue|null>(null),[error,setError]=useState("");
-  const [tab,setTab]=useState<"trace"|"studies">("trace"),[id,setId]=useState(""),[trace,setTrace]=useState<RecordValue|null>(null);
+  const [tab,setTab]=useState<"trace"|"studies"|"console">("trace"),[id,setId]=useState(""),[trace,setTrace]=useState<RecordValue|null>(null);
   const [traceError,setTraceError]=useState(""),[loading,setLoading]=useState(false),[run,setRun]=useState("");
   useEffect(()=>{const controller=new AbortController();apiRequest<RecordValue>("/api/v1/research/catalog",{signal:controller.signal}).then(setCatalog).catch(e=>{if(!controller.signal.aborted)setError(e.message)});return()=>controller.abort()},[]);
   async function loadTrace() {
@@ -108,8 +119,8 @@ export function ResearchDashboard() {
     <div className="mx-auto max-w-7xl space-y-6 px-4 py-8 sm:px-8">
       <nav aria-label="Research navigation" className="flex flex-wrap gap-5 font-bold"><Link href="/">NyayaSaarthi Home</Link><Link href="/summary">Summary</Link></nav>
       <header><p className="text-sm font-extrabold uppercase text-[#A8752B]">Explainable AI · Research</p><h1 className="font-editorial mt-2 text-4xl font-bold">Follow the evidence. Inspect the limits.</h1><p className="mt-3 max-w-3xl">See recorded decisions and controlled component comparisons. These views describe system behavior; they do not certify legal correctness. Evaluations run offline.</p></header>
-      <div role="group" aria-label="Research view" className="flex flex-wrap gap-3">{(["trace","studies"] as const).map(t=><button key={t} aria-pressed={tab===t} onClick={()=>setTab(t)} className={`min-h-11 rounded-md border border-[#DED7CA] px-5 py-3 font-bold ${tab===t?"bg-[#071B3A] text-white":"bg-white"}`}>{t==="trace"?"Matter explainability":"Ablation studies"}</button>)}</div>
-      {tab==="trace"?<>
+      <div role="group" aria-label="Research view" className="flex flex-wrap gap-3">{(["trace","studies","console"] as const).map(t=><button key={t} aria-pressed={tab===t} onClick={()=>setTab(t)} className={`min-h-11 rounded-md border border-[#DED7CA] px-5 py-3 font-bold ${tab===t?"bg-[#071B3A] text-white":"bg-white"}`}>{t==="trace"?"Matter explainability":t==="studies"?"Ablation studies":"Evaluation console"}</button>)}</div>
+      {tab==="console"?<AdvancedConsole/>:tab==="trace"?<>
         <Panel title="Select a matter"><label htmlFor="research-matter" className="mb-2 block font-bold">Matter ID</label><div className="flex flex-col gap-3 sm:flex-row"><input id="research-matter" value={id} onChange={e=>setId(e.target.value)} placeholder={matter?.id??"Paste a saved matter ID"} className="min-w-0 flex-1 rounded border border-[#DED7CA] p-3"/><button disabled={loading||(!id&&!matter?.id)} onClick={loadTrace} className="rounded bg-[#071B3A] px-5 py-3 font-bold text-white disabled:opacity-50">{loading?"Loading trace…":"Inspect recorded trace"}</button></div><p className="mt-3 text-sm">{matter?"Leave blank to inspect the matter active in this tab.":"No active matter. Start a situation from Home or enter a saved ID."}</p></Panel>
         {traceError&&<p role="alert" className="rounded border border-red-300 p-4">{traceError}</p>}
         {trace&&<TraceView trace={trace}/>}

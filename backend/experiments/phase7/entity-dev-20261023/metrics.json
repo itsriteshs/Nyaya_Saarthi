@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "runId": "entity-dev-20261023",
+  "timestamp": "2026-10-23T13:56:58.022562+00:00",
+  "split": "saved development predictions only",
+  "reviewStatus": "PENDING",
+  "entities": {
+    "n": 1156,
+    "scores": {
+      "exact": {
+        "tp": 3071,
+        "fp": 352,
+        "fn": 785,
+        "precision": 0.8971662284545721,
+        "recall": 0.7964211618257261,
+        "f1": 0.8437972248935294
+      },
+      "relaxed": {
+        "tp": 3087,
+        "fp": 336,
+        "fn": 769,
+        "precision": 0.901840490797546,
+        "recall": 0.8005705394190872,
+        "f1": 0.8481934331638962
+      }
+    },
+    "byType": {
+      "VEHICLE_CLASS": {
+        "tp": 492,
+        "fp": 18,
+        "fn": 94,
+        "precision": 0.9647058823529412,
+        "recall": 0.8395904436860068,
+        "f1": 0.8978102189781022
+      },
+      "STATE": {
+        "tp": 1049,
+        "fp": 29,
+        "fn": 0,
+        "precision": 0.9730983302411874,
+        "recall": 1.0,
+        "f1": 0.9863657733897508
+      },
+      "RC_STATUS": {
+        "tp": 27,
+        "fp": 0,
+        "fn": 76,
+        "precision": 1.0,
+        "recall": 0.2621359223300971,
+        "f1": 0.4153846153846154
+      },
+      "EVENT_DATE": {
+        "tp": 647,
+        "fp": 84,
+        "fn": 0,
+        "precision": 0.8850889192886456,
+        "recall": 1.0,
+        "f1": 0.9390420899854862
+      },
+      "USER_ROLE": {
+        "tp": 429,
+        "fp": 35,
+        "fn": 48,
+        "precision": 0.9245689655172413,
+        "recall": 0.89937106918239,
+        "f1": 0.9117959617428267
+      },
+      "LICENCE_STATUS": {
+        "tp": 13,
+        "fp": 72,
+        "fn": 50,
+        "precision": 0.15294117647058825,
+        "recall": 0.20634920634920634,
+        "f1": 0.17567567567567569
+      },
+      "CHALLAN_STATUS": {
+        "tp": 102,
+        "fp": 11,
+        "fn": 11,
+        "precision": 0.9026548672566371,
+        "recall": 0.9026548672566371,
+        "f1": 0.9026548672566371
+      },
+      "CITY": {
+        "tp": 103,
+        "fp": 9,
+        "fn": 10,
+        "precision": 0.9196428571428571,
+        "recall": 0.911504424778761,
+        "f1": 0.9155555555555556
+      },
+      "ROAD_TYPE": {
+        "tp": 66,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "INJURY_PRESENT": {
+        "tp": 25,
+        "fp": 8,
+        "fn": 128,
+        "precision": 0.7575757575757576,
+        "recall": 0.16339869281045752,
+        "f1": 0.26881720430107525
+      },
+      "CHALLAN_DATE": {
+        "tp": 7,
+        "fp": 0,
+        "fn": 21,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4
+      },
+      "LOCATION": {
+        "tp": 43,
+        "fp": 7,
+        "fn": 40,
+        "precision": 0.86,
+        "recall": 0.5180722891566265,
+        "f1": 0.6466165413533834
+      },
+      "EVIDENCE_AVAILABLE": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 63,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "OTHER_VEHICLE_IDENTIFIED": {
+        "tp": 10,
+        "fp": 8,
+        "fn": 37,
+        "precision": 0.5555555555555556,
+        "recall": 0.2127659574468085,
+        "f1": 0.3076923076923077
+      },
+      "MODIFICATION_TYPE": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 18,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "OBSERVED_SPEED": {
+        "tp": 18,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "INSURANCE_STATUS": {
+        "tp": 10,
+        "fp": 51,
+        "fn": 50,
+        "precision": 0.16393442622950818,
+        "recall": 0.16666666666666666,
+        "f1": 0.1652892561983471
+      },
+      "ROAD_NAME": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 5,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "DEATH_PRESENT": {
+        "tp": 9,
+        "fp": 7,
+        "fn": 44,
+        "precision": 0.5625,
+        "recall": 0.16981132075471697,
+        "f1": 0.2608695652173913
+      },
+      "DESTINATION_STATE": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 16,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "PUC_STATUS": {
+        "tp": 0,
+        "fp": 10,
+        "fn": 19,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "LICENCE_CLASS": {
+        "tp": 18,
+        "fp": 3,
+        "fn": 4,
+        "precision": 0.8571428571428571,
+        "recall": 0.8181818181818182,
+        "f1": 0.8372093023255814
+      },
+      "AGE": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "POLICE_REPORTED": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 15,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "LICENCE_EXPIRY_DATE": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 34,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "ACCIDENT_TYPE": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "sourceSHA256": "5ad7d523eec86251427bc09ab5c8f31cb3673b05f001543f6186ba6ae83deb28",
+  "command": {
+    "run_id": "entity-dev-20261023",
+    "source_run": "three-model-dev-20261023"
+  },
+  "limitations": [
+    "Deterministic offline baseline, not production SLM quality.",
+    "Relaxed requires same slot and span intersection-over-union >=0.5 with one-to-one maximum matching; threshold fixed before scoring.",
+    "Normalized-value gold and verified-fact preservation evaluation unavailable."
+  ]
+}

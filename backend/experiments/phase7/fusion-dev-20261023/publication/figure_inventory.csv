@@ -1,0 +1,5 @@
+﻿figure,caption,source
+RET_recallat1,Identical development queries and eligible corpus; label review pending.,D:\Documents\Nyaya_Saarthi\backend\experiments\phase7\fusion-dev-20261023\metrics.json
+RET_recallat3,Identical development queries and eligible corpus; label review pending.,D:\Documents\Nyaya_Saarthi\backend\experiments\phase7\fusion-dev-20261023\metrics.json
+RET_mrr,Identical development queries and eligible corpus; label review pending.,D:\Documents\Nyaya_Saarthi\backend\experiments\phase7\fusion-dev-20261023\metrics.json
+CONV_coverage,"Recorded development-data proxy, N=450; not generated app comparison.",D:\Documents\Nyaya_Saarthi\backend\experiments\phase7\fusion-dev-20261023\metrics.json

@@ -1,0 +1,2 @@
+matplotlib==3.11.2
+# Other dependencies come from the existing backend requirements.

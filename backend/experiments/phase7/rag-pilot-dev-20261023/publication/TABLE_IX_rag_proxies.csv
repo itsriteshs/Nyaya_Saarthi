@@ -1,0 +1,7 @@
+﻿model,condition,n,schemaPassRate,failureRate,semanticClaimSupport
+llama3.2-3b,R0,1,0.0,1.0,Not measured; reviewed labels required
+llama3.2-3b,R1,1,1.0,0.0,Not measured; reviewed labels required
+llama3.2-3b,R2,1,0.0,1.0,Not measured; reviewed labels required
+mistral-7b,R0,1,0.0,1.0,Not measured; reviewed labels required
+mistral-7b,R1,1,0.0,1.0,Not measured; reviewed labels required
+mistral-7b,R2,1,0.0,1.0,Not measured; reviewed labels required
