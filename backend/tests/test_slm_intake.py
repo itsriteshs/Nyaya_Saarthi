@@ -194,3 +194,50 @@ def test_followup_preserves_extras_when_target_missing(client, enabled, monkeypa
     m = send(client, url, m, 'Chennai')
     assert any(f['key'] == 'CITY' for f in m['facts'])
     assert m['currentQuestion']['slot'] == target
+
+
+class BusyGate:
+    def acquire(self, **kwargs):
+        return False
+    def release(self):
+        raise AssertionError('An unacquired gate must not be released')
+
+
+def test_busy_falls_back_without_claiming_a_model_call(enabled, monkeypatch):
+    monkeypatch.setattr(intake, '_gate', BusyGate())
+    p = Provider()
+    entities, meta = intake.interpret('my car at 150kmph', provider=p)
+    assert meta['failureReason'] == 'INTAKE_BUSY'
+    assert meta['fallbackUsed'] and meta['method'] == 'deterministic_fallback'
+    assert not meta['modelCalled'] and not p.calls
+    assert meta['entityCount'] == len(entities) and meta['fallbackLatencyMs'] >= 0
+    assert any(e['type'] == 'OBSERVED_SPEED' and e['normalizedValue'] == '150' for e in entities)
+    assert all(e['method'] != 'local_slm_extractive' for e in entities)
+
+
+def test_busy_api_persists_facts_and_continues_questions(client, enabled, monkeypatch):
+    monkeypatch.setattr(intake, '_gate', BusyGate())
+    m = client.post('/api/v1/matters', json={'originalText': 'My car at 150kmph on highway', 'language': 'english'}).json()
+    url = '/api/v1/matters/' + m['id']
+    response = client.post(url + '/analyze', json={'revision': m['revision']})
+    assert response.status_code == 200
+    m = response.json()
+    meta = m['nlpAnalysis']['extractionMetadata']
+    assert meta['failureReason'] == 'INTAKE_BUSY' and meta['fallbackUsed']
+    assert all('deterministic' not in w.lower() and 'slm' not in w.lower() for w in m['nlpAnalysis']['warnings'])
+    assert all(not f['confirmed'] for f in m['facts'])
+    assert any(f['key'] == 'OBSERVED_SPEED' for f in m['facts'])
+    if m['currentQuestion'] and m['currentQuestion']['slot'] == 'INTENT':
+        m = send(client, url, m, 'INT002')
+    assert not m.get('currentQuestion') or m['currentQuestion']['slot'] not in {'OBSERVED_SPEED', 'VEHICLE_CLASS'}
+    m = send(client, url, m, 'Tamil Nadu; 2026-10-21')
+    assert m['conversation']['extractionHistory'][-1]['fallbackUsed']
+    assert {'STATE','EVENT_DATE'} <= {f['key'] for f in m['facts']}
+    assert client.get(url).json()['facts'] == m['facts']
+
+
+def test_empty_fallback_still_has_honest_metadata(enabled, monkeypatch):
+    monkeypatch.setattr(intake, '_gate', BusyGate())
+    entities, meta = intake.interpret('hello')
+    assert meta['fallbackUsed'] and meta['entityCount'] == len(entities)
+    assert not meta['modelCalled']

@@ -2,6 +2,7 @@
 import json
 import os
 import re
+import time
 from datetime import datetime, timedelta
 from threading import BoundedSemaphore
 from typing import Literal
@@ -114,6 +115,16 @@ def validate_mentions(payload, text, reference=None):
     return entities
 
 
+def _deterministic_fallback(text, reference, metadata):
+    """Continue intake without claiming that fallback facts came from a model."""
+    started = time.monotonic()
+    safe_reference = reference if reference and reference.tzinfo and reference.utcoffset() is not None else None
+    entities = [normalize(entity) for entity in extract(text, safe_reference)]
+    metadata.update(method='deterministic_fallback', fallbackUsed=True,
+                    entityCount=len(entities), fallbackLatencyMs=round((time.monotonic() - started) * 1000))
+    return entities, metadata
+
+
 def interpret(text, reference=None, *, provider=None, target_slot=None):
     metadata = {'method': 'deterministic_fallback', 'fallbackUsed': True, 'promptVersion': PROMPT_VERSION,
                 'modelCalled': False}
@@ -158,8 +169,7 @@ def interpret(text, reference=None, *, provider=None, target_slot=None):
         return entities, metadata
     except (RuntimeFailure, ValueError, KeyError, TypeError, AttributeError) as exc:
         metadata['failureReason'] = str(exc)[:300]
-        safe_reference = reference if reference and reference.tzinfo and reference.utcoffset() is not None else None
-        return [normalize(e) for e in extract(text, safe_reference)], metadata
+        return _deterministic_fallback(text, reference, metadata)
     finally:
         if acquired:
             _gate.release()

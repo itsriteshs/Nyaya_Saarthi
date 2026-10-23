@@ -14,7 +14,8 @@ def analyze(text: str, requested_language: str='auto', reference_datetime: datet
     entities, extraction_metadata=interpret(text,reference_datetime)
     slots=detect_slots(intent['id'],entities)
     warnings=[]
-    if extraction_metadata['fallbackUsed']:warnings.append('Local SLM extraction unavailable or invalid; deterministic extraction was used.')
+    # Runtime provenance stays in extractionMetadata. The normal review flow is
+    # identical for model and fallback extraction; no technical failure banner.
     if intent['needsClarification']:warnings.append('Intent classifier is uncertain; review alternatives before relying on the selected intent.')
     if language['detectedLanguage']=='uncertain':warnings.append('Language could not be identified confidently.')
     if slots['unresolvedSlots']:warnings.append('Some conditional slot requirements could not be resolved in Phase 2.')
