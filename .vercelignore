@@ -1,0 +1,18 @@
+# Root-only exclusions keep src/data frontend constants in the upload.
+/backend
+/data
+/.venv
+/.env*
+/.git
+/.next
+/.next-*
+/.pytest_cache
+/node_modules
+/tests
+/.vercel
+/*.pdf
+/*.html
+/tsconfig.tsbuildinfo
+/README.md
+/AGENTS.md
+/CLAUDE.md

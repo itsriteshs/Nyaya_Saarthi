@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { NLPPreview } from "@/components/home/NLPPreview";
 import { QuickTopics } from "@/components/home/QuickTopics";
 import { SituationInput } from "@/components/home/SituationInput";
@@ -11,7 +11,7 @@ import { defaultSituation } from "@/data/examples";
 import { motorLawTopics } from "@/data/motor-law-topics";
 import { createMatterContext } from "@/lib/mock-context-engine";
 import { analyzeSituation } from "@/lib/mock-nlp";
-import { analyzeText, localReferenceDatetime, toPreview } from "@/lib/api/nlp";
+import { localReferenceDatetime } from "@/lib/api/nlp";
 import { analyzeMatter, createMatter } from "@/lib/api/matters";
 import { useMatter } from "@/providers/MatterProvider";
 import type { MockNlpResult, TopicId } from "@/types/nlp";
@@ -32,8 +32,7 @@ export function HeroSection() {
   const [situation, setSituation] = useState("");
   const [analysisInput, setAnalysisInput] = useState(demoMode ? defaultSituation : "");
   const [activeTopic, setActiveTopic] = useState<TopicId>("traffic");
-  const [realPreview, setRealPreview] = useState<MockNlpResult>(emptyPreview);
-  const [previewLoading, setPreviewLoading] = useState(false);
+  const submitInFlight = useRef(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -41,37 +40,17 @@ export function HeroSection() {
     motorLawTopics.find((topic) => topic.id === activeTopic) ?? motorLawTopics[0];
 
   const demoPreview = useMemo(() => demoMode ? analyzeSituation(analysisInput) : emptyPreview, [analysisInput]);
-  const preview = demoMode ? demoPreview : (!analysisInput.trim() || previewLoading ? emptyPreview : realPreview);
-
-  useEffect(() => {
-    if (demoMode) return;
-    if (!analysisInput.trim()) return;
-    const controller = new AbortController();
-    const timer = window.setTimeout(async () => {
-      try {
-        const result = await analyzeText(analysisInput, language, controller.signal);
-        if (!controller.signal.aborted) setRealPreview(toPreview(result));
-      } catch (cause) {
-        if (!controller.signal.aborted) {
-          setRealPreview(emptyPreview);
-          setError(cause instanceof Error ? cause.message : "Analysis is unavailable.");
-        }
-      } finally {
-        if (!controller.signal.aborted) setPreviewLoading(false);
-      }
-    }, 350);
-    return () => { window.clearTimeout(timer); controller.abort(); };
-  }, [analysisInput, language]);
+  // Real intake runs once on explicit submit, never while typing. Cancelling
+  // a browser preview would not necessarily cancel the backend model request.
+  const preview = demoMode ? demoPreview : emptyPreview;
 
   function handleSituationChange(value: string) {
-    setPreviewLoading(!!value.trim());
     setError("");
     setSituation(value);
     setAnalysisInput(value);
   }
 
   function handleExampleSelect(example: string) {
-    setPreviewLoading(true);
     setError("");
     setSituation(example);
     setAnalysisInput(example);
@@ -82,13 +61,12 @@ export function HeroSection() {
     setActiveTopic(topic);
 
     if (demoMode && !situation.trim() && selected) {
-      setPreviewLoading(true);
       setAnalysisInput(selected.example);
     }
   }
 
   async function handleSubmit() {
-    if (submitting) return;
+    if (submitInFlight.current) return;
     const nextInput = situation.trim() || (demoMode ? activeTopicData.example : "");
     if (!nextInput) {
       setError("Please describe your situation or select an example before continuing.");
@@ -101,6 +79,7 @@ export function HeroSection() {
       router.push("/understand");
       return;
     }
+    submitInFlight.current = true;
     setSubmitting(true);
     setError("");
     try {
@@ -111,12 +90,12 @@ export function HeroSection() {
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Could not analyze your situation.");
     } finally {
+      submitInFlight.current = false;
       setSubmitting(false);
     }
   }
 
   function handleReset() {
-    setPreviewLoading(demoMode);
     setError("");
     setSituation("");
     setLanguage("auto");
@@ -145,7 +124,7 @@ export function HeroSection() {
             language={language}
             placeholder={activeTopicData.placeholder}
             onChange={handleSituationChange}
-            onLanguageChange={(nextLanguage) => { setPreviewLoading(true); setError(""); setLanguage(nextLanguage); }}
+            onLanguageChange={(nextLanguage) => { setError(""); setLanguage(nextLanguage); }}
             onExampleSelect={handleExampleSelect}
             onReset={handleReset}
             onSubmit={handleSubmit}
@@ -159,7 +138,6 @@ export function HeroSection() {
         <div className="relative">
           <div className="absolute -right-8 -top-8 hidden h-40 w-40 border border-[#C49A55]/35 lg:block" aria-hidden="true" />
           <NLPPreview result={preview} />
-          {previewLoading ? <p className="mt-2 text-sm font-bold text-[#6B665D]">Analyzing description…</p> : null}
           {demoMode ? <p className="mt-2 text-sm font-bold text-[#7A521F]">Demo NLP preview</p> : null}
           <div className="mt-5 flex items-center gap-3 border-l-2 border-[#A8752B] pl-4 text-sm font-bold text-[#6B665D]">
             <ArrowRight size={17} aria-hidden="true" />

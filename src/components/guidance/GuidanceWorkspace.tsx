@@ -198,7 +198,6 @@ export function GuidanceWorkspace() {
                     {busy ? "Generating…" : guidance ? "Regenerate explanation" : "Generate explanation"}
                   </Button>
                 </div>
-                {guidance ? <p className="mt-3 text-sm font-semibold text-[#6B665D]">{guidance.metadata?.fallbackUsed ? `Deterministic fallback used (${guidance.metadata.failureReason ?? "model unavailable"}).` : guidance.metadata?.generationMethod === "LOCAL_LLM" ? `AI explanation by ${guidance.metadata.requestedModel === "llama3.2-3b" ? "Llama 3.2 3B" : "Mistral 7B"}.` : "Deterministic guidance."} Source records come from the legal knowledge base.</p> : null}
               </section>
             ) : null}
 
