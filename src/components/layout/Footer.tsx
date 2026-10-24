@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function Footer() {
   return (
     <footer className="border-t border-[#DED7CA] bg-[#FBF8F1]">
@@ -13,15 +15,16 @@ export function Footer() {
           </p>
         </div>
         <nav className="flex flex-wrap items-center gap-4 font-bold text-[#18150F]" aria-label="Footer">
-          <a href="#safety" className="hover:text-[#A8752B]">
+          <Link href="/about" className="hover:text-[#A8752B]">About Us</Link>
+          <Link href="/#safety" className="hover:text-[#A8752B]">
             Safety
-          </a>
-          <a href="#sources" className="hover:text-[#A8752B]">
+          </Link>
+          <Link href="/#sources" className="hover:text-[#A8752B]">
             Official Sources
-          </a>
-          <a href="#privacy" className="hover:text-[#A8752B]">
+          </Link>
+          <Link href="/#privacy" className="hover:text-[#A8752B]">
             Privacy
-          </a>
+          </Link>
         </nav>
       </div>
     </footer>

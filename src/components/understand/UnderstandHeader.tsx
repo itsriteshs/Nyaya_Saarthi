@@ -73,6 +73,7 @@ export function UnderstandHeader({ language, currentStep }: UnderstandHeaderProp
       {navigationOpen ? <nav id="matter-mobile-navigation" aria-label="Matter navigation" className="grid gap-1 border-t border-[#DED7CA] p-3 lg:hidden">
         <Link className="rounded p-3 font-bold" href="/" onClick={() => setNavigationOpen(false)}>Home</Link>
         {progressItems.map((item) => <Link key={item} className="rounded p-3 font-bold" href={`/${item.toLowerCase()}`} onClick={() => setNavigationOpen(false)}>{item}</Link>)}
+        <Link className="rounded p-3 font-bold" href="/about" onClick={() => setNavigationOpen(false)}>About Us</Link>
       </nav> : null}
       <div className="grid grid-cols-4 border-t border-[#DED7CA] lg:hidden">
         {progressItems.map((item, index) => (

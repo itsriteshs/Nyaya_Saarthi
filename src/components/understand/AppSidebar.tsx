@@ -63,6 +63,7 @@ export function AppSidebar({ currentStep = "understand" }: AppSidebarProps) {
       </nav>
 
       <div className="border-t border-white/10 p-3">
+        <Link href="/about" className="flex min-h-11 items-center rounded-md px-3 text-sm font-bold hover:bg-white/8">About Us</Link>
 
         <div className="mt-4 rounded-md border border-white/10 p-3 text-xs font-semibold leading-5 text-[#D8CCBA]">
           <ShieldCheck size={16} className="mb-2 text-[#C49A55]" aria-hidden="true" />

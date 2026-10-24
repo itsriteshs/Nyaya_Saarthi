@@ -2,23 +2,33 @@
 
 import { Menu, Scale, X } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { useMatter } from "@/providers/MatterProvider";
 import type { LanguageOption } from "@/types/nlp";
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Safety", href: "#safety" },
-  { label: "Official Sources", href: "#sources" },
+  { label: "Home", href: "/#home" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "Safety", href: "/#safety" },
+  { label: "Official Sources", href: "/#sources" },
+  { label: "About Us", href: "/about" },
 ];
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
   const { intakeLanguage, setIntakeLanguage } = useMatter();
 
   function focusIntake() {
+    if (!document.getElementById("home")) {
+      setOpen(false);
+      router.push("/#home");
+      return;
+    }
     document.getElementById("home")?.scrollIntoView({ behavior: "smooth", block: "start" });
     window.setTimeout(() => document.getElementById("situation")?.focus(), 250);
     setOpen(false);
@@ -27,7 +37,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-[#DED7CA] bg-[#FBF8F1]/95 backdrop-blur">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 lg:px-10">
-        <a href="#home" className="flex min-w-0 items-center gap-3" aria-label="NyayaSaarthi home">
+        <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="NyayaSaarthi home">
           <span className="grid size-11 shrink-0 place-items-center rounded-md border border-[#C49A55] bg-[#071B3A] text-[#F7F3EA]">
             <Scale size={22} strokeWidth={1.8} aria-hidden="true" />
           </span>
@@ -39,21 +49,22 @@ export function Header() {
               Your Road. Your Rights. Your Legal Guide.
             </span>
           </span>
-        </a>
+        </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-5 xl:flex" aria-label="Primary navigation">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
+              aria-current={pathname === item.href ? "page" : undefined}
               className="text-sm font-extrabold text-[#18150F] transition-colors hover:text-[#A8752B]"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <label className="sr-only" htmlFor="site-language">
             Language
           </label>
@@ -75,7 +86,7 @@ export function Header() {
 
         <button
           type="button"
-          className="grid size-11 place-items-center rounded-md border border-[#DED7CA] bg-[#FBF8F1] text-[#071B3A] lg:hidden"
+          className="grid size-11 place-items-center rounded-md border border-[#DED7CA] bg-[#FBF8F1] text-[#071B3A] xl:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
@@ -86,20 +97,21 @@ export function Header() {
 
       <div
         className={cn(
-          "border-t border-[#DED7CA] bg-[#FBF8F1] px-5 py-4 lg:hidden",
+          "border-t border-[#DED7CA] bg-[#FBF8F1] px-5 py-4 xl:hidden",
           open ? "block" : "hidden",
         )}
       >
         <nav className="grid gap-2" aria-label="Mobile navigation">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
+              aria-current={pathname === item.href ? "page" : undefined}
               className="rounded-md px-3 py-3 text-sm font-extrabold hover:bg-[#EFE8DA]"
               onClick={() => setOpen(false)}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
         <div className="mt-4 grid gap-3 border-t border-[#DED7CA] pt-4">
